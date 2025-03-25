@@ -26,7 +26,13 @@ export default function SuccessPage() {
       .then(() => {
         fetchDocument();
       })
-      .catch((err) => {
+      .catch((err: unknown) => {
+        if (err instanceof Error) {
+          console.error(err.message);
+        } else {
+          console.error(err);
+        }
+      
         setError("Nie masz uprawnień do tego dokumentu");
         setLoading(false);
       });

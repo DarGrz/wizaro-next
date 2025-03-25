@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 import path from 'path';
-import fs from 'fs';
+// import fs from 'fs';
 
 // 📁 Ścieżka do pliku bazy danych
 const dbPath = path.join(process.cwd(), 'database.sqlite');
