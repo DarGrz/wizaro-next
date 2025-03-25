@@ -3,8 +3,17 @@ import Stripe from 'stripe';
 import db from '@/app/lib/db';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-02-24.acacia',
 });
+
+// Typowanie danych firmy
+interface Company {
+  name: string;
+  nip: string;
+  url: string;
+  first_name: string;
+  last_name: string;
+}
 
 export async function POST(req: NextRequest) {
   const signature = req.headers.get('stripe-signature');
@@ -40,10 +49,10 @@ export async function POST(req: NextRequest) {
     }
 
     const company = db.prepare(`
-      SELECT c.*, d.type FROM documents d
+      SELECT c.name, c.nip, c.url, c.first_name, c.last_name FROM documents d
       JOIN companies c ON c.id = d.company_id
       WHERE d.id = ?
-    `).get(document_id);
+    `).get(document_id) as Company;
 
     if (!company) {
       console.error('❌ Nie znaleziono firmy dla dokumentu', document_id);
@@ -62,7 +71,7 @@ Proszę o potwierdzenie realizacji mojej prośby oraz kontakt w razie potrzeby u
 Z góry dziękuję za współpracę i profesjonalne podejście do sprawy.<br><br>
 Z wyrazami szacunku,<br>
 ${company.first_name} ${company.last_name}<br><br>
-<p style="font-style:italic;">Szablon wiadomości został pobrany ze strony wzorypism.io.
+<p style="font-style:italic;">Szablon wiadomości został pobrany ze strony wzorypism.io.</p>
     `;
 
     db.prepare(`UPDATE documents SET content = ? WHERE id = ?`).run(html, document_id);
