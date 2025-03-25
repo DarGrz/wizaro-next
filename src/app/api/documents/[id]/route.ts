@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import db from '@/app/lib/db';
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: NextRequest) {
   try {
-    const documentId = parseInt(params.id);
+    const url = new URL(req.url);
+    const id = url.pathname.split('/').pop(); // np. /api/documents/123 -> "123"
+
+    if (!id) {
+      return NextResponse.json({ error: 'Brak ID dokumentu' }, { status: 400 });
+    }
+
+    const documentId = parseInt(id);
 
     const document = db.prepare(`
       SELECT d.id, d.content, c.email, c.name, c.url
@@ -20,8 +24,13 @@ export async function GET(
     }
 
     return NextResponse.json(document);
-  } catch (err) {
-    console.error('❌ Błąd pobierania dokumentu:', err);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error('❌ Błąd pobierania dokumentu:', err.message);
+    } else {
+      console.error('❌ Nieznany błąd:', err);
+    }
+
     return NextResponse.json({ error: 'Błąd serwera' }, { status: 500 });
   }
 }
