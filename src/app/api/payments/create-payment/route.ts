@@ -22,9 +22,9 @@ export async function POST(req: NextRequest) {
           price_data: {
             currency: 'pln',
             product_data: {
-              name: 'Wniosek o usunięcie danych – dokument HTML',
+              name: 'Usługa Marketingowa - Ochrona Reputacji Online', 
             },
-            unit_amount: 39900, // 399 zł w groszach
+            unit_amount: 49900, // 399 zł w groszach
           },
           quantity: 1,
         },

@@ -96,7 +96,7 @@ export default function SuccessPage() {
 
       const opt = {
         margin: [3, 2, 2, 2],
-        filename: 'wniosek-rodo.pdf',
+        filename: 'wniosek-o-usuniecie.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
           scale: 2,
@@ -119,15 +119,26 @@ export default function SuccessPage() {
 
   const handleOpenMailto = () => {
     const plainText = getPlainText(doc?.content || '');
-    const email = doc?.email || doc?.company?.email || '';
-    const to = '';
-    const bcc = [email].filter(Boolean).join(',');
-
+  
+    const to = 'admin@gowork.pl';
+    const bcc = "kontakt@wizaro.pl";
+    const cc = ''; // jeśli chcesz dodać np. 'test@wizaro.pl', to tu wpisz
+  
     const subject = encodeURIComponent('Prośba o usunięcie danych zgodnie z RODO');
     const body = encodeURIComponent(plainText);
-    const mailtoLink = `mailto:${to}?bcc=${bcc}&subject=${subject}&body=${body}`;
+  
+    let mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
+    if (cc) {
+      mailtoLink += `&cc=${encodeURIComponent(cc)}`;
+    }
+    if (bcc) {
+      mailtoLink += `&bcc=${encodeURIComponent(bcc)}`;
+    }
+  
     window.location.href = mailtoLink;
   };
+  
+  
 
   return (
     <div className="min-h-screen bg-[#f6f6f6] flex items-center justify-center px-4 py-10">

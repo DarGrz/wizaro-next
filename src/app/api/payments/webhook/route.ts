@@ -12,6 +12,8 @@ interface Company {
   url: string;
   first_name: string;
   last_name: string;
+  phone: string;
+  opinie: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -52,7 +54,9 @@ export async function POST(req: NextRequest) {
           nip,
           url,
           first_name,
-          last_name
+          last_name,
+          phone,
+          opinie
         )
       `)
       .eq('id', document_id)

@@ -9,11 +9,11 @@ const supabase = createClient(
 export async function POST(req: NextRequest) {
   const body = await req.json();
 
-  const { name, first_name, last_name, email, nip, regon, industry, url } = body;
+  const { name, first_name, last_name, email, nip, regon, phone, opinie, industry, url } = body;
 
   const { data, error } = await supabase
     .from('companies')
-    .insert([{ name, first_name, last_name, email, nip, regon, industry, url }])
+    .insert([{ name, first_name, last_name, email, nip, regon, phone, opinie, industry, url }])
     .select()
     .single();
 

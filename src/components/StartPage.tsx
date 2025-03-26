@@ -1,17 +1,13 @@
+//StartPage.tsx
+
 'use client';
 
-import { useRouter } from 'next/navigation';
+import BusinessTypeSelector from './BusinessTypeSelector';
 
 export default function StartPage() {
-  const router = useRouter();
+  
 
-  const handleChoice = (type: 'jdg' | 'spolka') => {
-    if (type === 'jdg') {
-      router.push('/formularz');
-    } else {
-      router.push('/kontakt');
-    }
-  };
+
 
   return (
     <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-20">
@@ -26,7 +22,7 @@ export default function StartPage() {
             prosty formularz, resztą zajmie się system.
           </p>
         </div>
-        <div className="bg-white rounded-xl shadow-md p-10 w-full max-w-md mx-auto">
+        {/* <div className="bg-white rounded-xl shadow-md p-10 w-full max-w-md mx-auto">
           <h2 className="text-2xl font-semibold text-center text-gray-900 mb-4">
             Jaki masz rodzaj działalności?
           </h2>
@@ -46,7 +42,8 @@ export default function StartPage() {
               Spółka
             </button>
           </div>
-        </div>
+        </div> */}
+            <BusinessTypeSelector />
       </div>
 
       <div className="w-full grid gap-6 text-left text-gray-700 mt-20">
