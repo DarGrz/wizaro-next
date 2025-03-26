@@ -16,40 +16,37 @@ export default function SuccessPage() {
   const [error, setError] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
 
-  const documentId =
-    typeof window !== 'undefined'
-      ? new URLSearchParams(window.location.search).get('documentId')
-      : null;
-  const sessionId =
-    typeof window !== 'undefined'
-      ? new URLSearchParams(window.location.search).get('sessionId')
-      : null;
+  const documentId = typeof window !== 'undefined'
+    ? new URLSearchParams(window.location.search).get('documentId')
+    : null;
 
-  const fetchDocument = useCallback(
-    async (retries = 5) => {
-      try {
-        const res = await fetch(`/api/documents/${documentId}`);
-        if (!res.ok) {
-          if (retries > 0) {
-            setTimeout(() => fetchDocument(retries - 1), 2000);
-          } else {
-            throw new Error('Dokument nieopłacony lub nie istnieje');
-          }
-          return;
-        }
+  const sessionId = typeof window !== 'undefined'
+    ? new URLSearchParams(window.location.search).get('sessionId')
+    : null;
 
-        const data = await res.json();
-        setDoc(data);
-        setLoading(false);
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : 'Błąd pobierania dokumentu'
-        );
-        setLoading(false);
+  const fetchDocument = useCallback(async (retries = 5) => {
+  try {
+    const res = await fetch(`/api/documents/${documentId}`);
+    if (!res.ok) {
+      if (retries > 0) {
+        setTimeout(() => fetchDocument(retries - 1), 2000);
+      } else {
+        throw new Error('Dokument nieopłacony lub nie istnieje');
       }
-    },
-    [documentId]
-  );
+      return;
+    }
+
+    const json = await res.json();
+    console.log("PEŁNA ODPOWIEDŹ Z API:", json);
+
+    if (!json || !json.content) throw new Error('Brak treści dokumentu');
+    setDoc(json);
+    setLoading(false);
+  } catch (err) {
+    setError(err instanceof Error ? err.message : 'Błąd pobierania dokumentu');
+    setLoading(false);
+  }
+}, [documentId]);
 
   useEffect(() => {
     if (!documentId || !sessionId) {
@@ -63,9 +60,7 @@ export default function SuccessPage() {
         if (!res.ok) throw new Error('Brak dostępu do dokumentu');
         return res.json();
       })
-      .then(() => {
-        fetchDocument();
-      })
+      .then(() => fetchDocument())
       .catch((err: unknown) => {
         if (err instanceof Error) {
           console.error(err.message);
@@ -100,7 +95,7 @@ export default function SuccessPage() {
       const element = document.getElementById('document');
 
       const opt = {
-        margin: [3, 2, 2, 2], // bez readonly
+        margin: [3, 2, 2, 2],
         filename: 'wniosek-rodo.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
@@ -113,7 +108,7 @@ export default function SuccessPage() {
         jsPDF: {
           unit: 'cm',
           format: 'a4',
-          orientation: 'portrait' as const, // tylko to z `as const`
+          orientation: 'portrait' as const,
         },
       };
 
@@ -128,11 +123,8 @@ export default function SuccessPage() {
     const to = '';
     const bcc = [email].filter(Boolean).join(',');
 
-    const subject = encodeURIComponent(
-      'Prośba o usunięcie danych zgodnie z RODO'
-    );
+    const subject = encodeURIComponent('Prośba o usunięcie danych zgodnie z RODO');
     const body = encodeURIComponent(plainText);
-
     const mailtoLink = `mailto:${to}?bcc=${bcc}&subject=${subject}&body=${body}`;
     window.location.href = mailtoLink;
   };
@@ -140,9 +132,7 @@ export default function SuccessPage() {
   return (
     <div className="min-h-screen bg-[#f6f6f6] flex items-center justify-center px-4 py-10">
       <div className="bg-white rounded-2xl shadow-md p-6 md:p-10 max-w-6xl w-full flex flex-col md:flex-row gap-8 items-stretch">
-        {loading && (
-          <p className="text-center text-gray-500">Ładowanie dokumentu...</p>
-        )}
+        {loading && <p className="text-center text-gray-500">Ładowanie dokumentu...</p>}
         {error && <p className="text-center text-red-600">{error}</p>}
 
         {doc && (
@@ -152,7 +142,6 @@ export default function SuccessPage() {
                 Prośba o usunięcie danych zgodnie z RODO
               </h1>
 
-              {/* MOBILE */}
               <div className="block md:hidden">
                 <div
                   id="document"
@@ -160,7 +149,7 @@ export default function SuccessPage() {
                     expanded ? '' : 'max-h-[300px] overflow-hidden'
                   }`}
                   dangerouslySetInnerHTML={{ __html: doc.content }}
-                ></div>
+                />
                 <button
                   onClick={() => setExpanded(!expanded)}
                   className="mt-2 text-sm text-gray-600 hover:underline"
@@ -169,12 +158,11 @@ export default function SuccessPage() {
                 </button>
               </div>
 
-              {/* DESKTOP */}
               <div
                 id="document"
                 className="hidden md:block prose prose-lg max-w-none flex-grow"
                 dangerouslySetInnerHTML={{ __html: doc.content }}
-              ></div>
+              />
 
               <div className="md:mt-16 mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
                 <button
@@ -193,18 +181,13 @@ export default function SuccessPage() {
             </div>
 
             <div className="md:w-1/3 w-full border border-gray-200 rounded-xl p-5 bg-gray-50 h-full flex flex-col justify-between">
-              <h2 className="text-lg font-semibold mb-2 text-gray-800">
-                Co dalej?
-              </h2>
+              <h2 className="text-lg font-semibold mb-2 text-gray-800">Co dalej?</h2>
               <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
                 <li>Sprawdź treść dokumentu i w razie potrzeby dostosuj.</li>
                 <li>
-                  Kliknij <strong>„Utwórz gotowy e-mail”</strong> – dokument
-                  wklei się automatycznie.
+                  Kliknij <strong>„Utwórz gotowy e-mail”</strong> – dokument wklei się automatycznie.
                 </li>
-                <li>
-                  Wyślij wiadomość do serwisu z prośbą o usunięcie danych.
-                </li>
+                <li>Wyślij wiadomość do serwisu z prośbą o usunięcie danych.</li>
               </ol>
             </div>
           </>

@@ -35,7 +35,7 @@ export default function Header() {
           <span className=""><svg width="30" height="20" viewBox="0 0 6 4" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0.1" dy="0.1" stdDeviation="0.1" flood-color="rgba(0,0,0,0.8)" />
+      <feDropShadow dx="0.1" dy="0.1" stdDeviation="0.1" floodColor="rgba(0,0,0,0.8)" />
     </filter>
   </defs>
   <g filter="url(#shadow)">

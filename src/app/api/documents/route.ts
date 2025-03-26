@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/app/lib/supabase';
 import { randomUUID } from 'crypto';
 
+export async function GET() {
+  return NextResponse.json({ message: 'Endpoint główny dokumentów działa' });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { company_id, type } = await req.json();
