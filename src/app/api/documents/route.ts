@@ -1,25 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
-import db from '@/app/lib/db';
+import { supabase } from '@/app/lib/supabase';
+import { randomUUID } from 'crypto';
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { company_id, type } = body;
+    const { company_id, type } = await req.json();
 
     if (!company_id || !type) {
-      return NextResponse.json({ error: 'Brak wymaganych danych' }, { status: 400 });
+      return NextResponse.json({ error: 'Brak wymaganych pól' }, { status: 400 });
     }
 
-    const stmt = db.prepare(`
-      INSERT INTO documents (company_id, type)
-      VALUES (?, ?)
-    `);
+    const document_id = randomUUID();
 
-    const result = stmt.run(company_id, type);
+    const { error } = await supabase.from('documents').insert({
+      id: document_id,
+      company_id,
+      type,
+      status: 'draft'
+    });
 
-    return NextResponse.json({ id: result.lastInsertRowid });
-  } catch (error) {
-    console.error('❌ Błąd podczas tworzenia dokumentu:', error);
-    return NextResponse.json({ error: 'Błąd serwera przy tworzeniu dokumentu' }, { status: 500 });
+    if (error) {
+      console.error('❌ Błąd zapisu dokumentu:', error);
+      return NextResponse.json({ error: 'Błąd zapisu dokumentu' }, { status: 500 });
+    }
+
+    return NextResponse.json({ id: document_id, message: 'Dokument utworzony' });
+  } catch (err) {
+    console.error('❌ Błąd przetwarzania żądania:', err);
+    return NextResponse.json({ error: 'Błąd serwera' }, { status: 500 });
   }
 }

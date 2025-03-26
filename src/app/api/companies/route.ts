@@ -1,30 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
-import db from '@/app/lib/db';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
+);
 
 export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const {
-      name,
-      first_name,
-      last_name,
-      email,
-      nip,
-      regon,
-      industry,
-      url
-    } = body;
+  const body = await req.json();
 
-    const stmt = db.prepare(`
-      INSERT INTO companies (name, first_name, last_name, email, nip, regon, industry, url)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `);
+  const { name, first_name, last_name, email, nip, regon, industry, url } = body;
 
-    const result = stmt.run(name, first_name, last_name, email, nip, regon, industry, url);
+  const { data, error } = await supabase
+    .from('companies')
+    .insert([{ name, first_name, last_name, email, nip, regon, industry, url }])
+    .select()
+    .single();
 
-    return NextResponse.json({ id: result.lastInsertRowid });
-  } catch (error) {
-    console.error('❌ Error in POST /api/companies:', error);
-    return NextResponse.json({ error: 'Błąd serwera przy dodawaniu firmy' }, { status: 500 });
+  if (error) {
+    console.error('❌ Error inserting company:', error.message);
+    return NextResponse.json({ error: 'Błąd przy dodawaniu firmy' }, { status: 500 });
   }
+
+  return NextResponse.json({ id: data.id }, { status: 201 });
 }

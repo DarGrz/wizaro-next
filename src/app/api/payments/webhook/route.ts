@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import db from '@/app/lib/db';
+import { supabase } from '@/app/lib/supabase';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: '2025-02-24.acacia',
 });
 
-// Typowanie danych firmy
 interface Company {
   name: string;
   nip: string;
@@ -29,13 +28,9 @@ export async function POST(req: NextRequest) {
   try {
     event = stripe.webhooks.constructEvent(rawBody, signature, endpointSecret);
   } catch (err: unknown) {
-    if (err instanceof Error) {
-      console.error('❌ Webhook signature error:', err.message);
-      return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
-    } else {
-      console.error('❌ Unknown error in webhook:', err);
-      return new NextResponse(`Unknown Webhook Error`, { status: 400 });
-    }
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    console.error('❌ Webhook signature error:', errorMessage);
+    return new NextResponse(`Webhook Error: ${errorMessage}`, { status: 400 });
   }
 
   if (event.type === 'checkout.session.completed') {
@@ -48,16 +43,27 @@ export async function POST(req: NextRequest) {
       return new NextResponse('Brak document_id', { status: 400 });
     }
 
-    const company = db.prepare(`
-      SELECT c.name, c.nip, c.url, c.first_name, c.last_name FROM documents d
-      JOIN companies c ON c.id = d.company_id
-      WHERE d.id = ?
-    `).get(document_id) as Company;
+    // Pobierz firmę powiązaną z dokumentem
+    const { data, error } = await supabase
+      .from('documents')
+      .select(`
+        companies (
+          name,
+          nip,
+          url,
+          first_name,
+          last_name
+        )
+      `)
+      .eq('id', document_id)
+      .single();
 
-    if (!company) {
-      console.error('❌ Nie znaleziono firmy dla dokumentu', document_id);
-      return new NextResponse('Brak danych firmy', { status: 500 });
+    if (error || !data || !data.companies) {
+      console.error('❌ Nie udało się pobrać danych firmy:', error?.message);
+      return new NextResponse('Błąd pobierania danych firmy', { status: 500 });
     }
+
+    const company = data.companies as unknown as Company;
 
     const html = `
 Szanowni Państwo,<br><br>
@@ -74,10 +80,24 @@ ${company.first_name} ${company.last_name}<br><br>
 <p style="font-style:italic;">Szablon wiadomości został pobrany ze strony wzorypism.io.</p>
     `;
 
-    db.prepare(`UPDATE documents SET content = ? WHERE id = ?`).run(html, document_id);
-    db.prepare(`UPDATE payments SET status = 'paid' WHERE session_id = ?`).run(session_id);
+    // Zapisz wygenerowaną treść dokumentu
+    const { error: updateError } = await supabase
+      .from('documents')
+      .update({ content: html })
+      .eq('id', document_id);
 
-    console.log(`✅ Dokument ${document_id} wygenerowany po płatności`);
+    // Zaktualizuj status płatności
+    const { error: paymentError } = await supabase
+      .from('payments')
+      .update({ status: 'paid' })
+      .eq('session_id', session_id);
+
+    if (updateError || paymentError) {
+      console.error('❌ Błąd podczas aktualizacji dokumentu lub płatności:', updateError?.message, paymentError?.message);
+      return new NextResponse('Błąd podczas aktualizacji', { status: 500 });
+    }
+
+    console.log(`✅ Dokument ${document_id} został zaktualizowany po płatności`);
   }
 
   return new NextResponse('Webhook odebrany', { status: 200 });
