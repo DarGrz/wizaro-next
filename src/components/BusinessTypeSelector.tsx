@@ -35,7 +35,7 @@ export default function BusinessTypeSelector() {
   };
 
   return (
-    <div className="relative w-[440px] mx-auto">
+    <div className="relative px-2 w-auto lg:w-[440px] mx-auto">
       <div className="bg-white rounded-xl shadow-md p-10 w-full h-[300px] overflow-hidden flex flex-col justify-between relative">
         <AnimatePresence mode="wait">
           {step === 'start' && (
@@ -49,7 +49,7 @@ export default function BusinessTypeSelector() {
             >
               <div className="h-[100px]">
                 <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
-                  Jaki masz rodzaj działalności?
+                  Usuń informacje o swojej firmie
                 </h2>
                 <p className="text-gray-600 text-center text-sm">
                   Wybierz aby przejsć dalej

@@ -3,6 +3,7 @@
 'use client';
 
 import BusinessTypeSelector from './BusinessTypeSelector';
+import SocialProof from './SocialProof';
 
 export default function StartPage() {
   
@@ -11,7 +12,7 @@ export default function StartPage() {
 
   return (
     <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-20">
-      <div className="gap-6 mb-6 md:flex">
+      <div className="gap-6 mb-6 lg:flex">
         <div className="p-10 w-full max-w-lg md:border-e-1 border-gray-200 md:border-b">
           <h1 className="text-3xl font-semibold text-center text-gray-900 mb-4">
             Pomagamy chronić wizerunek Twojej firmy
@@ -70,6 +71,9 @@ export default function StartPage() {
           </p>
         </div>
       </div>
+        <div className="md:flex py-10 md:gap-8 ">
+           <SocialProof />
+        </div>
     </div>
   );
 }
