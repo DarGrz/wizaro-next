@@ -129,17 +129,17 @@ export default function CompanyFormStep({
         required
       />
 
-      <input
+      {/* <input
         type="url"
         name="url"
         placeholder="Link do profilu (np. Google Maps)"
         value={company.url}
         onChange={onChange}
         className="w-full border border-gray-300 rounded px-4 py-2"
-        required
-      />
+        
+      /> */}
 
-      <label className="flex items-center gap-2">
+      {/* <label className="flex items-center gap-2">
         <input
           type="checkbox"
           name="different_payer"
@@ -156,12 +156,12 @@ export default function CompanyFormStep({
           }
         />
         Dane płatnika różnią się od danych firmy
-      </label>
+      </label> */}
 
       <p className="text-sm text-center text-gray-700 mt-6">
         Do usunięcia: <strong>{reviewCount}</strong>
         <br />
-        Cena łączna: <strong className="text-lg">{totalPrice} zł brutto</strong>
+        Cena łączna: <strong className="text-lg">{totalPrice} zł brutto (z VAT 23%)</strong>
       </p>
 
       <div className="flex justify-between gap-3">

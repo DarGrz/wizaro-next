@@ -79,7 +79,7 @@ export default function SummaryStep({
         <li>
           <strong>NIP:</strong> {company.nip}
         </li>
-        {/* <li>
+        <li>
           <strong>Portal:</strong>{" "}
           <a
             href={company.url}
@@ -88,7 +88,7 @@ export default function SummaryStep({
           >
             {company.url}
           </a>
-        </li> */}
+        </li>
         <li>
           <strong>Liczba opinii:</strong> {reviews.length}
         </li>

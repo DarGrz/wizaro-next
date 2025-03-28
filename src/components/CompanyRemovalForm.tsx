@@ -90,9 +90,9 @@ export default function CompanyFormRemoval() {
       lowerUrl.includes("panorama") ||
       lowerUrl.includes("pkt")
     ) {
-      return 50000;
+      return 49900;
     }
-    return 50000;
+    return 49900;
   };
 
   const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLink(r.url), 0);

@@ -82,7 +82,7 @@ export default function RemovalForm({
               <input
                 type="text"
                 placeholder="NIP firmy"
-                required
+                
                 value={removal.nip}
                 onChange={(e) => onChange(index, "nip", e.target.value)}
                 className="w-full border border-gray-300 rounded px-4 py-2"
