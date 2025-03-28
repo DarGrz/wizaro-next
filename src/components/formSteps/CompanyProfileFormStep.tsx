@@ -139,7 +139,7 @@ export default function CompanyFormStep({
         required
       />
 
-      {/* <label className="flex items-center gap-2">
+      <label className="flex items-center gap-2">
         <input
           type="checkbox"
           name="different_payer"
@@ -156,7 +156,7 @@ export default function CompanyFormStep({
           }
         />
         Dane płatnika różnią się od danych firmy
-      </label> */}
+      </label>
 
       <p className="text-sm text-center text-gray-700 mt-6">
         Do usunięcia: <strong>{reviewCount}</strong>

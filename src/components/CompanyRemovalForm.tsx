@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import RemovalForm from "@/components/formSteps/RemovalForm";
-import CompanyFormStep from "@/components/formSteps/CompanyFormStep";
+import CompanyProfileFormStep from "@/components/formSteps/CompanyFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
 import SummaryStep from "@/components/formSteps/SummaryStep";
 import PaymentExplanation from "./PaymentExplanation";
@@ -96,6 +96,7 @@ export default function CompanyFormRemoval() {
   };
 
   const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLink(r.url), 0);
+  const displayPrice = totalPrice / 100;
 
   const handleRemovalChange = (index: number, field: keyof Removal, value: string) => {
     const updated = [...removals];
@@ -212,7 +213,7 @@ export default function CompanyFormRemoval() {
               <RemovalForm
                 removals={removals}
                 expandedIndex={expandedIndex}
-                totalPrice={totalPrice}
+                totalPrice={displayPrice}
                 onChange={handleRemovalChange}
                 onAdd={addRemoval}
                 onRemove={removeRemoval}
@@ -225,7 +226,7 @@ export default function CompanyFormRemoval() {
             )}
 
             {step === "company" && (
-              <CompanyFormStep
+              <CompanyProfileFormStep
                 company={company}
                 onChange={(e) =>
                   setCompany({ ...company, [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value })
@@ -233,7 +234,7 @@ export default function CompanyFormRemoval() {
                 onSubmit={() => setStep(company.different_payer ? "payer" : "summary")}
                 onBack={() => setStep("removal")}
                 reviewCount={removals.length}
-                totalPrice={totalPrice}
+                totalPrice={displayPrice}
               />
             )}
 
@@ -255,7 +256,7 @@ export default function CompanyFormRemoval() {
                   url: removal.url,
                   date_added: new Date().toISOString().split("T")[0],
                 }))}
-                totalPrice={totalPrice}
+                totalPrice={displayPrice}
                 isLoading={isLoading}
                 onBack={() => (company.different_payer ? setStep("payer") : setStep("company"))}
                 onConfirm={confirmAndPay}

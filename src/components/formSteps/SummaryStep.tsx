@@ -93,7 +93,7 @@ export default function SummaryStep({
           <strong>Liczba opinii:</strong> {reviews.length}
         </li>
         <li>
-          <strong>Cena:</strong> {(totalPrice / 100).toFixed(2)} zł brutto (z VAT23%)
+          <strong>Cena:</strong> {totalPrice} zł brutto (z VAT23%)
         </li>
       </ul>
 
