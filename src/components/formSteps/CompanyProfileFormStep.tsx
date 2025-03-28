@@ -25,7 +25,7 @@ interface CompanyFormStepProps {
   totalPrice: number;
 }
 
-export default function CompanyFormStep({
+export default function CompanyProfileFormStep({
   company,
   onChange,
   onSubmit,
@@ -129,34 +129,7 @@ export default function CompanyFormStep({
         required
       />
 
-      {/* <input
-        type="url"
-        name="url"
-        placeholder="Link do profilu (np. Google Maps)"
-        value={company.url}
-        onChange={onChange}
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        
-      /> */}
-
-      {/* <label className="flex items-center gap-2">
-        <input
-          type="checkbox"
-          name="different_payer"
-          checked={company.different_payer}
-          onChange={(e) =>
-            onChange({
-              ...e,
-              target: {
-                ...e.target,
-                name: "different_payer",
-                value: String(e.target.checked),
-              },
-            } as React.ChangeEvent<HTMLInputElement>)
-          }
-        />
-        Dane płatnika różnią się od danych firmy
-      </label> */}
+   
 
       <p className="text-sm text-center text-gray-700 mt-6">
         Do usunięcia: <strong>{reviewCount}</strong>

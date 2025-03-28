@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import RemovalForm from "@/components/formSteps/RemovalForm";
-import CompanyProfileFormStep from "@/components/formSteps/CompanyFormStep";
+import CompanyProfileFormStep from "@/components/formSteps/CompanyProfileFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
 import SummaryStep from "@/components/formSteps/SummaryStep";
 import PaymentExplanation from "./PaymentExplanation";

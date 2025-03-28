@@ -136,7 +136,7 @@ export default function CompanyFormStep({
         value={company.url}
         onChange={onChange}
         className="w-full border border-gray-300 rounded px-4 py-2"
-        required
+        
       />
 
       <label className="flex items-center gap-2">
