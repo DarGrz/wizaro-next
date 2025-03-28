@@ -10,30 +10,33 @@ const VAT_TAX_RATE_ID = 'txr_1R7DBmLEJlt9ALSCIZlfxiv1'; // <- Twój VAT 23%
 
 export async function POST(req: NextRequest) {
   try {
+    const body = await req.json();
+
     const {
+      document_id,
       email,
       name,
       company_name,
       nip,
-      document_id,
       street,
       zip,
       city,
-    } = await req.json();
+      quantity,
+    } = body;
 
-    if (!document_id) {
-      return NextResponse.json({ error: 'Brak document_id' }, { status: 400 });
+    if (!document_id || !email || !quantity) {
+      return NextResponse.json({ error: 'Brak wymaganych danych' }, { status: 400 });
     }
 
-    // 1. Utwórz klienta w Stripe
+    // 1. Utwórz klienta Stripe z adresem i NIP-em
     const customer = await stripe.customers.create({
       email,
       name: company_name || name,
       address: {
         line1: street,
         postal_code: zip,
-        city: city,
-        country: 'PL', // Zakładamy, że to Polska
+        city,
+        country: 'PL',
       },
       metadata: {
         nip,
@@ -42,7 +45,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // 2. Dodaj NIP jako VAT EU
+    // 2. Dodaj VAT UE jeśli jest NIP
     if (nip) {
       const cleanedNip = nip.replace(/\D/g, '');
       if (cleanedNip.length === 10) {
@@ -54,7 +57,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 3. Utwórz sesję Checkout z VAT-em i metadata
+    // 3. Utwórz sesję Checkout z VAT-em i quantity
     const session = await stripe.checkout.sessions.create({
       customer: customer.id,
       payment_method_types: ['card', 'p24'],
@@ -64,13 +67,12 @@ export async function POST(req: NextRequest) {
         {
           price_data: {
             currency: 'pln',
+            unit_amount: 29900,
             product_data: {
-              name: 'Usługa Marketingowa - Ochrona reputacji online.',
-              description: 'Usunięcie profilu firmy z portalu.',
+              name: 'Usługa Marketingowa - Moderacja Opinii',
             },
-            unit_amount: 49900,
           },
-          quantity: 1,
+          quantity,
           tax_rates: [VAT_TAX_RATE_ID],
         },
       ],
@@ -79,12 +81,19 @@ export async function POST(req: NextRequest) {
       },
       metadata: {
         document_id,
+        name,
+        company_name,
+        nip,
+        street,
+        zip,
+        city,
+        quantity: quantity.toString(),
       },
-      success_url: `${process.env.DOMAIN}/success?documentId=${document_id}&sessionId={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.DOMAIN}/cancel`,
+      success_url: `${process.env.DOMAIN}/success-page-reviews?documentId=${document_id}&sessionId={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.DOMAIN}/formularz-opinie`,
     });
 
-    // 4. Zapisz sesję do Supabase
+    // 4. Zapisz do Supabase
     const { error } = await supabase.from('payments').insert({
       document_id,
       session_id: session.id,
@@ -97,8 +106,8 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ url: session.url });
-  } catch (error) {
-    console.error('❌ Błąd Stripe Checkout:', error);
-    return NextResponse.json({ error: 'Błąd podczas tworzenia płatności' }, { status: 500 });
+  } catch (err) {
+    console.error('❌ Stripe payment error:', err);
+    return NextResponse.json({ error: 'Stripe checkout error' }, { status: 500 });
   }
 }

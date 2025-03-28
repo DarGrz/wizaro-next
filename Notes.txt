@@ -1,0 +1,1 @@
+1. Pamiętaj o podminie TAX rates z test na live w payment and checkout

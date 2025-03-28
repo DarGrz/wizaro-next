@@ -36,7 +36,7 @@ export default function BusinessTypeSelector() {
 
   return (
     <div className="relative px-2 w-auto lg:w-[440px] mx-auto">
-      <div className="bg-white rounded-xl shadow-md p-10 w-full h-[300px] overflow-hidden flex flex-col justify-between relative">
+      <div className="bg-white  border border-gray-200 rounded-xl shadow-md  p-10 w-full h-[300px] overflow-hidden flex flex-col justify-between relative">
         <AnimatePresence mode="wait">
           {step === 'start' && (
             <motion.div
@@ -113,7 +113,7 @@ export default function BusinessTypeSelector() {
         className=""
       >
         <Link
-          href="/formularz"
+          href="/formularz-profil"
           className="block w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
         >
           Profil z opiniami
@@ -129,7 +129,7 @@ export default function BusinessTypeSelector() {
         variants={buttonVariants}
       >
         <Link
-          href="/formularz"
+          href="/formularz-opinie"
           className="block w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
         >
           Pojedyńcze opinie
