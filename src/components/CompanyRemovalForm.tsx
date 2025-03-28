@@ -92,7 +92,7 @@ export default function CompanyFormRemoval() {
     ) {
       return 50000;
     }
-    return 29900;
+    return 50000;
   };
 
   const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLink(r.url), 0);

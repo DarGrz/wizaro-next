@@ -30,6 +30,10 @@ export default function RemovalForm({
   onExpand,
   onSubmit,
 }: Props) {
+  const shouldShowPrice = removals.some((r) =>
+    /(google|goog|aleo|panorama|pkt)/i.test(r.url)
+  );
+
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <h2 className="text-xl font-semibold text-center text-gray-800 mb-2">
@@ -98,9 +102,11 @@ export default function RemovalForm({
       <p className="text-sm text-center text-gray-700">
         Dodaj nazwę firmy oraz NIP w celu dokładnej weryfikacji.
       </p>
-      <p className="text-sm text-center text-gray-700">
-        Łączna cena: <strong className="text-lg">{totalPrice} zł brutto (z VAT 23%)</strong>
-      </p>
+      {shouldShowPrice && (
+        <p className="text-sm text-center text-gray-700">
+          Łączna cena: <strong className="text-lg">{(totalPrice / 100).toFixed(2)} zł brutto (z VAT 23%)</strong>
+        </p>
+      )}
       <div className="flex justify-between gap-3">
         <button
           type="button"
