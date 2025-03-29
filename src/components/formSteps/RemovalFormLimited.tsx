@@ -31,7 +31,7 @@ export default function RemovalForm({
   onSubmit,
 }: Props) {
   const shouldShowPrice = removals.some((r) =>
-    /(google|goog|aleo|panorama|map|pkt|finder|biznes)/i.test(r.url)
+    /(google|goog|goo|map)/i.test(r.url)
   );
 
   return (
@@ -39,7 +39,7 @@ export default function RemovalForm({
       <h2 className="text-xl font-semibold text-center text-gray-800 mb-4">
         Skąd chcesz usunąć dane firmy?
       </h2>
-      <p className="text-center">Usuń dane firmy z Map Google, Gowork, Aleo, Panorama firm i PKT.pl</p>
+      <p className="text-center">W przypadku spółek usuwamy profile firmy tylko z Map Google</p>
       {removals.map((removal, index) => (
         <div key={index} className="p-2 border-gray-300 rounded-xl space-y-3">
           <div className="flex justify-between items-center">

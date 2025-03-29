@@ -49,6 +49,25 @@ export default function CompanyFormStep({
         required
       />
 
+       <input
+        type="text"
+        name="url"
+        placeholder="Link do profilu (np. Google Maps, Gowork, Aleo)"
+        value={company.url}
+        onChange={onChange}
+        className="w-full border border-gray-300 rounded px-4 py-2"
+      />
+
+      <input
+        type="text"
+        name="nip"
+        placeholder="NIP"
+        value={company.nip}
+        onChange={onChange}
+        className="w-full border border-gray-300 rounded px-4 py-2"
+        required
+      />
+
       <input
         type="text"
         name="first_name"
@@ -91,16 +110,6 @@ export default function CompanyFormStep({
 
       <input
         type="text"
-        name="nip"
-        placeholder="NIP"
-        value={company.nip}
-        onChange={onChange}
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        required
-      />
-
-      <input
-        type="text"
         name="street"
         placeholder="Ulica i numer"
         value={company.street}
@@ -129,15 +138,7 @@ export default function CompanyFormStep({
         required
       />
 
-      <input
-        type="url"
-        name="url"
-        placeholder="Link do profilu (np. Google Maps)"
-        value={company.url}
-        onChange={onChange}
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        
-      />
+      
 
       <label className="flex items-center gap-2">
         <input
@@ -161,7 +162,8 @@ export default function CompanyFormStep({
       <p className="text-sm text-center text-gray-700 mt-6">
         Do usunięcia: <strong>{reviewCount}</strong>
         <br />
-        Cena łączna: <strong className="text-lg">{totalPrice} zł brutto (z VAT 23%)</strong>
+        Cena łączna:{" "}
+        <strong className="text-lg">{totalPrice} zł brutto (z VAT 23%)</strong>
       </p>
 
       <div className="flex justify-between gap-3">
@@ -182,4 +184,3 @@ export default function CompanyFormStep({
     </form>
   );
 }
-

@@ -6,8 +6,12 @@ import ReviewForm from "@/components/formSteps/ReviewForm";
 import CompanyFormStep from "@/components/formSteps/CompanyFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
 import SummaryStepReviewForm from "@/components/formSteps/SummaryStepReviewForm";
-import PaymentExplanation from "./Explenations/PaymentExplanation";
+import ReviewFormExplenation from "./Explenations//ReviewFormExplenation";
+import CompanyReviewRemovalFormExplenation from "./Explenations/CompanyReviewRemovalFormExplenation";
 import SocialProof from "./SocialProof";
+import ReviewRemovalSummaryExplenation from "./Explenations/ReviewRemovalSummaryExplenation";
+import PayerFormExplenation from "./Explenations/PayerFormExplenation";
+import ExplenationReviewRemoval from "./ExplenationReviewRemoval";
 
 interface Review {
   author: string;
@@ -293,8 +297,15 @@ export default function CompanyFormReviews() {
           </div>
         </div>
         <div className="md:w-1/2">
-          <PaymentExplanation />
-        </div>
+  {step === "reviews" && <ReviewFormExplenation />}
+  {step === "company" && <CompanyReviewRemovalFormExplenation />}
+  {/* Możesz dodać więcej jeśli chcesz: */}
+  {step === "payer" && <PayerFormExplenation />}
+  {step === "summary" && <ReviewRemovalSummaryExplenation />}
+</div>
+      </div>
+      <div className="md:flex py-10 m-4 md:gap-8">
+        <ExplenationReviewRemoval />
       </div>
       <div className="md:flex py-10 m-4 md:gap-8">
         <SocialProof />

@@ -81,21 +81,7 @@ export default function SuccessPageR() {
       });
   }, [documentId, sessionId, fetchDocument]);
 
-  const getPlainText = (html: string) => {
-    return html
-      .replace(/<br\s*\/?>(?=<\/p>)/gi, "")
-      .replace(/<br\s*\/?>(?!<\/p>)/gi, "\n")
-      .replace(/<\/p>/gi, "\n\n")
-      .replace(/<a[^>]*href="([^"]+)"[^>]*>(.*?)<\/a>/gi, "$2 ($1)")
-      .replace(/<[^>]+>/g, "")
-      .replace(/&nbsp;/g, " ")
-      .replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">")
-      .replace(/&quot;/g, '"')
-      .replace(/&#039;/g, "'")
-      .trim();
-  };
+  
 
   const handleDownloadPDF = async () => {
     const html2pdf = (await import("html2pdf.js")).default;
@@ -103,11 +89,11 @@ export default function SuccessPageR() {
     setExpanded(true);
 
     setTimeout(() => {
-      const element = document.getElementById("document");
+      const element = document.getElementById("document-to-pdf");
 
       const opt = {
         margin: [3, 2, 2, 2],
-        filename: "wniosek-o-usuniecie.pdf",
+        filename: "Wizaro.pl-potwierdzenie.pdf",
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: {
           scale: 2,
@@ -128,22 +114,7 @@ export default function SuccessPageR() {
     }, 300);
   };
 
-  const handleOpenMailto = () => {
-    const plainText = getPlainText(doc?.content || "");
-    const to = "";
-    const bcc = "";
-    const cc = "";
-    const subject = encodeURIComponent(
-      "Prośba o usunięcie danych zgodnie z RODO"
-    );
-    const body = encodeURIComponent(plainText);
-
-    let mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
-    if (cc) mailtoLink += `&cc=${encodeURIComponent(cc)}`;
-    if (bcc) mailtoLink += `&bcc=${encodeURIComponent(bcc)}`;
-    window.location.href = mailtoLink;
-  };
-
+  
   return (
     <div className="min-h-screen bg-[#f6f6f6] flex items-center justify-center px-4 py-10">
       <div className="bg-white rounded-2xl shadow-md p-6 md:p-10 max-w-6xl w-full flex flex-col md:flex-row gap-8 items-stretch">
@@ -154,74 +125,113 @@ export default function SuccessPageR() {
 
         {doc && (
           <>
-            <div className="md:w-2/3 w-full flex flex-col h-full">
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="w-full mb-6 border-b pb-4"
-              >
-                <h1 className="text-3xl font-bold text-gray-800 mb-2">
-                  ✅ Płatność zakończona sukcesem!
-                </h1>
-                <p className="text-gray-700 text-sm md:text-base">
-                  Dziękujemy za zaufanie i dokonanie zakupu. Twoje zlecenie
-                  zostało przyjęte do realizacji.
-                </p>
+            <div id="document-to-pdf" className="md:w-2/3 w-full flex flex-col h-full">
+            <motion.div
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    style={{
+      width: '100%',
+      marginBottom: '1.5rem',
+      borderBottom: '1px solid #e5e7eb',
+      paddingBottom: '1rem',
+    }}
+  >
+    <h1
+      style={{
+        fontSize: '1.875rem',
+        fontWeight: 'bold',
+        color: '#1f2937',
+        marginBottom: '0.5rem',
+      }}
+    >
+      ✅ Płatność zakończona sukcesem!
+    </h1>
+    <p
+      style={{
+        color: '#374151',
+        fontSize: '0.875rem',
+      }}
+    >
+      Dziękujemy za zaufanie i dokonanie zakupu. Twoje zlecenie zostało przyjęte do realizacji.
+    </p>
 
-                <div className="mt-4 bg-gray-100 p-4 rounded-lg text-sm text-gray-700">
-                  <p>
-                    <strong>Numer zamówienia:</strong>{" "}
-                    <span className="text-gray-900">{documentId}</span>
-                  </p>
-                  {doc?.email && (
-                    <p>
-                      <strong>Adres e-mail podany w zamówieniu:</strong>{" "}
-                      <span className="text-gray-900">{doc.email}</span>
-                    </p>
-                  )}
-                  <p className="mt-2">
-                    Dokument jest gotowy do pobrania lub wysłania mailem.
-                    Poniżej znajdziesz wszystkie niezbędne kroki.
-                  </p>
-                </div>
-                <div>
-                  {doc?.removals && doc.removals.length > 0 && (
-                    <div className="mt-10 border-t pt-6">
-                      <h3 className="text-md font-semibold text-gray-800 mb-4">
-                        Zgłoszone profile do usunięcia:
-                      </h3>
-                      <ul className="space-y-3 text-sm text-gray-700">
-                        {doc.removals.map((removal, index) => (
-                          <li
-                            key={index}
-                            className="bg-gray-100 p-3 rounded-lg"
-                          >
-                            <p>
-                              <strong>Firma:</strong> {removal.company_name}
-                            </p>
-                            <p>
-                              <strong>NIP:</strong> {removal.nip || "—"}
-                            </p>
-                            <p>
-                              <strong>Link:</strong>{" "}
-                              <a
-                                href={removal.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 underline"
-                              >
-                                {removal.url}
-                              </a>
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-                <div></div>
-              </motion.div>
+    <div
+      style={{
+        marginTop: '1rem',
+        backgroundColor: '#f3f4f6',
+        padding: '1rem',
+        borderRadius: '0.5rem',
+        fontSize: '0.875rem',
+        color: '#374151',
+      }}
+    >
+      <p>
+        <strong>Numer zamówienia:</strong>{" "}
+        <span style={{ color: '#111827' }}>{documentId}</span>
+      </p>
+      {doc?.email && (
+        <p>
+          <strong>Adres e-mail podany w zamówieniu:</strong>{" "}
+          <span style={{ color: '#111827' }}>{doc.email}</span>
+        </p>
+      )}
+      <p style={{ marginTop: '0.5rem' }}>
+        W niedługim czasie otrzymasz wiadomość email z potwierdzeniem oraz fakturą. 
+      </p>
+    </div>
+
+    {doc?.removals && doc.removals.length > 0 && (
+      <div
+        style={{
+          marginTop: '2.5rem',
+          borderTop: '1px solid #e5e7eb',
+          paddingTop: '1.5rem',
+        }}
+      >
+        <h3
+          style={{
+            fontSize: '1rem',
+            fontWeight: '600',
+            color: '#1f2937',
+            marginBottom: '1rem',
+          }}
+        >
+          Zgłoszone profile do usunięcia:
+        </h3>
+        <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem', color: '#374151' }}>
+          {doc.removals.map((removal, index) => (
+            <li
+              key={index}
+              style={{
+                backgroundColor: '#f3f4f6',
+                padding: '0.75rem',
+                borderRadius: '0.5rem',
+              }}
+            >
+              <p>
+                <strong>Firma:</strong> {removal.company_name}
+              </p>
+              <p>
+                <strong>NIP:</strong> {removal.nip || "—"}
+              </p>
+              <p>
+                <strong>Link:</strong>{" "}
+                <a
+                  href={removal.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#2563eb', textDecoration: 'underline' }}
+                >
+                  {removal.url}
+                </a>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </motion.div>
 
               
 
@@ -233,10 +243,10 @@ export default function SuccessPageR() {
                   Pobierz jako PDF
                 </button>
                 <button
-                  onClick={handleOpenMailto}
+                  
                   className="bg-[#002a5c] px-5 text-white py-2 rounded hover:bg-[#001e47] transition"
                 >
-                  Utwórz gotowy e-mail
+                 <a href="mailto:kontak@wizaro.pl">Napisz do nas</a>
                 </button>
               </div>
             </div>
@@ -246,13 +256,12 @@ export default function SuccessPageR() {
                 Co dalej?
               </h2>
               <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
-                <li>Sprawdź treść dokumentu i w razie potrzeby dostosuj.</li>
+                <li>Rozpoczynamy realizację – Twoje zlecenie zostało przekazane do naszego zespołu. Pracujemy zgodnie z planem, by osiągnąć zamierzony efekt.</li>
                 <li>
-                  Kliknij <strong>„Utwórz gotowy e-mail”</strong> – dokument
-                  wklei się automatycznie.
+                Stały monitoring postępów – Na każdym etapie czuwamy nad jakością i skutecznością działań. W razie potrzeby – reagujemy natychmiast.
                 </li>
                 <li>
-                  Wyślij wiadomość do serwisu z prośbą o usunięcie danych.
+                Finalizacja i gotowy efekt – Otrzymasz gotowy rezultat, który odpowiada Twoim oczekiwaniom – bez zbędnych formalności.
                 </li>
               </ol>
             </div>

@@ -3,6 +3,7 @@
 'use client';
 
 import BusinessTypeSelector from './BusinessTypeSelector';
+import ExplenationStartPage from './ExplenationStartPage';
 import SocialProof from './SocialProof';
 
 export default function StartPage() {
@@ -47,30 +48,10 @@ export default function StartPage() {
             <BusinessTypeSelector />
       </div>
 
-      <div className="w-full grid gap-6 text-left text-gray-700 mt-20">
-        <h2 className="text-lg font-semibold text-gray-800 text-center">Jak to działa?</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-          <h3 className="text-md font-semibold mb-1">1. Wybierz rodzaj działalności</h3>
-          <p>
-            Dla jednoosobowej działalności proces przebiegnie automatycznie. Dla
-            spółek — prześlemy instrukcję kontaktu.
-          </p>
+     
+        <div className="md:flex py-10 md:gap-8 ">
+           <ExplenationStartPage />
         </div>
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-          <h3 className="text-md font-semibold mb-1">2. Dokonaj płatności</h3>
-          <p>
-            Po wypełnieniu formularza dokonasz płatności online – bezpiecznie i
-            szybko dzięki Stripe.
-          </p>
-        </div>
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-          <h3 className="text-md font-semibold mb-1">3. Pobierz i wyślij gotowe pismo</h3>
-          <p>
-            Dokument zostanie automatycznie wygenerowany – możesz go pobrać jako
-            PDF lub wysłać od razu na wskazany adres e-mail.
-          </p>
-        </div>
-      </div>
         <div className="md:flex py-10 md:gap-8 ">
            <SocialProof />
         </div>

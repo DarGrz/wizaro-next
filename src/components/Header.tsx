@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Mail } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,6 @@ export default function Header() {
     <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        
         <Link href="/" className="text-xl font-bold text-[#002a5c]">
           Wizaro.pl
         </Link>
@@ -32,27 +31,32 @@ export default function Header() {
           <Link href="/polityka-prywatnosci" className="text-gray-700 hover:text-[#002a5c]">
             Prywatność
           </Link>
-          <span className=""><svg width="30" height="20" viewBox="0 0 6 4" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0.1" dy="0.1" stdDeviation="0.1" floodColor="rgba(0,0,0,0.8)" />
-    </filter>
-  </defs>
-  <g filter="url(#shadow)">
-    <rect width="6" height="2" y="0" fill="#ffffff" />
-    <rect width="6" height="2" y="2" fill="#dc143c" />
-  </g>
-</svg>
-
-</span>
+          <a
+            href="mailto:kontakt@wizaro.pl"
+            className="flex items-center gap-1 text-gray-700 hover:text-[#002a5c]"
+          >
+            <Mail size={16} />
+            kontakt@wizaro.pl
+          </a>
+          <span>
+            <svg width="30" height="20" viewBox="0 0 6 4" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0.1" dy="0.1" stdDeviation="0.1" floodColor="rgba(0,0,0,0.8)" />
+                </filter>
+              </defs>
+              <g filter="url(#shadow)">
+                <rect width="6" height="2" y="0" fill="#ffffff" />
+                <rect width="6" height="2" y="2" fill="#dc143c" />
+              </g>
+            </svg>
+          </span>
         </nav>
-        
 
         {/* Mobile hamburger */}
         <button onClick={toggleMenu} className="md:hidden text-gray-700">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-        
       </div>
 
       {/* Mobile menu dropdown */}
@@ -71,7 +75,13 @@ export default function Header() {
             <Link href="/polityka-prywatnosci" className="text-gray-700 hover:text-[#002a5c]">
               Prywatność
             </Link>
-            
+            <a
+              href="mailto:kontakt@wizaro.pl"
+              className="flex items-center gap-2 text-gray-700 hover:text-[#002a5c]"
+            >
+              <Mail size={16} />
+              kontakt@wizaro.pl
+            </a>
           </nav>
         </div>
       )}
