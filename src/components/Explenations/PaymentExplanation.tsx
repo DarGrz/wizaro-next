@@ -33,7 +33,7 @@ export default function PaymentExplanation() {
           Masz pytania przed zakupem lub potrzebujesz wyjaśnienia jak działa usługa?
         </p>
         <p className="font-semibold">
-          Zadzwoń: <a href="tel:+48123456789" className="text-[#002a5c] hover:underline">+48 123 456 789</a>
+          Zadzwoń: <a href="tel:+48792861513" className="text-[#002a5c] hover:underline">+48 792 861 513</a>
         </p>
         <p className="text-xs text-gray-500 mt-1">Dostępny od poniedziałku do piątku, 9:00–17:00</p>
       </div>
