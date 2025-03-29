@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import RemovalForm from "@/components/formSteps/RemovalForm";
 import CompanyProfileFormStep from "@/components/formSteps/CompanyProfileFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
-import SummaryStep from "@/components/formSteps/SummaryStep";
-import PaymentExplanation from "./PaymentExplanation";
+import SummaryStepProfileForm from "@/components/formSteps/SummaryStepProfileForm";
 import SocialProof from "./SocialProof";
+import RemovalFormExplenation from "./Explenations/RemovalFormExplenation";
+import CompanyProfileFormExplenation from "./Explenations/CompanyProfileFormStepExplenation";
+import PaymentExplanation from "./Explenations/PaymentExplanation";
+import ExplenationProfileRemoval from "./ExplenationProfileRemoval";
 
 interface Removal {
   companyName: string;
@@ -248,7 +251,7 @@ export default function CompanyFormRemoval() {
             )}
 
             {step === "summary" && (
-              <SummaryStep
+              <SummaryStepProfileForm
                 company={company}
                 reviews={removals.map((removal) => ({
                   author: removal.companyName,
@@ -267,8 +270,19 @@ export default function CompanyFormRemoval() {
           </div>
         </div>
         <div className="md:w-1/2">
-          <PaymentExplanation />
-        </div>
+        {step === "company" ? (
+  <CompanyProfileFormExplenation />
+) : step === "removal" ? (
+  <RemovalFormExplenation />
+) : step === "summary" ? (
+  <PaymentExplanation />
+) : null}
+
+</div>
+      </div>
+
+      <div className="md:flex py-10 m-4 md:gap-8">
+        <ExplenationProfileRemoval/>
       </div>
       <div className="md:flex py-10 m-4 md:gap-8">
         <SocialProof />

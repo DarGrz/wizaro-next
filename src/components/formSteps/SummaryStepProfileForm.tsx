@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -53,14 +52,14 @@ export default function SummaryStep({
   isLoading,
   onBack,
   onConfirm,
-  payer,
 }: SummaryStepProps) {
   return (
-    <div>
-      <h2 className="text-2xl font-semibold text-center mb-4">
+    <div className="space-y-6">
+      <h2 className="text-2xl font-semibold text-center mb-6">
         Podsumowanie
       </h2>
-      <ul className="text-sm text-gray-700 space-y-2">
+
+      <ul className="text-md md:text-lg text-gray-700 space-y-4 leading-relaxed">
         <li>
           <strong>Firma:</strong> {company.name}
         </li>
@@ -76,65 +75,45 @@ export default function SummaryStep({
         <li>
           <strong>Adres:</strong> {company.street}, {company.zip} {company.city}
         </li>
-        <li>
+        <li className="border-b border-gray-200 pb-5">
           <strong>NIP:</strong> {company.nip}
         </li>
         <li>
-          <strong>Portal:</strong>{" "}
-          <a
-            href={company.url}
-            target="_blank"
-            // className="text-blue-600 underline"
-          >
-            {company.url}
-          </a>
+          <strong>Ilość profili:</strong> {reviews.length}
         </li>
         <li>
-          <strong>Liczba opinii:</strong> {reviews.length}
-        </li>
-        <li>
-          <strong>Cena:</strong> {totalPrice} zł brutto (z VAT23%)
+          <strong>Cena:</strong> {totalPrice} zł brutto (z VAT 23%)
         </li>
       </ul>
 
-      {company.different_payer && payer && (
-        <div className="mt-6">
-          <h3 className="text-xl font-semibold mb-2">Dane płatnika</h3>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li>
-              <strong>Imię i nazwisko:</strong> {payer.name}
-            </li>
-            {payer.company_name && (
-              <li>
-                <strong>Nazwa firmy:</strong> {payer.company_name}
-              </li>
-            )}
-            <li>
-              <strong>Email:</strong> {payer.email}
-            </li>
-            {payer.nip && (
-              <li>
-                <strong>NIP:</strong> {payer.nip}
-              </li>
-            )}
-            <li>
-              <strong>Adres:</strong> {payer.street}, {payer.zip} {payer.city}
-            </li>
-          </ul>
-        </div>
-      )}
+      {reviews && reviews.length > 0 && (
+  <div className="space-y-4">
+    <h3 className="text-md font-semibold mb-2">Profile do usunięcia:</h3>
+    {reviews.map((review, index) => (
+      <div
+        key={index}
+        className="border border-gray-200 rounded-lg p-4 bg-gray-50"
+      >
+        <p><strong>Firma:</strong> {review.author}</p>
+        <p><strong>NIP:</strong> {review.content.replace("NIP: ", "")}</p>
+        <p><strong>Link:</strong> <a href={review.url} className="text-blue-600 underline" target="_blank">{review.url}</a></p>
+        <p><strong>Data dodania:</strong> {review.date_added}</p>
+      </div>
+    ))}
+  </div>
+)}
 
-      <div className="flex justify-end gap-3 mt-6">
+      <div className="flex justify-between gap-4 mt-8">
         <button
           onClick={onBack}
-          className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 text-sm"
+          className="px-6 py-3 rounded border-gray-300 text-gray-700 bg-white hover:bg-gray-100 transition text-sm"
         >
-          Wróć
+          ← Wróć
         </button>
         <button
           onClick={onConfirm}
           disabled={isLoading}
-          className={`px-4 py-2 rounded text-sm flex items-center justify-center gap-2 
+          className={`px-6 py-3 rounded text-sm flex items-center justify-center gap-2 
             ${isLoading ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-[#002a5c] hover:bg-[#001e47] text-white"}
           `}
         >
@@ -144,4 +123,3 @@ export default function SummaryStep({
     </div>
   );
 }
-

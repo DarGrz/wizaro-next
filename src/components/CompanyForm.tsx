@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import PaymentExplanation from '@/components/PaymentExplanation';
+import PaymentExplanation from '@/components/Explenations/PaymentExplanation';
 import SocialProof from '@/components/SocialProof';
 
 export default function CompanyForm() {

@@ -31,14 +31,15 @@ export default function RemovalForm({
   onSubmit,
 }: Props) {
   const shouldShowPrice = removals.some((r) =>
-    /(google|goog|aleo|panorama|pkt)/i.test(r.url)
+    /(google|goog|aleo|panorama|map|pkt)/i.test(r.url)
   );
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
-      <h2 className="text-xl font-semibold text-center text-gray-800 mb-2">
-        Profile firm do usunięcia
+      <h2 className="text-xl font-semibold text-center text-gray-800 mb-4">
+        Skąd chcesz usunąć dane firmy?
       </h2>
+      <p className="text-center">Usuń dane firmy z Map Google, Gowork, Aleo, Panorama firm i PKT.pl</p>
       {removals.map((removal, index) => (
         <div key={index} className="p-2 border-gray-300 rounded-xl space-y-3">
           <div className="flex justify-between items-center">
@@ -90,18 +91,19 @@ export default function RemovalForm({
               <input
                 type="text"
                 required
-                placeholder="Link do strony z profilem lub nazwa"
+                placeholder="Link lub nazwa portalu"
                 value={removal.url}
                 onChange={(e) => onChange(index, "url", e.target.value)}
                 className="w-full border border-gray-300 rounded px-4 py-2"
               />
+              <p className="text-sm text-center text-gray-700">
+        Dodaj nazwę firmy oraz NIP w celu dokładnej weryfikacji.
+      </p>
             </>
           )}
         </div>
       ))}
-      <p className="text-sm text-center text-gray-700">
-        Dodaj nazwę firmy oraz NIP w celu dokładnej weryfikacji.
-      </p>
+      
       {shouldShowPrice && (
         <p className="text-sm text-center text-gray-700">
           Łączna cena: <strong className="text-lg">{totalPrice} zł brutto (z VAT 23%)</strong>

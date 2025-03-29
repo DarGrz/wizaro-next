@@ -35,8 +35,8 @@ export default function CompanyProfileFormStep({
 }: CompanyFormStepProps) {
   return (
     <form onSubmit={onSubmit} className="space-y-4">
-      <h2 className="text-2xl font-semibold text-center text-gray-800 mb-4">
-        Dane firmy
+      <h2 className="text-xl font-semibold text-center text-gray-800 mb-4">
+       Uzupełnij dane firmy
       </h2>
 
       <input
@@ -44,6 +44,46 @@ export default function CompanyProfileFormStep({
         name="name"
         placeholder="Nazwa firmy"
         value={company.name}
+        onChange={onChange}
+        className="w-full border border-gray-300 rounded px-4 py-2"
+        required
+      />
+
+      <input
+        type="text"
+        name="nip"
+        placeholder="NIP"
+        value={company.nip}
+        onChange={onChange}
+        className="w-full border border-gray-300 rounded px-4 py-2"
+        required
+      />
+
+      <input
+        type="text"
+        name="street"
+        placeholder="Ulica i numer"
+        value={company.street}
+        onChange={onChange}
+        className="w-full border border-gray-300 rounded px-4 py-2"
+        required
+      />
+
+<input
+        type="text"
+        name="zip"
+        placeholder="Kod pocztowy"
+        value={company.zip}
+        onChange={onChange}
+        className="w-full border border-gray-300 rounded px-4 py-2"
+        required
+      />
+
+      <input
+        type="text"
+        name="city"
+        placeholder="Miasto"
+        value={company.city}
         onChange={onChange}
         className="w-full border border-gray-300 rounded px-4 py-2"
         required
@@ -89,47 +129,6 @@ export default function CompanyProfileFormStep({
         required
       />
 
-      <input
-        type="text"
-        name="nip"
-        placeholder="NIP"
-        value={company.nip}
-        onChange={onChange}
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        required
-      />
-
-      <input
-        type="text"
-        name="street"
-        placeholder="Ulica i numer"
-        value={company.street}
-        onChange={onChange}
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        required
-      />
-
-      <input
-        type="text"
-        name="zip"
-        placeholder="Kod pocztowy"
-        value={company.zip}
-        onChange={onChange}
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        required
-      />
-
-      <input
-        type="text"
-        name="city"
-        placeholder="Miasto"
-        value={company.city}
-        onChange={onChange}
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        required
-      />
-
-   
 
       <p className="text-sm text-center text-gray-700 mt-6">
         Do usunięcia: <strong>{reviewCount}</strong>
@@ -138,12 +137,11 @@ export default function CompanyProfileFormStep({
       </p>
 
       <div className="flex justify-between gap-3">
-        <button
-          type="button"
+      <button
           onClick={onBack}
-          className="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+          className="px-5 py-2 rounded-xl  border-gray-300 text-gray-700 bg-white hover:bg-gray-100 transition text-sm"
         >
-          Wróć
+          ← Wróć
         </button>
         <button
           type="submit"

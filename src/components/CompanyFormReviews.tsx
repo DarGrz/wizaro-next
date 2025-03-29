@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 import ReviewForm from "@/components/formSteps/ReviewForm";
 import CompanyFormStep from "@/components/formSteps/CompanyFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
-import SummaryStep from "@/components/formSteps/SummaryStep";
-import PaymentExplanation from "./PaymentExplanation";
+import SummaryStepReviewForm from "@/components/formSteps/SummaryStepReviewForm";
+import PaymentExplanation from "./Explenations/PaymentExplanation";
 import SocialProof from "./SocialProof";
 
 interface Review {
@@ -142,17 +142,18 @@ export default function CompanyFormReviews() {
   const confirmAndPay = async () => {
     setIsLoading(true);
     const totalPrice = reviews.length * 299;
-
+  
     try {
       let currentPayerId: string | undefined;
-
+  
+      // 1. Tworzenie płatnika (jeśli inny niż firma)
       if (company.different_payer) {
         const payerRes = await fetch("/api/invoice-payers", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payer),
         });
-
+  
         if (!payerRes.ok) throw new Error("Błąd zapisu danych płatnika");
         const payerData = await payerRes.json();
         currentPayerId = payerData.payer_id;
@@ -166,65 +167,62 @@ export default function CompanyFormReviews() {
           zip: company.zip,
           city: company.city,
         };
-
+  
         const payerRes = await fetch("/api/invoice-payers", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(companyAsPayer),
         });
-
+  
         if (!payerRes.ok) throw new Error("Błąd zapisu danych firmy jako płatnika");
         const payerData = await payerRes.json();
         currentPayerId = payerData.payer_id;
       }
-
+  
       setPayerId(currentPayerId);
-
+  
+      // 2. Zapis firmy i opinii z przypisanym dokumentem
       const res = await fetch("/api/company-with-reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company, reviews, totalPrice, payer_id: currentPayerId }),
-      });
-
-      if (!res.ok) throw new Error("Błąd zapisu danych firmy i opinii");
-      const data = await res.json();
-      const company_id = data.company_id;
-
-      const docRes = await fetch("/api/documents", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          company_id,
-          type: "wezwanie do usunięcia opinii",
+          company,
+          reviews,
+          totalPrice,
+          numberOfReviews: reviews.length,
           payer_id: currentPayerId,
         }),
       });
-
-      if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
-      const docData = await docRes.json();
-      const document_id = docData.id;
-
+  
+      if (!res.ok) throw new Error("Błąd zapisu danych firmy i opinii");
+  
+      const data = await res.json();
+      const document_id = data.document_id;
+  
+      // 3. Utworzenie płatności
       const paymentRes = await fetch("/api/payments/create-payment-reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           document_id,
-          ...(company.different_payer ? payer : {
-            email: company.email,
-            name: `${company.first_name} ${company.last_name}`,
-            company_name: company.name,
-            nip: company.nip,
-            street: company.street,
-            zip: company.zip,
-            city: company.city,
-          }),
+          ...(company.different_payer
+            ? payer
+            : {
+                email: company.email,
+                name: `${company.first_name} ${company.last_name}`,
+                company_name: company.name,
+                nip: company.nip,
+                street: company.street,
+                zip: company.zip,
+                city: company.city,
+              }),
           quantity: reviews.length,
         }),
       });
-
+  
       if (!paymentRes.ok) throw new Error("Błąd tworzenia płatności");
       const payment = await paymentRes.json();
-
+  
       localStorage.removeItem("companyFormData");
       window.location.href = payment.url;
     } catch (error) {
@@ -234,6 +232,7 @@ export default function CompanyFormReviews() {
       setIsLoading(false);
     }
   };
+  
 
   const totalPrice = reviews.length * 299;
 
@@ -278,7 +277,7 @@ export default function CompanyFormReviews() {
             )}
 
             {step === "summary" && (
-              <SummaryStep
+              <SummaryStepReviewForm
                 company={company}
                 reviews={reviews}
                 totalPrice={totalPrice}

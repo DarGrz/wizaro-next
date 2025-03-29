@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { v4 as uuidv4 } from 'uuid'; // 🔥 importujemy uuid
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -52,12 +53,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 1. Zapisz firmę
     const { data: companyData, error: companyError } = await supabase
       .from('companies')
       .insert({
         ...company,
         price: totalPrice,
-        review_count: numberOfReviews, // zakładamy, że masz kolumnę `review_count`
+        review_count: numberOfReviews,
       })
       .select()
       .single();
@@ -70,17 +72,40 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const reviewsWithCompanyId = reviews.map((r, i) => ({
+    // 2. Wygeneruj UUID dokumentu z góry
+    const documentId = uuidv4();
+
+    // 3. Utwórz dokument z podanym ID
+    const { error: documentError } = await supabase
+      .from('documents')
+      .insert({
+        id: documentId, // 🔥 ręcznie ustawiony ID
+        company_id: companyData.id,
+        type: 'żądanie usunięcia opinii',
+        status: 'draft',
+      });
+
+    if (documentError) {
+      console.error('❌ Błąd tworzenia dokumentu:', documentError);
+      return NextResponse.json(
+        { error: 'Błąd tworzenia dokumentu', details: documentError },
+        { status: 500 }
+      );
+    }
+
+    // 4. Zapisz opinie z przypisanym document_id
+    const reviewsWithDocumentId = reviews.map((r, i) => ({
       author: r.author?.trim() || `Autor ${i + 1}`,
       content: r.content?.trim() || 'Brak treści',
       url: r.url?.trim() || '',
       date_added: r.date_added?.slice(0, 10) || null,
       company_id: companyData.id,
+      document_id: documentId, // ✅ przypisujemy ten sam ID
     }));
 
     const { error: reviewError } = await supabase
       .from('reviews')
-      .insert(reviewsWithCompanyId);
+      .insert(reviewsWithDocumentId);
 
     if (reviewError) {
       console.error('❌ Błąd zapisu opinii:', reviewError);
@@ -90,7 +115,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true, company_id: companyData.id }, { status: 201 });
+    return NextResponse.json(
+      {
+        success: true,
+        company_id: companyData.id,
+        document_id: documentId,
+      },
+      { status: 201 }
+    );
   } catch (err) {
     const error = err as Error;
     console.error('❌ Błąd ogólny:', error.message);
