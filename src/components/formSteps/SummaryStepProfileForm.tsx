@@ -59,7 +59,7 @@ export default function SummaryStep({
         Podsumowanie
       </h2>
 
-      <ul className="text-md md:text-lg text-gray-700 space-y-4 leading-relaxed">
+      <ul className="text-sm md:text-md text-gray-700 space-y-2 leading-relaxed">
         <li>
           <strong>Firma:</strong> {company.name}
         </li>
@@ -88,15 +88,15 @@ export default function SummaryStep({
 
       {reviews && reviews.length > 0 && (
   <div className="space-y-4">
-    <h3 className="text-md font-semibold mb-2">Profile do usunięcia:</h3>
+    <h3 className="text-md text-gray-700 font-semibold space-y-2 leading-relaxed">Profile do usunięcia:</h3>
     {reviews.map((review, index) => (
       <div
         key={index}
-        className="border border-gray-200 rounded-lg p-4 bg-gray-50"
+        className="border text-sm md:text-md border-gray-200 rounded-lg p-4 bg-gray-50"
       >
         <p><strong>Firma:</strong> {review.author}</p>
         <p><strong>NIP:</strong> {review.content.replace("NIP: ", "")}</p>
-        <p><strong>Link:</strong> <a href={review.url} className="text-blue-600 underline" target="_blank">{review.url}</a></p>
+        <p><strong>Link:</strong> <a href={review.url} className="" target="_blank">{review.url}</a></p>
         <p><strong>Data dodania:</strong> {review.date_added}</p>
       </div>
     ))}

@@ -4,84 +4,106 @@ import { useEffect, useState } from 'react';
 
 export default function SocialProof() {
   const reviews = [
-    { name: "Klaudia Pawlik", text: "Super podejście do użytkownika, pełen profesjonalizm." },
-    { name: "Bartosz Leśniak", text: "Po kilku dniach miałem potwierdzenie usunięcia danych. Działa!" },
-    { name: "Anna Tomczak", text: "Dzięki Wizaro odzyskałam spokój – niechciane opinie zniknęły." },
-    { name: "Tomasz Dębski", text: "Prowadzę warsztat – usunęli hejterskie komentarze z Goworka." },
-    { name: "Monika Zawadzka", text: "Świetna obsługa i szybki kontakt. Warto!" },
-    { name: "Karol Maj", text: "Jestem pod wrażeniem – profile z map Google zniknęły błyskawicznie." },
-    { name: "Ewelina Borowska", text: "W końcu ktoś, kto wie, jak zadbać o wizerunek w sieci." },
-    { name: "Piotr Malinowski", text: "Sklep internetowy odetchnął z ulgą. Dziękuję Wizaro!" },
-    { name: "Marta Czajka", text: "Miałam problem z fałszywą opinią – pomogli natychmiastowo." },
-    { name: "Andrzej Kowal", text: "Nie wierzyłem, że to możliwe, ale faktycznie usunęli profil z Aleo." },
-    { name: "Natalia Kurek", text: "Dzięki nim uniknęłam kryzysu wizerunkowego. Polecam każdemu!" },
-    { name: "Krzysztof Rojek", text: "Współpraca bez zastrzeżeń – konkretna robota." },
-    { name: "Patrycja Kubik", text: "Dobrze przygotowany dokument, wszystko jasno opisane." },
-    { name: "Elżbieta Król", text: "Prowadzę salon fryzjerski, nieprzyjemne komentarze zniknęły z dnia na dzień." },
-    { name: "Mikołaj Walczak", text: "Profesjonalizm i skuteczność – tak w skrócie opisuję Wizaro." },
-    { name: "Magdalena Nowicka", text: "Miła obsługa, szybkie efekty, pełna dyskrecja." },
-    { name: "Wojciech Szymański", text: "Nie tylko usunęli dane, ale też doradzili, jak chronić się w przyszłości." },
-    { name: "Agnieszka Żur", text: "Zaufanie do Wizaro to była jedna z lepszych decyzji biznesowych." },
-    { name: "Jakub Gajos", text: "Widać, że znają się na rzeczy – zrobili wszystko, co obiecali." },
-    { name: "Katarzyna Mielczarek", text: "Nie musiałam długo czekać – efekt natychmiastowy." },
-    { name: "Marek Zieliński", text: "Z mojej strony – 100% satysfakcji. Polecam z czystym sumieniem." },
-    { name: "Beata Grzelak", text: "Potrafią skutecznie działać w sieci – nie są nowicjuszami." },
-    { name: "Rafał Twardowski", text: "Warto zainwestować – to się po prostu opłaca." },
-    { name: "Joanna Duda", text: "Szybka reakcja, konkretne działania. Wizaro to specjaliści." },
-    { name: "Damian Cichoń", text: "Zniknął mój profil z Goworka – i to w kilka dni." },
-    { name: "Justyna Piotrowska", text: "Czułam się zaopiekowana przez cały proces." },
-    { name: "Marcin Stasiak", text: "Usunęli dane firmy z kilku portali – jestem pod wrażeniem." },
-    { name: "Renata Michalska", text: "Skuteczność i dobra komunikacja. Polecam!" },
-    { name: "Grzegorz Wrona", text: "Zareagowali szybko – nie musiałem nic tłumaczyć po kilka razy." },
-  { name: "Ilona Baran", text: "Bardzo profesjonalna pomoc, świetny kontakt mailowy." },
-  { name: "Paweł Lis", text: "Dzięki nim opinie nie wpływają już na moje zlecenia." },
-  { name: "Barbara Rutkowska", text: "Zespół zna się na rzeczy – działa skutecznie i dyskretnie." },
-  { name: "Mariusz Brzeziński", text: "Nie sądziłem, że coś się da zrobić – a jednak!" },
-  { name: "Sylwia Banaś", text: "Dzięki nim zaczęłam znów wierzyć w internetowy PR." },
-  { name: "Artur Pająk", text: "Pełne zaangażowanie i świetna obsługa klienta." },
-  { name: "Lidia Jędrzejczak", text: "Zamówienie zrealizowane sprawnie i profesjonalnie." },
-  { name: "Adrian Grzyb", text: "Warto! W końcu ktoś wie, jak skutecznie dbać o reputację firmy." },
-  { name: "Teresa Kubiak", text: "Mój mały biznes w końcu odzyskał dobre imię w sieci." },
-  { name: "Łukasz Kania", text: "Szybko, konkretnie, profesjonalnie – dziękuję!" },
-  { name: "Zofia Głowacka", text: "Wizaro to gwarancja spokoju – polecam każdemu przedsiębiorcy." },
-  { name: "Sebastian Zięba", text: "Polecam każdemu, kto boryka się z fałszywymi opiniami." },
-  { name: "Grażyna Domańska", text: "Doświadczenie i skuteczność – widać od razu." },
-  { name: "Daniel Kruczek", text: "Zrobili więcej niż się spodziewałem – wow." },
-  { name: "Mariola Sokołowska", text: "Jestem zachwycona obsługą i efektem końcowym." },
-  { name: "Patryk Włodarczyk", text: "Super komunikacja, wszystko zrobione jak trzeba." },
-  { name: "Natalia Leszczyńska", text: "Usunięcie danych poszło sprawnie i bezproblemowo." },
-  { name: "Hubert Kozłowski", text: "Dzięki nim mój gabinet znów cieszy się dobrą opinią." },
-  { name: "Jolanta Nowakowska", text: "Prawdziwi eksperci od reputacji online!" },
-  { name: "Konrad Skalski", text: "Zdecydowanie warto – szybko i bezpiecznie." },
-  { name: "Iwona Ptak", text: "Polecam każdemu, kto dba o wizerunek swojej firmy." },
-  { name: "Emil Krupa", text: "Bez zbędnych formalności – efekt widoczny w kilka dni." },
-  { name: "Alicja Górska", text: "Cenię ich za uczciwość i skuteczność." },
-  { name: "Mateusz Żak", text: "Wizaro pomogło mi w trudnym momencie – dziękuję!" },
-  { name: "Dorota Cichoń", text: "Sprawnie i skutecznie – polecam z całego serca." },
-  { name: "Ryszard Urban", text: "Świetna firma, świetni ludzie – naprawdę wiedzą, co robią." },
-  { name: "Oliwia Brzozowska", text: "Skontaktowali się od razu i działali błyskawicznie." },
-  { name: "Jerzy Pawlak", text: "Jako właściciel hurtowni polecam – konkretna robota." },
-  { name: "Kinga Wilk", text: "Nie mam żadnych zastrzeżeń – Wizaro to klasa sama w sobie." },
-  { name: "Dawid Sikora", text: "To, co obiecali, zrealizowali w 100%." },
-  ];
+    {
+      name: "Jacek Borowiec",
+      text: "Jako właściciel niewielkiej firmy transportowej wiem, jak opinie w internecie potrafią zniszczyć reputację budowaną latami. Trafiłem na Wizaro z polecenia znajomego – i nie zawiodłem się. Profesjonalne podejście, jasna komunikacja i przede wszystkim – skuteczność. Wszystko załatwili bez komplikacji."
+    },
+    {
+      name: "Urszula Nitek",
+      text: "Jestem nauczycielką, która prowadzi też korepetycje online. Niestety ktoś podszył się pod moje dane i zamieścił nieprawdziwe informacje na jednym z portali. Dzięki Wizaro udało się szybko zareagować. Cały proces był dla mnie klarowny, a zespół zachował pełną empatię i dyskrecję."
+    },
+    {
+      name: "Tomasz Kasperski",
+      text: "Jestem informatykiem z ponad 20-letnim doświadczeniem. Zlecenie dla Wizaro dotyczyło usunięcia profilu z map Google i kilku fałszywych opinii. Mimo mojego technicznego podejścia nie byłbym w stanie poradzić sobie z tym samodzielnie. Ekipa Wizaro wie, co robi – wszystko zgodnie z prawem i skutecznie."
+    },
+    {
+      name: "Beata Sokołowska",
+      text: "Mam 54 lata i prowadzę mały pensjonat w górach. Przez sezon miałam trudnych gości, którzy zostawili nieprzyjemne i nieprawdziwe opinie. Próbowałam sama coś z tym zrobić, ale bez skutku. Dzięki Wizaro w ciągu kilku dni zniknęły z sieci nieprawdziwe komentarze, a mój obiekt znów wygląda dobrze w oczach klientów."
+    },
+    {
+      name: "Adam Górniak",
+      text: "Nie jestem ekspertem od internetu, ale wiem jedno – złe opinie mogą zabić biznes. Mam warsztat samochodowy i przez konflikt z byłym pracownikiem ktoś regularnie wystawiał mi fałszywe komentarze. Dzięki Wizaro pozbyłem się tego problemu raz na zawsze. Świetny kontakt i konkretne efekty."
+    },
+    {
+      name: "Renata Majchrzak",
+      text: "Z zawodu jestem kosmetolożką i prowadzę własny salon. Po nieprzyjemnym incydencie z konkurencją zaczęły pojawiać się krzywdzące opinie na kilku portalach. Trafiłam na Wizaro z reklamy – i naprawdę warto było zaufać. Dostałam jasne instrukcje, co będzie robione i kiedy. Efekt? Wszystko zostało usunięte."
+    },
+    {
+      name: "Marek Urban",
+      text: "Jako emerytowany prawnik nie jestem łatwym klientem – wymagam konkretów. Wizaro przedstawiło przejrzysty plan działania i go zrealizowało. Z map Google zniknął stary, nieaktualny profil mojej kancelarii, a ja w końcu mam spokój. Polecam każdemu, kto ceni sobie porządek w sieci i profesjonalną obsługę."
+    },
+    {
+      name: "Karolina Walentowicz",
+      text: "Prowadzę sklep internetowy z rękodziełem i kilka nieprawdziwych komentarzy mocno uderzyło w moją sprzedaż. Wizaro nie tylko pomogło mi usunąć te opinie, ale też zaproponowało kilka kroków, jak lepiej chronić markę w przyszłości. To nie tylko firma, która działa, ale też edukuje i wspiera."
+    },
+    {
+      name: "Zbigniew Rutka",
+      text: "Mam 58 lat, jestem technikiem budowlanym. Z internetu korzystam raczej sporadycznie, ale kiedy ktoś wystawił fałszywą opinię o mojej działalności gospodarczej, musiałem działać. Córka znalazła Wizaro i to był strzał w dziesiątkę. Spokojnie, rzeczowo i bardzo skutecznie zajęli się wszystkim."
+    },
+    {
+      name: "Danuta Kamińska",
+      text: "Prowadzę biuro rachunkowe i bardzo dbam o swoją reputację. Niestety pewien anonimowy klient zostawił kłamliwe komentarze, co zaszkodziło mi w relacjach z nowymi firmami. Wizaro bardzo pomogło – wszystko odbyło się profesjonalnie, a kontakt z zespołem był szybki i rzetelny. Polecam z całego serca."
+    },
+    {
+      name: "Kamil Mazurek",
+      text: "Jestem freelancem, robię strony internetowe. Zdarzyło się, że ktoś opublikował mój numer telefonu i nazwę działalności na portalu, którego nie znałem – a potem poleciały opinie, jakich nie wystawił żaden z moich klientów. Wizaro zadziałało błyskawicznie. Po tygodniu nie było śladu po tej stronie."
+    },
+    {
+      name: "Ewa Sawicka",
+      text: "Mam 38 lat, prowadzę studio jogi w małym mieście. Gdy zaczęły pojawiać się nieprzychylne opinie, pomyślałam, że to może zniechęcić nowe osoby. Na szczęście trafiłam na Wizaro. W ciągu kilku dni komentarze zniknęły, a ja poczułam ogromną ulgę. Polecam każdemu właścicielowi małego biznesu."
+    },
+    {
+      name: "Józef Baran",
+      text: "Po 60-tce trudno nadążyć za internetem, ale dzięki Wizaro udało mi się pozbyć fałszywego profilu mojej firmy z Aleo. Szczerze mówiąc, nie wiedziałem nawet, że coś takiego tam istnieje. Na szczęście oni się wszystkim zajęli, wyjaśnili mi, jak działa ten proces i doprowadzili sprawę do końca."
+    },
+    {
+      name: "Aleksandra Kruczek",
+      text: "Jako dietetyczka buduję swoją markę w oparciu o zaufanie. Kiedy pojawiła się obraźliwa i nieprawdziwa opinia w serwisie Gowork, poczułam się bezradna. Wizaro nie tylko usunęło wpis, ale też doradziło, jak reagować na takie sytuacje. Cała współpraca przebiegła wzorowo, z pełną empatią i kulturą."
+    },
+    {
+      name: "Wiktor Śliwa",
+      text: "Mam 42 lata, wykształcenie zawodowe, prowadzę serwis AGD. Jakiś czas temu konkurencja zaczęła publikować negatywne opinie na różnych stronach. Zgłosiłem się do Wizaro i nie żałuję. Przez cały czas byłem informowany o postępach, a ekipa zna się na rzeczy – wiedzą, gdzie i jak działać, żeby to usunąć."
+    },
+    {
+      name: "Natalia Bednarska",
+      text: "Jako młoda przedsiębiorczyni buduję swoją markę od podstaw i każde nieuczciwe działanie w sieci bardzo mnie boli. Wizaro stanęło na wysokości zadania. Usunęli mój profil z map Google, który był tworzony bez mojej zgody, i zajęli się także kilkoma opiniami, które mogły wpłynąć negatywnie na moją działalność."
+    },
+    {
+      name: "Zdzisław Wójtowicz",
+      text: "Jestem stolarzem z 30-letnim doświadczeniem. Nigdy nie przypuszczałem, że będę musiał walczyć z fałszywymi opiniami w internecie. Syn znalazł Wizaro i załatwili sprawę za mnie. Kontakt świetny, wszystko wyjaśnione krok po kroku, a po kilkunastu dniach negatywy zniknęły. Takich firm potrzeba więcej."
+    },
+    {
+      name: "Grażyna Opolska",
+      text: "Mam małą cukiernię i każda opinia w internecie jest dla mnie na wagę złota. Kiedy pojawiły się nieprawdziwe komentarze, wiedziałam, że muszę działać szybko. Zgłosiłam się do Wizaro i zostałam potraktowana bardzo profesjonalnie. Obsługa była cierpliwa, wszystko mi tłumaczyli i osiągnęli świetny rezultat."
+    },
+    {
+      name: "Andrzej Pasiak",
+      text: "Jestem elektrykiem z wykształcenia i przez wiele lat pracowałem na własną markę. Niestety padłem ofiarą hejtu, co odbiło się na zleceniach. Dzięki Wizaro udało się usunąć wpisy z Goworka i Aleo. Teraz moja firma wróciła na właściwe tory. Polecam każdemu fachowcowi, który nie wie, jak walczyć z tym samemu."
+    },
+    {
+      name: "Maria Kubicka",
+      text: "Mam 61 lat i prowadzę kwiaciarnię. Jakiś czas temu pojawiły się w internecie nieprawdziwe opinie o moim sklepie. Nie wiedziałam, co z tym zrobić. Córka poleciła mi Wizaro i jestem im bardzo wdzięczna. Wszystko odbyło się spokojnie, profesjonalnie i skutecznie. Czułam się zaopiekowana na każdym kroku."
+    }
+  ]
+  ;
 
   const [randomReviews, setRandomReviews] = useState<typeof reviews>([]);
 
   useEffect(() => {
     const shuffled = [...reviews].sort(() => 0.5 - Math.random());
-    setRandomReviews(shuffled.slice(0,6));
+    setRandomReviews(shuffled.slice(0,2));
   }, []);
 
   if (randomReviews.length === 0) return null;
 
   return (
-    <section className="mx-auto px-md-4 py-10">
+    <section className="mx-auto w-full px-md-4 py-10">
       <h2 className="text-lg font-semibold text-center text-gray-800 mb-8">Opinie użytkowników</h2>
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 ">
         {randomReviews.map((review, idx) => (
-          <div key={idx} className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
+          <div key={idx} className="border w-full border-gray-200 rounded-lg p-4 bg-white shadow-sm">
             <div className="flex items-center mb-2">
-              <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-sm font-bold text-[#002a5c]">
+              <div className="w-10 h-10 bg-gray-100 rounded flex items-center justify-center text-sm font-bold text-[#002a5c]">
                 {review.name[0]}
               </div>
               <div className="ml-3">

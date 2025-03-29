@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Mail } from 'lucide-react';
+import Image from 'next/image';
+
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,29 +16,27 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold text-[#002a5c]">
-          Wizaro.pl
+        <Image src="/images/wizaro-logo.png" alt="Logo" width={120} height={100} />
         </Link>
 
         {/* Desktop menu */}
         <nav className="hidden md:flex space-x-6 text-sm items-center">
-          <Link href="/formularz" className="text-gray-700 hover:text-[#002a5c]">
-            Formularz
+          
+          <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
+            O nas
+          </Link>
+          <Link href="/regulamin" className="text-gray-700 hover:text-[#002a5c]">
+            Opinie
           </Link>
           <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
             Kontakt
           </Link>
-          <Link href="/regulamin" className="text-gray-700 hover:text-[#002a5c]">
-            Regulamin
-          </Link>
-          <Link href="/polityka-prywatnosci" className="text-gray-700 hover:text-[#002a5c]">
-            Prywatność
-          </Link>
           <a
             href="mailto:kontakt@wizaro.pl"
-            className="flex items-center gap-1 text-gray-700 hover:text-[#002a5c]"
+            className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
           >
             <Mail size={16} />
-            kontakt@wizaro.pl
+           kontakt@wizaro.pl
           </a>
           <span>
             <svg width="30" height="20" viewBox="0 0 6 4" xmlns="http://www.w3.org/2000/svg">
