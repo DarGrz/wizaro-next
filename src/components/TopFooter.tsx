@@ -7,8 +7,8 @@ export default function TopFooter() {
           </div>
           <div>
             <span className="font-medium text-gray-800">Telefon:</span>{' '}
-            <a href="tel:+48571767999" className="text-[#002a5c] hover:underline">
-              571 767 999
+            <a href="tel:+48792861513" className="text-[#002a5c] hover:underline">
+           +48 792 861 513
             </a>
           </div>
           <div>
