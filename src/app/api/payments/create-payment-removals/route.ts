@@ -6,6 +6,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-02-24.acacia',
 });
 
+console.log("STRIPE:", process.env.STRIPE_SECRET_KEY)
+
 const VAT_TAX_RATE_ID = 'txr_1R7DBmLEJlt9ALSCIZlfxiv1'; // <- Twój VAT 23%
 
 export async function POST(req: NextRequest) {
