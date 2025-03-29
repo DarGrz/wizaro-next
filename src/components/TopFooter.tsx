@@ -12,7 +12,7 @@ export default function TopFooter() {
             </a>
           </div>
           <div>
-            <span className="font-medium text-gray-800">NIP:</span> 6782978644, Kraków 31-636
+            <span className="font-medium text-gray-800">NIP:</span> Mistrzejowice, Kraków 31-636
           </div>
         </div>
       </div>
