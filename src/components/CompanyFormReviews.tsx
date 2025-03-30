@@ -1,12 +1,14 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
 import ReviewForm from "@/components/formSteps/ReviewForm";
 import CompanyFormStep from "@/components/formSteps/CompanyFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
 import SummaryStepReviewForm from "@/components/formSteps/SummaryStepReviewForm";
-import ReviewFormExplenation from "./Explenations//ReviewFormExplenation";
+
+import ReviewFormExplenation from "./Explenations/ReviewFormExplenation";
 import CompanyReviewRemovalFormExplenation from "./Explenations/CompanyReviewRemovalFormExplenation";
 import SocialProof from "./SocialProof";
 import ReviewRemovalSummaryExplenation from "./Explenations/ReviewRemovalSummaryExplenation";
@@ -43,6 +45,21 @@ interface PayerData {
   zip: string;
   city: string;
 }
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 export default function CompanyFormReviews() {
   const defaultCompany: CompanyData = {
@@ -146,18 +163,17 @@ export default function CompanyFormReviews() {
   const confirmAndPay = async () => {
     setIsLoading(true);
     const totalPrice = reviews.length * 299;
-  
+
     try {
       let currentPayerId: string | undefined;
-  
-      // 1. Tworzenie płatnika (jeśli inny niż firma)
+
       if (company.different_payer) {
         const payerRes = await fetch("/api/invoice-payers", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payer),
         });
-  
+
         if (!payerRes.ok) throw new Error("Błąd zapisu danych płatnika");
         const payerData = await payerRes.json();
         currentPayerId = payerData.payer_id;
@@ -171,21 +187,20 @@ export default function CompanyFormReviews() {
           zip: company.zip,
           city: company.city,
         };
-  
+
         const payerRes = await fetch("/api/invoice-payers", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(companyAsPayer),
         });
-  
+
         if (!payerRes.ok) throw new Error("Błąd zapisu danych firmy jako płatnika");
         const payerData = await payerRes.json();
         currentPayerId = payerData.payer_id;
       }
-  
+
       setPayerId(currentPayerId);
-  
-      // 2. Zapis firmy i opinii z przypisanym dokumentem
+
       const res = await fetch("/api/company-with-reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -197,13 +212,12 @@ export default function CompanyFormReviews() {
           payer_id: currentPayerId,
         }),
       });
-  
+
       if (!res.ok) throw new Error("Błąd zapisu danych firmy i opinii");
-  
+
       const data = await res.json();
       const document_id = data.document_id;
-  
-      // 3. Utworzenie płatności
+
       const paymentRes = await fetch("/api/payments/create-payment-reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -223,10 +237,10 @@ export default function CompanyFormReviews() {
           quantity: reviews.length,
         }),
       });
-  
+
       if (!paymentRes.ok) throw new Error("Błąd tworzenia płatności");
       const payment = await paymentRes.json();
-  
+
       localStorage.removeItem("companyFormData");
       window.location.href = payment.url;
     } catch (error) {
@@ -236,14 +250,18 @@ export default function CompanyFormReviews() {
       setIsLoading(false);
     }
   };
-  
 
   const totalPrice = reviews.length * 299;
 
   return (
-    <div className="max-w-5xl mx-auto min-h-screen">
-      <div className="md:flex px-4 py-10 md:gap-8">
-        <div className="md:w-1/2 mb-10 md:mb-0">
+    <motion.div
+      className="max-w-5xl mx-auto min-h-screen"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.div className="md:flex px-4 py-10 md:gap-8" variants={fadeInUp}>
+        <motion.div className="md:w-1/2 mb-10 md:mb-0" variants={fadeInUp}>
           <div className="bg-white rounded-xl shadow-lg p-8 w-full space-y-6">
             {step === "reviews" && (
               <ReviewForm
@@ -295,21 +313,41 @@ export default function CompanyFormReviews() {
               />
             )}
           </div>
-        </div>
-        <div className="md:w-1/2">
-  {step === "reviews" && <ReviewFormExplenation />}
-  {step === "company" && <CompanyReviewRemovalFormExplenation />}
-  {/* Możesz dodać więcej jeśli chcesz: */}
-  {step === "payer" && <PayerFormExplenation />}
-  {step === "summary" && <ReviewRemovalSummaryExplenation />}
-</div>
-      </div>
-      <div className="md:flex py-10 m-4 md:gap-8">
+        </motion.div>
+
+        <motion.div
+          className="md:w-1/2"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {step === "reviews" && <ReviewFormExplenation />}
+          {step === "company" && <CompanyReviewRemovalFormExplenation />}
+          {step === "payer" && <PayerFormExplenation />}
+          {step === "summary" && <ReviewRemovalSummaryExplenation />}
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        className="md:flex py-10 m-4 md:gap-8"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <ExplenationReviewRemoval />
-      </div>
-      <div className="md:flex py-10 m-4 md:gap-8">
+      </motion.div>
+
+      <motion.div
+        className="md:flex py-10 m-4 md:gap-8"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <SocialProof />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

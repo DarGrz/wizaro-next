@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
 import RemovalForm from "@/components/formSteps/RemovalForm";
 import CompanyProfileFormStep from "@/components/formSteps/CompanyProfileFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
@@ -40,6 +42,21 @@ interface PayerData {
   zip: string;
   city: string;
 }
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 export default function CompanyFormRemoval() {
   const defaultCompany: CompanyData = {
@@ -85,7 +102,7 @@ export default function CompanyFormRemoval() {
   const calculatePriceForLink = (url: string): number => {
     const lowerUrl = url.toLowerCase();
     if (lowerUrl.includes("map") || lowerUrl.includes("google") || lowerUrl.includes("goo")) {
-      return 99900;
+      return 122877;
     }
     if (
       lowerUrl.includes("gowork") ||
@@ -208,9 +225,14 @@ export default function CompanyFormRemoval() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto min-h-screen">
-      <div className="md:flex px-4 py-10 md:gap-8">
-        <div className="md:w-1/2 mb-10 md:mb-0">
+    <motion.div
+      className="max-w-5xl mx-auto min-h-screen"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.div className="md:flex px-4 py-10 md:gap-8" variants={fadeInUp}>
+        <motion.div className="md:w-1/2 mb-10 md:mb-0" variants={fadeInUp}>
           <div className="bg-white rounded-xl shadow-lg p-8 w-full space-y-6">
             {step === "removal" && (
               <RemovalForm
@@ -268,25 +290,44 @@ export default function CompanyFormRemoval() {
               />
             )}
           </div>
-        </div>
-        <div className="md:w-1/2">
-        {step === "company" ? (
-  <CompanyProfileFormExplenation />
-) : step === "removal" ? (
-  <RemovalFormExplenation />
-) : step === "summary" ? (
-  <PaymentExplanation />
-) : null}
+        </motion.div>
 
-</div>
-      </div>
+        <motion.div
+          className="md:w-1/2"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {step === "company" ? (
+            <CompanyProfileFormExplenation />
+          ) : step === "removal" ? (
+            <RemovalFormExplenation />
+          ) : step === "summary" ? (
+            <PaymentExplanation />
+          ) : null}
+        </motion.div>
+      </motion.div>
 
-      <div className="md:flex py-10 m-4 md:gap-8">
-        <ExplenationProfileRemoval/>
-      </div>
-      <div className="md:flex py-10 m-4 md:gap-8">
+      <motion.div
+        className="md:flex py-10 m-4 md:gap-8"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <ExplenationProfileRemoval />
+      </motion.div>
+
+      <motion.div
+        className="md:flex py-10 m-4 md:gap-8"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <SocialProof />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

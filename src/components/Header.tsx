@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Mail } from 'lucide-react';
 import Image from 'next/image';
-import { maxHeaderSize } from 'http';
 
 
 export default function Header() {

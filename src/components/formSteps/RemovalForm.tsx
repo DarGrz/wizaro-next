@@ -31,7 +31,7 @@ export default function RemovalForm({
   onSubmit,
 }: Props) {
   const shouldShowPrice = removals.some((r) =>
-    /(google|goog|aleo|panorama|map|pkt|finder|biznes)/i.test(r.url)
+    /(google|goo|gow|aleo|panorama|map|pkt|finder|biznes)/i.test(r.url)
   );
 
   return (
