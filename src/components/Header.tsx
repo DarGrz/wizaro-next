@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Mail } from 'lucide-react';
 import Image from 'next/image';
+import { maxHeaderSize } from 'http';
 
 
 export default function Header() {
@@ -16,7 +17,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold text-[#002a5c]">
-        <Image src="/images/wizaro-logo.png" alt="Logo" width={120} height={100} />
+        <Image src="/images/wizaro-logo.png" alt="Logo" width={120} height={36}  placeholder="empty" />
         </Link>
 
         {/* Desktop menu */}
