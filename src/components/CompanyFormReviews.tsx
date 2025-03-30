@@ -255,7 +255,7 @@ export default function CompanyFormReviews() {
 
   return (
     <motion.div
-      className="max-w-5xl mx-auto min-h-screen font-mono"
+      className="max-w-5xl mx-auto min-h-screen "
       initial="hidden"
       animate="visible"
       variants={containerVariants}

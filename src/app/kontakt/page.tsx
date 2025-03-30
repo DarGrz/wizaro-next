@@ -1,8 +1,12 @@
 'use client';
 
+
+import BusinessTypeSelectorCTA from "@/components/BusinessTypeSelectorCTA";
+
 export default function ContactPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10 bg-white">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 pt-20 pb-10 bg-white">
+       
       <div className="w-full max-w-5xl bg-white rounded-xl  shadow-md p-10 flex flex-col md:flex-row gap-10">
         <div className="w-full md:w-1/2 rounded border-b pb-6 md:border-r border-gray-200 pr-6">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">Dane kontaktowe</h2>
@@ -12,14 +16,14 @@ export default function ContactPage() {
           <ul className="text-gray-700 space-y-3">
             <li>
               <strong>Email:</strong>{' '}
-              <a href="mailto:kontakt@wzorypism.io" className="">
+              <a href="mailto:kontakt@wizaro.pl" className="">
                 kontakt@wizaro.pl
               </a>
             </li>
             <li>
               <strong>Telefon:</strong>{' '}
-              <a href="tel:571767999" className="">
-                571 767 999
+              <a href="tel:792 861 513" className="">
+                792 861 513
               </a>
             </li>
             <li>
@@ -28,10 +32,10 @@ export default function ContactPage() {
           </ul>
 
           <a
-            href="tel:571767999"
+            href="tel:792 861 513"
             className="inline-block mt-6 bg-[#002a5c] text-white py-2 px-4 rounded hover:bg-[#001e47] transition"
           >
-            Zadzwoń: 571 767 999
+            Zadzwoń: 792 861 513
           </a>
         </div>
 
@@ -85,6 +89,10 @@ export default function ContactPage() {
           </form>
         </div>
       </div>
+      <div className="w-full max-w-5xl bg-white rounded-xl shadow-md p-10 mt-16 flex flex-col gap-6">
+        <BusinessTypeSelectorCTA />
+        </div>  
     </div>
+    
   );
 }

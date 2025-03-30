@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="w-full  text-center text-sm text-gray-900 pb-5 font-mono">
+    <footer className="w-full  text-center text-sm text-gray-900 pb-5 ">
       <p>
         &copy; {new Date().getFullYear()} Wizaro.pl – Wszelkie prawa zastrzeżone
       </p>

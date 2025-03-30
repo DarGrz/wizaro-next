@@ -12,7 +12,7 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm font-mono">
+    <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm ">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold text-[#002a5c]">
@@ -25,9 +25,9 @@ export default function Header() {
           {/* <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
             O nas
           </Link> */}
-          <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
+          {/* <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
             Opinie
-          </Link>
+          </Link> */}
           <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
             Kontakt
           </Link>
@@ -66,9 +66,9 @@ export default function Header() {
              {/* <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
             O nas
           </Link> */}
-          <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
+          {/* <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
             Opinie
-          </Link>
+          </Link> */}
           <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
             Kontakt
           </Link>

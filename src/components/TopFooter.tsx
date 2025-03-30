@@ -1,6 +1,6 @@
 export default function TopFooter() {
     return (
-      <div className="w-full text-sm text-gray-900 border-t font-mono">
+      <div className="w-full text-sm text-gray-900 border-t ">
         <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left">
           <div>
             <span className="font-medium text-gray-900">Godziny kontaktu:</span> 9:00 – 21:00
