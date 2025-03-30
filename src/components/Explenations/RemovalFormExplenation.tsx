@@ -19,13 +19,13 @@ export default function RemovalFormExplenation() {
         {/* Krok 2 */}
         <li className="bg-white p-3">
           <p className="font-medium mb-1">2. Dodaj więcej profili (jeśli potrzebujesz)</p>
-          <p className="text-gray-700">Kliknij „Dodaj profil”, aby dodać kolejne – każdy z osobna możesz edytować.</p>
+          <p className="text-gray-700">Kliknij <span  className="text-[#5FA054]">„Dodaj profil”</span>, aby dodać kolejne – każdy z osobna możesz edytować.</p>
         </li>
     
         {/* Krok 3 */}
         <li className="bg-white p-3">
           <p className="font-medium mb-1">3. Sprawdź cenę i przejdź dalej</p>
-          <p className="text-gray-700">Cena pojawi się automatycznie. Kliknij „Przejdź dalej”, aby kontynuować.</p>
+          <p className="text-gray-700">Cena pojawi się automatycznie. Kliknij <span  className="text-[#5FA054]">„Przejdź dalej”</span>, aby kontynuować.</p>
         </li>
       </ol>
     </section>

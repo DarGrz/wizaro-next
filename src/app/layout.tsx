@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Wizaro.pl - Usuwanie danych osobowych z internetu",
   description: "Wizaro.pl to usługi usuwania danych osobowych z internetu. Zgłoś się do nas, aby usunąć swoje dane z Google, Gowork, Aleo, Panorama firm i PKT.pl.",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-32x32.png',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({

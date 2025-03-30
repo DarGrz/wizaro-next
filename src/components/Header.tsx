@@ -25,7 +25,7 @@ export default function Header() {
           <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
             O nas
           </Link>
-          <Link href="/regulamin" className="text-gray-700 hover:text-[#002a5c]">
+          <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
             Opinie
           </Link>
           <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
