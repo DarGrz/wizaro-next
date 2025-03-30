@@ -9,7 +9,7 @@ export default function FaqSection() {
     {
       question: "Czy usuwanie informacji z internetu jest legalne?",
       answer:
-        "Tak. Działamy na podstawie przepisów RODO oraz innych regulacji dotyczących ochrony danych osobowych i wizerunku firmy.",
+        "Tak. Działamy na podstawie przepisów oraz innych regulacji dotyczących ochrony danych osobowych i wizerunku firmy.",
     },
     {
       question: "Jak długo trwa usunięcie informacji?",

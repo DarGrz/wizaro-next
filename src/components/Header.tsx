@@ -22,9 +22,9 @@ export default function Header() {
         {/* Desktop menu */}
         <nav className="hidden md:flex space-x-6 text-sm items-center">
           
-          <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
+          {/* <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
             O nas
-          </Link>
+          </Link> */}
           <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
             Opinie
           </Link>
