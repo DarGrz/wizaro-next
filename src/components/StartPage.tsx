@@ -9,6 +9,8 @@ import FaqSection from "./FaqSection";
 import GuaranteeSection from "./GuaranteeSection";
 import SocialProof from "./SocialProof";
 
+
+
 export default function StartPage() {
   return (
     <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-20">
