@@ -109,7 +109,7 @@ export default function CompanyForm() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto min-h-screen">
+    <div className="max-w-5xl mx-auto min-h-screen font-mono">
       <div className="md:flex px-4 py-10 md:gap-8">
         <div className="md:w-1/2 mb-10 md:mb-0">
           <div className="bg-white rounded-xl shadow-lg p-8 w-full">

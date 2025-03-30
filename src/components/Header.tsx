@@ -12,7 +12,7 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm">
+    <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm font-mono">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold text-[#002a5c]">
@@ -36,7 +36,7 @@ export default function Header() {
             className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
           >
             <Mail size={16} />
-           kontakt@wizaro.pl
+          
           </a>
           <span>
             <svg width="30" height="20" viewBox="0 0 6 4" xmlns="http://www.w3.org/2000/svg">
@@ -63,25 +63,22 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 px-4 pb-4">
           <nav className="flex flex-col space-y-2 text-sm">
-            <Link href="/formularz" className="text-gray-700 hover:text-[#002a5c]">
-              Formularz
-            </Link>
-            <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
-              Kontakt
-            </Link>
-            <Link href="/regulamin" className="text-gray-700 hover:text-[#002a5c]">
-              Regulamin
-            </Link>
-            <Link href="/polityka-prywatnosci" className="text-gray-700 hover:text-[#002a5c]">
-              Prywatność
-            </Link>
-            <a
-              href="mailto:kontakt@wizaro.pl"
-              className="flex items-center gap-2 text-gray-700 hover:text-[#002a5c]"
-            >
-              <Mail size={16} />
-              kontakt@wizaro.pl
-            </a>
+             {/* <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
+            O nas
+          </Link> */}
+          <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
+            Opinie
+          </Link>
+          <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
+            Kontakt
+          </Link>
+          <a
+            href="mailto:kontakt@wizaro.pl"
+            className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded me-auto"
+          >
+            <Mail size={16} />
+          
+          </a>
           </nav>
         </div>
       )}
