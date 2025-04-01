@@ -1,40 +1,39 @@
-import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/app/lib/supabase";
-import { randomUUID } from "crypto";
+import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
+);
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { name, company_name, email, nip, street, zip, city } = body;
+    const data = await req.json();
 
-    if (!name || !email || !street || !zip || !city) {
-      return NextResponse.json(
-        { error: "Brak wymaganych pól" },
-        { status: 400 }
-      );
-    }
+    const { ip_address, user_agent, referrer, landing_page, utm } = data;
 
-    const payer_id = randomUUID();
-
-    const { error } = await supabase.from("invoice_payers").insert({
-      id: payer_id,
-      name,
-      company_name,
-      email,
-      nip,
-      street,
-      zip,
-      city,
-    });
+    const { error } = await supabase.from('visitors').insert([
+      {
+        ip_address,
+        user_agent,
+        referrer,
+        landing_page,
+        utm_source: utm?.source,
+        utm_medium: utm?.medium,
+        utm_campaign: utm?.campaign,
+        utm_term: utm?.term,
+        utm_keyword: utm?.keyword,
+      },
+    ]);
 
     if (error) {
-      console.error("❌ Błąd zapisu płatnika:", error);
-      return NextResponse.json({ error: "Błąd zapisu do bazy" }, { status: 500 });
+      console.error('❌ Error inserting visitor:', error.message);
+      return NextResponse.json({ error: 'Błąd przy zapisie odwiedzin' }, { status: 500 });
     }
 
-    return NextResponse.json({ payer_id, message: "Płatnik zapisany" });
+    return NextResponse.json({ success: true }, { status: 201 });
   } catch (err) {
-    console.error("❌ Błąd przetwarzania żądania:", err);
-    return NextResponse.json({ error: "Błąd serwera" }, { status: 500 });
+    console.error('❌ Unexpected error:', err);
+    return NextResponse.json({ error: 'Unexpected error' }, { status: 500 });
   }
 }
