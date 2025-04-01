@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import Script from 'next/script'
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import TopFooter from "@/components/TopFooter";
+import VisitorTracker from "@/components/VisitorTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
   },
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -43,9 +45,9 @@ export default function RootLayout({
           type="text/javascript"
           async
         ></script>
-       
-         {/* Google Tag Manager */}
-         <Script id="gtm-script" strategy="afterInteractive">
+
+        {/* Google Tag Manager */}
+        <Script id="gtm-script" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -55,12 +57,18 @@ export default function RootLayout({
           `}
         </Script>
         {/* End Google Tag Manager */}
-
       </head>
       <body className="font-sans antialiased">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-W72NWNSH"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
 
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W72NWNSH"
-      height="0" width="0"  style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
+        <VisitorTracker />
         <Header />
         {children}
         <TopFooter />
