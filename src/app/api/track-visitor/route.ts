@@ -10,11 +10,15 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
-    const { ip_address, user_agent, referrer, landing_page, utm } = data;
+    const ip =
+      req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    const user_agent = req.headers.get('user-agent') || '';
+
+    const { referrer, landing_page, utm } = data;
 
     const { error } = await supabase.from('visitors').insert([
       {
-        ip_address,
+        ip_address: ip,
         user_agent,
         referrer,
         landing_page,
@@ -27,13 +31,13 @@ export async function POST(req: NextRequest) {
     ]);
 
     if (error) {
-      console.error('❌ Error inserting visitor:', error.message);
+      console.error('❌ Błąd zapisu odwiedzin:', error.message);
       return NextResponse.json({ error: 'Błąd przy zapisie odwiedzin' }, { status: 500 });
     }
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (err) {
-    console.error('❌ Unexpected error:', err);
+    console.error('❌ Nieoczekiwany błąd:', err);
     return NextResponse.json({ error: 'Unexpected error' }, { status: 500 });
   }
 }
