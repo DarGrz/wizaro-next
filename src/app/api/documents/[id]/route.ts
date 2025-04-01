@@ -1,54 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/app/lib/supabase';
+import { supabaseAdmin } from '@/app/lib/supabase-admin'; // ← poprawna nazwa importu
 
 export async function GET(
   req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
-  const { id: documentId } = await context.params;
+  try {
+    const resolvedParams = await context.params;
+    const documentId = resolvedParams.id;
+    const sessionId = req.nextUrl.searchParams.get('sessionId');
 
-  if (!documentId) {
-    return NextResponse.json({ error: 'Brak ID dokumentu' }, { status: 400 });
+    if (!documentId || !sessionId) {
+      return NextResponse.json({ error: 'Brak parametrów' }, { status: 400 });
+    }
+
+    const { data, error } = await supabaseAdmin
+      .from('payments')
+      .select('*')
+      .eq('document_id', documentId)
+      .eq('session_id', sessionId)
+      .eq('status', 'paid')
+      .maybeSingle();
+
+    if (error) {
+      console.error('❌ Supabase error:', error);
+      return NextResponse.json({ error: 'Błąd podczas weryfikacji' }, { status: 500 });
+    }
+
+    if (!data) {
+      return NextResponse.json(
+        { error: 'Dokument nieopłacony lub nie istnieje' },
+        { status: 403 }
+      );
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error('❌ Internal server error:', err);
+    return NextResponse.json({ error: 'Wewnętrzny błąd serwera' }, { status: 500 });
   }
-
-  // Pobierz dokument z firmą i company_id
-  const { data: docData, error: docError } = await supabase
-    .from('documents')
-    .select('id, content, company_id, company:companies(email)')
-    .eq('id', documentId)
-    .maybeSingle();
-
-  if (!docData || docError) {
-    return NextResponse.json(
-      { error: 'Nie znaleziono dokumentu' },
-      { status: 404 }
-    );
-  }
-
-  // Pobierz profile do usunięcia powiązane z firmą
-  const { data: removals, error: removalsError } = await supabase
-    .from('profile_removals')
-    .select('company_name, nip, url')
-    .eq('company_id', docData.company_id);
-
-  if (removalsError) {
-    console.error('❌ Błąd pobierania profili:', removalsError);
-  }
-
-  // Pobierz opinie do usunięcia powiązane z dokumentem
-  const { data: reviews, error: reviewsError } = await supabase
-    .from('reviews')
-    .select('author, content, url, date_added')
-    .eq('document_id', documentId);
-
-  if (reviewsError) {
-    console.error('❌ Błąd pobierania opinii:', reviewsError);
-  }
-
-  return NextResponse.json({
-    id: docData.id,
-    content: docData.content,
-    email: docData.company?.[0]?.email || null,    removals: removals || [],
-    reviews: reviews || [],
-  });
 }

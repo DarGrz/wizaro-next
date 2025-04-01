@@ -1,6 +1,6 @@
 // src/app/api/documents/[id]/verify/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/app/lib/supabase';
+import { createClient } from '@supabase/supabase';
 
 export async function GET(
   req: NextRequest,

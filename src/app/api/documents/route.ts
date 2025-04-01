@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/app/lib/supabase';
+import { supabaseAdmin } from '@/app/lib/supabase-admin';
 import { randomUUID } from 'crypto';
 
 export async function GET() {
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
     const document_id = randomUUID();
 
-    const { error } = await supabase.from('documents').insert({
+    const { error } = await supabaseAdmin.from('documents').insert({
       id: document_id,
       company_id,
       type,

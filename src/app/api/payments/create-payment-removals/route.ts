@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 const VAT_TAX_RATE_ID = 'txr_1R7D3ILEJlt9ALSCyamMiFnX'; // <- Twój VAT 23% Production
-// const VAT_TAX_RATE_ID = 'txr_1R7DBmLEJlt9ALSCIZlfxiv1'; // <- Twój VAT 23% - test
+// const VAT_TAX_RATE_ID = 'txr_1R7DBmLEJlt9ALSCIZlfxiv1'; // <- Twój VAT 23% -
 
 export async function POST(req: NextRequest) {
   try {
