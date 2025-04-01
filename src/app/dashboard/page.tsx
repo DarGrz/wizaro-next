@@ -88,9 +88,8 @@ export default async function DashboardPage() {
                 >
                   <td className="p-2 font-mono">{ip || '—'}</td>
                   <td className="p-2">{v.location || '—'}</td>
-                  <td className="p-2">
-                    {new Date(v.created_at).toLocaleString()}
-                  </td>
+                  <td className="p-2">{new Date(v.created_at).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' })}</td>
+
                   <td className="p-2">{v.referrer || '—'}</td>
                   <td className="p-2">{v.landing_page}</td>
                   <td className="p-2">{v.utm_source || '—'}</td>
