@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
               name: 'Usługa Marketingowa - Ochrona reputacji online.',
               description: 'Usunięcie profilu firmy z portalu.',
             },
-            unit_amount: 49900,
+            unit_amount: 100,
           },
           quantity: 1,
           tax_rates: [VAT_TAX_RATE_ID],
