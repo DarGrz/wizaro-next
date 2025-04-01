@@ -1,6 +1,6 @@
 // src/app/api/documents/[id]/verify/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase';
+import { supabaseAdmin } from '@/app/lib/supabase-admin';
 
 export async function GET(
   req: NextRequest,
@@ -14,7 +14,7 @@ export async function GET(
     return NextResponse.json({ error: 'Brak parametrów' }, { status: 400 });
   }
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('payments')
     .select('*')
     .eq('document_id', documentId)
