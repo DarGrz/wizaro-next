@@ -3,7 +3,7 @@ import { ShieldCheck } from "lucide-react";
 
 export default function GuaranteeSection() {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 rounded">
+    <section className="py-16 px-2 sm:px-6 lg:px-8 rounded">
       <div className="max-w-3xl mx-auto text-center">
         <div className="flex justify-center mb-6">
           <div className="bg-white p-4 rounded-full shadow-sm">

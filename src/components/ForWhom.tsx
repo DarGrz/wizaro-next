@@ -39,8 +39,8 @@ export default function ForWhom() {
   };
 
   return (
-    <section className="py-16" ref={ref}>
-      <div className="max-w-6xl mx-auto px-4 text-center">
+    <section className="py-2" ref={ref}>
+      <div className="max-w-6xl mx-auto  text-center">
         <motion.h2
           className="text-lg font-semibold text-gray-900 mb-12"
           initial="hidden"

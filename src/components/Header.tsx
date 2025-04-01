@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Mail } from 'lucide-react';
+import { Menu, X, Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
 
 
@@ -31,6 +31,9 @@ export default function Header() {
           <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
             Kontakt
           </Link>
+          <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline shadow p-1 px-4 rounded">
+          <Phone size={16} />
+            </a>
           <a
             href="mailto:kontakt@wizaro.pl"
             className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
@@ -72,13 +75,20 @@ export default function Header() {
           <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
             Kontakt
           </Link>
+          <div className='me-auto flex gap-2'>
           <a
             href="mailto:kontakt@wizaro.pl"
             className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded me-auto"
           >
-            <Mail size={16} />
+            <Mail size={20} />
           
           </a>
+          <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline shadow p-1 px-4 rounded">
+          <Phone size={20} />
+            </a>
+          </div>
+         
+          
           </nav>
         </div>
       )}

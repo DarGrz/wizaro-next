@@ -106,7 +106,7 @@ export default function RemovalForm({
       
       {shouldShowPrice && (
         <p className="text-sm text-center text-gray-700">
-          Łączna cena: <strong className="text-lg">{totalPrice} zł brutto (z VAT 23%)</strong>
+          Cena: <strong className="text-lg">{totalPrice} zł brutto (z VAT 23%)</strong>
         </p>
       )}
       <div className="flex justify-between gap-3">

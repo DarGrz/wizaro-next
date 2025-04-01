@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ExplenationStartPage = () => {
   return (
-    <div className="w-full grid gap-6 text-left mt-20 px-4 text-[#0D2959] overflow-hidden">
+    <div className="w-full grid gap-6 text-left mt-20 px-2 text-[#0D2959] overflow-hidden">
       <h2 className="text-lg font-semibold text-center text-[#0D2959]">
         Jak to działa?
       </h2>
@@ -14,7 +14,7 @@ const ExplenationStartPage = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm"
+        className="bg-white border border-[#E5E7EB] rounded-md p-6 shadow-sm"
       >
         <h3 className="text-md font-semibold mb-2 text-[#0D2959]">
           1. Wskazujesz, co chcesz usunąć
@@ -30,7 +30,7 @@ const ExplenationStartPage = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm"
+        className="bg-white border border-[#E5E7EB] rounded-md p-6 shadow-sm"
       >
         <h3 className="text-md font-semibold mb-2 text-[#0D2959]">
           2. Korzystamy ze sprawdzonych metod
@@ -46,7 +46,7 @@ const ExplenationStartPage = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm"
+        className="bg-white border border-[#E5E7EB] rounded-md p-6 shadow-sm"
       >
         <h3 className="text-md font-semibold mb-2 text-[#0D2959]">
           3. Szybko realizujemy zgłoszenie

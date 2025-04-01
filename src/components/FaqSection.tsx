@@ -47,7 +47,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-16 px-2 sm:px-2 lg:px-2">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-lg font-semibold text-gray-900 mb-10 text-center">
           Często zadawane pytania

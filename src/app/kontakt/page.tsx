@@ -89,7 +89,7 @@ export default function ContactPage() {
           </form>
         </div>
       </div>
-      <div className="w-full max-w-5xl bg-white rounded-xl shadow-md p-10 mt-16 flex flex-col gap-6">
+      <div className="w-full max-w-5xl bg-white rounded-xl   mt-16 flex flex-col gap-6">
         <BusinessTypeSelectorCTA />
         </div>  
     </div>

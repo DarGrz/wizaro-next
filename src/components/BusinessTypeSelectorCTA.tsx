@@ -17,7 +17,7 @@ export default function BusinessTypeSelectorCTA() {
   };
 
   return (
-    <div className="relative px-4 w-full max-w-lg mx-auto">
+    <div className="relative  w-full max-w-lg mx-auto">
       <div className="bg-white rounded shadow-md p-8 flex flex-col gap-6 text-center">
         <div>
           <h2 className="text-2xl font-semibold text-gray-900">

@@ -33,7 +33,7 @@ export default function WhyTrustUs() {
 
   return (
     <section className="py-16 ">
-      <div className="max-w-6xl mx-auto px-4 text-center" ref={ref}>
+      <div className="max-w-6xl mx-auto px-2 text-center" ref={ref}>
         <motion.h2
           className="text-2xl font-semibold text-gray-900 mb-10"
           initial="hidden"

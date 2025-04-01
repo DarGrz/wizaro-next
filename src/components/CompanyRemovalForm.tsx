@@ -102,7 +102,7 @@ export default function CompanyFormRemoval() {
   const calculatePriceForLink = (url: string): number => {
     const lowerUrl = url.toLowerCase();
     if (lowerUrl.includes("map") || lowerUrl.includes("google") || lowerUrl.includes("goo")) {
-      return 122877;
+      return 129900;
     }
     if (
       lowerUrl.includes("gowork") ||
@@ -110,9 +110,9 @@ export default function CompanyFormRemoval() {
       lowerUrl.includes("panorama") ||
       lowerUrl.includes("pkt")
     ) {
-      return 49900;
+      return 69900;
     }
-    return 49900;
+    return 69900;
   };
 
   const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLink(r.url), 0);
