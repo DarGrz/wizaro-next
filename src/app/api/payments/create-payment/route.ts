@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
             currency: 'pln',
             product_data: {
               name: 'Usługa Marketingowa - Ochrona reputacji online.',
-              description: 'Usunięcie profilu firmy z portalu.',
+              description: 'Przygotowanie pisma RODO w celu usunięcia danych z portalu internetowego.',
             },
             unit_amount: 200,
           },
