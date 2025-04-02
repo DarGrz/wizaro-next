@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import axios from 'axios';
+import type { AxiosError } from 'axios';
+
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -167,10 +169,17 @@ ${company.first_name} ${company.last_name}<br><br>
       const faktura = await createFakturowniaInvoice(company, session);
       console.log('🧾 Faktura Fakturowni utworzona:', faktura.id);
     }catch (err) {
-      if (err instanceof Error) {
-        console.error('❌ Błąd tworzenia faktury Fakturowni:', err.message);
+      const error = err as AxiosError;
+    
+      if (error.response) {
+        console.error('❌ Błąd Fakturowni:', {
+          status: error.response.status,
+          data: error.response.data,
+        });
+      } else if (error.request) {
+        console.error('❌ Brak odpowiedzi od Fakturowni:', error.request);
       } else {
-        console.error('❌ Błąd tworzenia faktury Fakturowni:', JSON.stringify(err));
+        console.error('❌ Błąd axios:', error.message);
       }
     }
 
