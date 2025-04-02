@@ -43,6 +43,7 @@ async function createFakturowniaInvoice(company: Company, session: Stripe.Checko
       buyer_post_code: session.customer_details?.address?.postal_code || '',
       buyer_city: session.customer_details?.address?.city || '',
       buyer_street: session.customer_details?.address?.line1 || '',
+      paid: true,
       positions: [
         {
           name: "Usługa usunięcia firmy z internetu",
