@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
-import axios from 'axios';
-import type { AxiosError } from 'axios';
 
+// Tworzymy klienta Supabase z Service Role Key (dostęp do zapisu)
 const supabase = createClient(
   process.env.SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
@@ -21,50 +20,6 @@ interface Company {
   last_name: string;
   phone: string;
   opinie: string;
-}
-
-async function createFakturowniaInvoice(company: Company, session: Stripe.Checkout.Session) {
-  const fakturowniaApiKey = process.env.FAKTUROWNIA_API_KEY!;
-  const fakturowniaDomain = process.env.FAKTUROWNIA_DOMAIN!;
-
-  const priceNet = Number(session.metadata?.price_net || 0);
-  const productName = session.metadata?.product_name || 'Usługa';
-
-  const invoiceData = {
-    api_token: fakturowniaApiKey,
-    invoice: {
-      kind: "vat",
-      number: null,
-      sell_date: new Date().toISOString().slice(0, 10),
-      issue_date: new Date().toISOString().slice(0, 10),
-      payment_to: new Date().toISOString().slice(0, 10),
-      paid: true,
-      buyer_name: `${company.first_name} ${company.last_name}`,
-      buyer_email: session.customer_details?.email || '',
-      buyer_tax_no: company.nip,
-      buyer_post_code: session.customer_details?.address?.postal_code || '',
-      buyer_city: session.customer_details?.address?.city || '',
-      buyer_street: session.customer_details?.address?.line1 || '',
-      positions: [
-        {
-          name: `Usługa usunięcia firmy z portalu: ${productName}`,
-          quantity: 1,
-          tax: 23,
-          total_price_gross: Number((priceNet * 1.23).toFixed(2))
-        }
-      ]
-    }
-  };
-
-  const response = await axios.post(
-    `https://${fakturowniaDomain}.fakturownia.pl/invoices.json`,
-    invoiceData,
-    {
-      headers: { 'Content-Type': 'application/json' }
-    }
-  );
-
-  return response.data;
 }
 
 export async function POST(req: NextRequest) {
@@ -104,6 +59,7 @@ export async function POST(req: NextRequest) {
       return new NextResponse('Brak document_id', { status: 400 });
     }
 
+    // Pobierz firmę powiązaną z dokumentem
     const { data, error } = await supabase
       .from('documents')
       .select(`
@@ -120,8 +76,11 @@ export async function POST(req: NextRequest) {
       .eq('id', document_id)
       .single();
 
+    if (error) console.error('❌ Błąd pobierania dokumentu:', error.message);
+    if (!data) console.error('❌ Brak danych dokumentu');
+    if (!data?.companies) console.error('❌ Dokument nie zawiera relacji do firmy');
+
     if (error || !data || !data.companies) {
-      console.error('❌ Błąd pobierania danych firmy:', error?.message);
       return new NextResponse('Błąd pobierania danych firmy', { status: 500 });
     }
 
@@ -144,6 +103,7 @@ ${company.first_name} ${company.last_name}<br><br>
 
     console.log('📝 Generuję treść dokumentu dla firmy:', company.name);
 
+    // Zapisz wygenerowaną treść dokumentu
     const { error: updateError } = await supabase
       .from('documents')
       .update({ content: html })
@@ -155,6 +115,7 @@ ${company.first_name} ${company.last_name}<br><br>
       console.log('✅ Treść dokumentu zaktualizowana');
     }
 
+    // Zaktualizuj status płatności
     const { error: paymentError } = await supabase
       .from('payments')
       .update({ status: 'paid' })
@@ -164,34 +125,6 @@ ${company.first_name} ${company.last_name}<br><br>
       console.error('❌ Błąd przy aktualizacji płatności:', paymentError.message);
     } else {
       console.log('✅ Status płatności ustawiony na "paid"');
-    }
-
-    try {
-      const faktura = await createFakturowniaInvoice(company, session);
-      const invoiceUrl = faktura.invoice_url || faktura.pdf_url;
-
-      const { error: invoiceSaveError } = await supabase
-        .from('payments')
-        .update({ invoice_url: invoiceUrl })
-        .eq('session_id', session_id);
-
-      if (invoiceSaveError) {
-        console.error('❌ Błąd zapisu invoice_url:', invoiceSaveError.message);
-      } else {
-        console.log('✅ invoice_url zapisany w payments');
-      }
-    } catch (err) {
-      const error = err as AxiosError;
-      if (error.response) {
-        console.error('❌ Błąd Fakturowni:', {
-          status: error.response.status,
-          data: error.response.data,
-        });
-      } else if (error.request) {
-        console.error('❌ Brak odpowiedzi od Fakturowni:', error.request);
-      } else {
-        console.error('❌ Błąd axios:', error.message);
-      }
     }
 
     if (!updateError && !paymentError) {
