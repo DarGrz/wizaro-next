@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 // Tworzymy klienta Supabase z Service Role Key (dostęp do zapisu)
 const supabase = createClient(
   process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY! 
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -27,10 +27,13 @@ export async function POST(req: NextRequest) {
   const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
   if (!signature || !endpointSecret) {
+    console.error('❌ Brak signature lub endpointSecret');
     return new NextResponse('Brak danych webhooka', { status: 400 });
   }
 
   const rawBody = await req.text();
+  console.log('📥 Odebrano raw body:', rawBody);
+
   let event: Stripe.Event;
 
   try {
@@ -40,12 +43,16 @@ export async function POST(req: NextRequest) {
     console.error('❌ Webhook signature error:', errorMessage);
     return new NextResponse(`Webhook Error: ${errorMessage}`, { status: 400 });
   }
-  
+
+  console.log('✅ Odebrano event Stripe:', event.type);
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
     const document_id = session.metadata?.document_id;
     const session_id = session.id;
+
+    console.log('📄 document_id:', document_id);
+    console.log('💳 session_id:', session_id);
 
     if (!document_id) {
       console.error('❌ Brak document_id w webhooku');
@@ -69,8 +76,11 @@ export async function POST(req: NextRequest) {
       .eq('id', document_id)
       .single();
 
+    if (error) console.error('❌ Błąd pobierania dokumentu:', error.message);
+    if (!data) console.error('❌ Brak danych dokumentu');
+    if (!data?.companies) console.error('❌ Dokument nie zawiera relacji do firmy');
+
     if (error || !data || !data.companies) {
-      console.error('❌ Nie udało się pobrać danych firmy:', error?.message);
       return new NextResponse('Błąd pobierania danych firmy', { status: 500 });
     }
 
@@ -91,11 +101,19 @@ ${company.first_name} ${company.last_name}<br><br>
 <p style="font-style:italic;">Szablon wiadomości został pobrany ze strony wzorypism.io.</p>
     `;
 
+    console.log('📝 Generuję treść dokumentu dla firmy:', company.name);
+
     // Zapisz wygenerowaną treść dokumentu
     const { error: updateError } = await supabase
       .from('documents')
       .update({ content: html })
       .eq('id', document_id);
+
+    if (updateError) {
+      console.error('❌ Błąd przy aktualizacji dokumentu:', updateError.message);
+    } else {
+      console.log('✅ Treść dokumentu zaktualizowana');
+    }
 
     // Zaktualizuj status płatności
     const { error: paymentError } = await supabase
@@ -103,12 +121,15 @@ ${company.first_name} ${company.last_name}<br><br>
       .update({ status: 'paid' })
       .eq('session_id', session_id);
 
-    if (updateError || paymentError) {
-      console.error('❌ Błąd podczas aktualizacji dokumentu lub płatności:', updateError?.message, paymentError?.message);
-      return new NextResponse('Błąd podczas aktualizacji', { status: 500 });
+    if (paymentError) {
+      console.error('❌ Błąd przy aktualizacji płatności:', paymentError.message);
+    } else {
+      console.log('✅ Status płatności ustawiony na "paid"');
     }
 
-    console.log(`✅ Dokument ${document_id} został zaktualizowany po płatności`);
+    if (!updateError && !paymentError) {
+      console.log(`✅ Wszystko OK dla dokumentu ${document_id}`);
+    }
   }
 
   return new NextResponse('Webhook odebrany', { status: 200 });

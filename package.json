@@ -16,6 +16,7 @@
     "framer-motion": "^12.6.2",
     "html2pdf.js": "^0.10.3",
     "lucide-react": "^0.484.0",
+    "micro": "^10.0.1",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-datepicker": "^8.2.1",
