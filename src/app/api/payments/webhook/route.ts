@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 // Tworzymy klienta Supabase z Service Role Key (dostęp do zapisu)
 const supabase = createClient(
   process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY! // Używamy pełnych uprawnień
+  process.env.SUPABASE_ANON_KEY! 
 );
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {

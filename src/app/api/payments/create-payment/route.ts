@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { supabaseAdmin } from '@/app/lib/supabase-admin';
+import { supabase } from '@/app/lib/supabase';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-02-24.acacia',
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
     });
 
     // 4. Zapisz sesję do Supabase
-    const { error } = await supabaseAdmin.from('payments').insert({
+    const { error } = await supabase.from('payments').insert({
       document_id,
       session_id: session.id,
       status: 'pending',

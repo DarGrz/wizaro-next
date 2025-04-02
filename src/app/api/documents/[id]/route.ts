@@ -1,40 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/app/lib/supabase-admin'; // ← poprawna nazwa importu
+import { supabase } from '@/app/lib/supabase';
 
 export async function GET(
   req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const resolvedParams = await context.params;
-    const documentId = resolvedParams.id;
-    const sessionId = req.nextUrl.searchParams.get('sessionId');
+    const { id } = await context.params;
 
-    if (!documentId || !sessionId) {
-      return NextResponse.json({ error: 'Brak parametrów' }, { status: 400 });
+    if (!id) {
+      return NextResponse.json({ error: 'Brak ID dokumentu' }, { status: 400 });
     }
 
-    const { data, error } = await supabaseAdmin
-      .from('payments')
+    const { data, error } = await supabase
+      .from('documents')
       .select('*')
-      .eq('document_id', documentId)
-      .eq('session_id', sessionId)
-      .eq('status', 'paid')
+      .eq('id', id)
       .maybeSingle();
 
     if (error) {
       console.error('❌ Supabase error:', error);
-      return NextResponse.json({ error: 'Błąd podczas weryfikacji' }, { status: 500 });
+      return NextResponse.json({ error: 'Błąd bazy danych' }, { status: 500 });
     }
 
     if (!data) {
-      return NextResponse.json(
-        { error: 'Dokument nieopłacony lub nie istnieje' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Dokument nie istnieje' }, { status: 404 });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json(data);
   } catch (err) {
     console.error('❌ Internal server error:', err);
     return NextResponse.json({ error: 'Wewnętrzny błąd serwera' }, { status: 500 });
