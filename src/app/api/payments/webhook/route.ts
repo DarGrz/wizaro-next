@@ -49,7 +49,7 @@ async function createFakturowniaInvoice(company: Company, session: Stripe.Checko
           name: "Usługa usunięcia firmy z internetu",
           quantity: 1,
           tax: 23,
-          total_price_net: 129.00
+          price: 129.00
         }
       ]
     }
