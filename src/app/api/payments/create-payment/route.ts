@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
               name: 'Usługa Marketingowa - Ochrona reputacji online.',
               description: 'Przygotowanie pisma RODO w celu usunięcia danych z portalu internetowego.',
             },
-            unit_amount: 499,
+            unit_amount: 49900,
           },
           quantity: 1,
           tax_rates: [VAT_TAX_RATE_ID],
