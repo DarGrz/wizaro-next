@@ -50,7 +50,7 @@ async function createFakturowniaInvoice(company: Company, session: Stripe.Checko
           name: `Usługa usunięcia firmy z portalu: ${productName}`,
           quantity: 1,
           tax: 23,
-          total_price_net: priceNet
+          total_price_gross: Number((priceNet * 1.23).toFixed(2))
         }
       ]
     }
