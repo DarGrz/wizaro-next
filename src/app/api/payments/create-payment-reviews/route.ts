@@ -76,9 +76,7 @@ export async function POST(req: NextRequest) {
           tax_rates: [VAT_TAX_RATE_ID],
         },
       ],
-      invoice_creation: {
-        enabled: true,
-      },
+     
       metadata: {
         document_id,
         name,
