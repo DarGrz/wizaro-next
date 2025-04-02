@@ -36,7 +36,7 @@ async function createFakturowniaInvoice(company: Company, session: Stripe.Checko
       sell_date: new Date().toISOString().slice(0, 10),
       issue_date: new Date().toISOString().slice(0, 10),
       payment_to: new Date().toISOString().slice(0, 10),
-      payment_method: "przelew",
+      // payment_method: "przelew",
       buyer_name: `${company.first_name} ${company.last_name}`,
       buyer_email: session.customer_details?.email || '',
       buyer_tax_no: company.nip,
