@@ -40,15 +40,7 @@ export async function POST(req: NextRequest) {
     console.error('❌ Webhook signature error:', errorMessage);
     return new NextResponse(`Webhook Error: ${errorMessage}`, { status: 400 });
   }
-
-  try {
-    event = stripe.webhooks.constructEvent(rawBody, signature, endpointSecret);
-    console.log('Received Stripe event:', event.type); // Dodano logowanie typu zdarzenia
-  } catch (err: unknown) {
-    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-    console.error('❌ Webhook signature error:', errorMessage);
-    return new NextResponse(`Webhook Error: ${errorMessage}`, { status: 400 });
-  }
+  
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
