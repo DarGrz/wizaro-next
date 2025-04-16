@@ -9,15 +9,17 @@ const supabase = createClient(
 );
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function OrderDetailsPage({ params }: Props) {
   // 🔐 Sprawdzenie logowania
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
   if (!isLoggedIn) redirect('/login');
+
+  const resolvedParams = await params;
 
   // 📦 Pobierz zamówienie z danymi firmy
   const { data: order } = await supabase
@@ -36,7 +38,7 @@ export default async function OrderDetailsPage({ params }: Props) {
         zip
       )
     `)
-    .eq('id', params.id)
+    .eq('id', resolvedParams.id)
     .single();
 
   if (!order) {

@@ -84,27 +84,26 @@ export default function SocialProofPage() {
       name: "Maria Kubicka",
       text: "Mam 61 lat i prowadzę kwiaciarnię. Jakiś czas temu pojawiły się w internecie nieprawdziwe opinie o moim sklepie. Nie wiedziałam, co z tym zrobić. Córka poleciła mi Wizaro i jestem im bardzo wdzięczna. Wszystko odbyło się spokojnie, profesjonalnie i skutecznie. Czułam się zaopiekowana na każdym kroku."
     }
-  ]
-  ;
+  ];
 
   const [randomReviews, setRandomReviews] = useState<typeof reviews>([]);
 
   useEffect(() => {
     const shuffled = [...reviews].sort(() => 0.5 - Math.random());
-    setRandomReviews(shuffled.slice(0,60));
-  }, []);
+    setRandomReviews(shuffled.slice(0, 60));
+  }, []); // <--- removed 'reviews' from dependency array
 
   if (randomReviews.length === 0) return null;
 
   return (
     <section className="mx-auto max-w-6xl px-md-4 py-10">
-      <h2 className="text-lg font-semibold text-center text-gray-800 mb-8">Opinie którymi chcemy się pochwalić</h2>
-      <div className="grid gap-6 md:grid-cols-3 ">
+      <h2 className="text-lg font-semibold text-center text-gray-800 mb-8">Opinie, którymi chcemy się pochwalić</h2>
+      <div className="grid gap-6 md:grid-cols-3">
         {randomReviews.map((review, idx) => (
           <div key={idx} className="border w-full border-gray-200 rounded-lg p-4 bg-white shadow-sm">
             <div className="flex items-center mb-2">
               <div className="w-10 h-10 bg-gray-100 rounded flex items-center justify-center text-sm font-bold text-[#002a5c]">
-                {review.name[0]}
+                {review.name?.[0] || "?"}
               </div>
               <div className="ml-3">
                 <p className="text-sm font-semibold text-gray-900">{review.name}</p>

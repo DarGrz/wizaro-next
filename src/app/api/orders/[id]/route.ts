@@ -7,10 +7,12 @@ const supabase = createClient(
 );
 
 export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params;
+    
     // First get the document
     const { data: document, error: documentError } = await supabase
       .from('documents')
@@ -29,7 +31,7 @@ export async function GET(
           zip
         )
       `)
-      .eq('id', params.id)
+      .eq('id', id)
       .single();
 
     if (documentError) {
@@ -46,7 +48,7 @@ export async function GET(
       const { data: reviews, error: reviewsError } = await supabase
         .from('reviews')
         .select('*')
-        .eq('document_id', params.id);
+        .eq('document_id', id);
 
       if (reviewsError) {
         console.error('❌ Error fetching reviews:', reviewsError);
@@ -61,7 +63,7 @@ export async function GET(
       const { data: removals, error: removalsError } = await supabase
         .from('profile_removals')
         .select('*')
-        .eq('document_id', params.id);
+        .eq('document_id', id);
 
       if (removalsError) {
         console.error('❌ Error fetching profile removals:', removalsError);
