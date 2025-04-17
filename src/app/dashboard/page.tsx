@@ -24,7 +24,7 @@ export default async function DashboardPage() {
     .from('visitors')
     .select('*')
     .order('created_at', { ascending: false })
-    .limit(10);
+    
 
   // 📦 Pobierz liczbę zamówień
   const { count } = await supabase
