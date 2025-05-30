@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import TopFooter from "@/components/TopFooter";
 import VisitorTracker from "@/components/VisitorTracker";
+import GTMPageViewTracker from "@/components/GTMPageViewTracker";
 
 
 const geistSans = Geist({
@@ -77,6 +79,8 @@ export default function RootLayout({
         </noscript>
 
         <VisitorTracker />
+        {/* GTM pageview tracker for SPA navigation */}
+        <GTMPageViewTracker />
         <Header />
         {children}
         <TopFooter />
