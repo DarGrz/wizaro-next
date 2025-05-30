@@ -1,5 +1,6 @@
 "use client";
 
+export default function RegulaminZamowienPage() {
   return (
     <div className="max-w-3xl mx-auto py-12 px-4">
       <h1 className="text-4xl font-extrabold mb-10 text-center text-[#002a5c] tracking-tight">UMOWA O ŚWIADCZENIE USŁUG – REGULAMIN SKŁADANIA ZAMÓWIEŃ</h1>
