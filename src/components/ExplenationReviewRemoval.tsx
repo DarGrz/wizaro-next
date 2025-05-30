@@ -19,11 +19,10 @@ const ExplenationReviewRemoval = () => {
 
       <div className="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm">
         <h3 className="text-md font-semibold mb-2 text-[#0D2959]">
-          2. Wypełniasz dane firmy i dokonujesz płatności
+          2. Wypełniasz dane firmy 
         </h3>
         <p className="text-sm text-[#0D2959]">
-          Po dodaniu opinii, podajesz dane firmy oraz dane do faktury, jeśli są inne. 
-          Następnie przechodzisz do płatności online – szybko, wygodnie i bezpiecznie.
+          Po dodaniu opinii zostaniesz poproszony o podanie danych firmy, które posłużą do realizacji usługi i przygotowania dokumentu. Jeśli dane do faktury są inne, w kolejnym kroku formularza możesz je uzupełnić.
         </p>
       </div>
 
@@ -32,8 +31,9 @@ const ExplenationReviewRemoval = () => {
           3. Zajmujemy się usunięciem
         </h3>
         <p className="text-sm text-[#0D2959]">
-          Po zaksięgowaniu płatności rozpoczynamy działania. Każda sprawa jest traktowana indywidualnie, a większość opinii 
-          usuwamy w ciągu <strong className="text-[#5FA054]">21 dni roboczych</strong>. Na bieżąco informujemy Cię o postępach.
+          Działania rozpoczynamy niezwłocznie po przyjęciu zlecenia. Każda sprawa jest traktowana indywidualnie, a większość opinii usuwamy w ciągu <strong className="text-[#5FA054]">21 dni roboczych</strong>. Na bieżąco informujemy Cię o postępach. Płatność następuje dopiero po skutecznej realizacji usługi.
+
+
         </p>
       </div>
     </div>

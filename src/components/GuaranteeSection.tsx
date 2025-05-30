@@ -11,11 +11,11 @@ export default function GuaranteeSection() {
           </div>
         </div>
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          Gwarancja Wizaro.pl
+          Płatność za rezultat
         </h2>
         <p className="text-gray-700 text-lg mb-2">
-          Jeśli nie uda nam się usunąć wskazanych informacji w ciągu 21 dni,
-          otrzymasz <span className="font-medium text-gray-900">100% zwrot pieniędzy</span>.
+         
+          <span className="font-medium text-gray-900">Płacisz dopiero po tym, jak usuniemy Twoje opinie lub profile</span>.
         </p>
         <p className="text-gray-600">
           Działamy skutecznie, bez ryzyka po Twojej stronie.

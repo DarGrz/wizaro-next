@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 
 interface CompanyData {
   name: string;
@@ -51,15 +50,9 @@ export default function SummaryStep({
   totalPrice,
   isLoading,
   onBack,
-  // onConfirm,
+  onConfirm,
   payer,
 }: SummaryStepProps) {
-  const router = useRouter();
-
-  const handleConfirm = () => {
-    router.push("/thankyou");
-  };
-
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-semibold text-center mb-4">
@@ -135,13 +128,13 @@ export default function SummaryStep({
           ← Wróć
         </button>
         <button
-          onClick={handleConfirm}
+          onClick={onConfirm}
           disabled={isLoading}
           className={`px-6 py-3 rounded text-sm flex items-center justify-center gap-2 
             ${isLoading ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-[#002a5c] hover:bg-[#001e47] text-white"}
           `}
         >
-          {isLoading ? "Przetwarzanie..." : "Zatwierdź zgłoszenie"}
+          {isLoading ? "Przetwarzanie..." : "Przejdź do płatności"}
         </button>
       </div>
     </div>

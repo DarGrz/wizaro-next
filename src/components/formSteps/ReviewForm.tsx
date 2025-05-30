@@ -89,7 +89,8 @@ export default function ReviewForm({
               />
               <input
                 type="text"
-                placeholder="Link do opinii (opcjonalnie)"
+                placeholder="Nazwa portalu lub link do opinii"
+                required
                 value={review.url}
                 onChange={(e) => onChange(index, "url", e.target.value)}
                 className="w-full border border-gray-300 rounded px-4 py-2"
