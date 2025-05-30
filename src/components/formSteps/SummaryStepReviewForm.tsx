@@ -55,9 +55,12 @@ export default function SummaryStep({
   payer,
 }: SummaryStepProps) {
   const router = useRouter();
+  const [regulaminAccepted, setRegulaminAccepted] = React.useState(false);
 
   const handleConfirm = () => {
-    router.push("/thankyou");
+    if (regulaminAccepted) {
+      router.push("/thankyou");
+    }
   };
 
   return (
@@ -126,23 +129,36 @@ export default function SummaryStep({
         Łączna cena: <strong>{totalPrice} zł brutto (z VAT 23%)</strong>
       </div>
 
-      {/* Przyciski */}
-      <div className="flex justify-between gap-4 mt-6">
-        <button
-          onClick={onBack}
-          className="px-6 py-3 rounded border-gray-300 text-gray-700 bg-white hover:bg-gray-100 transition text-sm"
-        >
-          ← Wróć
-        </button>
-        <button
-          onClick={handleConfirm}
-          disabled={isLoading}
-          className={`px-6 py-3 rounded text-sm flex items-center justify-center gap-2 
-            ${isLoading ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-[#002a5c] hover:bg-[#001e47] text-white"}
-          `}
-        >
-          {isLoading ? "Przetwarzanie..." : "Zatwierdź zgłoszenie"}
-        </button>
+      {/* Przyciski i akceptacja regulaminu */}
+      <div className="flex flex-col gap-2 mt-6">
+        <label className="flex items-center text-sm gap-2 mb-2">
+          <input
+            type="checkbox"
+            checked={regulaminAccepted}
+            onChange={e => setRegulaminAccepted(e.target.checked)}
+            className="accent-[#002a5c]"
+          />
+          <span>
+            Akceptuję <a href="/regulamin-zamowien" target="_blank" rel="noopener noreferrer" className="underline text-blue-700">Regulamin składania zamówień</a>
+          </span>
+        </label>
+        <div className="flex justify-between gap-4">
+          <button
+            onClick={onBack}
+            className="px-6 py-3 rounded border-gray-300 text-gray-700 bg-white hover:bg-gray-100 transition text-sm"
+          >
+            ← Wróć
+          </button>
+          <button
+            onClick={handleConfirm}
+            disabled={isLoading || !regulaminAccepted}
+            className={`px-6 py-3 rounded text-sm flex items-center justify-center gap-2 
+              ${isLoading || !regulaminAccepted ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-[#002a5c] hover:bg-[#001e47] text-white"}
+            `}
+          >
+            {isLoading ? "Przetwarzanie..." : "Wyślij zlecenie"}
+          </button>
+        </div>
       </div>
     </div>
   );
