@@ -160,10 +160,9 @@ export default function CompanyFormReviews() {
     setStep("summary");
   };
 
-  const confirmAndPay = async () => {
+  // Only save to Supabase, no payment logic
+  const confirmAndSave = async () => {
     setIsLoading(true);
-    const totalPrice = reviews.length * 299;
-
     try {
       let currentPayerId: string | undefined;
 
@@ -173,7 +172,6 @@ export default function CompanyFormReviews() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payer),
         });
-
         if (!payerRes.ok) throw new Error("Błąd zapisu danych płatnika");
         const payerData = await payerRes.json();
         currentPayerId = payerData.payer_id;
@@ -187,13 +185,11 @@ export default function CompanyFormReviews() {
           zip: company.zip,
           city: company.city,
         };
-
         const payerRes = await fetch("/api/invoice-payers", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(companyAsPayer),
         });
-
         if (!payerRes.ok) throw new Error("Błąd zapisu danych firmy jako płatnika");
         const payerData = await payerRes.json();
         currentPayerId = payerData.payer_id;
@@ -215,36 +211,12 @@ export default function CompanyFormReviews() {
 
       if (!res.ok) throw new Error("Błąd zapisu danych firmy i opinii");
 
-      const data = await res.json();
-      const document_id = data.document_id;
-
-      const paymentRes = await fetch("/api/payments/create-payment-reviews", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          document_id,
-          ...(company.different_payer
-            ? payer
-            : {
-                email: company.email,
-                name: `${company.first_name} ${company.last_name}`,
-                company_name: company.name,
-                nip: company.nip,
-                street: company.street,
-                zip: company.zip,
-                city: company.city,
-              }),
-          quantity: reviews.length,
-        }),
-      });
-
-      if (!paymentRes.ok) throw new Error("Błąd tworzenia płatności");
-      const payment = await paymentRes.json();
+      // const data = await res.json();
 
       localStorage.removeItem("companyFormData");
-      window.location.href = payment.url;
+      window.location.href = "/thankyou";
     } catch (error) {
-      console.error("❌ confirmAndPay error:", error);
+      console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd podczas przetwarzania. Spróbuj ponownie.");
     } finally {
       setIsLoading(false);
@@ -307,7 +279,7 @@ export default function CompanyFormReviews() {
                 onBack={() =>
                   company.different_payer ? setStep("payer") : setStep("company")
                 }
-                onConfirm={confirmAndPay}
+                onConfirm={confirmAndSave}
                 payer={payer}
                 payer_id={payerId}
               />

@@ -134,9 +134,9 @@ export default function CompanyFormRemoval() {
     if (expandedIndex === index) setExpandedIndex(0);
   };
 
-  const confirmAndPay = async () => {
+  // New: Only save to Supabase, no payment logic
+  const confirmAndSave = async () => {
     setIsLoading(true);
-
     try {
       let currentPayerId: string | undefined;
 
@@ -159,7 +159,6 @@ export default function CompanyFormRemoval() {
           zip: company.zip,
           city: company.city,
         };
-
         const payerRes = await fetch("/api/invoice-payers", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -191,33 +190,12 @@ export default function CompanyFormRemoval() {
         }),
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
-      const docData = await docRes.json();
-      const document_id = docData.id;
-
-      const paymentRes = await fetch("/api/payments/create-payment-removals", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          document_id,
-          ...(company.different_payer && payer ? payer : {
-            email: company.email,
-            name: `${company.first_name} ${company.last_name}`,
-            company_name: company.name,
-            nip: company.nip,
-            street: company.street,
-            zip: company.zip,
-            city: company.city,
-          }),
-          totalPrice,
-        }),
-      });
-      if (!paymentRes.ok) throw new Error("Błąd tworzenia płatności");
-      const payment = await paymentRes.json();
+      // const docData = await docRes.json();
 
       localStorage.removeItem("companyFormRemovalData");
-      window.location.href = payment.url;
+      window.location.href = "/thankyou";
     } catch (error) {
-      console.error("❌ confirmAndPay error:", error);
+      console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");
     } finally {
       setIsLoading(false);
@@ -284,7 +262,7 @@ export default function CompanyFormRemoval() {
                 totalPrice={displayPrice}
                 isLoading={isLoading}
                 onBack={() => (company.different_payer ? setStep("payer") : setStep("company"))}
-                onConfirm={confirmAndPay}
+                onConfirm={confirmAndSave}
                 payer={payer}
                 payer_id={payerId}
               />

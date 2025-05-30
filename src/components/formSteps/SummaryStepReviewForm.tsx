@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+
 
 interface CompanyData {
   name: string;
@@ -45,21 +45,21 @@ interface SummaryStepProps {
   payer_id?: string;
 }
 
+
 export default function SummaryStep({
   company,
   reviews,
   totalPrice,
   isLoading,
   onBack,
-  // onConfirm,
+  onConfirm,
   payer,
 }: SummaryStepProps) {
-  const router = useRouter();
   const [regulaminAccepted, setRegulaminAccepted] = React.useState(false);
 
   const handleConfirm = () => {
-    if (regulaminAccepted) {
-      router.push("/thankyou");
+    if (regulaminAccepted && typeof onConfirm === "function") {
+      onConfirm();
     }
   };
 
