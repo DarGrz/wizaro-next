@@ -122,7 +122,7 @@ export default function SummaryStep({
             className="accent-[#002a5c]"
           />
           <span>
-            Akceptuję <a href="/regulamin-zamowien" target="_blank" rel="noopener noreferrer" className="underline text-blue-700">Regulamin składania zamówień</a>
+            Akceptuję <a href="/regulamin-zamowien" target="_blank" rel="noopener noreferrer" className="underline text-blue-700">Regulamin zamówień</a>
           </span>
         </label>
         <div className="flex justify-between gap-4">
