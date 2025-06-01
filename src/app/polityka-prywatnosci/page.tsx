@@ -12,14 +12,14 @@ export default function PolitykaPrywatnosciPage() {
 
       <ul className="list-disc list-inside space-y-2">
         <li>Dane zbierane za pośrednictwem formularzy (np. imię, nazwisko, e-mail, NIP, REGON, linki do profili) są wykorzystywane wyłącznie w celu realizacji usługi.</li>
-        <li>Dane te nie są przekazywane osobom trzecim, ani wykorzystywane do celów marketingowych.</li>
         <li>Po zakończeniu realizacji usługi, dane są przechowywane przez maksymalnie 60 dni, a następnie bezpowrotnie usuwane.</li>
-        <li>Użytkownik może zgłosić prośbę o wcześniejsze usunięcie danych kontaktując się pod adresem kontakt@wwizaro.pl.</li>
-        <li>Serwis nie profiluje użytkowników, nie wykorzystuje systemów reklamowych i nie analizuje aktywności użytkowników.</li>
+        <li>Użytkownik może zgłosić prośbę o wcześniejsze usunięcie danych kontaktując się pod adresem kontakt@wizaro.pl.</li>
         <li>Podanie danych jest dobrowolne, ale niezbędne do realizacji zamówienia.</li>
-        <li>Strona może wykorzystywać pliki cookies wyłącznie w celach technicznych i niezbędnych do działania formularza.</li>
+        <li>Strona może wykorzystywać pliki cookies wyłącznie w celach technicznych, reklamowych i niezbędnych do działania formularza.</li>
         <li>Użytkownik ma prawo do wglądu w swoje dane, ich poprawienia oraz żądania usunięcia.</li>
       </ul>
+
+      <script id="CookieDeclaration" src="https://consent.cookiebot.com/39c85a43-3ea8-4832-b299-aadec8adf0fc/cd.js" type="text/javascript" async></script>
     </div>
   );
 }
