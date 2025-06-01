@@ -4,7 +4,7 @@ import Script from "next/script";
 
 export default function PolitykaPrywatnosciPage() {
   return (
-    <div className="max-w-5xl mx-auto h-screen py-20 px-6 text-gray-800">
+    <div className="max-w-5xl mx-auto min-h-[70vh] py-20 px-6 text-gray-800">
       <h1 className="text-3xl font-semibold mb-6 text-[#002a5c]">Polityka prywatności</h1>
 
       <p className="mb-4">
