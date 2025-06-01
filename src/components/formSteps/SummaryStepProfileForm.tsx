@@ -132,6 +132,7 @@ export default function SummaryStep({
             ← Wróć
           </button>
           <button
+            id="confirmButtonSendOrder"
             onClick={handleConfirm}
             disabled={isLoading || !regulaminAccepted}
             className={`px-6 py-3 rounded text-sm flex items-center justify-center gap-2 

@@ -47,8 +47,8 @@ export default async function OrdersPage() {
         </Link>
       </div>
 
-      <div className="bg-white shadow rounded-xl overflow-x-auto">
-        <table className="w-full text-sm">
+      <div className="bg-white shadow rounded-xl w-full overflow-x-auto">
+        <table className="min-w-[1200px] w-full text-sm">
           <thead className="bg-gray-100 text-left">
             <tr>
               <th className="p-3">ID</th>
@@ -93,12 +93,18 @@ export default async function OrdersPage() {
                     {order.payments?.[0]?.status || 'brak płatności'}
                   </span>
                 </td>
-                <td className="p-3">
+                <td className="p-3 flex flex-col gap-2 min-w-[120px]">
                   <Link 
                     href={`/dashboard/orders/${order.id}`}
                     className="text-[#002a5c] hover:text-[#001e47] underline"
                   >
                     Szczegóły
+                  </Link>
+                  <Link
+                    href={`/dashboard/orders/${order.id}/edit`}
+                    className="text-blue-700 hover:text-blue-900 underline"
+                  >
+                    Edytuj
                   </Link>
                 </td>
               </tr>

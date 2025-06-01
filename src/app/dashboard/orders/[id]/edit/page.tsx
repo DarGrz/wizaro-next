@@ -1,0 +1,79 @@
+import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { createClient } from '@supabase/supabase-js';
+import Link from 'next/link';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
+);
+
+
+// Next.js expects params as a Promise in app directory types
+type EditOrderPageProps = { params: Promise<{ id: string }> };
+
+export default async function EditOrderPage({ params }: EditOrderPageProps) {
+  const { id } = await params;
+  // Auth check
+  const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
+  if (!isLoggedIn) redirect('/login');
+
+  // Fetch order
+  const { data: order } = await supabase
+    .from('documents')
+    .select(`*, companies (*), payments (*)`)
+    .eq('id', id)
+    .single();
+
+  if (!order) redirect('/dashboard/orders');
+
+  // Handle form submit (server action)
+  async function updateOrder(formData: FormData) {
+    'use server';
+    const updates: Record<string, unknown> = {
+      type: formData.get('type'),
+    };
+    // Add more fields as needed
+    await supabase.from('documents').update(updates).eq('id', id);
+    redirect(`/dashboard/orders/${id}`);
+  }
+
+  return (
+    <main className="max-w-2xl mx-auto p-4">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Edytuj zamówienie #{order.id}</h1>
+        <Link href={`/dashboard/orders/${order.id}`} className="text-blue-700 underline">Powrót</Link>
+      </div>
+      <form action={updateOrder} className="space-y-6 bg-white shadow rounded-xl p-6">
+        <div>
+          <label className="block text-sm font-medium mb-1">Typ zamówienia</label>
+          <input
+            name="type"
+            defaultValue={order.type}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Status płatności</label>
+          <select
+            name="payment_status"
+            defaultValue={order.payments?.[0]?.status || ''}
+            className="w-full border rounded px-3 py-2"
+          >
+            <option value="">Brak</option>
+            <option value="pending">Oczekuje</option>
+            <option value="paid">Opłacone</option>
+          </select>
+        </div>
+        {/* Możesz dodać więcej pól do edycji zamówienia */}
+        <button
+          type="submit"
+          className="bg-[#002a5c] text-white px-6 py-2 rounded hover:bg-[#001e47]"
+        >
+          Zapisz zmiany
+        </button>
+      </form>
+    </main>
+  );
+}
