@@ -32,7 +32,7 @@ export default function RegulaminZamowienPage() {
           <h2 className="text-xl font-bold text-[#002a5c] mb-2 mt-4">§4. Realizacja zamówienia</h2>
           <ul className="list-disc pl-6 space-y-1 text-gray-800">
             <li>Realizacja usługi rozpoczyna się po otrzymaniu zamówienia, bez konieczności wcześniejszej płatności.</li>
-            <li>Standardowy czas realizacji wynosi do <span className="font-semibold">[X dni roboczych]</span>, chyba że uzgodniono inaczej z Klientem.</li>
+            <li>Standardowy czas realizacji wynosi do <span className="font-semibold">14 dni </span>, chyba że uzgodniono inaczej z Klientem.</li>
             <li>Klient zobowiązany jest do dostarczenia wszelkich niezbędnych informacji lub dokumentów umożliwiających wykonanie usługi.</li>
           </ul>
         </section>

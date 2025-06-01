@@ -120,8 +120,16 @@ export default function SummaryStep({
             onChange={e => setRegulaminAccepted(e.target.checked)}
             className="accent-[#002a5c]"
           />
-          <span>
-            Akceptuję <a href="/regulamin-zamowien" target="_blank" rel="noopener noreferrer" className="underline text-blue-700">Regulamin zamówień</a>
+           <span>
+            Akceptuję
+            <a
+              href="/regulamin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-blue-700 ml-1"
+            >
+              regulamin swiadczenia usług
+            </a>
           </span>
         </label>
         <div className="flex justify-between gap-4">
