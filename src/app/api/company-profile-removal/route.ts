@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
       .from('companies')
       .insert({
         ...company,
-        price: totalPrice,
+        price: totalPrice/100,
         profile_removal_count: removals.length,
         payer_id,
       })

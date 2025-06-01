@@ -27,7 +27,8 @@ export default async function OrdersPage() {
         nip,
         street,
         city,
-        zip
+        zip,
+        price
       ),
       payments (
         status
@@ -59,6 +60,7 @@ export default async function OrdersPage() {
               <th className="p-3">Telefon</th>
               <th className="p-3">NIP</th>
               <th className="p-3">Adres</th>
+              <th className="p-3">Cena</th>
               <th className="p-3">Data</th>
               <th className="p-3">Status płatności</th>
               <th className="p-3">Akcje</th>
@@ -78,6 +80,13 @@ export default async function OrdersPage() {
                 <td className="p-3">{order.companies?.nip}</td>
                 <td className="p-3">
                   {order.companies?.street}, {order.companies?.zip} {order.companies?.city}
+                </td>
+                <td className="p-3">
+                  {order.companies?.price != null ? (
+                    <span>{Number(order.companies.price).toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}</span>
+                  ) : (
+                    <span className="text-gray-400">—</span>
+                  )}
                 </td>
                 <td className="p-3">
                   {new Date(order.created_at).toLocaleString('pl-PL', {
