@@ -1,7 +1,7 @@
 'use client';
 
 
-import BusinessTypeSelectorCTA from "@/components/BusinessTypeSelectorCTA";
+// import BusinessTypeSelectorCTA from "@/components/BusinessTypeSelectorCTA";
 
 export default function ContactPage() {
   return (
