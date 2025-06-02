@@ -30,6 +30,8 @@ export default function ReviewFormExplenation() {
             <p className="text-gray-700">Możesz dodać więcej opinii lub kontynuować proces zgłoszenia.</p>
           </li>
         </ol>
+      
+      
       </section>
     );
   }

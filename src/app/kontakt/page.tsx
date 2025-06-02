@@ -90,7 +90,7 @@ export default function ContactPage() {
         </div>
       </div>
       <div className="w-full max-w-5xl bg-white rounded-xl   mt-16 flex flex-col gap-6">
-        <BusinessTypeSelectorCTA />
+        {/* <BusinessTypeSelectorCTA /> */}
         </div>  
     </div>
     
