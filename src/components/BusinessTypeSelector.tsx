@@ -82,7 +82,7 @@ export default function BusinessTypeSelector() {
                     }`}
                   >
                     {type === 'jdg'
-                      ? 'Jednoosobowa działalność'
+                      ? 'JDG'
                       : 'Spółka'}
                   </motion.button>
                 ))}
