@@ -2,6 +2,18 @@ import { useEffect } from 'react';
 
 export function useTrackVisitor() {
   useEffect(() => {
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      let keyword = params.get('keyword') || 'No Keyword';
+      const gclid = params.get('gclid') || 'No GCLID';
+
+      keyword = keyword.replace(/-/g, ' ')
+                     .replace(/\s+/g, ' ')
+                     .trim();
+
+      return { keyword, gclid };
+    }
+
     const trackVisitor = async () => {
       try {
         const url = new URL(window.location.href);
@@ -14,6 +26,8 @@ export function useTrackVisitor() {
           keyword: url.searchParams.get('utm_keyword'),
         };
 
+        const { keyword, gclid } = getUrlParams();
+
         await fetch('/api/track-visitor', {
           method: 'POST',
           headers: {
@@ -25,6 +39,8 @@ export function useTrackVisitor() {
             referrer: document.referrer,
             landing_page: window.location.pathname,
             utm,
+            keyword,
+            gclid,
           }),
         });
       } catch (error) {

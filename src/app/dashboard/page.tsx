@@ -44,7 +44,7 @@ export default async function DashboardPage() {
   }));
 
   return (
-    <main className="max-w-6xl mx-auto p-4">
+    <main className="max-w-8xl mx-auto p-4 m-2">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">📊 Dashboard – Wizaro</h1>
         <Link 
@@ -78,15 +78,15 @@ export default async function DashboardPage() {
         <table className="w-full text-sm">
           <thead className="bg-gray-100 text-left">
             <tr>
-              <th className="p-2">IP</th>
-              <th className="p-2">Lokalizacja</th>
               <th className="p-2">Data</th>
+              <th className="p-2">IP</th>
+              <th className="p-2">gclid</th>
+              <th className="p-2">keyword</th>
               <th className="p-2">Referrer</th>
               <th className="p-2">Landing</th>
               <th className="p-2">UTM Source</th>
               <th className="p-2">Campaign</th>
-              <th className="p-2">gclid</th>
-              <th className="p-2">keyword</th>
+              <th className="p-2">Lokalizacja</th>
             </tr>
           </thead>
           <tbody>
@@ -94,19 +94,19 @@ export default async function DashboardPage() {
               const ip = v.ip_address;
               return (
                 <tr key={v.id} className="border-t hover:bg-gray-50">
-                  <td className="p-2 font-mono">{ip || '—'}</td>
-                  <td className="p-2">{v.location || '—'}</td>
                   <td className="p-2">
                     {new Date(v.created_at).toLocaleString('pl-PL', {
                       timeZone: 'Europe/Warsaw',
                     })}
                   </td>
+                  <td className="p-2 font-mono">{ip || '—'}</td>
+                  <td className="p-2">{v.gclid || '—'}</td>
+                  <td className="p-2">{v.keyword || '—'}</td>
+                  <td className="p-2">{v.location || '—'}</td>
                   <td className="p-2">{v.referrer || '—'}</td>
                   <td className="p-2">{v.landing_page}</td>
                   <td className="p-2">{v.utm_source || '—'}</td>
                   <td className="p-2">{v.utm_campaign || '—'}</td>
-                  <td className="p-2">{v.gclid || '—'}</td>
-                  <td className="p-2">{v.keyword || '—'}</td>
                 </tr>
               );
             })}
