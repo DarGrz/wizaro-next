@@ -24,7 +24,7 @@ export default function StartPage() {
           <p className="text-gray-600 text-center mb-8">
             Szybko pozbędziesz się informacji o swojej firmie. Bez zbędnych
             komplikacji, w pełni legalnie i dyskretnie. Wystarczy wypełnić
-            prosty formularz, resztą zajmie się system.
+            prosty formularz, resztą zajmiemy się my.
           </p>
         </div>
 

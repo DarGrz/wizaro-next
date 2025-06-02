@@ -60,7 +60,7 @@ export default function BusinessTypeSelector() {
                 <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
                   Usuń informacje o swojej firmie
                 </h2>
-                <p className="text-gray-600 text-center text-sm">
+                <p className="text-gray-600 text-center text-md">
                   Wybierz rodzaj działalności
                 </p>
               </div>

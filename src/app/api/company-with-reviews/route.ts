@@ -74,8 +74,10 @@ export async function POST(req: NextRequest) {
 
     // 2. Wygeneruj UUID dokumentu z góry
     const documentId = uuidv4();
+    // 2a. Wygeneruj token śledzący (kolejny uuid)
+    const trackingToken = uuidv4();
 
-    // 3. Utwórz dokument z podanym ID
+    // 3. Utwórz dokument z podanym ID i tokenem śledzącym
     const { error: documentError } = await supabase
       .from('documents')
       .insert({
@@ -83,6 +85,7 @@ export async function POST(req: NextRequest) {
         company_id: companyData.id,
         type: 'żądanie usunięcia opinii',
         status: 'draft',
+        tracking_token: trackingToken,
       });
 
     if (documentError) {
@@ -120,6 +123,8 @@ export async function POST(req: NextRequest) {
         success: true,
         company_id: companyData.id,
         document_id: documentId,
+        tracking_token: trackingToken,
+        tracking_url: `${process.env.NEXT_PUBLIC_SITE_URL || ''}/podglad-zlecenia/${trackingToken}`,
       },
       { status: 201 }
     );

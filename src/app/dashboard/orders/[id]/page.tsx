@@ -44,6 +44,10 @@ export default async function OrderDetailsPage({ params }: Props) {
     .eq('id', resolvedParams.id)
     .single();
 
+  // Pobierz tracking_token jeśli istnieje
+  const trackingToken = order?.tracking_token;
+  const trackingUrl = trackingToken ? `${process.env.NEXT_PUBLIC_SITE_URL || ''}/podglad-zlecenia/${trackingToken}` : null;
+
   if (!order) {
     redirect('/dashboard/orders');
   }
@@ -76,6 +80,21 @@ export default async function OrderDetailsPage({ params }: Props) {
         <div className="bg-white shadow rounded-xl p-6">
           <h2 className="text-lg font-semibold mb-4">Informacje o zamówieniu</h2>
           <dl className="space-y-2">
+            {trackingUrl && (
+              <>
+                <dt className="text-sm text-gray-500">Link do podglądu realizacji</dt>
+                <dd>
+                  <a
+                    href={trackingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 underline break-all"
+                  >
+                    {trackingUrl}
+                  </a>
+                </dd>
+              </>
+            )}
             <dt className="text-sm text-gray-500">Status</dt>
             <dd>
               <span className={`px-2 py-1 rounded-full text-xs ${

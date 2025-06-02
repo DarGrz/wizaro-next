@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
     const user_agent = req.headers.get('user-agent') || '';
 
-    const { referrer, landing_page, utm } = data;
+    const { referrer, landing_page, utm, gclid, keyword } = data;
 
     const { error } = await supabase.from('visitors').insert([
       {
@@ -27,6 +27,8 @@ export async function POST(req: NextRequest) {
         utm_campaign: utm?.campaign,
         utm_term: utm?.term,
         utm_keyword: utm?.keyword,
+        gclid: gclid || null,
+        keyword: keyword || null,
       },
     ]);
 
