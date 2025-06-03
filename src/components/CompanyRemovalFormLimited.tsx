@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
 import RemovalFormLimited from "@/components/formSteps/RemovalFormLimited";
 import CompanyProfileFormStep from "@/components/formSteps/CompanyProfileFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
@@ -40,6 +42,21 @@ interface PayerData {
   zip: string;
   city: string;
 }
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 export default function CompanyFormRemoval() {
   const defaultCompany: CompanyData = {
@@ -117,7 +134,7 @@ export default function CompanyFormRemoval() {
     if (expandedIndex === index) setExpandedIndex(0);
   };
 
-  // Zapisz tylko dane do Supabase, bez płatności
+  // New: Only save to Supabase, no payment logic
   const confirmAndSave = async () => {
     setIsLoading(true);
     try {
@@ -160,7 +177,20 @@ export default function CompanyFormRemoval() {
         body: JSON.stringify({ company, removals, totalPrice, payer_id: currentPayerId }),
       });
       if (!res.ok) throw new Error("Błąd zapisu danych firmy i zgłoszeń");
-      // const data = await res.json();
+      const data = await res.json();
+      const company_id = data.company_id;
+
+      const docRes = await fetch("/api/documents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          company_id,
+          type: "żądanie usunięcia profilu",
+          payer_id: currentPayerId,
+        }),
+      });
+      if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
+      // const docData = await docRes.json();
 
       localStorage.removeItem("companyFormRemovalData");
       window.location.href = "/thankyou";
@@ -173,9 +203,14 @@ export default function CompanyFormRemoval() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto min-h-screen">
-      <div className="md:flex px-4 py-10 md:gap-8">
-        <div className="md:w-1/2 mb-10 md:mb-0">
+    <motion.div
+      className="max-w-5xl mx-auto min-h-screen "
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.div className="md:flex px-4 py-10 md:gap-8" variants={fadeInUp}>
+        <motion.div className="md:w-1/2 mb-10 md:mb-0" variants={fadeInUp}>
           <div className="bg-white rounded-xl shadow-lg p-8 w-full space-y-6">
             {step === "removal" && (
               <RemovalFormLimited
@@ -233,25 +268,44 @@ export default function CompanyFormRemoval() {
               />
             )}
           </div>
-        </div>
-        <div className="md:w-1/2">
-        {step === "company" ? (
-  <CompanyProfileFormExplenation />
-) : step === "removal" ? (
-  <RemovalFormExplenation />
-) : step === "summary" ? (
-  <PaymentExplanation />
-) : null}
+        </motion.div>
 
-</div>
-      </div>
+        <motion.div
+          className="md:w-1/2"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {step === "company" ? (
+            <CompanyProfileFormExplenation />
+          ) : step === "removal" ? (
+            <RemovalFormExplenation />
+          ) : step === "summary" ? (
+            <PaymentExplanation />
+          ) : null}
+        </motion.div>
+      </motion.div>
 
-      <div className="md:flex py-10 m-4 md:gap-8">
-        <ExplenationProfileRemoval/>
-      </div>
-      <div className="md:flex py-10 m-4 md:gap-8">
+      <motion.div
+        className="md:flex py-10 m-4 md:gap-8"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <ExplenationProfileRemoval />
+      </motion.div>
+
+      <motion.div
+        className="md:flex py-10 m-4 md:gap-8"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <SocialProof />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
