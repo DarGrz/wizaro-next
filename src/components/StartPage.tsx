@@ -45,8 +45,8 @@ export default function StartPage() {
             <p className="text-center text-gray-700 font-bold">
               Zadzwoń jeśli masz pytania lub potrzebujesz pomocy
             </p>
-            <Link href="tel:+48792861513" className="mx-auto">
-              <button className="bg-[#002a5c] text-white px-6 py-2 rounded font-semibold hover:bg-[#001e47] transition">
+            <Link href="tel:+48792861513" className="mx-auto mt-2">
+              <button className="bg-[#3EA34B] text-white px-6 py-2 rounded font-semibold hover:bg-[#3EA34B] transition">
                 792 861 513
               </button>
             </Link>
