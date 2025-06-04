@@ -37,7 +37,7 @@ export default async function OrdersPage() {
     .order('created_at', { ascending: false });
 
   return (
-    <main className="max-w-7xl mx-auto p-4">
+    <main className=" mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">📋 Zamówienia</h1>
         <Link 

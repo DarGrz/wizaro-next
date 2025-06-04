@@ -105,10 +105,17 @@ export default async function OrderDetailsPage({ params }: Props) {
                 {order.payments?.[0]?.status || 'brak płatności'}
               </span>
             </dd>
-            
+
+            <dt className="text-sm text-gray-500">Cena</dt>
+            <dd className="font-medium">
+              {order.price !== undefined && order.price !== null
+                ? `${order.price.toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}`
+                : '—'}
+            </dd>
+
             <dt className="text-sm text-gray-500">Typ zamówienia</dt>
             <dd className="font-medium">{order.type}</dd>
-            
+
             <dt className="text-sm text-gray-500">Data utworzenia</dt>
             <dd className="font-medium">
               {new Date(order.created_at).toLocaleString('pl-PL', {
