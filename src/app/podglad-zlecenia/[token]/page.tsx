@@ -7,11 +7,7 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY!
 );
 
-interface Props {
-  params: { token: string };
-}
-
-export default async function TrackingPage({ params }: Props) {
+export default async function TrackingPage({ params }: { params: { token: string } }) {
   const token = params.token;
 
   if (!token) {
