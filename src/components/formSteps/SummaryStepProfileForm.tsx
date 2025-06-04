@@ -90,9 +90,6 @@ export default function SummaryStep({
         <li>
           <strong>Ilość profili:</strong> {reviews.length}
         </li>
-        <li>
-          <strong>Cena:</strong> {totalPrice} zł brutto (z VAT 23%)
-        </li>
       </ul>
 
       {reviews && reviews.length > 0 && (
@@ -111,6 +108,12 @@ export default function SummaryStep({
     ))}
   </div>
 )}
+
+      <div className="my-6 text-center">
+        <div className="text-gray-800 text-md font-bold py-3 border-t border-b border-gray-200">
+          <strong>Cena:</strong> {totalPrice} zł brutto (z VAT 23%)
+        </div>
+      </div>
 
       <div className="flex flex-col gap-2 mt-8">
         <label className="flex items-center text-sm gap-2 mb-2">

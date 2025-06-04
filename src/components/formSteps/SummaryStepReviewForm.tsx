@@ -125,7 +125,7 @@ export default function SummaryStep({
       )}
 
       {/* Cena */}
-      <div className="text-gray-800 text-lg font-medium pt-2 border-t">
+      <div className="text-gray-800 text-lg font-bold pt-2 border-t">
         Łączna cena: <strong>{totalPrice} zł brutto (z VAT 23%)</strong>
       </div>
 
