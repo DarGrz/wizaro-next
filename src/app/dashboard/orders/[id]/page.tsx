@@ -8,10 +8,18 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY!
 );
 
-export default async function OrderDetailsPage({ params }: { params: { id: string } }) {
+interface Props {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export default async function OrderDetailsPage({ params }: Props) {
   // 🔐 Sprawdzenie logowania
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
   if (!isLoggedIn) redirect('/login');
+
+  const resolvedParams = await params;
 
   // 📦 Pobierz zamówienie z danymi firmy
   const { data: order } = await supabase
@@ -33,7 +41,7 @@ export default async function OrderDetailsPage({ params }: { params: { id: strin
         status
       )
     `)
-    .eq('id', params.id)
+    .eq('id', resolvedParams.id)
     .single();
 
   // Pobierz tracking_token jeśli istnieje
@@ -97,17 +105,10 @@ export default async function OrderDetailsPage({ params }: { params: { id: strin
                 {order.payments?.[0]?.status || 'brak płatności'}
               </span>
             </dd>
-
-            <dt className="text-sm text-gray-500">Cena</dt>
-            <dd className="font-medium">
-              {order.price !== undefined && order.price !== null
-                ? `${order.price.toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}`
-                : '—'}
-            </dd>
-
+            
             <dt className="text-sm text-gray-500">Typ zamówienia</dt>
             <dd className="font-medium">{order.type}</dd>
-
+            
             <dt className="text-sm text-gray-500">Data utworzenia</dt>
             <dd className="font-medium">
               {new Date(order.created_at).toLocaleString('pl-PL', {

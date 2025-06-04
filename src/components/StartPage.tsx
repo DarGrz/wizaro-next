@@ -34,6 +34,12 @@ export default function StartPage() {
         <BusinessTypeSelector />
       </div>
 
+      
+
+      <div className="md:flex py-10 md:gap-8 ">
+        <GuaranteeSection />
+      </div>
+
       {/* CTA telefoniczne */}
           <div className="flex flex-col items-center gap-2 mt-6">
             <p className="text-center text-gray-700 font-bold">
@@ -46,14 +52,10 @@ export default function StartPage() {
             </Link>
           </div>
 
-      
-
       <div className="md:flex py-10 md:gap-8 ">
         <ExplenationStartPage />
       </div>
-      <div className="md:flex py-10 md:gap-8 ">
-        <GuaranteeSection />
-      </div>
+      
       <div className="md:flex py-10 md:gap-8 ">
         <WhyTrustUs />
       </div>
