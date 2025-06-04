@@ -24,9 +24,7 @@ export default function StartPage() {
             Pomagamy chronić wizerunek Twojej firmy
           </h1>
           <p className="text-gray-600 text-center mb-8">
-            Szybko pozbędziesz się informacji o swojej firmie. Bez zbędnych
-            komplikacji, w pełni legalnie i dyskretnie. Wystarczy wypełnić
-            prosty formularz, resztą zajmiemy się my.
+            Szybko i dyskretnie usuniemy informacje o Twojej firmie – legalnie i bez zbędnych komplikacji. Wystarczy, że wypełnisz prosty formularz. Płatność następuje dopiero po wykonaniu usługi.
           </p>
           
         </div>
