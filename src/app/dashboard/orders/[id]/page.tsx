@@ -8,18 +8,10 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY!
 );
 
-interface Props {
-  params: Promise<{
-    id: string;
-  }>;
-}
-
-export default async function OrderDetailsPage({ params }: Props) {
+export default async function OrderDetailsPage({ params }: { params: { id: string } }) {
   // 🔐 Sprawdzenie logowania
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
   if (!isLoggedIn) redirect('/login');
-
-  const resolvedParams = await params;
 
   // 📦 Pobierz zamówienie z danymi firmy
   const { data: order } = await supabase
@@ -41,7 +33,7 @@ export default async function OrderDetailsPage({ params }: Props) {
         status
       )
     `)
-    .eq('id', resolvedParams.id)
+    .eq('id', params.id)
     .single();
 
   // Pobierz tracking_token jeśli istnieje
