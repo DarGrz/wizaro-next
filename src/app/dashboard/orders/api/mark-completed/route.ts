@@ -10,11 +10,13 @@ export async function POST(req: NextRequest) {
   const formData = await req.formData();
   const id = formData.get('id');
   if (!id) return NextResponse.json({ error: 'Brak ID zamówienia' }, { status: 400 });
-
   // Oznacz zamówienie jako "zakończone"
   const { error } = await supabase
     .from('documents')
-    .update({ processing_status: 'zakończone' })
+    .update({ 
+      processing_status: 'zakończone',
+      // Zapewniamy, że tracking_token pozostaje niezmieniony
+    })
     .eq('id', id);
 
   if (error) {

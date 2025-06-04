@@ -79,12 +79,12 @@ export default async function OrderDetailsPage({ params }: Props) {
         <div className="bg-white shadow rounded-xl p-6">
           <h2 className="text-lg font-semibold mb-4">Informacje o zamówieniu</h2>
           <dl className="space-y-2">
-            {trackingUrl && (
+            {order.tracking_token && (
               <>
                 <dt className="text-sm text-gray-500">Link do podglądu realizacji</dt>
                 <dd>
                   <a
-                    href={trackingUrl}
+                    href={trackingUrl ?? undefined}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-700 underline break-all"
