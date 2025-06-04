@@ -95,7 +95,7 @@ export default async function OrderDetailsPage({ params }: Props) {
                 </dd>
               </>
             )}
-            <dt className="text-sm text-gray-500">Status</dt>
+            <dt className="text-sm text-gray-500">Status płatności</dt>
             <dd>
               <span className={`px-2 py-1 rounded-full text-xs ${
                 order.payments?.[0]?.status === 'paid' ? 'bg-green-100 text-green-800' :
@@ -103,6 +103,17 @@ export default async function OrderDetailsPage({ params }: Props) {
                 'bg-gray-100 text-gray-800'
               }`}>
                 {order.payments?.[0]?.status || 'brak płatności'}
+              </span>
+            </dd>
+            
+            <dt className="text-sm text-gray-500">Status realizacji</dt>
+            <dd>
+              <span className={`px-2 py-1 rounded-full text-xs ${
+                order.processing_status === 'zakończone' ? 'bg-green-100 text-green-800' :
+                order.processing_status === 'w trakcie' ? 'bg-blue-100 text-blue-800' :
+                'bg-gray-100 text-gray-800'
+              }`}>
+                {order.processing_status || 'nowe'}
               </span>
             </dd>
             
@@ -114,6 +125,84 @@ export default async function OrderDetailsPage({ params }: Props) {
               {new Date(order.created_at).toLocaleString('pl-PL', {
                 timeZone: 'Europe/Warsaw',
               })}
+            </dd>
+            
+            {order.invoice_url && (
+              <>
+                <dt className="text-sm text-gray-500">Link do faktury</dt>
+                <dd>
+                  <a
+                    href={order.invoice_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 underline break-all"
+                  >
+                    Pobierz fakturę
+                  </a>
+                </dd>
+              </>
+            )}
+            
+            {order.payment_url && (
+              <>
+                <dt className="text-sm text-gray-500">Link do płatności</dt>
+                <dd>
+                  <a
+                    href={order.payment_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 underline break-all"
+                  >
+                    Przejdź do płatności
+                  </a>
+                </dd>
+              </>
+            )}
+            
+            <dt className="text-sm text-gray-500 pt-3">Akcje</dt>
+            <dd className="flex gap-2 flex-wrap">
+              <Link
+                href={`/dashboard/orders/${order.id}/edit`}
+                className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700"
+              >
+                Edytuj zamówienie
+              </Link>
+              
+              {order.payments?.[0]?.status !== 'paid' && (
+                <form action={`/dashboard/orders/api/mark-paid`} method="POST" className="inline">
+                  <input type="hidden" name="id" value={order.id} />
+                  <button
+                    type="submit"
+                    className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700"
+                  >
+                    Oznacz jako opłacone
+                  </button>
+                </form>
+              )}
+              
+              {order.processing_status !== 'w trakcie' && order.processing_status !== 'zakończone' && (
+                <form action={`/dashboard/orders/api/mark-in-progress`} method="POST" className="inline">
+                  <input type="hidden" name="id" value={order.id} />
+                  <button
+                    type="submit"
+                    className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700"
+                  >
+                    Oznacz jako &quot;w trakcie&quot;
+                  </button>
+                </form>
+              )}
+              
+              {order.processing_status !== 'zakończone' && (
+                <form action={`/dashboard/orders/api/mark-completed`} method="POST" className="inline">
+                  <input type="hidden" name="id" value={order.id} />
+                  <button
+                    type="submit"
+                    className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700"
+                  >
+                    Oznacz jako &quot;zakończone&quot;
+                  </button>
+                </form>
+              )}
             </dd>
           </dl>
         </div>
@@ -217,6 +306,43 @@ export default async function OrderDetailsPage({ params }: Props) {
           </div>
         </div>
       )}
+
+      {/* Szybkie dodawanie linków do faktury i płatności */}
+      <div className="bg-white shadow rounded-xl p-6 mt-6">
+        <h2 className="text-lg font-semibold mb-4">Szybkie dodawanie linków</h2>
+        <form action="/dashboard/orders/api/update-urls" method="POST" className="grid md:grid-cols-2 gap-4">
+          <input type="hidden" name="id" value={order.id} />
+          
+          <div>
+            <label className="block text-sm font-medium mb-1">Link do faktury</label>
+            <input
+              name="invoice_url"
+              defaultValue={order.invoice_url || ''}
+              placeholder="https://example.com/faktura.pdf"
+              className="w-full border rounded px-3 py-2"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium mb-1">Link do płatności</label>
+            <input
+              name="payment_url"
+              defaultValue={order.payment_url || ''}
+              placeholder="https://pay.example.com/payment"
+              className="w-full border rounded px-3 py-2"
+            />
+          </div>
+          
+          <div className="md:col-span-2">
+            <button
+              type="submit"
+              className="bg-[#002a5c] text-white px-6 py-2 rounded hover:bg-[#001e47]"
+            >
+              Aktualizuj linki
+            </button>
+          </div>
+        </form>
+      </div>
     </main>
   );
 }

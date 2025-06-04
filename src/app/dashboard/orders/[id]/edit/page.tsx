@@ -30,11 +30,34 @@ export default async function EditOrderPage({ params }: EditOrderPageProps) {
   // Handle form submit (server action)
   async function updateOrder(formData: FormData) {
     'use server';
+    
+    // Create an object with the fields to update
     const updates: Record<string, unknown> = {
       type: formData.get('type'),
+      processing_status: formData.get('processing_status'),
+      invoice_url: formData.get('invoice_url'),
+      payment_url: formData.get('payment_url'),
     };
-    // Add more fields as needed
+    
+    // Remove empty fields to avoid overwriting with empty values
+    Object.keys(updates).forEach(key => {
+      if (updates[key] === '' || updates[key] === null) {
+        delete updates[key];
+      }
+    });
+    
+    // Update document
     await supabase.from('documents').update(updates).eq('id', id);
+    
+    // Update payment status if provided
+    const paymentStatus = formData.get('payment_status');
+    if (paymentStatus) {
+      await supabase
+        .from('payments')
+        .update({ status: paymentStatus })
+        .eq('document_id', id);
+    }
+    
     redirect(`/dashboard/orders/${id}`);
   }
 
@@ -66,7 +89,36 @@ export default async function EditOrderPage({ params }: EditOrderPageProps) {
             <option value="paid">Opłacone</option>
           </select>
         </div>
-        {/* Możesz dodać więcej pól do edycji zamówienia */}
+        <div>
+          <label className="block text-sm font-medium mb-1">Status realizacji</label>
+          <select
+            name="processing_status"
+            defaultValue={order.processing_status || 'nowe'}
+            className="w-full border rounded px-3 py-2"
+          >
+            <option value="nowe">Nowe</option>
+            <option value="w trakcie">W trakcie realizacji</option>
+            <option value="zakończone">Zakończone</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Link do faktury</label>
+          <input
+            name="invoice_url"
+            defaultValue={order.invoice_url || ''}
+            placeholder="https://example.com/faktura.pdf"
+            className="w-full border rounded px-3 py-2"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Link do płatności</label>
+          <input
+            name="payment_url"
+            defaultValue={order.payment_url || ''}
+            placeholder="https://pay.example.com/payment"
+            className="w-full border rounded px-3 py-2"
+          />
+        </div>
         <button
           type="submit"
           className="bg-[#002a5c] text-white px-6 py-2 rounded hover:bg-[#001e47]"

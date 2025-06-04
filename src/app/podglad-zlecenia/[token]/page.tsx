@@ -65,7 +65,21 @@ export default async function Page({ params }: Props) {
               order.payments?.[0]?.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
               'bg-gray-100 text-gray-800'
             }`}>
-              {order.payments?.[0]?.status || 'brak płatności'}
+              {order.payments?.[0]?.status === 'paid' ? 'Opłacone' :
+               order.payments?.[0]?.status === 'pending' ? 'Oczekuje na płatność' :
+               'Brak płatności'}
+            </span>
+          </div>
+          <div>
+            <strong>Status realizacji:</strong> 
+            <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
+              order.processing_status === 'zakończone' ? 'bg-green-100 text-green-800' :
+              order.processing_status === 'w trakcie' ? 'bg-blue-100 text-blue-800' :
+              'bg-gray-100 text-gray-800'
+            }`}>
+              {order.processing_status === 'zakończone' ? 'Zakończone' :
+               order.processing_status === 'w trakcie' ? 'W trakcie realizacji' :
+               'Nowe'}
             </span>
           </div>
           <div><strong>Firma:</strong> {order.companies?.name}</div>
@@ -74,6 +88,34 @@ export default async function Page({ params }: Props) {
           <div><strong>Data utworzenia:</strong> {new Date(order.created_at).toLocaleString('pl-PL')}</div>
           <div><strong>Typ zamówienia:</strong> {order.type}</div>
           <div><strong>Cena:</strong> {order.companies?.price ? `${order.companies.price} PLN` : '—'}</div>
+          
+          {order.invoice_url && (
+            <div>
+              <strong>Faktura:</strong> 
+              <a
+                href={order.invoice_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 text-blue-600 hover:underline"
+              >
+                Pobierz fakturę
+              </a>
+            </div>
+          )}
+          
+          {order.payment_url && (
+            <div>
+              <strong>Płatność:</strong> 
+              <a
+                href={order.payment_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 text-blue-600 hover:underline"
+              >
+                Dokonaj płatności
+              </a>
+            </div>
+          )}
         </div>
       </div>
 

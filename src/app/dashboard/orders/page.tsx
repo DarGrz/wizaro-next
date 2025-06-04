@@ -63,6 +63,7 @@ export default async function OrdersPage() {
               <th className="p-3">Cena</th>
               <th className="p-3">Data</th>
               <th className="p-3">Status płatności</th>
+              <th className="p-3">Status realizacji</th>
               <th className="p-3">Akcje</th>
             </tr>
           </thead>
@@ -100,6 +101,15 @@ export default async function OrdersPage() {
                     'bg-gray-100 text-gray-800'
                   }`}>
                     {order.payments?.[0]?.status || 'brak płatności'}
+                  </span>
+                </td>
+                <td className="p-3">
+                  <span className={`px-2 py-1 rounded-full text-xs ${
+                    order.processing_status === 'zakończone' ? 'bg-green-100 text-green-800' :
+                    order.processing_status === 'w trakcie' ? 'bg-blue-100 text-blue-800' :
+                    'bg-gray-100 text-gray-800'
+                  }`}>
+                    {order.processing_status || 'nowe'}
                   </span>
                 </td>
                 <td className="p-3 flex flex-col gap-2 min-w-[120px]">
