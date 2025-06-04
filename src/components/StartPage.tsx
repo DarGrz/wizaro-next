@@ -4,10 +4,12 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
+import CaseStudies from "./CaseStudies";
 import ExplenationStartPage from "./ExplenationStartPage";
 import FaqSection from "./FaqSection";
 import ForWhom from "./ForWhom";
 import GuaranteeSection from "./GuaranteeSection";
+import ServiceComparisonTable from "./ServiceComparisonTable";
 import SocialProof from "./SocialProof";
 import WhyTrustUs from "./WhyTrustUs";
 import Link from "next/link";
@@ -57,6 +59,15 @@ export default function StartPage() {
       <div className="md:flex py-10 md:gap-8 ">
         <WhyTrustUs />
       </div>
+      
+      <div className="md:flex py-10 md:gap-8 ">
+        <ServiceComparisonTable />
+      </div>
+      
+      <div className="md:flex py-10 md:gap-8 ">
+        <CaseStudies />
+      </div>
+      
       <div className="md:flex py-10 md:gap-8 ">
         <BusinessTypeSelectorCTA />
       </div>
