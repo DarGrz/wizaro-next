@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/app/lib/supabase';
 
+
 export async function PUT(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
   try {
-    const id = context.params.id;
     const data = await req.json();
     
     // Extract fields we want to update
