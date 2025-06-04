@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 
-export default function ThankYouPage() {
+// Komponent do pobierania i użycia parametrów URL
+function TrackingContent() {
   const searchParams = useSearchParams();
   const tracking_token = searchParams.get('tracking_token');
   const [copied, setCopied] = useState(false);
@@ -22,12 +23,7 @@ export default function ThankYouPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4">
-      <h1 className="text-3xl font-bold mb-4 text-center">Dziękujemy za zaufanie!</h1>
-      <p className="text-lg text-gray-700 mb-6 text-center max-w-xl">
-        Twoje zlecenie zostało złożone pomyślnie. Skontaktujemy się z Tobą w celu jego dalszej realizacji.
-      </p>
-      
+    <>
       {trackingUrl && (
         <div className="bg-blue-50 border border-blue-100 rounded-lg p-5 mb-8 max-w-xl w-full">
           <h2 className="text-lg font-semibold mb-3 text-blue-800">Śledź status swojego zlecenia</h2>
@@ -52,6 +48,32 @@ export default function ThankYouPage() {
           </Link>
         </div>
       )}
+    </>
+  );
+}
+
+// Komponent zastępczy podczas ładowania
+function TrackingFallback() {
+  return (
+    <div className="bg-blue-50 border border-blue-100 rounded-lg p-5 mb-8 max-w-xl w-full">
+      <h2 className="text-lg font-semibold mb-3 text-blue-800">Ładowanie danych...</h2>
+      <div className="animate-pulse bg-white h-12 rounded border border-blue-200 mb-3"></div>
+      <div className="animate-pulse bg-[#002a5c] h-10 rounded-lg"></div>
+    </div>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4">
+      <h1 className="text-3xl font-bold mb-4 text-center">Dziękujemy za zaufanie!</h1>
+      <p className="text-lg text-gray-700 mb-6 text-center max-w-xl">
+        Twoje zlecenie zostało złożone pomyślnie. Skontaktujemy się z Tobą w celu jego dalszej realizacji.
+      </p>
+      
+      <Suspense fallback={<TrackingFallback />}>
+        <TrackingContent />
+      </Suspense>
       
       <Link href="/" className="px-6 py-3 rounded bg-gray-200 text-gray-800 hover:bg-gray-300 transition text-sm">
         Powrót na stronę główną
