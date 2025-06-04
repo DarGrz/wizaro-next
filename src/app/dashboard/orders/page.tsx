@@ -2,6 +2,8 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import DeletedMessageAlert from './components/DeletedMessageAlert';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -47,6 +49,10 @@ export default async function OrdersPage() {
           Powrót do dashboardu
         </Link>
       </div>
+
+      <Suspense fallback={null}>
+        <DeletedMessageAlert />
+      </Suspense>
 
       <div className="bg-white shadow rounded-xl w-full overflow-x-auto">
         <table className="min-w-[1200px] w-full text-sm">

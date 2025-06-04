@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
+import DeleteOrderButton from '@/app/dashboard/orders/components/DeleteOrderButton';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -201,6 +202,8 @@ export default async function OrderDetailsPage({ params }: Props) {
                   </button>
                 </form>
               )}
+              
+              <DeleteOrderButton orderId={order.id} />
             </dd>
           </dl>
         </div>

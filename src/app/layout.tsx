@@ -40,20 +40,24 @@ export default function RootLayout({
   return (
     <html lang="pl" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
+        {/* Cookiebot implementation with client-only approach to avoid hydration errors */}
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="39c85a43-3ea8-4832-b299-aadec8adf0fc"
           data-blockingmode="auto"
-          strategy="beforeInteractive"
-          type="text/javascript"
+          strategy="afterInteractive"
         />
-        <Script id="CookiebotConfig" strategy="beforeInteractive">
-          {`window.addEventListener('CookiebotOnLoad', function () {
-            if (Cookiebot.consent.preferences) {
-              // Handle preferences consent
+        <Script id="CookiebotConfig" strategy="afterInteractive">
+          {`
+            if (typeof window !== 'undefined') {
+              window.addEventListener('CookiebotOnLoad', function () {
+                if (Cookiebot && Cookiebot.consent && Cookiebot.consent.preferences) {
+                  // Handle preferences consent
+                }
+              });
             }
-          });`}
+          `}
         </Script>
 
         {/* Google Tag Manager */}
