@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export default function BusinessTypeSelector() {
-  const [step, setStep] = useState<'start' | 'choice'>('start');
+  const [step, setStep] = useState<'start' | 'type' | 'choice'>('start');
   const [businessType, setBusinessType] = useState<'jdg' | 'spolka' | null>(null);
 
-  const handleChoice = (choice: 'jdg' | 'spolka') => {
+  const handleTypeChoice = (choice: 'jdg' | 'spolka') => {
     setBusinessType(choice);
     setStep('choice');
   };
@@ -54,17 +54,42 @@ export default function BusinessTypeSelector() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
+              className="absolute inset-0 p-10 flex flex-col justify-center items-center"
+            >
+              <div className="h-[100px] flex flex-col items-center justify-center w-full">
+                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-4">
+                  Usuń Opinie lub Profil Swojej Firmy
+                </h2>
+                <p className="text-gray-600 text-center text-md mb-8">
+                  Szybko, legalnie i dyskretnie. Rozpocznij, klikając poniżej.
+                </p>
+                <button
+                  onClick={() => setStep('type')}
+                  className="w-full max-w-xs h-14 bg-[#002a5c] text-white rounded py-2 font-semibold text-lg hover:bg-[#001e47] transition"
+                >
+                  Start
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 'type' && (
+            <motion.div
+              key="type"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
               className="absolute inset-0 p-10 flex flex-col justify-between"
             >
               <div className="h-[100px]">
                 <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
-                  Usuń informacje o swojej firmie
+                  Wybierz rodzaj działalności
                 </h2>
                 <p className="text-gray-600 text-center text-md">
-                  Wybierz rodzaj działalności
+                  JDG czy Spółka?
                 </p>
               </div>
-
               <div className="flex flex-col gap-4">
                 {['jdg', 'spolka'].map((type, i) => (
                   <motion.button
@@ -74,7 +99,7 @@ export default function BusinessTypeSelector() {
                     animate="visible"
                     exit="exit"
                     variants={buttonVariants}
-                    onClick={() => handleChoice(type as 'jdg' | 'spolka')}
+                    onClick={() => handleTypeChoice(type as 'jdg' | 'spolka')}
                     className={`w-full h-12 rounded transition flex items-center justify-center text-center ${
                       type === 'jdg'
                         ? 'bg-[#002a5c] text-white hover:bg-[#001e47]'

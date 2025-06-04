@@ -10,6 +10,8 @@ import ForWhom from "./ForWhom";
 import GuaranteeSection from "./GuaranteeSection";
 import SocialProof from "./SocialProof";
 import WhyTrustUs from "./WhyTrustUs";
+import Link from "next/link";
+
 
 
 
@@ -26,10 +28,23 @@ export default function StartPage() {
             komplikacji, w pełni legalnie i dyskretnie. Wystarczy wypełnić
             prosty formularz, resztą zajmiemy się my.
           </p>
+          
         </div>
 
         <BusinessTypeSelector />
       </div>
+
+      {/* CTA telefoniczne */}
+          <div className="flex flex-col items-center gap-2 mt-6">
+            <p className="text-center text-gray-700 font-bold">
+              Zadzwoń jeśli masz pytania lub potrzebujesz pomocy
+            </p>
+            <Link href="tel:+48792861513" className="mx-auto">
+              <button className="bg-[#002a5c] text-white px-6 py-2 rounded font-semibold hover:bg-[#001e47] transition">
+                792 861 513
+              </button>
+            </Link>
+          </div>
 
       
 
