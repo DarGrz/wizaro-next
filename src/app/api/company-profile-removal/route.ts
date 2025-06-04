@@ -79,9 +79,7 @@ export async function POST(req: NextRequest) {
 
     const { error: removalError } = await supabase
       .from('profile_removals')
-      .insert(removalsWithCompanyId);
-
-    if (removalError) {
+      .insert(removalsWithCompanyId);    if (removalError) {
       console.error('❌ Błąd zapisu profili do usunięcia:', removalError);
       return NextResponse.json(
         { error: 'Błąd zapisu profili do usunięcia', details: removalError },
@@ -89,7 +87,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true, company_id: companyData.id }, { status: 201 });
+    // Pobierz token śledzenia dla dokumentu powiązanego z tą firmą
+    const { data: documentData } = await supabase
+      .from('documents')
+      .select('tracking_token')
+      .eq('company_id', companyData.id)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
+
+    return NextResponse.json({ 
+      success: true, 
+      company_id: companyData.id,
+      tracking_token: documentData?.tracking_token,
+      tracking_url: documentData?.tracking_token 
+        ? `${process.env.NEXT_PUBLIC_SITE_URL || ''}/podglad-zlecenia/${documentData.tracking_token}`
+        : undefined
+    }, { status: 201 });
   } catch (err) {
     const error = err as Error;
     console.error('❌ Błąd ogólny:', error.message);

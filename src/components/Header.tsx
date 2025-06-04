@@ -17,23 +17,24 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="text-xl font-bold text-[#002a5c]">
         <Image src="/images/wizaro-logo.png" alt="Logo" width={120} height={36}  placeholder="empty" />
-        </Link>
-
-        {/* Desktop menu */}
+        </Link>        {/* Desktop menu */}
         <nav className="hidden md:flex space-x-6 text-sm items-center">
           
-          {/* <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
+          <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
             O nas
-          </Link> */}
+          </Link>
           {/* <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
             Opinie
           </Link> */}
           <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
             Kontakt
           </Link>
-          <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline shadow p-1 px-4 rounded">
-          <Phone size={16} />
+          <div className="flex flex-col items-end">
+            <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline font-medium">
+              <Phone size={16} className="mr-1" /> +48 792 861 513
             </a>
+            <span className="text-xs text-gray-500">Pon-Pt, 9:00-17:00</span>
+          </div>
           <a
             href="mailto:kontakt@wizaro.pl"
             className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
@@ -60,35 +61,33 @@ export default function Header() {
         <button onClick={toggleMenu} className="md:hidden text-gray-700">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-      </div>
-
-      {/* Mobile menu dropdown */}
+      </div>      {/* Mobile menu dropdown */}
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 px-4 pb-4">
           <nav className="flex flex-col space-y-2 text-sm">
-             {/* <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
-            O nas
-          </Link> */}
-          {/* <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
-            Opinie
-          </Link> */}
-          <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
-            Kontakt
-          </Link>
-          <div className='me-auto flex gap-2'>
-          <a
-            href="mailto:kontakt@wizaro.pl"
-            className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded me-auto"
-          >
-            <Mail size={20} />
-          
-          </a>
-          <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline shadow p-1 px-4 rounded">
-          <Phone size={20} />
-            </a>
-          </div>
-         
-          
+             <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c] py-2">
+              O nas
+            </Link>
+            {/* <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
+              Opinie
+            </Link> */}
+            <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c] py-2">
+              Kontakt
+            </Link>
+            <div className="py-2 flex flex-col">
+              <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline font-medium">
+                <Phone size={16} className="mr-1" /> +48 792 861 513
+              </a>
+              <span className="text-xs text-gray-500">Pon-Pt, 9:00-17:00</span>
+            </div>
+            <div className='flex gap-2 py-2'>
+              <a
+                href="mailto:kontakt@wizaro.pl"
+                className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
+              >
+                <Mail size={20} />
+              </a>
+            </div>
           </nav>
         </div>
       )}

@@ -178,9 +178,7 @@ export default function CompanyFormRemoval() {
       });
       if (!res.ok) throw new Error("Błąd zapisu danych firmy i zgłoszeń");
       const data = await res.json();
-      const company_id = data.company_id;
-
-      const docRes = await fetch("/api/documents", {
+      const company_id = data.company_id;      const docRes = await fetch("/api/documents", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -190,10 +188,16 @@ export default function CompanyFormRemoval() {
         }),
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
-      // const docData = await docRes.json();
+      const docData = await docRes.json();
 
       localStorage.removeItem("companyFormRemovalData");
-      window.location.href = "/thankyou";
+      
+      // Przekierowanie na stronę thankyou z tokenem śledzenia
+      if (docData.tracking_token) {
+        window.location.href = `/thankyou?tracking_token=${docData.tracking_token}`;
+      } else {
+        window.location.href = "/thankyou";
+      }
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");

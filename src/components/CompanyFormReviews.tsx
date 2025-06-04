@@ -207,14 +207,18 @@ export default function CompanyFormReviews() {
           numberOfReviews: reviews.length,
           payer_id: currentPayerId,
         }),
-      });
+      });      if (!res.ok) throw new Error("Błąd zapisu danych firmy i opinii");
 
-      if (!res.ok) throw new Error("Błąd zapisu danych firmy i opinii");
-
-      // const data = await res.json();
+      const data = await res.json();
 
       localStorage.removeItem("companyFormData");
-      window.location.href = "/thankyou";
+      
+      // Przekierowanie na stronę thankyou z tokenem śledzenia
+      if (data.tracking_token) {
+        window.location.href = `/thankyou?tracking_token=${data.tracking_token}`;
+      } else {
+        window.location.href = "/thankyou";
+      }
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd podczas przetwarzania. Spróbuj ponownie.");
