@@ -45,7 +45,7 @@ export async function sendAdminNotification({
       <p>Typ: <strong>${orderTypeText}</strong></p>
       <p>Firma: <strong>${companyName}</strong></p>
       <p>ID zamówienia: <strong>${orderId}</strong></p>
-      <p>Link do zamówienia: <a href="${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/orders/${orderId}">${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/orders/${orderId}</a></p>
+      
     `
   };
   try {
