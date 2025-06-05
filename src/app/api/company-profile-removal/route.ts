@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { sendAdminNotification } from '@/app/lib/mailer';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -96,13 +95,6 @@ export async function POST(req: NextRequest) {
       .order('created_at', { ascending: false })
       .limit(1)
       .single();
-
-    // Wyślij powiadomienie o nowym zamówieniu
-    await sendAdminNotification({
-      orderType: 'profile-removal',
-      companyName: company.name,
-      orderId: companyData.id
-    });
 
     return NextResponse.json({ 
       success: true, 
