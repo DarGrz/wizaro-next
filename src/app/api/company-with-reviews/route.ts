@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { v4 as uuidv4 } from 'uuid'; // 🔥 importujemy uuid
+import { v4 as uuidv4 } from 'uuid';
+import { sendAdminNotification } from '@/app/lib/mailer'; // 🔥 importujemy uuid
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -117,6 +118,13 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Wyślij powiadomienie o nowym zamówieniu
+    await sendAdminNotification({
+      orderType: 'review-removal',
+      companyName: company.name,
+      orderId: documentId
+    });
 
     return NextResponse.json(
       {
