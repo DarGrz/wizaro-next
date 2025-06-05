@@ -35,6 +35,7 @@ export default async function EditOrderPage({ params }: EditOrderPageProps) {
     const updates: Record<string, unknown> = {
       type: formData.get('type'),
       processing_status: formData.get('processing_status'),
+      proforma_invoice_url: formData.get('proforma_invoice_url'),
       invoice_url: formData.get('invoice_url'),
       payment_url: formData.get('payment_url'),
       // Ensure tracking_token is preserved by not updating it
@@ -103,13 +104,24 @@ export default async function EditOrderPage({ params }: EditOrderPageProps) {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Link do faktury</label>
+          <label className="block text-sm font-medium mb-1">Link do faktury proforma</label>
+          <input
+            name="proforma_invoice_url"
+            defaultValue={order.proforma_invoice_url || ''}
+            placeholder="https://example.com/faktura-proforma.pdf"
+            className="w-full border rounded px-3 py-2"
+          />
+          <p className="text-xs text-gray-500 mt-1">Faktura proforma jest wystawiana przed dokonaniem płatności</p>
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Link do faktury VAT</label>
           <input
             name="invoice_url"
             defaultValue={order.invoice_url || ''}
             placeholder="https://example.com/faktura.pdf"
             className="w-full border rounded px-3 py-2"
           />
+          <p className="text-xs text-gray-500 mt-1">Faktura VAT będzie dostępna do pobrania po dokonaniu wpłaty</p>
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Link do płatności</label>

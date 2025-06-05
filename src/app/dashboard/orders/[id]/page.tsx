@@ -126,9 +126,25 @@ export default async function OrderDetailsPage({ params }: Props) {
               })}
             </dd>
             
+            {order.proforma_invoice_url && (
+              <>
+                <dt className="text-sm text-gray-500">Faktura proforma</dt>
+                <dd>
+                  <a
+                    href={order.proforma_invoice_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 underline break-all"
+                  >
+                    Pobierz fakturę proforma
+                  </a>
+                </dd>
+              </>
+            )}
+            
             {order.invoice_url && (
               <>
-                <dt className="text-sm text-gray-500">Link do faktury</dt>
+                <dt className="text-sm text-gray-500">Faktura VAT</dt>
                 <dd>
                   <a
                     href={order.invoice_url}
@@ -136,8 +152,13 @@ export default async function OrderDetailsPage({ params }: Props) {
                     rel="noopener noreferrer"
                     className="text-blue-700 underline break-all"
                   >
-                    Pobierz fakturę
+                    Pobierz fakturę VAT
                   </a>
+                  {order.payments?.[0]?.status !== 'paid' && (
+                    <p className="text-xs text-gray-500 mt-1 italic">
+                      Faktura VAT będzie dostępna po dokonaniu wpłaty
+                    </p>
+                  )}
                 </dd>
               </>
             )}
@@ -315,15 +336,27 @@ export default async function OrderDetailsPage({ params }: Props) {
           <input type="hidden" name="id" value={order.id} />
           
           <div>
-            <label className="block text-sm font-medium mb-1">Link do faktury</label>
+            <label className="block text-sm font-medium mb-1">Link do faktury proforma</label>
+            <input
+              name="proforma_invoice_url"
+              defaultValue={order.proforma_invoice_url || ''}
+              placeholder="https://example.com/faktura-proforma.pdf"
+              className="w-full border rounded px-3 py-2"
+            />
+            <p className="text-xs text-gray-500 mt-1">Przed dokonaniem płatności</p>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium mb-1">Link do faktury VAT</label>
             <input
               name="invoice_url"
               defaultValue={order.invoice_url || ''}
               placeholder="https://example.com/faktura.pdf"
               className="w-full border rounded px-3 py-2"
             />
+            <p className="text-xs text-gray-500 mt-1">Dostępna po dokonaniu wpłaty</p>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium mb-1">Link do płatności</label>
             <input

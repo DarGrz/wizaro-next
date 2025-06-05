@@ -89,17 +89,36 @@ export default async function Page({ params }: Props) {
           <div><strong>Typ zamówienia:</strong> {order.type}</div>
           <div><strong>Cena:</strong> {order.companies?.price ? `${order.companies.price} PLN` : '—'}</div>
           
+          {order.proforma_invoice_url && (
+            <div>
+              <strong>Faktura proforma:</strong> 
+              <a
+                href={order.proforma_invoice_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 text-blue-600 hover:underline"
+              >
+                Pobierz fakturę proforma
+              </a>
+            </div>
+          )}
+          
           {order.invoice_url && (
             <div>
-              <strong>Faktura:</strong> 
+              <strong>Faktura VAT:</strong> 
               <a
                 href={order.invoice_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-2 text-blue-600 hover:underline"
               >
-                Pobierz fakturę
+                Pobierz fakturę VAT
               </a>
+              {order.payments?.[0]?.status !== 'paid' && (
+                <span className="ml-2 text-xs text-gray-500 italic">
+                  (będzie dostępna po dokonaniu wpłaty)
+                </span>
+              )}
             </div>
           )}
           
