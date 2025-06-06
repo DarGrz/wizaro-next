@@ -17,6 +17,7 @@ export default function TopFooter() {
             <div className="text-center md:text-left">
               <h4 className="font-semibold text-base mb-1">Dariusz Grzegorczyk</h4>
               <p className="text-sm text-gray-600">Właściciel Wizaro.pl</p>
+              <p className="text-sm text-gray-600 mt-1">NIP: 678-297-86-44</p>
             </div>
           </div>
           

@@ -66,9 +66,8 @@ export default function GoogleBusinessRemoval() {
                 </svg>
                 <span className="text-gray-700">Pomoc w utworzeniu nowego, czystego profilu</span>
               </li>
-            </ul>
-            <Link href="/formularz-profil">
-              <button className="px-6 py-3 bg-[#002a5c] text-white rounded-md font-semibold hover:bg-[#001e47] transition">
+            </ul>            <Link href="/formularz-profil" className="w-full md:w-auto block">
+              <button className="px-6 py-3 bg-[#002a5c] text-white rounded-md font-semibold hover:bg-[#001e47] transition w-full md:w-auto">
                 Usuń firmę z Google
               </button>
             </Link>
