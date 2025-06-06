@@ -4,10 +4,12 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
+import BusinessDirectoriesRemoval from "./BusinessDirectoriesRemoval";
 import CaseStudies from "./CaseStudies";
 import ExplenationStartPage from "./ExplenationStartPage";
 import FaqSection from "./FaqSection";
 import ForWhom from "./ForWhom";
+import GoogleBusinessRemoval from "./GoogleBusinessRemoval";
 import GuaranteeSection from "./GuaranteeSection";
 import ServiceComparisonTable from "./ServiceComparisonTable";
 import SocialProof from "./SocialProof";
@@ -41,6 +43,16 @@ export default function StartPage() {
 
       <div className="md:flex py-10 md:gap-8 ">
         <GuaranteeSection />
+      </div>
+
+      {/* Sekcja usuwania firmy z Google */}
+      <div className="md:flex py-10 md:gap-8">
+        <GoogleBusinessRemoval />
+      </div>
+
+      {/* Sekcja usuwania z katalogów biznesowych */}
+      <div className="md:flex py-10 md:gap-8">
+        <BusinessDirectoriesRemoval />
       </div>
 
       {/* CTA telefoniczne */}
