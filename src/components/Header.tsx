@@ -2,14 +2,18 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Mail, Phone } from 'lucide-react';
+import { Menu, X, Mail, Phone, PlayCircle } from 'lucide-react';
 import Image from 'next/image';
+import ServiceModal from './ServiceModal';
 
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm ">
@@ -35,6 +39,13 @@ export default function Header() {
             </a>
             <span className="text-xs text-gray-500">Pon-Pt, 9:00-17:00</span>
           </div>
+          <button
+            onClick={openModal}
+            className="flex items-center gap-1 text-gray-100 bg-[#002a5c] py-2 px-5 rounded font-medium hover:bg-[#00234d] transition-colors"
+          >
+            <PlayCircle size={18} className="mr-1" />
+            Start
+          </button>
           <a
             href="mailto:kontakt@wizaro.pl"
             className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
@@ -81,6 +92,13 @@ export default function Header() {
               <span className="text-xs text-gray-500">Pon-Pt, 9:00-17:00</span>
             </div>
             <div className='flex gap-2 py-2'>
+              <button
+                onClick={openModal}
+                className="flex items-center gap-1 text-gray-100 bg-[#002a5c] py-2 px-4 rounded font-medium hover:bg-[#00234d] transition-colors"
+              >
+                <PlayCircle size={18} className="mr-1" />
+                Start
+              </button>
               <a
                 href="mailto:kontakt@wizaro.pl"
                 className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
@@ -91,6 +109,9 @@ export default function Header() {
           </nav>
         </div>
       )}
+      
+      {/* Service Modal */}
+      <ServiceModal isOpen={isModalOpen} onClose={closeModal} />
     </header>
   );
 }

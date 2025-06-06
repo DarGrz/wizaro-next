@@ -14,6 +14,7 @@ import GuaranteeSection from "./GuaranteeSection";
 import ServiceComparisonTable from "./ServiceComparisonTable";
 import SocialProof from "./SocialProof";
 import WhyTrustUs from "./WhyTrustUs";
+import WhyRemoveProfilesAndReviews from "./WhyRemoveProfilesAndReviews";
 import Link from "next/link";
 import MobileActionButton from "./MobileActionButton";
 
@@ -48,6 +49,19 @@ export default function StartPage() {
       {/* Sekcja usuwania firmy z Google */}
       <div className="md:flex py-10 md:gap-8">
         <GoogleBusinessRemoval />
+      </div>
+
+      {/* Separator */}
+      <div className="w-full flex items-center justify-center py-4">
+        <div className="w-1/4 h-px bg-gray-200"></div>
+        <div className="mx-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#002a5c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M16 16v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h2m9-4h-9a2 2 0 0 0-2 2v9" />
+            <circle cx="17" cy="5" r="3" />
+            <path d="M12 12.5l3.5 3.5l6.5-6.5" />
+          </svg>
+        </div>
+        <div className="w-1/4 h-px bg-gray-200"></div>
       </div>
 
       {/* Sekcja usuwania z katalogów biznesowych */}
@@ -95,6 +109,12 @@ export default function StartPage() {
       <div className="md:flex py-10 md:gap-8 ">
         <BusinessTypeSelectorCTA />
       </div>
+      
+      {/* Sekcja: Dlaczego warto usuwać profile i opinie */}
+      <div className="md:flex py-10 md:gap-8 ">
+        <WhyRemoveProfilesAndReviews />
+      </div>
+      
       <div className="md:flex py-10 md:gap-8 ">
         <FaqSection />
       </div>
