@@ -106,13 +106,15 @@ export default function StartPage() {
       <div className="md:flex py-10 md:gap-8 ">
         <ForWhom />
       </div>
-      <div className="md:flex py-10 md:gap-8 ">
-        <BusinessTypeSelectorCTA />
-      </div>
+     
       
       {/* Sekcja: Dlaczego warto usuwać profile i opinie */}
       <div className="md:flex py-10 md:gap-8 ">
         <WhyRemoveProfilesAndReviews />
+      </div>
+
+       <div className="md:flex py-10 md:gap-8 ">
+        <BusinessTypeSelectorCTA />
       </div>
       
       <div className="md:flex py-10 md:gap-8 ">
