@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export default function BusinessTypeSelector() {
   const [step, setStep] = useState<'start' | 'choice'>('start');
+  // Default to JDG as a fallback, but we won't be using this for selection anymore
 
   const buttonVariants = {
     hidden: { opacity: 0, x: 30 },
@@ -22,10 +23,7 @@ export default function BusinessTypeSelector() {
   };
 
   const getLink = (type: 'profil' | 'opinie') => {
-    // Zawsze używamy formularza dla JDG
-    return type === 'profil'
-      ? '/formularz-profil'
-      : '/formularz-opinie';
+    return type === 'profil' ? '/formularz-profil' : '/formularz-opinie';
   };
 
   return (
@@ -49,11 +47,53 @@ export default function BusinessTypeSelector() {
                   Szybko, legalnie i dyskretnie. Rozpocznij, klikając poniżej.
                 </p>
                 <button
-                  onClick={() => setStep('choice')}
+                  onClick={() => setStep('type')}
                   className="w-full max-w-xs h-14 bg-[#002a5c] text-white rounded py-2 font-semibold text-lg hover:bg-[#001e47] transition"
                 >
                   Start
                 </button>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 'type' && (
+            <motion.div
+              key="type"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 p-10 flex flex-col justify-between"
+            >
+              <div className="h-[100px]">
+                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
+                  Wybierz rodzaj działalności
+                </h2>
+                <p className="text-gray-600 text-center text-md">
+                  JDG czy Spółka?
+                </p>
+              </div>
+              <div className="flex flex-col gap-4">
+                {['jdg', 'spolka'].map((type, i) => (
+                  <motion.button
+                    key={type}
+                    custom={i}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={buttonVariants}
+                    onClick={() => handleTypeChoice(type as 'jdg' | 'spolka')}
+                    className={`w-full h-12 rounded transition flex items-center justify-center text-center ${
+                      type === 'jdg'
+                        ? 'bg-[#002a5c] text-white hover:bg-[#001e47]'
+                        : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                    }`}
+                  >
+                    {type === 'jdg'
+                      ? 'JDG'
+                      : 'Spółka'}
+                  </motion.button>
+                ))}
               </div>
             </motion.div>
           )}
@@ -87,7 +127,7 @@ export default function BusinessTypeSelector() {
                 >
                   <Link
                     href={getLink('profil')}
-                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
+                    className="block w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
                   >
                     Profil z opiniami
                   </Link>
@@ -103,7 +143,7 @@ export default function BusinessTypeSelector() {
                 >
                   <Link
                     href={getLink('opinie')}
-                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                    className="block w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
                   >
                     Pojedyncze opinie
                   </Link>
@@ -118,6 +158,7 @@ export default function BusinessTypeSelector() {
         <button
           onClick={() => {
             setStep('start');
+            setBusinessType(null);
           }}
           className="absolute top-full left-1/2 -translate-x-1/2 mt-4 text-sm text-gray-500 hover:text-gray-700 transition"
         >
