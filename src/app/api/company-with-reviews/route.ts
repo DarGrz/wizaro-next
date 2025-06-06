@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { v4 as uuidv4 } from 'uuid';
-import { sendAdminNotification } from '@/app/lib/mailer'; // 🔥 importujemy uuid
+import { sendAdminNotification } from '@/app/lib/mailer';
+import { REGULAMIN_VERSION } from '@/app/constants/regulamin-version';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -61,6 +62,10 @@ export async function POST(req: NextRequest) {
         ...company,
         price: totalPrice,
         review_count: numberOfReviews,
+        // Dodaj akceptację regulaminu bezpośrednio przy tworzeniu
+        regulation_accepted: true,
+        regulation_version: REGULAMIN_VERSION,
+        regulation_accepted_at: new Date().toISOString(),
       })
       .select()
       .single();

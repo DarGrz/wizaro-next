@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { sendAdminNotification } from '@/app/lib/mailer';
+// Importujemy wersję regulaminu z osobnego pliku, który działa po stronie serwera
+import { REGULAMIN_VERSION } from '@/app/constants/regulamin-version';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -51,7 +53,7 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-
+    
     const { data: companyData, error: companyError } = await supabase
       .from('companies')
       .insert({
@@ -59,6 +61,10 @@ export async function POST(req: NextRequest) {
         price: totalPrice/100,
         profile_removal_count: removals.length,
         payer_id,
+        // Dodaj akceptację regulaminu bezpośrednio przy tworzeniu
+        regulation_accepted: true,
+        regulation_version: REGULAMIN_VERSION,
+        regulation_accepted_at: new Date().toISOString(),
       })
       .select()
       .single();

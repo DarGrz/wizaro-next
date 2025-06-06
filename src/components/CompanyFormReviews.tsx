@@ -207,10 +207,14 @@ export default function CompanyFormReviews() {
           numberOfReviews: reviews.length,
           payer_id: currentPayerId,
         }),
-      });      if (!res.ok) throw new Error("Błąd zapisu danych firmy i opinii");
+      });
+      
+      if (!res.ok) throw new Error("Błąd zapisu danych firmy i opinii");
 
       const data = await res.json();
-
+      console.log("Odpowiedź z API:", data);
+      
+      // Akceptacja regulaminu jest już zapisana w trakcie tworzenia firmy
       localStorage.removeItem("companyFormData");
       
       // Przekierowanie na stronę thankyou z tokenem śledzenia

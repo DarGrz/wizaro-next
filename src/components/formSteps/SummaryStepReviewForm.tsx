@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { REGULAMIN_VERSION } from "@/app/constants/regulamin-version";
 
 
 interface CompanyData {
@@ -15,6 +16,7 @@ interface CompanyData {
   city: string;
   zip: string;
   different_payer: boolean;
+  id?: number; // Dodane ID firmy
 }
 
 interface Review {
@@ -59,6 +61,12 @@ export default function SummaryStep({
 
   const handleConfirm = () => {
     if (regulaminAccepted && typeof onConfirm === "function") {
+      // Zapisz akceptację regulaminu tylko lokalnie - reszta będzie obsłużona w confirmAndSave
+      localStorage.setItem('regulamin_accepted', 'true');
+      localStorage.setItem('regulamin_version', REGULAMIN_VERSION);
+      localStorage.setItem('regulamin_accepted_date', new Date().toISOString());
+      
+      // Wywołaj funkcję onConfirm, która wywoła confirmAndSave
       onConfirm();
     }
   };

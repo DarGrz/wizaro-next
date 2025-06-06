@@ -77,3 +77,65 @@ export async function sendAdminNotification({
     throw error;
   }
 }
+
+export async function sendContactEmail({
+  name,
+  email,
+  message
+}: {
+  name: string;
+  email: string;
+  message: string;
+}) {
+  const adminEmail = 'd.grzegorczyk@outlook.com'; // Domyślny adres odbiorcy
+
+  const mailOptions = {
+    from: process.env.SMTP_FROM || process.env.SMTP_USER,
+    to: adminEmail,
+    replyTo: email,
+    subject: `📝 Nowa wiadomość kontaktowa od ${name}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; line-height: 1.5;">
+        <h2>Nowa wiadomość kontaktowa</h2>
+        <p><strong>Od:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <hr />
+        <div>
+          <h3>Wiadomość:</h3>
+          <p>${message.replace(/\n/g, '<br>')}</p>
+        </div>
+      </div>
+    `
+  };
+  
+  try {
+    console.log('📧 Próba wysłania wiadomości kontaktowej:', {
+      to: adminEmail,
+      from: mailOptions.from,
+      subject: mailOptions.subject
+    });
+
+    // Weryfikacja połączenia przed wysłaniem
+    try {
+      await transporter.verify();
+      console.log('✅ Połączenie SMTP zweryfikowane pomyślnie');
+    } catch (verifyError) {
+      console.error('❌ Błąd weryfikacji SMTP:', verifyError);
+      throw verifyError;
+    }
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log('📧 Wiadomość kontaktowa wysłana:', {
+      messageId: info.messageId,
+      response: info.response,
+      envelope: info.envelope
+    });
+    return { success: true, info };
+  } catch (error) {
+    console.error('❌ Błąd wysyłki wiadomości kontaktowej:', error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Wystąpił nieznany błąd podczas wysyłania wiadomości' 
+    };
+  }
+}
