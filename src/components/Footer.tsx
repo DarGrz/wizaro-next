@@ -46,9 +46,7 @@ export default function Footer() {
             <Link href="/polityka-prywatnosci" className="text-gray-600 hover:text-[#002a5c] transition">
               Polityka prywatności
             </Link>
-            <Link href="/regulamin-zamowien" className="text-gray-600 hover:text-[#002a5c] transition">
-              Regulamin zamówień
-            </Link>
+           
           </div>
         </div>
       </div>
