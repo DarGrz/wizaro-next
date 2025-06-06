@@ -46,7 +46,7 @@ export default function MobileActionButton() {
       <motion.button
         onClick={toggleMenu}
         animate={isOpen ? {} : pulseAnimation}
-        className="lg:hidden fixed bottom-10 right-6 w-18 h-18 rounded-full bg-[#002a5c] text-white flex items-center justify-center shadow-lg z-50"
+        className="lg:hidden fixed bottom-10 right-6 w-16 h-16 rounded-full bg-[#002a5c] text-white flex items-center justify-center shadow-lg z-50"
       >
         {isOpen ? (
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
