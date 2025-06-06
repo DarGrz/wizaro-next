@@ -46,16 +46,47 @@ export async function PUT(
       return NextResponse.json({ error: 'Error updating document' }, { status: 500 });
     }
     
-    // If payment_status is provided, update the payment status
+    // If payment_status is provided, check if payment exists and update or create
     if (payment_status !== undefined) {
-      const { error: paymentError } = await supabase
+      // First check if payment record exists
+      const { data: existingPayment, error: checkError } = await supabase
         .from('payments')
-        .update({ status: payment_status })
-        .eq('document_id', id);
+        .select('id')
+        .eq('document_id', id)
+        .maybeSingle();
       
-      if (paymentError) {
-        console.error('❌ Error updating payment status:', paymentError);
-        return NextResponse.json({ error: 'Error updating payment status' }, { status: 500 });
+      if (checkError) {
+        console.error('❌ Error checking payment status:', checkError);
+        return NextResponse.json({ error: 'Error checking payment status' }, { status: 500 });
+      }
+      
+      // If payment exists, update it, otherwise create a new one
+      if (existingPayment) {
+        // Update existing payment
+        const { error: updateError } = await supabase
+          .from('payments')
+          .update({ status: payment_status })
+          .eq('document_id', id);
+        
+        if (updateError) {
+          console.error('❌ Error updating payment status:', updateError);
+          return NextResponse.json({ error: 'Error updating payment status' }, { status: 500 });
+        }
+      } else {
+        // Create new payment record
+        const { error: insertError } = await supabase
+          .from('payments')
+          .insert({
+            document_id: id,
+            status: payment_status,
+            created_at: new Date().toISOString(),
+            session_id: `api_update_${Date.now()}` // Generate a unique session ID for API updates
+          });
+        
+        if (insertError) {
+          console.error('❌ Error creating payment record:', insertError);
+          return NextResponse.json({ error: 'Error creating payment record' }, { status: 500 });
+        }
       }
     }
     
