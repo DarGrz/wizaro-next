@@ -13,13 +13,16 @@ import ServiceComparisonTable from "./ServiceComparisonTable";
 import SocialProof from "./SocialProof";
 import WhyTrustUs from "./WhyTrustUs";
 import Link from "next/link";
-
+import MobileActionButton from "./MobileActionButton";
 
 
 
 export default function StartPage() {
   return (
     <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-20">
+      {/* Przycisk mobilny */}
+      <MobileActionButton />
+      
       <div className="gap-6 mb-6 lg:flex">
         <div className="md:p-10 p-4 w-full max-w-lg md:border-e border-gray-200 md:border-b ">
           <h1 className="text-3xl font-bold text-center text-gray-900 mb-4 ">
