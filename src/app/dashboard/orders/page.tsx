@@ -101,13 +101,15 @@ export default async function OrdersPage() {
                   })}
                 </td>
                 <td className="p-3">
-                  <span className={`px-2 py-1 rounded-full text-xs ${
-                    order.payments?.[0]?.status === 'paid' ? 'bg-green-100 text-green-800' :
-                    order.payments?.[0]?.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-gray-100 text-gray-800'
-                  }`}>
-                    {order.payments?.[0]?.status || 'brak płatności'}
-                  </span>
+                   <span className={`px-2 py-1 rounded-full text-xs ${
+  order.payments?.[0]?.status === 'true' ? 'bg-green-100 text-green-800' :
+  order.payments?.[0]?.status === 'false' ? 'bg-yellow-100 text-yellow-800' :
+  'bg-gray-100 text-gray-800'
+}`}>
+  {order.payments?.[0]?.status === 'true' ? 'Zapłacono' :
+   order.payments?.[0]?.status === 'false' ? 'Oczekuje' :
+   'Brak płatności'}
+</span>
                 </td>
                 <td className="p-3">
                   <span className={`px-2 py-1 rounded-full text-xs ${
