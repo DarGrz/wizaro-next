@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Mail, Phone, PlayCircle } from 'lucide-react';
+import { Menu, X, Mail, Phone, PlayCircle, ChevronDown, Trash2, Star, Briefcase, ShoppingBag } from 'lucide-react';
 import Image from 'next/image';
 import ServiceModal from './ServiceModal';
 
@@ -10,6 +10,7 @@ import ServiceModal from './ServiceModal';
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const openModal = () => setIsModalOpen(true);
@@ -24,9 +25,69 @@ export default function Header() {
         </Link>        {/* Desktop menu */}
         <nav className="hidden md:flex space-x-6 text-sm items-center">
           
-          <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c]">
+          <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
             O nas
           </Link>
+          <div className="relative group"
+            onMouseEnter={() => setServicesMenuOpen(true)}
+            onMouseLeave={() => {
+              // Dodajemy opóźnienie przed zamknięciem menu
+              setTimeout(() => setServicesMenuOpen(false), 300);
+            }}
+          >
+            <button 
+              className="text-gray-700 hover:text-[#002a5c] flex items-center gap-1 transition-colors duration-200 py-1"
+              onClick={() => setServicesMenuOpen(!servicesMenuOpen)}
+            >
+              Usługi <ChevronDown size={16} className={`transition-transform duration-300 ${servicesMenuOpen ? 'rotate-180' : ''}`} />
+            </button>
+            <div 
+              className={`absolute left-0 mt-1 w-72 overflow-hidden z-10 transition-all duration-300 ${servicesMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
+            >
+              <div className="bg-white rounded-md shadow-xl border border-gray-100 p-1 mt-1">
+                <Link href="/uslugi/usuwanie-firmy-z-google" 
+                  className="flex items-center p-3 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] rounded-md transition-colors duration-200 group/item">
+                  <div className="mr-3 bg-blue-50 p-2 rounded-md text-[#002a5c] group-hover/item:bg-[#002a5c] group-hover/item:text-white transition-colors duration-200">
+                    <Trash2 size={18} />
+                  </div>
+                  <div>
+                    <div className="font-medium">Usuwanie firmy z Google</div>
+                    <div className="text-xs text-gray-500">Całkowite usunięcie profilu</div>
+                  </div>
+                </Link>
+                <Link href="/uslugi/usuwanie-negatywnych-opinii-z-google" 
+                  className="flex items-center p-3 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] rounded-md transition-colors duration-200 mt-1 group/item">
+                  <div className="mr-3 bg-blue-50 p-2 rounded-md text-[#002a5c] group-hover/item:bg-[#002a5c] group-hover/item:text-white transition-colors duration-200">
+                    <Star size={18} />
+                  </div>
+                  <div>
+                    <div className="font-medium">Usuwanie negatywnych opinii</div>
+                    <div className="text-xs text-gray-500">Rozwiązywanie problemów z opiniami</div>
+                  </div>
+                </Link>
+                <Link href="/uslugi/usuwanie-opinii-i-profilu-z-gowork" 
+                  className="flex items-center p-3 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] rounded-md transition-colors duration-200 mt-1 group/item">
+                  <div className="mr-3 bg-blue-50 p-2 rounded-md text-[#002a5c] group-hover/item:bg-[#002a5c] group-hover/item:text-white transition-colors duration-200">
+                    <Briefcase size={18} />
+                  </div>
+                  <div>
+                    <div className="font-medium">Usuwanie profilu z GoWork</div>
+                    <div className="text-xs text-gray-500">Zarządzanie opinami o pracodawcy</div>
+                  </div>
+                </Link>
+                <Link href="/uslugi/usuwanie-opinii-i-profilu-z-aleo" 
+                  className="flex items-center p-3 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] rounded-md transition-colors duration-200 mt-1 group/item">
+                  <div className="mr-3 bg-blue-50 p-2 rounded-md text-[#002a5c] group-hover/item:bg-[#002a5c] group-hover/item:text-white transition-colors duration-200">
+                    <ShoppingBag size={18} />
+                  </div>
+                  <div>
+                    <div className="font-medium">Usuwanie profilu z Aleo</div>
+                    <div className="text-xs text-gray-500">Zarządzanie opinami B2B</div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
           {/* <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
             Opinie
           </Link> */}
@@ -76,9 +137,65 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 px-4 pb-4">
           <nav className="flex flex-col space-y-2 text-sm">
-             <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c] py-2">
+             <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
               O nas
             </Link>
+            <div className="py-2">
+              <button 
+                onClick={() => {
+                  // Dodajemy efekt toggle z opóźnieniem dla zamykania
+                  if (servicesMenuOpen) {
+                    setTimeout(() => setServicesMenuOpen(false), 100);
+                  } else {
+                    setServicesMenuOpen(true);
+                  }
+                }}
+                className="text-gray-700 hover:text-[#002a5c] flex items-center justify-between w-full transition-colors duration-200 py-2"
+              >
+                <span>Usługi</span> 
+                <ChevronDown size={16} className={`transition-transform duration-300 ${servicesMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+              <div className={`overflow-hidden transition-all duration-300 ${servicesMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
+                <div className="pl-2 mt-2 space-y-2 border-l-2 border-gray-100 ml-1">
+                  <Link href="/uslugi/usuwanie-firmy-z-google" className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                    <div className="mr-2 text-[#002a5c]">
+                      <Trash2 size={16} />
+                    </div>
+                    <div>
+                      <span className="block">Usuwanie firmy z Google</span>
+                      <span className="block text-xs text-gray-500">Całkowite usunięcie profilu</span>
+                    </div>
+                  </Link>
+                  <Link href="/uslugi/usuwanie-negatywnych-opinii-z-google" className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                    <div className="mr-2 text-[#002a5c]">
+                      <Star size={16} />
+                    </div>
+                    <div>
+                      <span className="block">Usuwanie negatywnych opinii</span>
+                      <span className="block text-xs text-gray-500">Rozwiązywanie problemów z opiniami</span>
+                    </div>
+                  </Link>
+                  <Link href="/uslugi/usuwanie-opinii-i-profilu-z-gowork" className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                    <div className="mr-2 text-[#002a5c]">
+                      <Briefcase size={16} />
+                    </div>
+                    <div>
+                      <span className="block">Usuwanie profilu z GoWork</span>
+                      <span className="block text-xs text-gray-500">Zarządzanie opinami o pracodawcy</span>
+                    </div>
+                  </Link>
+                  <Link href="/uslugi/usuwanie-opinii-i-profilu-z-aleo" className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                    <div className="mr-2 text-[#002a5c]">
+                      <ShoppingBag size={16} />
+                    </div>
+                    <div>
+                      <span className="block">Usuwanie profilu z Aleo</span>
+                      <span className="block text-xs text-gray-500">Zarządzanie opinami B2B</span>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
             {/* <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
               Opinie
             </Link> */}

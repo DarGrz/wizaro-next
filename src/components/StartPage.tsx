@@ -10,6 +10,7 @@ import ExplenationStartPage from "./ExplenationStartPage";
 import FaqSection from "./FaqSection";
 import ForWhom from "./ForWhom";
 import GoogleBusinessRemoval from "./GoogleBusinessRemoval";
+import GoogleBusinessReset from "./GoogleBusinessReset";
 import GuaranteeSection from "./GuaranteeSection";
 import ServiceComparisonTable from "./ServiceComparisonTable";
 import SocialProof from "./SocialProof";
@@ -27,9 +28,9 @@ export default function StartPage() {
       <MobileActionButton />
       
       <div className="gap-6 mb-6 lg:flex">
-        <div className="md:p-10 p-4 w-full max-w-lg md:border-e border-gray-200 md:border-b ">
+        <div className="md:p-10 p-4 w-full max-w-lg  ">
           <h1 className="text-3xl font-bold text-center text-gray-900 mb-4 ">
-            Pomagamy chronić wizerunek Twojej firmy
+            Usuwamy negatywne opinie i profile z Google, GoWork, Aleo i innych
           </h1>
           <p className="text-gray-600 text-center mb-8">
             Szybko i dyskretnie usuniemy informacje o Twojej firmie – legalnie i bez zbędnych komplikacji. Wystarczy, że wypełnisz prosty formularz. Płatność następuje dopiero po wykonaniu usługi.
@@ -49,6 +50,11 @@ export default function StartPage() {
       {/* Sekcja usuwania firmy z Google */}
       <div className="md:flex py-10 md:gap-8">
         <GoogleBusinessRemoval />
+      </div>
+
+      {/* Sekcja resetowania wizytówki Google */}
+      <div className="md:flex py-10 md:gap-8">
+        <GoogleBusinessReset />
       </div>
 
       {/* Separator */}

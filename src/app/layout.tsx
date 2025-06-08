@@ -23,8 +23,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Wizaro.pl - Ochrona Wizerunku Online",
   description:
-    "Wizaro.pl to usługi usuwania danych osobowych z internetu. Zgłoś się do nas, aby usunąć swoje dane z Google, Gowork, Aleo, Panorama firm i PKT.pl.",
-  icons: {
+    "Wizaro.pl to usługi ochrony wizerunku w sieci - usuwania opinii i profili z katologów firmowych. Zgłoś się do nas, aby usunąć swoje dane z Map Google , Gowork, Aleo, Panorama firm i PKT.pl.",
+  keywords:
+    "ochrona wizerunku, usuwanie opinii, usuwanie danych z internetu, usuwanie firmy z Google, usuwanie wizytówek Google, usuwanie danych z katalogów, GoWork, Aleo, Panorama Firm, PKT.pl, usuwanie profilu z GoWork, czyszczenie wizerunku w sieci, reputacja online, usuwanie negatywnych opinii, usuwanie informacji z Google",
+    icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
@@ -70,7 +72,106 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-W72NWNSH');
           `}
         </Script>
-        {/* End Google Tag Manager */}
+               {/* End Google Tag Manager */}
+
+        <Script id="schema-markup" type="application/ld+json" strategy="beforeInteractive">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "@id": "https://wizaro.pl",
+            "name": "Wizaro.pl - Ochrona Wizerunku Online",
+            "image": "https://wizaro.pl/images/wizaro-logo.png",
+            "description": "Wizaro.pl to usługi ochrony wizerunku w sieci - usuwania opinii i profili z katologów firmowych. Zgłoś się do nas, aby usunąć swoje dane z Map Google , Gowork, Aleo, Panorama firm i PKT.pl.",
+            "url": "https://wizaro.pl",
+            "telephone": "792 861 513",
+            "email": "kontakt@wizaro.pl",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "PL",
+              "addressLocality": "Kraków"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "50.0615",
+              "longitude": "19.9425"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "PL"
+            },
+            "priceRange": "$$",
+            "openingHours": "Mo-Fr 09:00-17:00",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Usługi ochrony wizerunku online",
+              "itemListElement": [
+                {
+                  "@type": "Service",
+                  "name": "Usuwanie opinii z Google",
+                  "description": "Profesjonalna pomoc w usuwaniu negatywnych opinii z Google Maps i innych platform",
+                  "serviceType": "Ochrona wizerunku",
+                  "provider": {
+                    "@type": "Organization",
+                    "name": "Wizaro.pl"
+                  },
+                  "areaServed": "PL",
+                  "availableChannel": {
+                    "@type": "ServiceChannel",
+                    "serviceUrl": "https://wizaro.pl/usuwanie-opinii-google"
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "name": "Usuwanie firmy z Google",
+                  "description": "Kompleksowa usługa usuwania wizytówek i profili firmowych z Google",
+                  "serviceType": "Ochrona wizerunku",
+                  "provider": {
+                    "@type": "Organization",
+                    "name": "Wizaro.pl"
+                  },
+                  "areaServed": "PL",
+                  "availableChannel": {
+                    "@type": "ServiceChannel",
+                    "serviceUrl": "https://wizaro.pl/usuwanie-firmy-z-google"
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "name": "Usuwanie firmy z Aleo",
+                  "description": "Profesjonalne usuwanie profili firmowych z portalu Aleo.com",
+                  "serviceType": "Ochrona wizerunku",
+                  "provider": {
+                    "@type": "Organization",
+                    "name": "Wizaro.pl"
+                  },
+                  "areaServed": "PL",
+                  "availableChannel": {
+                    "@type": "ServiceChannel",
+                    "serviceUrl": "https://wizaro.pl/usuwanie-firmy-aleo"
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "name": "Usuwanie firmy z GoWork",
+                  "description": "Profesjonalne usuwanie profili i opinii z portalu GoWork.pl",
+                  "serviceType": "Ochrona wizerunku",
+                  "provider": {
+                    "@type": "Organization",
+                    "name": "Wizaro.pl"
+                  },
+                  "areaServed": "PL",
+                  "availableChannel": {
+                    "@type": "ServiceChannel",
+                    "serviceUrl": "https://wizaro.pl/usuwanie-firmy-gowork"
+                  }
+                }
+              ]
+            }
+          }
+        `}
+        </Script>
+
       </head>
       <body className="font-sans antialiased">
         <noscript>
