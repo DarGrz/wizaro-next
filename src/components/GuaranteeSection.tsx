@@ -18,18 +18,18 @@ export default function GuaranteeSection() {
         <div className=" backdrop-blur-sm p-6 rounded-lg shadow-sm border border-gray-100">
           <p className="text-gray-800 text-lg mb-3">
             <span className="font-semibold text-gray-900 inline-block border-b-2 border-emerald-500 pb-1">
-              Płacisz dopiero po tym, jak usuniemy Twoje opinie lub profile
+            Opłata tylko po skutecznym usunięciu opinii lub profilu
             </span>
           </p>
           
           <p className="text-gray-600">
-            Działamy skutecznie, bez ryzyka po Twojej stronie.
+            Skuteczność gwarantowana – bez ryzyka, bez zaliczek.
           </p>
           
           <div className="flex justify-center mt-6">
             <div className="flex items-center space-x-2 text-sm text-gray-500">
               <span className="inline-block w-3 h-3 rounded-full bg-emerald-500"></span>
-              <span>100% gwarancji</span>
+              <span>100% gwarancji rezultatu</span>
             </div>
           </div>
         </div>
