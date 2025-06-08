@@ -51,7 +51,7 @@ export default function Header() {
                     <Trash2 size={18} />
                   </div>
                   <div>
-                    <div className="font-medium">Usuwanie firmy z Google</div>
+                    <div className="font-medium">Usuwanie firmy z Map Google</div>
                     <div className="text-xs text-gray-500">Całkowite usunięcie profilu</div>
                   </div>
                 </Link>
@@ -71,7 +71,7 @@ export default function Header() {
                     <Briefcase size={18} />
                   </div>
                   <div>
-                    <div className="font-medium">Usuwanie profilu z GoWork</div>
+                    <div className="font-medium">Usuwanie opinii z GoWork</div>
                     <div className="text-xs text-gray-500">Zarządzanie opinami o pracodawcy</div>
                   </div>
                 </Link>
@@ -81,7 +81,7 @@ export default function Header() {
                     <ShoppingBag size={18} />
                   </div>
                   <div>
-                    <div className="font-medium">Usuwanie profilu z Aleo</div>
+                    <div className="font-medium">Usuwanie opinii z Aleo</div>
                     <div className="text-xs text-gray-500">Zarządzanie opinami B2B</div>
                   </div>
                 </Link>
@@ -162,7 +162,7 @@ export default function Header() {
                       <Trash2 size={16} />
                     </div>
                     <div>
-                      <span className="block">Usuwanie firmy z Google</span>
+                      <span className="block">Usuwanie firmy z Map Google</span>
                       <span className="block text-xs text-gray-500">Całkowite usunięcie profilu</span>
                     </div>
                   </Link>
@@ -180,7 +180,7 @@ export default function Header() {
                       <Briefcase size={16} />
                     </div>
                     <div>
-                      <span className="block">Usuwanie profilu z GoWork</span>
+                      <span className="block">Usuwanie opinii z GoWork</span>
                       <span className="block text-xs text-gray-500">Zarządzanie opinami o pracodawcy</span>
                     </div>
                   </Link>
@@ -189,7 +189,7 @@ export default function Header() {
                       <ShoppingBag size={16} />
                     </div>
                     <div>
-                      <span className="block">Usuwanie profilu z Aleo</span>
+                      <span className="block">Usuwanie opinii z Aleo</span>
                       <span className="block text-xs text-gray-500">Zarządzanie opinami B2B</span>
                     </div>
                   </Link>
