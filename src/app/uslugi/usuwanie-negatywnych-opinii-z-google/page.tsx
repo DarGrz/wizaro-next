@@ -1,12 +1,61 @@
+'use client';
 
-
+import { Shield, Clock, CheckCircle } from 'lucide-react';
+import BusinessTypeSelector from '@/components/BusinessTypeSelector';
+import BusinessTypeSelectorCTA from '@/components/BusinessTypeSelectorCTA';
+import SocialProof from '@/components/SocialProof';
+import InfoModal from '@/components/InfoModal';
 
 export default function UsuwanieNegatywnychOpiniiPage() {
   return (
     <main className="max-w-5xl mx-auto px-2 md:px-8 py-10">
+      <InfoModal />
+      
       <h1 className="text-3xl md:text-4xl font-extrabold text-[#002a5c] mb-8 text-center">
         Usuwanie Negatywnych Opinii z Google
       </h1>
+
+      {/* Hero section with BusinessTypeSelectorCTA */}
+      <div className="mb-16">
+        <BusinessTypeSelectorCTA />
+      </div>
+
+      {/* Sekcja z ikonami */}
+      <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100 mb-10">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-[#eef2f7] rounded-full flex items-center justify-center mx-auto mb-4">
+              <Shield className="w-8 h-8 text-[#002a5c]" />
+            </div>
+            <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Bezpieczeństwo</h3>
+            <p className="text-gray-600">Działamy zgodnie z prawem i dbamy o poufność Twoich danych</p>
+          </div>
+          <div className="text-center">
+            <div className="w-16 h-16 bg-[#eef2f7] rounded-full flex items-center justify-center mx-auto mb-4">
+              <Clock className="w-8 h-8 text-[#002a5c]" />
+            </div>
+            <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Szybka realizacja</h3>
+            <p className="text-gray-600">Większość spraw rozwiązujemy w ciągu kilku dni roboczych</p>
+          </div>
+          <div className="text-center">
+            <div className="w-16 h-16 bg-[#eef2f7] rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="w-8 h-8 text-[#002a5c]" />
+            </div>
+            <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Skuteczność</h3>
+            <p className="text-gray-600">98% skuteczności w usuwaniu negatywnych opinii</p>
+          </div>
+        </div>
+      </section>
+
+      {/* BusinessTypeSelector przed główną treścią */}
+      <div className="mb-16">
+        <BusinessTypeSelector />
+      </div>
+
+      {/* SocialProof section */}
+      <section className="mb-16">
+        <SocialProof />
+      </section>
 
       {/* Pierwsza sekcja */}
       <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100 mb-10">
@@ -154,6 +203,22 @@ export default function UsuwanieNegatywnychOpiniiPage() {
         <p className="text-gray-800 leading-relaxed mb-4">
           Cały proces zgłaszania opinii wymaga cierpliwości, precyzji i znajomości zasad platformy. Nie zawsze kończy się sukcesem, ale dobrze przygotowane zgłoszenie – poparte dowodami, napisane profesjonalnie i zrozumiale – daje realną szansę na usunięcie treści szkodzącej reputacji firmy. W kolejnym rozdziale omówimy, dlaczego fałszywe opinie mogą stanowić poważne zagrożenie i jak ich obecność wpływa na działalność firmy.
         </p>
+      </section>
+
+      {/* Sekcja CTA */}
+      <section className="bg-gradient-to-br from-[#002a5c] to-[#1e4d8c] rounded-xl shadow-lg p-8 md:p-16 text-white text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">
+          Chcesz usunąć negatywną opinię z Google?
+        </h2>
+        <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+          Pomożemy Ci zadbać o reputację Twojej firmy. Wypełnij formularz, a nasi specjaliści skontaktują się z Tobą i przedstawią możliwości działania.
+        </p>
+        <a
+          href="/formularz-opinie"
+          className="inline-block bg-white text-[#002a5c] font-bold py-4 px-8 rounded-lg hover:bg-opacity-90 transition-all duration-200 text-lg"
+        >
+          Wypełnij formularz
+        </a>
       </section>
     </main>
   );
