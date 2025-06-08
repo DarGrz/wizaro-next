@@ -35,7 +35,7 @@ export default function WhoWeAre() {
         <p className="font-semibold">
           Zadzwoń: <a href="tel:+48792861513" className="text-[#002a5c] hover:underline">+48 792 861 513</a>
         </p>
-        <p className="text-xs text-gray-500 mt-1">Dostępny od poniedziałku do piątku, 9:00–17:00</p>
+        <p className="mt-1"><span className="text-xs text-white px-2 py-0.5 rounded bg-[#3EA34B] font-medium">czynne 24/7</span></p>
       </div>
 
       <div className="text-center text-gray-500 text-xs border-t pt-4 mt-6">

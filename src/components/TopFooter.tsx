@@ -23,8 +23,8 @@ export default function TopFooter() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
             <div>
-              <p className="font-medium text-gray-900 mb-1">Godziny dostępności:</p>
-              <p className="text-gray-600">Poniedziałek - Piątek<br/><span className="font-medium">9:00 – 17:00</span></p>
+              <p className="font-medium text-gray-900 mb-1">Dostępność:</p>
+              <p className="text-gray-600">Przyjmujemy zlecenia<br/>przez całą dobę</p>
             </div>
             <div>
               <p className="font-medium text-gray-900 mb-1">Kontakt:</p>

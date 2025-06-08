@@ -98,7 +98,7 @@ export default function Header() {
             <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline font-medium">
               <Phone size={16} className="mr-1" /> +48 792 861 513
             </a>
-            <span className="text-xs text-gray-500">Pon-Pt, 9:00-17:00</span>
+           
           </div>
           <button
             onClick={openModal}
@@ -137,7 +137,7 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 px-4 pb-4">
           <nav className="flex flex-col space-y-2 text-sm">
-             <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
+             <Link href="/o-nas" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
               O nas
             </Link>
             <div className="py-2">
@@ -157,7 +157,7 @@ export default function Header() {
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${servicesMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="pl-2 mt-2 space-y-2 border-l-2 border-gray-100 ml-1">
-                  <Link href="/uslugi/usuwanie-firmy-z-google" className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                  <Link href="/uslugi/usuwanie-firmy-z-google" onClick={toggleMenu} className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
                     <div className="mr-2 text-[#002a5c]">
                       <Trash2 size={16} />
                     </div>
@@ -166,7 +166,7 @@ export default function Header() {
                       <span className="block text-xs text-gray-500">Całkowite usunięcie profilu</span>
                     </div>
                   </Link>
-                  <Link href="/uslugi/usuwanie-negatywnych-opinii-z-google" className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                  <Link href="/uslugi/usuwanie-negatywnych-opinii-z-google" onClick={toggleMenu} className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
                     <div className="mr-2 text-[#002a5c]">
                       <Star size={16} />
                     </div>
@@ -175,7 +175,7 @@ export default function Header() {
                       <span className="block text-xs text-gray-500">Rozwiązywanie problemów z opiniami</span>
                     </div>
                   </Link>
-                  <Link href="/uslugi/usuwanie-opinii-i-profilu-z-gowork" className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                  <Link href="/uslugi/usuwanie-opinii-i-profilu-z-gowork" onClick={toggleMenu} className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
                     <div className="mr-2 text-[#002a5c]">
                       <Briefcase size={16} />
                     </div>
@@ -184,7 +184,7 @@ export default function Header() {
                       <span className="block text-xs text-gray-500">Zarządzanie opinami o pracodawcy</span>
                     </div>
                   </Link>
-                  <Link href="/uslugi/usuwanie-opinii-i-profilu-z-aleo" className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                  <Link href="/uslugi/usuwanie-opinii-i-profilu-z-aleo" onClick={toggleMenu} className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
                     <div className="mr-2 text-[#002a5c]">
                       <ShoppingBag size={16} />
                     </div>
@@ -196,17 +196,13 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            {/* <Link href="/opinie" className="text-gray-700 hover:text-[#002a5c]">
-              Opinie
-            </Link> */}
-            <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c] py-2">
+            <Link href="/kontakt" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2">
               Kontakt
             </Link>
             <div className="py-2 flex flex-col">
               <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline font-medium">
                 <Phone size={16} className="mr-1" /> +48 792 861 513
               </a>
-              <span className="text-xs text-gray-500">Pon-Pt, 9:00-17:00</span>
             </div>
             <div className='flex gap-2 py-2'>
               <button

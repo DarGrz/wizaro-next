@@ -3,107 +3,135 @@
 import React from "react";
 import Link from "next/link";
 import { Shield, Eye, AlertTriangle, FileText, ShoppingBag } from 'lucide-react';
+import BusinessTypeSelector from "@/components/BusinessTypeSelector";
+import BusinessTypeSelectorCTA from "@/components/BusinessTypeSelectorCTA";
 
 export default function UsuwanieOpiniiAleoPage() {
   return (
     <main className="max-w-5xl mx-auto px-2 md:px-8 py-10">
-      <h1 className="text-3xl md:text-4xl font-extrabold text-[#002a5c] mb-8 text-center">
+      <h1 className="text-3xl md:text-5xl font-extrabold text-[#002a5c] mb-8 text-center max-w-3xl mx-auto leading-tight">
         Usuwanie Opinii i Profilu z Aleo
       </h1>
 
-      {/* Sekcja wstępna */}
-      <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100 mb-10">
-        <h2 className="text-xl md:text-2xl font-bold text-[#002a5c] mb-4">
-          Dlaczego zarządzanie profilem i opiniami w Aleo jest ważne dla Twojej firmy?
-        </h2>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          Portal Aleo to jedna z najważniejszych platform B2B w Polsce, gdzie przedsiębiorcy mogą znaleźć dostawców, klientów oraz zweryfikować wiarygodność potencjalnych partnerów biznesowych. Opinie i informacje zamieszczone na Twoim profilu Aleo mają bezpośredni wpływ na decyzje zakupowe innych firm oraz na postrzeganie wiarygodności Twojego biznesu.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          Negatywne opinie lub nieaktualne informacje w profilu Aleo mogą skutecznie blokować rozwój Twojej firmy w sektorze B2B. Potencjalni partnerzy biznesowi, zanim podejmą współpracę, często sprawdzają opinie i dane na platformach takich jak Aleo, traktując je jako wiarygodne źródło informacji o rzetelności i profesjonalizmie dostawcy.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          Istnieją różne okoliczności, które mogą wymagać interwencji w profil na Aleo. Może to być nieaktualny profil firmy po zmianie nazwy lub formy prawnej, nieprawdziwe informacje wprowadzone przez osoby trzecie, lub negatywne opinie, które nie mają odzwierciedlenia w rzeczywistości. W niektórych przypadkach firma może również potrzebować całkowitego usunięcia profilu z platformy.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          W Wizaro.pl oferujemy kompleksowe wsparcie w zakresie zarządzania profilami firmowymi na platformach B2B takich jak Aleo. Nasze działania są zawsze zgodne z regulaminem serwisu oraz prawem, zapewniając skuteczne i etyczne rozwiązania problemów wizerunkowych w przestrzeni biznesowej.
-        </p>
+      {/* Hero section z BusinessTypeSelectorCTA */}
+      <div className="mb-16">
+        <BusinessTypeSelectorCTA />
+      </div>
 
-        <div className="flex justify-center mt-8">
-          <Link href="/formularz-profil" className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
-            Skonsultuj swój przypadek z ekspertem
-          </Link>
+      {/* Sekcja wstępna */}
+      <section className="bg-white rounded-xl shadow-lg p-6 md:p-14 border border-gray-100 mb-10 transform hover:scale-[1.02] transition-all duration-300">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#002a5c] mb-6 leading-tight">
+            Dlaczego zarządzanie profilem i opiniami w Aleo jest ważne dla Twojej firmy?
+          </h2>
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Portal Aleo to jedna z najważniejszych platform B2B w Polsce, gdzie przedsiębiorcy mogą znaleźć dostawców, klientów oraz zweryfikować wiarygodność potencjalnych partnerów biznesowych. Opinie i informacje zamieszczone na Twoim profilu Aleo mają bezpośredni wpływ na decyzje zakupowe innych firm oraz na postrzeganie wiarygodności Twojego biznesu.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Negatywne opinie lub nieaktualne informacje w profilu Aleo mogą skutecznie blokować rozwój Twojej firmy w sektorze B2B. Potencjalni partnerzy biznesowi, zanim podejmą współpracę, często sprawdzają opinie i dane na platformach takich jak Aleo, traktując je jako wiarygodne źródło informacji o rzetelności i profesjonalizmie dostawcy.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              W Wizaro.pl oferujemy kompleksowe wsparcie w zakresie zarządzania profilami firmowymi na platformach B2B takich jak Aleo. Nasze działania są zawsze zgodne z regulaminem serwisu oraz prawem, zapewniając skuteczne i etyczne rozwiązania problemów wizerunkowych w przestrzeni biznesowej.
+            </p>
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <Link 
+              href="/formularz-profil" 
+              className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-lg"
+            >
+              Skonsultuj swój przypadek z ekspertem
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Sekcja o wyzwaniach */}
-      <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100 mb-10">
-        <h2 className="text-xl md:text-2xl font-bold text-[#002a5c] mb-4">
-          5 najczęstszych wyzwań związanych z profilem w Aleo
-        </h2>
-        
-        <div className="space-y-8 mt-6">
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <AlertTriangle size={24} />
+      <section className="bg-gradient-to-br from-white to-[#f8fafc] rounded-xl shadow-lg p-6 md:p-14 border border-gray-100 mb-16">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#002a5c] mb-8 text-center">
+            5 najczęstszych wyzwań związanych z profilem w Aleo
+          </h2>
+          
+          <div className="grid gap-8 mt-8">
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <AlertTriangle size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Nieprawdziwe dane firmowe</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Błędne lub nieaktualne informacje o firmie, które mogą wprowadzać w błąd potencjalnych partnerów biznesowych.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Nieprawdziwe lub nieaktualne dane firmowe</h3>
-              <p className="text-gray-700 mt-2">
-                Dane firmowe w Aleo mogą być nieaktualne lub nieprawidłowe, szczególnie jeśli firma przeszła przez zmiany strukturalne, rebranding lub zmianę siedziby. Nieaktualne informacje mogą wprowadzać w błąd potencjalnych partnerów biznesowych i podważać wiarygodność przedsiębiorstwa na rynku B2B.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <ShoppingBag size={24} />
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <ShoppingBag size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Nieautoryzowane oferty</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Oferty i produkty dodane bez Twojej wiedzy i zgody, często z nieaktualnymi cenami lub warunkami.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Nieprawidłowa kategoryzacja produktów i usług</h3>
-              <p className="text-gray-700 mt-2">
-                Aleo kategoryzuje firmy według oferowanych produktów i usług. Nieprawidłowe przypisanie do kategorii może skutkować tym, że Twoja firma nie będzie widoczna dla właściwej grupy docelowej, a potencjalni klienci nie będą mogli Cię znaleźć podczas wyszukiwania dostawców w swojej branży.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <Eye size={24} />
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <Shield size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Naruszenie prywatności</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Ujawnienie poufnych informacji biznesowych lub danych wrażliwych bez autoryzacji.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Brak kontroli nad profilem</h3>
-              <p className="text-gray-700 mt-2">
-                Wiele firm odkrywa swój profil na Aleo dopiero wtedy, gdy pojawią się problemy. Brak oficjalnego zarządzania profilem oznacza, że nie możesz aktualizować oferty, odpowiadać na zapytania czy kontrolować informacji widocznych dla potencjalnych partnerów biznesowych. To znacząco ogranicza możliwości wykorzystania platformy do rozwoju biznesu.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <Shield size={24} />
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <Eye size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Konkurencyjny sabotaż</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Celowe działania konkurencji mające na celu zaszkodzenie reputacji Twojej firmy w środowisku B2B.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Negatywne oceny i opinie</h3>
-              <p className="text-gray-700 mt-2">
-                Negatywne opinie na platformie Aleo mogą być szczególnie problematyczne w kontekście B2B, gdzie wiarygodność i zaufanie są fundamentami relacji biznesowych. Opinie, które są nieprawdziwe, tendencyjne lub pochodzące od konkurencji, mogą znacząco zaszkodzić reputacji firmy i utrudnić pozyskiwanie nowych kontraktów.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <FileText size={24} />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Trudności w usunięciu lub edycji profilu</h3>
-              <p className="text-gray-700 mt-2">
-                W niektórych sytuacjach firma może potrzebować całkowitego usunięcia profilu z Aleo - na przykład po zakończeniu działalności, fuzji lub znaczącej zmianie profilu biznesowego. Proces ten jest często skomplikowany i wymaga znajomości procedur oraz odpowiedniej komunikacji z administracją platformy.
-              </p>
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <FileText size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Dublujące się profile</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Wielokrotne profile tej samej firmy, powodujące chaos informacyjny i utrudniające zarządzanie wizerunkiem.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Drugi BusinessTypeSelector */}
+      <div className="mb-16">
+        <BusinessTypeSelector />
+      </div>
 
       {/* Sekcja o procesie zarządzania */}
       <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100 mb-10">
@@ -208,29 +236,74 @@ export default function UsuwanieOpiniiAleoPage() {
         </div>
       </section>
 
-      {/* Sekcja podsumowująca */}
-      <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100">
-        <h2 className="text-xl md:text-2xl font-bold text-[#002a5c] mb-4">
-          Jak możemy pomóc w zarządzaniu Twoim profilem na Aleo?
-        </h2>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          W Wizaro.pl oferujemy kompleksowe wsparcie w zakresie zarządzania profilem i opiniami na platformie Aleo. Nasze usługi są zawsze zgodne z regulaminem serwisu oraz obowiązującym prawem, co zapewnia bezpieczeństwo i skuteczność podejmowanych działań.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          Nasz zespół ekspertów przeprowadzi dokładną analizę Twojego profilu, zidentyfikuje obszary wymagające poprawy oraz opracuje strategię dostosowaną do specyfiki Twojego biznesu. Możemy pomóc w oficjalnym przejęciu kontroli nad profilem, przygotowaniu profesjonalnych odpowiedzi na zapytania i opinie oraz w skutecznym zgłaszaniu treści naruszających regulamin.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          Wspieramy również w kompleksowej optymalizacji profilu, aby maksymalnie zwiększyć jego widoczność i atrakcyjność dla potencjalnych partnerów biznesowych. Obejmuje to przygotowanie profesjonalnego opisu firmy, właściwą kategoryzację oferowanych produktów i usług oraz dodanie elementów budujących wiarygodność biznesową.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          W uzasadnionych przypadkach pomagamy również w procesie usunięcia profilu z platformy, przygotowując niezbędną dokumentację i prowadząc komunikację z administracją Aleo. Nasze wieloletnie doświadczenie w zarządzaniu reputacją online pozwala nam skutecznie wspierać firmy nawet w najbardziej skomplikowanych sytuacjach.
-        </p>
+      {/* Sekcja SocialProof */}
+      <section className="bg-white rounded-xl shadow-lg p-6 md:p-14 border border-gray-100 mb-16">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#002a5c] mb-8">
+            Zaufali nam
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="bg-[#f8fafc] p-6 rounded-lg">
+              <div className="flex flex-col h-full">
+                <div className="flex-grow">
+                  <p className="text-gray-700 italic mb-4">
+                    &ldquo;Dzięki Wizaro udało się uporządkować nasz profil na Aleo i usunąć nieaktualne dane. Teraz nasi partnerzy biznesowi mają dostęp do prawdziwych informacji.&rdquo;
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <p className="font-semibold text-[#002a5c]">Piotr M.</p>
+                  <p className="text-sm text-gray-600">Właściciel hurtowni</p>
+                </div>
+              </div>
+            </div>
 
-        <div className="flex justify-center mt-8">
-          <Link href="/formularz-profil" className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
-            Skorzystaj z naszej pomocy już dziś
-          </Link>
+            {/* Testimonial 2 */}
+            <div className="bg-[#f8fafc] p-6 rounded-lg">
+              <div className="flex flex-col h-full">
+                <div className="flex-grow">
+                  <p className="text-gray-700 italic mb-4">
+                    &ldquo;Profesjonalna obsługa i szybkie działanie. Problem z nieprawdziwymi opiniami konkurencji został rozwiązany w ciągu kilku dni.&rdquo;
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <p className="font-semibold text-[#002a5c]">Katarzyna L.</p>
+                  <p className="text-sm text-gray-600">Dyrektor handlowy</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-[#f8fafc] p-6 rounded-lg">
+              <div className="flex flex-col h-full">
+                <div className="flex-grow">
+                  <p className="text-gray-700 italic mb-4">
+                    &ldquo;Polecam usługi Wizaro każdej firmie, która chce zadbać o swój wizerunek w sektorze B2B. Skuteczne działanie i pełen profesjonalizm.&rdquo;
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <p className="font-semibold text-[#002a5c]">Marcin R.</p>
+                  <p className="text-sm text-gray-600">CEO firmy produkcyjnej</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* Końcowa sekcja z CTA i BusinessTypeSelector */}
+      <section className="bg-gradient-to-br from-[#002a5c] to-[#004a8c] rounded-xl shadow-lg p-6 md:p-14 text-white mb-10">
+        <div className="max-w-3xl mx-auto text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Zabezpiecz reputację swojej firmy w sektorze B2B
+          </h2>
+          <p className="text-lg opacity-90 mb-8">
+            Nie pozwól, aby nieaktualne dane czy nieprawdziwe opinie ograniczały rozwój Twojego biznesu. Działaj teraz!
+          </p>
+        </div>
+        
+        <BusinessTypeSelector />
       </section>
     </main>
   );

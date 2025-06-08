@@ -3,107 +3,135 @@
 import React from "react";
 import Link from "next/link";
 import { Briefcase, Shield, Eye, AlertTriangle, FileText } from 'lucide-react';
+import BusinessTypeSelector from "@/components/BusinessTypeSelector";
+import BusinessTypeSelectorCTA from "@/components/BusinessTypeSelectorCTA";
 
 export default function UsuwanieOpiniiGoWorkPage() {
   return (
     <main className="max-w-5xl mx-auto px-2 md:px-8 py-10">
-      <h1 className="text-3xl md:text-4xl font-extrabold text-[#002a5c] mb-8 text-center">
+      <h1 className="text-3xl md:text-5xl font-extrabold text-[#002a5c] mb-8 text-center max-w-3xl mx-auto leading-tight">
         Usuwanie Opinii i Profilu z GoWork
       </h1>
 
-      {/* Sekcja wstępna */}
-      <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100 mb-10">
-        <h2 className="text-xl md:text-2xl font-bold text-[#002a5c] mb-4">
-          Dlaczego zarządzanie profilem i opiniami w GoWork jest ważne dla Twojej firmy?
-        </h2>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          Portal GoWork to jedna z najpopularniejszych w Polsce platform, gdzie obecni i byli pracownicy dzielą się opiniami o pracodawcach. Opinie te są powszechnie widoczne i mogą znacząco wpływać na postrzeganie Twojej firmy przez potencjalnych kandydatów, partnerów biznesowych oraz klientów.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          Negatywne opinie w GoWork, nawet jeśli są nieuzasadnione lub wprowadzające w błąd, mogą utrudniać rekrutację wartościowych pracowników, obniżać morale obecnego zespołu oraz szkodzić wizerunkowi marki. W skrajnych przypadkach, profil z wieloma krytycznymi komentarzami może stać się poważną przeszkodą w rozwoju biznesu.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          Istnieją różne sytuacje, w których zarządzanie profilem na GoWork staje się koniecznością. Może to być przypadek nieaktualnego profilu firmy, która zmieniła właściciela lub przeszła gruntowną transformację kulturową. Mogą to być również nieprawdziwe lub złośliwe opinie pozostawione przez osoby, które nigdy nie były pracownikami, albo profil stworzony bez Twojej wiedzy i zgody.
-        </p>
-        <p className="text-gray-800 leading-relaxed mb-4">
-          W Wizaro.pl rozumiemy, jak ważna jest reputacja pracodawcy i oferujemy kompleksowe wsparcie w zakresie zarządzania profilami na platformach takich jak GoWork. Nasze działania są zawsze zgodne z regulaminem serwisu oraz obowiązującym prawem, zapewniając skuteczne i etyczne rozwiązania problemów wizerunkowych.
-        </p>
+      {/* Hero section z BusinessTypeSelectorCTA */}
+      <div className="mb-16">
+        <BusinessTypeSelectorCTA />
+      </div>
 
-        <div className="flex justify-center mt-8">
-          <Link href="/formularz-profil" className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
-            Skonsultuj swój przypadek z ekspertem
-          </Link>
+      {/* Sekcja wstępna */}
+      <section className="bg-white rounded-xl shadow-lg p-6 md:p-14 border border-gray-100 mb-10 transform hover:scale-[1.02] transition-all duration-300">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#002a5c] mb-6 leading-tight">
+            Dlaczego zarządzanie profilem i opiniami w GoWork jest ważne dla Twojej firmy?
+          </h2>
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Portal GoWork to jedna z najpopularniejszych w Polsce platform, gdzie obecni i byli pracownicy dzielą się opiniami o pracodawcach. Opinie te są powszechnie widoczne i mogą znacząco wpływać na postrzeganie Twojej firmy przez potencjalnych kandydatów, partnerów biznesowych oraz klientów.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Negatywne opinie w GoWork, nawet jeśli są nieuzasadnione lub wprowadzające w błąd, mogą utrudniać rekrutację wartościowych pracowników, obniżać morale obecnego zespołu oraz szkodzić wizerunkowi marki. W skrajnych przypadkach, profil z wieloma krytycznymi komentarzami może stać się poważną przeszkodą w rozwoju biznesu.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              W Wizaro.pl rozumiemy, jak ważna jest reputacja pracodawcy i oferujemy kompleksowe wsparcie w zakresie zarządzania profilami na platformach takich jak GoWork. Nasze działania są zawsze zgodne z regulaminem serwisu oraz obowiązującym prawem, zapewniając skuteczne i etyczne rozwiązania problemów wizerunkowych.
+            </p>
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <Link 
+              href="/formularz-profil" 
+              className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-lg"
+            >
+              Skonsultuj swój przypadek z ekspertem
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Sekcja o wyzwaniach */}
-      <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100 mb-10">
-        <h2 className="text-xl md:text-2xl font-bold text-[#002a5c] mb-4">
-          5 najczęstszych wyzwań związanych z profilem w GoWork
-        </h2>
-        
-        <div className="space-y-8 mt-6">
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <AlertTriangle size={24} />
+      <section className="bg-gradient-to-br from-white to-[#f8fafc] rounded-xl shadow-lg p-6 md:p-14 border border-gray-100 mb-16">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#002a5c] mb-8 text-center">
+            5 najczęstszych wyzwań związanych z profilem w GoWork
+          </h2>
+          
+          <div className="grid gap-8 mt-8">
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <AlertTriangle size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Fałszywe opinie</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Nieuzasadnione, nieprawdziwe opinie od osób, które nigdy nie były pracownikami Twojej firmy.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Fałszywe opinie</h3>
-              <p className="text-gray-700 mt-2">
-                Nieprawdziwe opinie wystawiane przez osoby, które nigdy nie były pracownikami firmy, to poważny problem. Mogą one pochodzić od konkurencji, niezadowolonych klientów lub osób trzecich z osobistymi pobudkami. Takie komentarze często zawierają nieprawdziwe informacje, które mogą zniekształcać rzeczywisty obraz firmy jako pracodawcy.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <Briefcase size={24} />
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <Briefcase size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Nieautoryzowany profil</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Profil firmy utworzony bez Twojej wiedzy i zgody, zawierający nieaktualne lub błędne informacje.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Nieaktualne informacje o firmie</h3>
-              <p className="text-gray-700 mt-2">
-                Firmy ewoluują - zmieniają strukturę, kulturę organizacyjną, warunki zatrudnienia czy politykę wynagradzania. Opinie sprzed kilku lat mogą nie odzwierciedlać obecnej sytuacji, a mimo to nadal wpływać na decyzje potencjalnych kandydatów. Brak możliwości aktualizacji lub oznaczenia komentarzy jako historyczne stanowi istotne wyzwanie.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <Eye size={24} />
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <Shield size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Naruszenie prywatności</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Komentarze zawierające poufne informacje lub dane osobowe pracowników czy kadry zarządzającej.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Brak kontroli nad profilem</h3>
-              <p className="text-gray-700 mt-2">
-                Wiele firm odkrywa swój profil na GoWork dopiero wtedy, gdy pojawią się tam negatywne opinie. Brak oficjalnego zarządzania profilem oznacza, że firma nie może dodać własnego opisu, zaktualizować danych kontaktowych czy reagować na komentarze. To utrudnia budowanie prawdziwego obrazu organizacji.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <Shield size={24} />
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <Eye size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Konkurencyjny sabotaż</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Celowe działania konkurencji mające na celu zaszkodzenie reputacji Twojej firmy.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Naruszenia prywatności i regulaminu</h3>
-              <p className="text-gray-700 mt-2">
-                Niektóre opinie na GoWork zawierają treści, które naruszają regulamin platformy lub przepisy o ochronie danych osobowych - na przykład wymieniają z imienia i nazwiska pracowników, zawierają wulgaryzmy lub oszczerstwa. Identyfikacja takich komentarzy i skuteczne zgłaszanie ich do administratorów wymaga znajomości zarówno regulaminu, jak i prawa.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row gap-4 items-start">
-            <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
-              <FileText size={24} />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#002a5c]">Trudności w usunięciu lub edycji profilu</h3>
-              <p className="text-gray-700 mt-2">
-                W niektórych sytuacjach firma może potrzebować całkowitego usunięcia profilu z GoWork - na przykład po fuzji, zmianie nazwy lub zamknięciu działalności. Proces ten bywa skomplikowany i wymaga odpowiedniego przygotowania dokumentacji oraz znajomości procedur serwisu.
-              </p>
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="bg-[#eef2f7] p-3 rounded-full h-12 w-12 flex items-center justify-center text-[#002a5c] shrink-0">
+                  <FileText size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#002a5c] mb-2">Nieaktualne informacje</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Historyczne opinie nieodzwierciedlające obecnej kultury organizacyjnej po przeprowadzonych zmianach.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Drugi BusinessTypeSelector */}
+      <div className="mb-16">
+        <BusinessTypeSelector />
+      </div>
 
       {/* Sekcja o procesie usuwania */}
       <section className="bg-white rounded-xl shadow p-6 md:p-14 border border-gray-100 mb-10">
@@ -231,6 +259,76 @@ export default function UsuwanieOpiniiGoWorkPage() {
             Skorzystaj z naszej pomocy już dziś
           </Link>
         </div>
+      </section>
+
+      {/* Sekcja SocialProof */}
+      <section className="bg-white rounded-xl shadow-lg p-6 md:p-14 border border-gray-100 mb-16">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#002a5c] mb-8">
+            Zaufali nam
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="bg-[#f8fafc] p-6 rounded-lg">
+              <div className="flex flex-col h-full">
+                <div className="flex-grow">
+                  <p className="text-gray-700 italic mb-4">
+                    &ldquo;Profesjonalne podejście i skuteczne działanie. W ciągu 2 tygodni udało się usunąć wszystkie nieprawdziwe opinie.&rdquo;
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <p className="font-semibold text-[#002a5c]">Anna K.</p>
+                  <p className="text-sm text-gray-600">Właścicielka firmy rekrutacyjnej</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="bg-[#f8fafc] p-6 rounded-lg">
+              <div className="flex flex-col h-full">
+                <div className="flex-grow">
+                  <p className="text-gray-700 italic mb-4">
+                    &ldquo;Wizaro pomogło nam odzyskać kontrolę nad profilem firmy na GoWork. Teraz możemy skutecznie zarządzać naszym wizerunkiem.&rdquo;
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <p className="font-semibold text-[#002a5c]">Marek W.</p>
+                  <p className="text-sm text-gray-600">Dyrektor HR</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-[#f8fafc] p-6 rounded-lg">
+              <div className="flex flex-col h-full">
+                <div className="flex-grow">
+                  <p className="text-gray-700 italic mb-4">
+                    &ldquo;Szybka i profesjonalna pomoc w trudnej sytuacji. Polecam każdej firmie, która zmaga się z nieuczciwymi opiniami.&rdquo;
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <p className="font-semibold text-[#002a5c]">Tomasz B.</p>
+                  <p className="text-sm text-gray-600">CEO firmy produkcyjnej</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Końcowa sekcja z CTA i BusinessTypeSelector */}
+      <section className="bg-gradient-to-br from-[#002a5c] to-[#004a8c] rounded-xl shadow-lg p-6 md:p-14 text-white mb-10">
+        <div className="max-w-3xl mx-auto text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Odzyskaj kontrolę nad wizerunkiem swojej firmy
+          </h2>
+          <p className="text-lg opacity-90 mb-8">
+            Nie czekaj, aż negatywne opinie zaszkodzą Twojemu biznesowi. Działaj teraz!
+          </p>
+        </div>
+        
+        <BusinessTypeSelector />
       </section>
     </main>
   );
