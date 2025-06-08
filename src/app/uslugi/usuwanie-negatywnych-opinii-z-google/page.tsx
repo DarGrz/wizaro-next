@@ -4,12 +4,12 @@ import { Shield, Clock, CheckCircle } from 'lucide-react';
 import BusinessTypeSelector from '@/components/BusinessTypeSelector';
 import BusinessTypeSelectorCTA from '@/components/BusinessTypeSelectorCTA';
 import SocialProof from '@/components/SocialProof';
-import InfoModal from '@/components/InfoModal';
+// import InfoModal from '@/components/InfoModal';
 
 export default function UsuwanieNegatywnychOpiniiPage() {
   return (
     <main className="max-w-5xl mx-auto px-2 md:px-8 py-10">
-      <InfoModal />
+   
       
       <h1 className="text-3xl md:text-4xl font-extrabold text-[#002a5c] mb-8 text-center">
         Usuwanie Negatywnych Opinii z Google
