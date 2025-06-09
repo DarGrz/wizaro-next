@@ -64,7 +64,7 @@ export default function GoogleBusinessRemoval() {
                 <svg className="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span className="text-gray-700">Pomoc w utworzeniu nowego, czystego profilu</span>
+                <span className="text-gray-700">Usunięcie wszystkich opinii z Google Maps</span>
               </li>
             </ul>            <Link href="/formularz-profil" className="w-full md:w-auto block">
               <button className="px-6 py-3 bg-[#002a5c] text-white rounded-md font-semibold hover:bg-[#001e47] transition w-full md:w-auto">
