@@ -40,7 +40,7 @@ export default async function DashboardPage() {
     .from('visitors')
     .select('*')
     .order('created_at', { ascending: false })
-    .limit(10);
+    .limit(500);
 
   // 📊 Aggregated data for chart - hourly breakdown for today
   const chartData = todayVisitors?.reduce((acc, v) => {
