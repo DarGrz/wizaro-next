@@ -184,7 +184,7 @@ export default function Header() {
                       <span className="block text-xs text-gray-500">Zarządzanie opinami o pracodawcy</span>
                     </div>
                   </Link>
-                  <Link href="/uslugi/usuwanie-opinii-i-opinii-z-aleo" onClick={toggleMenu} className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
+                  <Link href="/uslugi/usuwanie-opinii-i-profilu-z-aleo" onClick={toggleMenu} className="flex items-center py-2 pl-3 text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
                     <div className="mr-2 text-[#002a5c]">
                       <ShoppingBag size={16} />
                     </div>
