@@ -12,6 +12,7 @@ import ForWhom from "./ForWhom";
 import GoogleBusinessRemoval from "./GoogleBusinessRemoval";
 import GoogleBusinessReset from "./GoogleBusinessReset";
 import GuaranteeSection from "./GuaranteeSection";
+import NegativeReviewRemoval from "./NegativeReviewRemoval";
 import ServiceComparisonTable from "./ServiceComparisonTable";
 import SocialProof from "./SocialProof";
 import WhyTrustUs from "./WhyTrustUs";
@@ -45,6 +46,12 @@ export default function StartPage() {
 
       <div className="md:flex py-10 md:gap-8 ">
         <GuaranteeSection />
+      </div>
+
+      {/* Sekcja usuwania firmy z Google */}
+      {/* Sekcja usuwania negatywnych opinii */}
+      <div className="md:flex py-10 md:gap-8">
+        <NegativeReviewRemoval />
       </div>
 
       {/* Sekcja usuwania firmy z Google */}

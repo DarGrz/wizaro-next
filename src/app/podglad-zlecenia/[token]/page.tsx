@@ -85,7 +85,15 @@ export default async function Page({ params }: Props) {
           <div><strong>Firma:</strong> {order.companies?.name}</div>
           <div><strong>Email:</strong> {order.companies?.email}</div>
           <div><strong>Telefon:</strong> {order.companies?.phone}</div>
-          <div><strong>Data utworzenia:</strong> {new Date(order.created_at).toLocaleString('pl-PL')}</div>
+         <div>
+  <strong>Data utworzenia:</strong> {
+    (() => {
+      const date = new Date(order.created_at);
+      // No need to manually adjust, just use proper locale and timezone
+      return date.toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' });
+    })()
+  }
+</div>
           <div><strong>Typ zamówienia:</strong> {order.type}</div>
           <div><strong>Cena:</strong> {order.companies?.price ? `${order.companies.price} PLN` : '—'}</div>
           
