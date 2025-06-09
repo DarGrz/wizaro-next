@@ -183,7 +183,7 @@ export default function CompanyFormRemoval() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           company_id,
-          type: "żądanie usunięcia profilu",
+          type: "Usuwanie Profilu Firmy",
           payer_id: currentPayerId,
         }),
       });
