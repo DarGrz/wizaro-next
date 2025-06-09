@@ -45,7 +45,7 @@ export default function RootLayout({
         {/* Open Graph tags for social sharing */}
         <meta property="og:title" content="Wizaro.pl - Ochrona Wizerunku Online" />
         <meta property="og:description" content="Usuwamy szkodliwe opinie z internetu. Szybko i dyskretnie usuniemy informacje o Twojej firmie – legalnie i bez zbędnych komplikacji." />
-        <meta property="og:image" content="https://wizaro.pl/images/wizaro-logo.png" />
+        <meta property="og:image" content="https://wizaro.pl/images/wizaro-share.png" />
         <meta property="og:url" content="https://wizaro.pl" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Wizaro.pl" />
@@ -54,7 +54,7 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Wizaro.pl - Ochrona Wizerunku Online" />
         <meta name="twitter:description" content="Usuwamy szkodliwe opinie z internetu. Szybko i dyskretnie usuniemy informacje o Twojej firmie – legalnie i bez zbędnych komplikacji." />
-        <meta name="twitter:image" content="https://wizaro.pl/images/wizaro-logo.png" />
+        <meta name="twitter:image" content="https://wizaro.pl/images/wizaro-share.png" />
         
         {/* Cookiebot implementation with client-only approach to avoid hydration errors */}
         <Script
