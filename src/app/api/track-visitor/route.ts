@@ -16,6 +16,11 @@ export async function POST(req: NextRequest) {
 
     const { referrer, landing_page, utm, gclid, keyword } = data;
 
+    // Ustawienie strefy czasowej dla Polski
+    const now = new Date();
+    // Formatujemy datę w ISO string z informacją o strefie czasowej
+    const created_at = now.toISOString();
+
     const { error } = await supabase.from('visitors').insert([
       {
         ip_address: ip,
@@ -29,6 +34,7 @@ export async function POST(req: NextRequest) {
         utm_keyword: utm?.keyword,
         gclid: gclid || null,
         keyword: keyword || null,
+        created_at: created_at, // Dodajemy explicit datę
       },
     ]);
 
