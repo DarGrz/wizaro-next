@@ -35,6 +35,13 @@ export default async function DashboardPage() {
     .from('documents')
     .select('*', { count: 'exact', head: true });
 
+  // 📨 Fetch recent visitors
+  const { data: recent } = await supabase
+    .from('visitors')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(10);
+
   // 📊 Aggregated data for chart - hourly breakdown for today
   const chartData = todayVisitors?.reduce((acc, v) => {
     const date = new Date(v.created_at);
@@ -86,7 +93,46 @@ export default async function DashboardPage() {
       <h2 className="text-xl font-bold mb-2">📈 Odwiedziny dzisiaj (godzinowo)</h2>
       <VisitorsChart data={chartArray} />
 
-      {/* Rest of your component remains unchanged */}
+     <h2 className="text-xl font-bold mb-2 mt-8">🕵️‍♂️ Ostatnie odwiedziny</h2>
+      <div className="bg-white shadow rounded-xl overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead className="bg-gray-100 text-left">
+            <tr>
+              <th className="p-2">Data</th>
+              <th className="p-2">IP</th>
+              <th className="p-2">gclid</th>
+              <th className="p-2">keyword</th>
+              <th className="p-2">Referrer</th>
+              <th className="p-2">Landing</th>
+              <th className="p-2">UTM Source</th>
+              <th className="p-2">Campaign</th>
+              <th className="p-2">Lokalizacja</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recent?.map((v) => {
+              const ip = v.ip_address;
+              return (
+                <tr key={v.id} className="border-t hover:bg-gray-50">
+                  <td className="p-2">
+                    {new Date(v.created_at).toLocaleString('pl-PL', {
+                      timeZone: 'Europe/Warsaw',
+                    })}
+                  </td>
+                  <td className="p-2 font-mono">{ip || '—'}</td>
+                  <td className="p-2">{v.gclid || '—'}</td>
+                  <td className="p-2">{v.keyword || '—'}</td>
+                  <td className="p-2">{v.location || '—'}</td>
+                  <td className="p-2">{v.referrer || '—'}</td>
+                  <td className="p-2">{v.landing_page}</td>
+                  <td className="p-2">{v.utm_source || '—'}</td>
+                  <td className="p-2">{v.utm_campaign || '—'}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </main>
   );
 }
