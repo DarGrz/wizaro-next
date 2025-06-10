@@ -101,7 +101,7 @@ export default function CompanyFormRemoval() {
 
   const calculatePriceForLink = (url: string): number => {
     const lowerUrl = url.toLowerCase();
-    if (lowerUrl.includes("map") || lowerUrl.includes("google") || lowerUrl.includes("goo")) {
+    if (lowerUrl.includes("map") || lowerUrl.includes("google") || lowerUrl.includes("goo") ||  lowerUrl.includes("g.co") ) {
       return 129900;
     }
     if (
