@@ -178,13 +178,22 @@ export default function CompanyFormRemoval() {
       });
       if (!res.ok) throw new Error("Błąd zapisu danych firmy i zgłoszeń");
       const data = await res.json();
-      const company_id = data.company_id;      const docRes = await fetch("/api/documents", {
+      const company_id = data.company_id;
+      
+      const docRes = await fetch("/api/documents", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           company_id,
-          type: "Usuwanie Profilu Firmy",
+          type: "żądanie usunięcia firmy",
           payer_id: currentPayerId,
+          totalPrice: totalPrice,
+          items: removals.map(removal => ({
+            url: removal.url,
+            name: removal.companyName,
+            nip: removal.nip,
+            price: calculatePriceForLink(removal.url)
+          }))
         }),
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
