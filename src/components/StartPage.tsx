@@ -18,6 +18,7 @@ import WhyTrustUs from "./WhyTrustUs";
 import WhyRemoveProfilesAndReviews from "./WhyRemoveProfilesAndReviews";
 import Link from "next/link";
 import MobileActionButton from "./MobileActionButton";
+import NegativeReviewRemoval from "./NegativeReviewRemoval";
 
 
 
@@ -46,6 +47,11 @@ export default function StartPage() {
       <div className="md:flex py-10 md:gap-8 ">
         <GuaranteeSection />
       </div>
+      <div className="md:flex py-10 md:gap-8 ">
+        <NegativeReviewRemoval />
+      </div>
+
+
 
    
 
