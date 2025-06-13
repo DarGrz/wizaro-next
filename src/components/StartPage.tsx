@@ -35,7 +35,7 @@ export default function StartPage() {
            Usuwamy szkodliwe opinie z internetu
           </h1>
           <p className="text-gray-600 text-center mb-8">
-            Szybko i dyskretnie usuniemy informacje o Twojej firmie – legalnie i bez zbędnych komplikacji. Wystarczy, że wypełnisz prosty formularz. Płatność następuje dopiero po wykonaniu usługi.
+                 Usuń profil firmy lub wybrane opinie. Skutecznie likwidujemy niechciane treści z Map Google, GoWork, Aleo i innych serwisów. Płatność następuje dopiero po wykonaniu usługi.
           </p>
           
         </div>
