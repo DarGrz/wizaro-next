@@ -42,7 +42,7 @@ export default function BusinessTypeSelectorMobile() {
               className="absolute inset-0 p-6 flex flex-col justify-center items-center"
             >
               <div className="h-[100px] flex flex-col items-center justify-center w-full">
-                <h1 className="text-2xl font-semibold text-center text-gray-900 mb-3">
+                <h1 className="text-3xl font-bold text-center text-gray-900 mb-3">
                   Usuń Opinie lub Profil Swojej Firmy
                 </h1>
                 <p className="text-gray-600 text-center text-sm mb-6">
