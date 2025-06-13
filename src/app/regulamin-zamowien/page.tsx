@@ -41,6 +41,7 @@ export default function RegulaminZamowienPage() {
           <ul className="list-disc pl-6 space-y-1 text-gray-800">
             <li>Usługodawca wykonuje usługę z należytą starannością, jednak nie ponosi odpowiedzialności za decyzje podmiotów trzecich, od których może zależeć skuteczność usługi.</li>
             <li>Usługodawca nie ponosi odpowiedzialności za skutki wynikające z podania nieprawdziwych, niekompletnych lub wprowadzających w błąd danych przez Klienta.</li>
+            <li>W przypadku usług polegających na usuwaniu opinii lub recenzji, Usługodawca nie ponosi odpowiedzialności za ewentualne przywrócenie usuniętej opinii przez administratora serwisu, ani za nowe opinie lub recenzje dodane przez tego samego autora po wykonaniu usługi. Usługa dotyczy wyłącznie konkretnych, istniejących w momencie zlecenia treści.</li>
           </ul>
         </section>
         <section>
