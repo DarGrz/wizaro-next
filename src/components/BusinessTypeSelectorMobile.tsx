@@ -29,7 +29,7 @@ export default function BusinessTypeSelectorMobile() {
   };
 
   return (
-    <div className="relative px-2 w-full mx-auto">
+    <div className="relative px-2 w-full mx-auto mt-5">
       <div className="bg-white rounded  p-6 w-full h-[280px] overflow-hidden flex flex-col justify-between relative">
         <AnimatePresence mode="wait">
           {step === 'start' && (
@@ -50,7 +50,7 @@ export default function BusinessTypeSelectorMobile() {
                 </p>
                 <button
                   onClick={() => setStep('choice')}
-                  className="w-full max-w-xs h-12 bg-[#002a5c] text-white rounded py-2 font-semibold text-base hover:bg-[#001e47] transition"
+                  className="w-full max-w-xs h-12 bg-[#002a5c] text-white rounded py-2 font-semibold text-xl text-base hover:bg-[#001e47] transition"
                 >
                   Start
                 </button>
