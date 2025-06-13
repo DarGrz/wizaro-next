@@ -29,7 +29,7 @@ export default function BusinessTypeSelectorMobile() {
   };
 
   return (
-    <div className="relative px-2 w-full mx-auto mt-5">
+    <div className="relative  w-full mx-auto mt-5">
       <div className="bg-white rounded  p-6 w-full h-[280px] overflow-hidden flex flex-col justify-between relative">
         <AnimatePresence mode="wait">
           {step === 'start' && (
