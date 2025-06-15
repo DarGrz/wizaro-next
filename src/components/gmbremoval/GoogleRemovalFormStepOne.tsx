@@ -275,8 +275,7 @@ export default function RemovalForm({
   return (
     <form onSubmit={onSubmit} className="space-y-2 mt-5 md:mt-0">
       <h2 className="text-xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">
-       Wybierz profil Google Maps do usunięcia
-      </h2>
+Usuń Profil Firmy z Map Google      </h2>
 
       {removals.map((removal, index) => (
         <div key={index} className="bg-white mb-2 md:mb-4">
@@ -358,7 +357,7 @@ export default function RemovalForm({
                         placeholder="Wpisz nazwę firmy, aby wyszukać..."
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className="w-full rounded-lg px-4 py-2 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
+                        className="w-full rounded-lg px-4 text-sm md:text-xl py-2 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
                       />
                       <div className="absolute left-3 top-2.5 text-gray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
