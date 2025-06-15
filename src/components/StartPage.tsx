@@ -29,9 +29,9 @@ export default function StartPage() {
       {/* Przycisk mobilny */}
       <MobileActionButton />
       
-      <div className="gap-6 mb-6 lg:flex hidden md:block">
-        <div className="md:p-10 p-4 w-full max-w-lg  ">
-          <h1 className="text-3xl font-bold text-center text-gray-900 mb-4 ">
+      <div className="gap-6 mb-4 lg:flex hidden md:block">
+        <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
+          <h1 className="text-4xl font-bold text-center text-gray-900 mb-4 ">
            Usuwamy szkodliwe opinie z internetu
           </h1>
           <p className="text-gray-600 text-center mb-8">
@@ -52,7 +52,7 @@ export default function StartPage() {
       <div className="md:flex  md:gap-8 pt-5 ">
         <GuaranteeSection />
       </div>
-      <div className="md:flex py-5 md:gap-8 ">
+      <div className="md:flex py-5 mb-15 md:gap-8 ">
         <NegativeReviewRemoval />
       </div>
 
@@ -61,12 +61,12 @@ export default function StartPage() {
    
 
       {/* Sekcja usuwania firmy z Google */}
-      <div className="md:flex py-5 md:gap-8">
+      <div className="md:flex py-5 mb-15 md:gap-8">
         <GoogleBusinessRemoval />
       </div>
 
       {/* Sekcja resetowania wizytówki Google */}
-      <div className="md:flex py-5 md:gap-8">
+      <div className="md:flex py-5 md:gap-8 mb-10">
         <GoogleBusinessReset />
       </div>
 
