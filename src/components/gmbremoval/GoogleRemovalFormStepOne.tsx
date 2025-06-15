@@ -357,7 +357,7 @@ Usuń Profil Firmy z Map Google      </h2>
                         placeholder="Wpisz nazwę firmy, aby wyszukać..."
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className="w-full rounded-lg px-4 text-sm md:text-xl py-2 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
+                        className="w-full rounded-lg px-4 text-md md:text-xl py-2 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
                       />
                       <div className="absolute left-3 top-2.5 text-gray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
