@@ -74,7 +74,7 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
           <path d="M4 17l3-3 2 4 3-6 3 5 3-4 3 3"></path>
         </svg>
       ),
-      href: '/formularz-profil',
+      href: '/formularz-profil-google',
       color: 'bg-gray-100 hover:bg-gray-200 text-gray-800'
     }
   ];

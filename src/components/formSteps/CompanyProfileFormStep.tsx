@@ -56,7 +56,7 @@ export default function CompanyProfileFormStep({
         value={company.nip}
         onChange={onChange}
         className="w-full border border-gray-300 rounded px-4 py-2"
-        required
+        
       />
 
       <input

@@ -110,13 +110,21 @@ export default function RemovalForm({
         </p>
       )}
       <div className="flex justify-between gap-3">
-        <button
-          type="button"
-          onClick={onAdd}
-          className="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
-        >
-          Dodaj profil
-        </button>
+        <div>
+          {removals.some(r => r.companyName && r.url) && (
+            <button
+              type="button"
+              onClick={onAdd}
+              className="px-3 py-3 bg-gray-200 hover:bg-gray-300 rounded-full text-[#002a5c] flex items-center justify-center"
+              aria-label="Dodaj kolejny profil"
+              title="Dodaj kolejny profil"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+              </svg>
+            </button>
+          )}
+        </div>
         <button
           type="submit"
           className="px-5 py-2.5 bg-[#002a5c] text-white hover:bg-[#001e47] rounded text-sm"
