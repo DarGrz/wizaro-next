@@ -614,11 +614,13 @@ export default function RemovalForm({
         </div>
       ))}
 
-      <div className="mt-3 md:mt-4 p-2 md:p-4 text-center">
-        <p className="text-gray-700 text-sm md:text-base">
-          Cena: <strong>{totalPrice} zł brutto</strong> <span className="text-xxs md:text-xs text-gray-500">(z VAT 23%)</span>
-        </p>
-      </div>
+      {removals.some(r => r.companyName && r.url) && (
+        <div className="mt-3 md:mt-4 p-2 md:p-4 text-center">
+          <p className="text-gray-700 text-sm md:text-base">
+            Cena: <strong>{totalPrice} zł brutto</strong> <span className="text-xxs md:text-xs text-gray-500">(z VAT 23%)</span>
+          </p>
+        </div>
+      )}
 
       {!removals.some(r => r.companyName && r.url) && (
         <div className="mt-2 md:mt-3 text-center">
