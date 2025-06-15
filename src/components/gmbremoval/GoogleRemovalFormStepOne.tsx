@@ -273,7 +273,7 @@ export default function RemovalForm({
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-2">
+    <form onSubmit={onSubmit} className="space-y-2 mt-5 md:mt-0">
       <h2 className="text-xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">
        Wybierz profil Google Maps do usunięcia
       </h2>
