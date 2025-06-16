@@ -113,13 +113,13 @@ export default function RemovalForm({
         <button
           type="button"
           onClick={onAdd}
-          className="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+          className="w-46 px-3 md:px-5 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
         >
-          Dodaj profil
+          Dodaj kolejny profil
         </button>
         <button
           type="submit"
-          className="px-5 py-2.5 bg-[#002a5c] text-white hover:bg-[#001e47] rounded text-sm"
+          className="w-46 px-3 md:px-5 py-2.5 bg-[#002a5c] text-white hover:bg-[#001e47] rounded text-sm"
         >
           Przejdź dalej
         </button>

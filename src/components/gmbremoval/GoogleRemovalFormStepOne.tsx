@@ -647,7 +647,7 @@ Usuń Profil Firmy z Map Google      </h2>
 
       {!removals.some(r => r.companyName && r.url) && (
         <div className="mt-2 md:mt-3 text-center">
-          <p className="text-xs md:text-sm">
+          <p className="text- md:text-sm">
             Wybierz przynajmniej jeden profil, aby kontynuować.
           </p>
         </div>
@@ -663,7 +663,7 @@ Usuń Profil Firmy z Map Google      </h2>
                 // Rozwijamy nowo dodany profil - przekazujemy indeks, który będzie miał nowy profil
                 onExpand(removals.length);
               }}
-              className="px-3 md:px-4 py-1.5 md:py-2 bg-gray-100 hover:bg-gray-200 rounded text-xs md:text-sm"
+              className="w-46 px-2 md:px-4 py-2.5 md:py-2.5 bg-gray-100 hover:bg-gray-200 rounded text-sm md:text-sm"
             >
               Dodaj kolejny profil
             </button>
@@ -672,7 +672,7 @@ Usuń Profil Firmy z Map Google      </h2>
         <button
           type="submit"
           disabled={!removals.some(r => r.companyName && r.url)}
-          className={`px-3 md:px-4 py-1.5 md:py-2 rounded text-xs md:text-sm ${
+          className={`w-40 px-3 md:px-4 py-2.5 md:py-2,5 rounded text-sm md:text-sm ${
             !removals.some(r => r.companyName && r.url)
               ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
               : 'bg-[#0D2959] text-white hover:bg-[#0a1f40]'

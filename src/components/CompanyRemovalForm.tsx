@@ -222,9 +222,9 @@ export default function CompanyFormRemoval() {
       animate="visible"
       variants={containerVariants}
     >
-      <motion.div className="md:flex px-4 py-10 md:gap-8" variants={fadeInUp}>
+      <motion.div className="md:flex px-2 md:px-4 py-10 md:gap-8" variants={fadeInUp}>
         <motion.div className="md:w-1/2 mb-10 md:mb-0" variants={fadeInUp}>
-          <div className="bg-white rounded-xl shadow-lg p-8 w-full space-y-6">
+          <div className="bg-white rounded-xl shadow-sm md:shadow-lg md:p-8 p-4 w-full space-y-6">
             {step === "removal" && (
               <RemovalForm
                 removals={removals}
