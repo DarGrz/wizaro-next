@@ -1,0 +1,32 @@
+"use client";
+
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import ReviewCalculator from '@/components/ReviewCalculator';
+
+export default function ReviewCalculatorPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-100">
+      <div className="container mx-auto px-4 py-10">
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-6">
+          Kalkulator Opinii Google
+        </h1>
+        <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
+          Oblicz, ile opinii musisz dodać lub usunąć, aby osiągnąć wybraną średnią ocenę w Google.
+        </p>
+
+        <ReviewCalculator />
+        
+        <div className="mt-12 text-center">
+          <h2 className="text-2xl font-bold mb-4">Potrzebujesz profesjonalnej pomocy z opiniami?</h2>
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Nasi specjaliści pomogą Ci poprawić oceny w Google, usunąć negatywne opinie i zbudować lepszą reputację online.
+          </p>
+          <Link href="/uslugi/usuwanie-opinii-google" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md transition duration-200">
+            Sprawdź nasze usługi <ArrowRight size={16} />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
