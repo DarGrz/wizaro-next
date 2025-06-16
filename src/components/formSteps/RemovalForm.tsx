@@ -31,15 +31,15 @@ export default function RemovalForm({
   onSubmit,
 }: Props) {
   const shouldShowPrice = removals.some((r) =>
-    /(google|goo|gow|aleo|panorama|map|pkt|finder|biznes)/i.test(r.url)
+    /(google|goo|gow|aleo|panorama|map|pkt|finder|biznes|g.co)/i.test(r.url)
   );
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <h2 className="text-xl font-semibold text-center text-gray-800 mb-4">
-       Resetowanie Wizytówki Google
+        Skąd chcesz usunąć dane firmy?
       </h2>
-      <p className="text-center">Usuń i ponownie dodaj firmę do Map Google z czystym kontem opinii</p>
+      <p className="text-center">Usuń dane firmy z Map Google, Gowork, Aleo, Panorama firm i PKT.pl</p>
       {removals.map((removal, index) => (
         <div key={index} className="p-2 border-gray-300 rounded-xl space-y-3">
           <div className="flex justify-between items-center">
@@ -88,14 +88,19 @@ export default function RemovalForm({
                 onChange={(e) => onChange(index, "nip", e.target.value)}
                 className="w-full border border-gray-300 rounded px-4 py-2"
               />
-              <input
-                type="text"
-                required
-                placeholder="Link lub nazwa portalu"
-                value={removal.url}
-                onChange={(e) => onChange(index, "url", e.target.value)}
-                className="w-full border border-gray-300 rounded px-4 py-2"
-              />
+              <div className="space-y-1">
+                <input
+                  type="text"
+                  required
+                  placeholder="Link lub portal (np. Google Maps, Gowork, Aleo)"
+                  value={removal.url}
+                  onChange={(e) => onChange(index, "url", e.target.value)}
+                  className="w-full border border-gray-300 rounded px-4 py-2"
+                />
+                <p className="text-xs text-gray-500 italic">
+                  Wpisz nazwę portalu (np. Gowork) lub pełny adres URL profilu - nie wpisuj tutaj nazwy swojej firmy.
+                </p>
+              </div>
               <p className="text-sm text-center text-gray-700">
         Dodaj nazwę firmy oraz NIP w celu dokładnej weryfikacji.
       </p>
@@ -113,13 +118,13 @@ export default function RemovalForm({
         <button
           type="button"
           onClick={onAdd}
-          className="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+          className="w-46 px-3 md:px-5 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
         >
-          Dodaj profil
+          Dodaj kolejny profil
         </button>
         <button
           type="submit"
-          className="px-5 py-2.5 bg-[#002a5c] text-white hover:bg-[#001e47] rounded text-sm"
+          className="w-46 px-3 md:px-5 py-2.5 bg-[#002a5c] text-white hover:bg-[#001e47] rounded text-sm"
         >
           Przejdź dalej
         </button>

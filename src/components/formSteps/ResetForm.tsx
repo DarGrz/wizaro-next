@@ -91,14 +91,14 @@ export default function RemovalForm({
               <input
                 type="text"
                 required
-                placeholder="Link lub nazwa portalu"
+                placeholder="Link do profilu Google (np. https://maps.google.com/...)"
                 value={removal.url}
                 onChange={(e) => onChange(index, "url", e.target.value)}
                 className="w-full border border-gray-300 rounded px-4 py-2"
               />
               <p className="text-sm text-center text-gray-700">
-        Dodaj nazwę firmy oraz NIP w celu dokładnej weryfikacji.
-      </p>
+                Dodaj nazwę firmy oraz NIP w celu dokładnej weryfikacji. W polu powyżej wpisz link do profilu Google, nie nazwę firmy.
+              </p>
             </>
           )}
         </div>

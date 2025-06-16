@@ -107,8 +107,10 @@ export default function CompanyFormRemoval() {
     if (
       lowerUrl.includes("gowork") ||
       lowerUrl.includes("aleo") ||
+      lowerUrl.includes("al") ||
       lowerUrl.includes("panorama") ||
-      lowerUrl.includes("pkt")
+      lowerUrl.includes("pkt") ||
+      lowerUrl.includes("gow")
     ) {
       return 69900;
     }
