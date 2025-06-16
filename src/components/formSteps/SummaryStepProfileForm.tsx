@@ -22,8 +22,9 @@ interface CompanyData {
 interface Review {
   author: string;
   content: string;
-  url: string;
+  url: string[];
   date_added: string;
+  price?: number; // Dodane pole ceny
 }
 
 interface PayerData {
@@ -110,8 +111,9 @@ export default function SummaryStep({
       >
         <p><strong>Firma:</strong> {review.author}</p>
         <p><strong>NIP:</strong> {review.content.replace("NIP: ", "")}</p>
-        <p><strong>Link:</strong> <a href={review.url} className="" target="_blank">{review.url}</a></p>
+        <p><strong>Portale:</strong> {review.url.join(", ")}</p>
         <p><strong>Data dodania:</strong> {review.date_added}</p>
+        {review.price && <p><strong>Cena:</strong> {review.price} zł brutto</p>}
       </div>
     ))}
   </div>

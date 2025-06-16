@@ -25,7 +25,8 @@ interface Company {
 interface Removal {
   companyName: string;
   nip: string;
-  url: string;
+  url: string | string[];
+  mapsLink?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -80,7 +81,8 @@ export async function POST(req: NextRequest) {
     const removalsWithCompanyId = removals.map((r, i) => ({
       company_name: r.companyName?.trim() || `Firma ${i + 1}`,
       nip: r.nip?.trim(),
-      url: r.url?.trim() || '',
+      url: Array.isArray(r.url) ? r.url[0] || '' : r.url?.trim() || '',
+      maps_link: r.mapsLink?.trim(),
       company_id: companyData.id,
     }));
 

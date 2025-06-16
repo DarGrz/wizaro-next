@@ -16,7 +16,8 @@ import ExplenationProfileRemoval from "./ExplenationProfileRemoval";
 interface Removal {
   companyName: string;
   nip: string;
-  url: string;
+  url: string[];
+  mapsLink?: string;
 }
 
 interface CompanyData {
@@ -74,7 +75,7 @@ export default function CompanyFormRemoval() {
   };
 
   const [removals, setRemovals] = useState<Removal[]>([
-    { companyName: "", nip: "", url: "" },
+    { companyName: "", nip: "", url: [] },
   ]);
 
   const [company, setCompany] = useState<CompanyData>(defaultCompany);
@@ -99,7 +100,7 @@ export default function CompanyFormRemoval() {
     return () => window.removeEventListener("beforeunload", cleanup);
   }, []);
 
-  const calculatePriceForLink = (url: string): number => {
+  const calculatePriceForUrl = (url: string): number => {
     const lowerUrl = url.toLowerCase();
     if (lowerUrl.includes("map") || lowerUrl.includes("google") || lowerUrl.includes("goo") ||  lowerUrl.includes("g.co") ) {
       return 129900;
@@ -115,17 +116,25 @@ export default function CompanyFormRemoval() {
     return 129900;
   };
 
-  const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLink(r.url), 0);
+  const calculatePriceForLinks = (urls: string[]): number => {
+    let total = 0;
+    for (const url of urls) {
+      total += calculatePriceForUrl(url);
+    }
+    return total;
+  };
+
+  const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLinks(r.url), 0);
   const displayPrice = totalPrice / 100;
 
-  const handleRemovalChange = (index: number, field: keyof Removal, value: string) => {
+  const handleRemovalChange = (index: number, field: keyof Removal, value: string | string[]) => {
     const updated = [...removals];
-    updated[index][field] = value;
+    updated[index] = { ...updated[index], [field]: value };
     setRemovals(updated);
   };
 
   const addRemoval = () => {
-    setRemovals([...removals, { companyName: "", nip: "", url: "" }]);
+    setRemovals([...removals, { companyName: "", nip: "", url: [] }]);
     setExpandedIndex(removals.length);
   };
 
@@ -192,7 +201,7 @@ export default function CompanyFormRemoval() {
             url: removal.url,
             name: removal.companyName,
             nip: removal.nip,
-            price: calculatePriceForLink(removal.url)
+            price: calculatePriceForLinks(removal.url)
           }))
         }),
       });
@@ -271,6 +280,7 @@ export default function CompanyFormRemoval() {
                   content: `NIP: ${removal.nip}`,
                   url: removal.url,
                   date_added: new Date().toISOString().split("T")[0],
+                  price: calculatePriceForLinks(removal.url) / 100 // Dodana cena w złotych
                 }))}
                 totalPrice={displayPrice}
                 isLoading={isLoading}

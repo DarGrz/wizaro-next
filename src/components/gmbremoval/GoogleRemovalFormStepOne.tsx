@@ -647,7 +647,7 @@ Usuń Profil Firmy z Map Google      </h2>
 
       {!removals.some(r => r.companyName && r.url) && (
         <div className="mt-2 md:mt-3 text-center">
-          <p className="text- md:text-sm">
+          <p className="text- md:text-xs">
             Wybierz przynajmniej jeden profil, aby kontynuować.
           </p>
         </div>

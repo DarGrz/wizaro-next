@@ -194,7 +194,7 @@ export default async function Page({ params }: Props) {
                 <tr>
                   <th className="p-3 text-left">Nazwa firmy</th>
                   <th className="p-3 text-left">NIP</th>
-                  <th className="p-3 text-left">URL</th>
+                  <th className="p-3 text-left">Portal</th>
                 </tr>
               </thead>
               <tbody>
