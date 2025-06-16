@@ -6,9 +6,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export default function MobileActionButton() {
   const [isOpen, setIsOpen] = useState(false);
+  const [step, setStep] = useState<'choice' | 'profile-type'>('choice');
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    setStep('choice'); // Reset to first step when reopening
   };
   const buttonVariants = {
     hidden: { opacity: 0, x: 30 },
@@ -23,7 +25,6 @@ export default function MobileActionButton() {
     }),
     exit: { opacity: 0, x: -30, transition: { duration: 0.2 } },
   };
-
   // Animacja pulsowania przycisku
   const pulseAnimation = {
     scale: [1, 1.05, 1],
@@ -35,10 +36,17 @@ export default function MobileActionButton() {
     }
   };
 
-  const getLink = (type: 'profil' | 'opinie') => {
-    return type === 'profil'
-      ? '/formularz-profil'
-      : '/formularz-opinie';
+  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie') => {
+    switch(type) {
+      case 'gowork-aleo':
+        return '/formularz-profil';
+      case 'mapy-google':
+        return '/formularz-profil-google';
+      case 'opinie':
+        return '/formularz-opinie';
+      default:
+        return '/formularz-opinie';
+    }
   };
   return (
     <>
@@ -58,9 +66,7 @@ export default function MobileActionButton() {
             <line x1="8" y1="12" x2="16" y2="12"></line>
           </svg>
         )}
-      </motion.button>
-
-      {/* Dropdown menu */}
+      </motion.button>      {/* Dropdown menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -70,52 +76,100 @@ export default function MobileActionButton() {
             transition={{ duration: 0.2 }}
             className="lg:hidden fixed bottom-29 right-6 bg-white rounded-lg shadow-xl p-4 z-50 w-[280px]"
           >
-            <div className="text-center mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Co chcesz usunąć?
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Wybierz jedną z opcji
-              </p>
-            </div>
+            {step === 'choice' && (
+              <>
+                <div className="text-center mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Co chcesz usunąć?
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Wybierz jedną z opcji
+                  </p>
+                </div>
 
-            <div className="flex flex-col gap-3">
-              {/* Profil z opiniami */}
-              <motion.div
-                custom={0}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={buttonVariants}
-              >
-                <Link
-                  href={getLink('profil')}
-                  className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Profil z opiniami
-                </Link>
-              </motion.div>
+                <div className="flex flex-col gap-3">
+                  {/* Profil z opiniami */}
+                  <motion.div
+                    custom={0}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={buttonVariants}
+                  >
+                    <button
+                      onClick={() => setStep('profile-type')}
+                      className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
+                    >
+                      Profil firmy
+                    </button>
+                  </motion.div>
 
-              {/* Pojedyncze opinie */}
-              <motion.div
-                custom={1}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={buttonVariants}
-              >
-                <Link
-                  href={getLink('opinie')}
-                  className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Pojedyncze opinie
-                </Link>
-              </motion.div>
+                  {/* Pojedyncze opinie */}
+                  <motion.div
+                    custom={1}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={buttonVariants}
+                  >
+                    <Link
+                      href={getLink('opinie')}
+                      className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Pojedyncze opinie
+                    </Link>
+                  </motion.div>
+                </div>
+              </>
+            )}
 
-              
-            </div>
+            {step === 'profile-type' && (
+              <>
+                <div className="text-center mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Wybierz typ profilu
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Wybierz jedną z opcji
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  {/* Gowork, Aleo i inne */}
+                  <motion.div
+                    custom={0}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={buttonVariants}
+                  >
+                    <Link
+                      href={getLink('gowork-aleo')}
+                      className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Gowork, Aleo i inne
+                    </Link>
+                  </motion.div>                  {/* Mapy Google */}
+                  <motion.div
+                    custom={1}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={buttonVariants}
+                  >
+                    <Link
+                      href={getLink('mapy-google')}
+                      className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Mapy Google
+                    </Link>
+                  </motion.div>
+                </div>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

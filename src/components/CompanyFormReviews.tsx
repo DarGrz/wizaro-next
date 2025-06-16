@@ -298,7 +298,7 @@ export default function CompanyFormReviews() {
         <motion.div
           className="md:w-1/2"
           variants={fadeInUp}
-          initial="hidden"
+          initial="visible"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >

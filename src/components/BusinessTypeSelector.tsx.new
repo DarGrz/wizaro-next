@@ -144,9 +144,10 @@ export default function BusinessTypeSelector() {
                   animate="visible"
                   exit="exit"
                   variants={buttonVariants}
-                >                  <Link
+                >
+                  <Link
                     href={getLink('gowork-aleo')}
-                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
                   >
                     Gowork, Aleo i inne
                   </Link>

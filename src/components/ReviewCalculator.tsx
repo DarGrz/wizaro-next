@@ -262,7 +262,8 @@ export default function ReviewCalculator() {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 md:p-10 max-w-4xl mx-auto">      <div className="text-center mb-8">
+    <div className="bg-white rounded-xl shadow-lg p-6 md:p-10 max-w-4xl mx-auto overflow-x-hidden">
+      <div className="text-center mb-8">
         <div className="flex items-center justify-center gap-3 mb-4">
           <Calculator className="w-8 h-8 text-[#002a5c]" />
           <h2 className="text-2xl font-bold text-gray-800">
@@ -274,7 +275,7 @@ export default function ReviewCalculator() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-8 sm:gap-6 xs:gap-4">
         {/* Settings panel */}
         <div className="space-y-6">
           <div className="bg-gray-50 p-6 rounded-lg">
@@ -297,7 +298,7 @@ export default function ReviewCalculator() {
                     onChange={handleCurrentAverageChange}
                     className="flex-1 border border-gray-300 rounded-md px-3 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#002a5c]"
                   />
-                  <div className="flex">
+                  <div className="flex-shrink-0 flex">
                     {renderStars(currentAverage)}
                   </div>
                 </div>
@@ -335,7 +336,7 @@ export default function ReviewCalculator() {
                   onChange={handleTargetAverageChange}
                   className="flex-1 border border-gray-300 rounded-md px-3 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#002a5c]"
                 />
-                <div className="flex">
+                <div className="flex-shrink-0 flex">
                   {renderStars(targetAverage)}
                 </div>
               </div>
@@ -380,7 +381,7 @@ export default function ReviewCalculator() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center p-3 bg-gray-50 rounded">
-                      <div className="text-lg font-semibold text-gray-800">
+                      <div className="text-lg font-semibold text-gray-800 break-words">
                         {(totalReviews + result.count).toLocaleString('pl-PL')}
                       </div>
                       <div className="text-xs text-gray-600">Łączne opinie</div>
@@ -462,7 +463,7 @@ export default function ReviewCalculator() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center p-3 bg-gray-50 rounded">
-                      <div className="text-lg font-semibold text-gray-800">
+                      <div className="text-lg font-semibold text-gray-800 break-words">
                         {(totalReviews - result.count).toLocaleString('pl-PL')}
                       </div>
                       <div className="text-xs text-gray-600">Pozostałe opinie</div>

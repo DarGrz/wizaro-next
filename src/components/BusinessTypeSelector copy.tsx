@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export default function BusinessTypeSelector() {
-  const [step, setStep] = useState<'start' | 'choice' | 'profile-type'>('start');
+  const [step, setStep] = useState<'start' | 'choice'>('start');
 
   const buttonVariants = {
     hidden: { opacity: 0, x: 30 },
@@ -21,22 +21,16 @@ export default function BusinessTypeSelector() {
     exit: { opacity: 0, x: -30, transition: { duration: 0.2 } },
   };
 
-  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie') => {
-    switch(type) {
-      case 'gowork-aleo':
-        return '/formularz-profil';
-      case 'mapy-google':
-        return '/formularz-profil-google';
-      case 'opinie':
-        return '/formularz-opinie';
-      default:
-        return '/formularz-opinie';
-    }
+  const getLink = (type: 'profil' | 'opinie') => {
+    // Zawsze używamy formularza dla JDG
+    return type === 'profil'
+      ? '/formularz-profil'
+      : '/formularz-opinie';
   };
 
   return (
     <div className="relative px-2 w-auto lg:w-[440px] mx-auto">
-      <div className="bg-white rounded shadow-md p-10 w-full h-[300px] overflow-hidden flex flex-col justify-between relative">
+      <div className="bg-white  rounded shadow-md p-10 w-full h-[300px] overflow-hidden flex flex-col justify-between relative">
         <AnimatePresence mode="wait">
           {step === 'start' && (
             <motion.div
@@ -91,12 +85,12 @@ export default function BusinessTypeSelector() {
                   exit="exit"
                   variants={buttonVariants}
                 >
-                  <button
-                    onClick={() => setStep('profile-type')}
+                  <Link
+                    href={getLink('profil')}
                     className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
                   >
-                    Profil firmy
-                  </button>
+                    Profil z opiniami
+                  </Link>
                 </motion.div>
 
                 {/* Pojedyncze opinie */}
@@ -117,70 +111,13 @@ export default function BusinessTypeSelector() {
               </div>
             </motion.div>
           )}
-          
-          {step === 'profile-type' && (
-            <motion.div
-              key="profile-type"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 p-10 flex flex-col justify-between"
-            >
-              <div className="h-[100px]">
-                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
-                  Wybierz typ profilu
-                </h2>
-                <p className="text-gray-600 text-center text-sm">
-                  Wybierz jedną z opcji
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                {/* Gowork, Aleo i inne */}
-                <motion.div
-                  custom={0}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  variants={buttonVariants}
-                >                  <Link
-                    href={getLink('gowork-aleo')}
-                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
-                  >
-                    Gowork, Aleo i inne
-                  </Link>
-                </motion.div>
-
-                {/* Mapy Google */}
-                <motion.div
-                  custom={1}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  variants={buttonVariants}
-                >
-                  <Link
-                    href={getLink('mapy-google')}
-                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
-                  >
-                    Mapy Google
-                  </Link>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
         </AnimatePresence>
       </div>
 
       {step !== 'start' && (
         <button
           onClick={() => {
-            if (step === 'profile-type') {
-              setStep('choice');
-            } else {
-              setStep('start');
-            }
+            setStep('start');
           }}
           className="absolute top-full left-1/2 -translate-x-1/2 mt-4 text-sm text-gray-500 hover:text-gray-700 transition"
         >
