@@ -4,7 +4,6 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
-import BusinessDirectoriesRemoval from "./BusinessDirectoriesRemoval";
 import CaseStudies from "./CaseStudies";
 import ExplenationStartPage from "./ExplenationStartPage";
 import FaqSection from "./FaqSection";
@@ -83,10 +82,7 @@ export default function StartPage() {
         <div className="w-1/4 h-px bg-gray-200"></div>
       </div>
 
-      {/* Sekcja usuwania z katalogów biznesowych */}
-      <div className="md:flex py-10 md:gap-8">
-        <BusinessDirectoriesRemoval />
-      </div>
+    
 
       {/* CTA telefoniczne */}
           <div className="flex flex-col items-center gap-2 mt-6">

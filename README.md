@@ -29,6 +29,31 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Searched GMB Profiles
+
+This application tracks searched Google My Business (GMB) profiles in a Supabase database. The feature:
+
+1. Saves data when a user searches and selects a GMB profile including:
+   - Name
+   - Address
+   - Phone number
+   - Website
+   - Google Maps URL
+   - Business status
+   - Rating
+   - Types
+   - IP address
+   - User agent
+
+2. Provides a dashboard view at `/dashboard/searched-gmb` to view the collected data
+
+### Setting up the Searched GMB Table
+
+To set up the required database table, use the provided SQL script:
+
+1. Run the `setup_searched_gmb_supabase.ps1` PowerShell script (make sure to set your Supabase project reference first)
+2. Alternatively, you can manually run the SQL in `setup_searched_gmb_table.sql` in your Supabase SQL editor
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

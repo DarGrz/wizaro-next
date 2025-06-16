@@ -156,6 +156,29 @@ export default function RemovalForm({
       
       if (data.details) {
         setSelectedPlaceDetails(data.details);
+        
+        // Save the searched GMB profile to Supabase
+        try {
+          await fetch('/api/searched-gmb', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: data.details.name,
+              address: data.details.address,
+              placeId: data.details.id,
+              phoneNumber: data.details.phoneNumber,
+              website: data.details.website,
+              googleMapsUrl: data.details.googleMapsUrl,
+              businessStatus: data.details.businessStatus,
+              rating: data.details.rating,
+              types: data.details.types,
+            }),
+          });
+        } catch (error) {
+          console.error('Error saving searched GMB data:', error);
+        }
       } else if (data.error) {
         // Handle specific error messages from the API
         console.error(data.error);
@@ -229,6 +252,7 @@ export default function RemovalForm({
     setErrorMessage(null);
     
     // Fetch more details about the place and store in state
+    // The fetchPlaceDetails function will also save the data to Supabase
     fetchPlaceDetails(location.placeId);
   };
 
@@ -357,7 +381,7 @@ Usuń Profil Firmy z Map Google      </h2>
                         placeholder="Wpisz nazwę firmy, aby wyszukać..."
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className="w-full rounded-lg px-4 text-md md:text-xl py-2 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
+                        className="w-full rounded-lg px-4 text-sm md:text-xl py-4 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
                       />
                       <div className="absolute left-3 top-2.5 text-gray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -369,25 +393,6 @@ Usuń Profil Firmy z Map Google      </h2>
                           <div className="w-4 h-4 border-t-2 border-[#0D2959] rounded-full animate-spin"></div>
                         </div>
                       )}
-                    </div>
-                    
-                    {/* Link "Nie możesz znaleźć swojej firmy?" */}
-                    <div className="flex items-center mt-1 mb-3">
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        className="h-3.5 w-3.5 text-[#0D2959] mr-1" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                      </svg>
-                      <a 
-                        href="/formularz-profil" 
-                        className="text-xs text-[#0D2959] hover:text-[#0a1f40] hover:underline text-left font-normal"
-                      >
-                        Nie możesz znaleźć swojej firmy? Kliknij tutaj.
-                      </a>
                     </div>
                     
                     {/* Wyniki wyszukiwania wyświetlane nad sekcją informacji */}
