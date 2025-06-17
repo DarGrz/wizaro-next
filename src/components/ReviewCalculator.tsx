@@ -260,43 +260,41 @@ export default function ReviewCalculator() {
       }
     }
   };
-
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 md:p-10 max-w-4xl mx-auto overflow-x-hidden">
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Calculator className="w-8 h-8 text-[#002a5c]" />
-          <h2 className="text-2xl font-bold text-gray-800">
+    <div className="bg-white rounded-lg shadow-lg p-3 md:p-8 max-w-4xl w-full mx-auto overflow-x-hidden px-2 md:px-4">
+      <div className="text-center mb-4 md:mb-8">
+        <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
+          <Calculator className="w-5 h-5 md:w-8 md:h-8 text-[#002a5c]" />
+          <h2 className="text-lg md:text-2xl font-bold text-gray-800">
             Kalkulator Opinii Google
           </h2>
         </div>
-        <p className="text-gray-600">
+        <p className="text-xs md:text-base text-gray-600">
           Oblicz, ile opinii musisz dodać lub usunąć, aby osiągnąć wybraną średnią ocenę
-        </p>
-      </div>
+        </p>      </div>
 
-      <div className="grid md:grid-cols-2 gap-8 sm:gap-6 xs:gap-4">
+      <div className="grid md:grid-cols-2 gap-3 md:gap-6">
         {/* Settings panel */}
-        <div className="space-y-6">
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Target className="w-5 h-5 text-[#002a5c]" />
+        <div className="space-y-3 md:space-y-6">
+          <div className="bg-gray-50 p-3 md:p-6 rounded-lg">
+            <h3 className="text-sm md:text-lg font-semibold mb-2 md:mb-4 flex items-center gap-2">
+              <Target className="w-4 h-4 md:w-5 md:h-5 text-[#002a5c]" />
               Obecny stan
             </h3>
-            
-            <div className="space-y-6">
+              <div className="space-y-3 md:space-y-6">
               <div>
-                <label className="block text-gray-700 mb-2 font-medium">
+                <label className="block text-gray-700 mb-1 md:mb-2 text-xs md:text-base font-medium">
                   Średnia ocena
                 </label>
-                <div className="flex items-center gap-2">                  <input
+                <div className="flex items-center gap-1 md:gap-2">
+                  <input
                     type="text"
                     inputMode="decimal"
                     min="1"
-                    max="5"
+                    max="5"                    
                     value={currentAverageInput}
                     onChange={handleCurrentAverageChange}
-                    className="flex-1 border border-gray-300 rounded-md px-3 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#002a5c]"
+                    className="flex-1 border border-gray-300 rounded-md px-2 py-1 md:px-3 md:py-3 text-sm md:text-lg focus:outline-none focus:ring-2 focus:ring-[#002a5c]"
                   />
                   <div className="flex-shrink-0 flex">
                     {renderStars(currentAverage)}
@@ -305,47 +303,50 @@ export default function ReviewCalculator() {
               </div>
               
               <div>
-                <label className="block text-gray-700 mb-2 font-medium">
+                <label className="block text-gray-700 mb-1 md:mb-2 text-xs md:text-base font-medium">
                   Łączna liczba opinii
-                </label>                <input
+                </label>
+                <input
                   type="text"
                   inputMode="numeric"
                   min="1"
                   value={totalReviewsInput}
                   onChange={handleTotalReviewsChange}
-                  className="w-full border border-gray-300 rounded-md px-3 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#002a5c]"
+                  className="w-full border border-gray-300 rounded-md px-2 py-1 md:px-3 md:py-3 text-sm md:text-lg focus:outline-none focus:ring-2 focus:ring-[#002a5c]"
                 />
               </div>
             </div>
-          </div>          <div className="bg-blue-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-[#002a5c]" />
+          </div>
+          
+          <div className="bg-blue-50 p-3 md:p-6 rounded-lg">
+            <h3 className="text-sm md:text-lg font-semibold mb-2 md:mb-4 flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-[#002a5c]" />
               Cel
             </h3>
             
             <div>
-              <label className="block text-gray-700 mb-2 font-medium">
+              <label className="block text-gray-700 mb-1 md:mb-2 text-xs md:text-base font-medium">
                 Docelowa średnia ocena
               </label>
-              <div className="flex items-center gap-2">                <input
+              <div className="flex items-center gap-1 md:gap-2">
+                <input
                   type="text"
                   inputMode="decimal"
                   min="1"
                   max="5"
                   value={targetAverageInput}
                   onChange={handleTargetAverageChange}
-                  className="flex-1 border border-gray-300 rounded-md px-3 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#002a5c]"
+                  className="flex-1 border border-gray-300 rounded-md px-2 py-1 md:px-3 md:py-3 text-sm md:text-lg focus:outline-none focus:ring-2 focus:ring-[#002a5c]"
                 />
                 <div className="flex-shrink-0 flex">
                   {renderStars(targetAverage)}
                 </div>
               </div>
             </div>
-            
-            <div className="mt-6">
+            <div className="mt-3 md:mt-6">
               <button
                 onClick={calculateStrategy}
-                className="w-full bg-[#002a5c] hover:bg-[#001e47] text-white font-medium py-3 px-4 rounded-md transition duration-200"
+                className="w-full bg-[#002a5c] hover:bg-[#001e47] text-white font-medium py-2 md:py-3 px-4 rounded-md transition duration-200 text-xs md:text-base"
               >
                 Oblicz strategię
               </button>
@@ -354,56 +355,56 @@ export default function ReviewCalculator() {
         </div>
 
         {/* Results panel */}
-        <div className="space-y-6">
+        <div className="space-y-3 md:space-y-6">
           {result && (
-            <div className="bg-white border-2 border-blue-200 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-600" />
+            <div className="bg-white border-2 border-blue-200 p-3 md:p-6 rounded-lg">
+              <h3 className="text-sm md:text-lg font-semibold mb-2 md:mb-4 flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-600" />
                 Wyniki
               </h3>
 
               {result.type === null && (
-                <div className="text-center p-4 bg-green-50 rounded-lg">
-                  <div className="text-green-600 font-medium">
+                <div className="text-center p-2 md:p-4 bg-green-50 rounded-lg">
+                  <div className="text-green-600 font-medium text-xs md:text-base">
                     Już masz średnią ocenę {currentAverage.toFixed(1)}!
                   </div>
                 </div>
-              )}              {result.type === 'add' && (
-                <div className="space-y-4">
-                  <div className="text-center p-4 bg-green-50 rounded-lg">
-                    <div className="text-3xl font-bold text-green-600 mb-2">
+              )}
+              
+              {result.type === 'add' && (
+                <div className="space-y-3 md:space-y-4">
+                  <div className="text-center p-2 md:p-4 bg-green-50 rounded-lg">
+                    <div className="text-xl md:text-3xl font-bold text-green-600 mb-1 md:mb-2">
                       {result.count}
                     </div>
-                    <div className="text-sm text-green-700">
+                    <div className="text-xs md:text-sm text-green-700">
                       nowych {result.rating}-gwiazdkowych opinii potrzeba
                     </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-3 bg-gray-50 rounded">
-                      <div className="text-lg font-semibold text-gray-800 break-words">
+                  </div>                  <div className="grid grid-cols-2 gap-1 md:gap-4">
+                    <div className="text-center p-1 md:p-3 bg-gray-50 rounded">
+                      <div className="text-sm md:text-lg font-semibold text-gray-800 break-words overflow-hidden">
                         {(totalReviews + result.count).toLocaleString('pl-PL')}
                       </div>
-                      <div className="text-xs text-gray-600">Łączne opinie</div>
+                      <div className="text-[10px] md:text-xs text-gray-600">Łączne opinie</div>
                     </div>
-                    <div className="text-center p-3 bg-gray-50 rounded">
-                      <div className={`text-lg font-semibold ${getRatingColor(result.finalRating || 0)}`}>
+                    <div className="text-center p-1 md:p-3 bg-gray-50 rounded">
+                      <div className={`text-sm md:text-lg font-semibold ${getRatingColor(result.finalRating || 0)}`}>
                         {result.finalRating?.toFixed(2)}
                       </div>
-                      <div className="text-xs text-gray-600">Finalna ocena</div>
+                      <div className="text-[10px] md:text-xs text-gray-600">Finalna ocena</div>
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium">Postęp do celu</span>
-                      <span className="text-sm text-[#002a5c]">
+                  <div className="bg-blue-50 p-2 md:p-4 rounded-lg">
+                    <div className="flex items-center justify-between mb-1 md:mb-2">
+                      <span className="text-xs md:text-sm font-medium">Postęp do celu</span>
+                      <span className="text-xs md:text-sm text-[#002a5c]">
                         {result.finalRating ? ((result.finalRating / 5) * 100).toFixed(1) : 0}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-gray-200 rounded-full h-1.5 md:h-2">
                       <div
-                        className={`h-2 rounded-full transition-all duration-300 ${getProgressColor(result.finalRating || 0)}`}
+                        className={`h-1.5 md:h-2 rounded-full transition-all duration-300 ${getProgressColor(result.finalRating || 0)}`}
                         style={{ width: `${result.finalRating ? (result.finalRating / 5) * 100 : 0}%` }}
                       />
                     </div>
@@ -412,37 +413,37 @@ export default function ReviewCalculator() {
               )}
 
               {result.type === 'difficult' && (
-                <div className="space-y-4">
-                  <div className="text-center p-4 bg-orange-50 rounded-lg">
-                    <div className="text-3xl font-bold text-orange-600 mb-2">
+                <div className="space-y-3 md:space-y-4">
+                  <div className="text-center p-2 md:p-4 bg-orange-50 rounded-lg">
+                    <div className="text-xl md:text-3xl font-bold text-orange-600 mb-1 md:mb-2">
                       {result.count}
                     </div>
-                    <div className="text-sm text-orange-700">
+                    <div className="text-xs md:text-sm text-orange-700">
                       nowych {result.rating}-gwiazdkowych opinii potrzeba
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-3 bg-gray-50 rounded">
-                      <div className="text-lg font-semibold text-gray-800">
+                  <div className="grid grid-cols-2 gap-1 md:gap-4">
+                    <div className="text-center p-1 md:p-3 bg-gray-50 rounded">
+                      <div className="text-sm md:text-lg font-semibold text-gray-800">
                         {(totalReviews + result.count).toLocaleString('pl-PL')}
                       </div>
-                      <div className="text-xs text-gray-600">Łączne opinie</div>
+                      <div className="text-[10px] md:text-xs text-gray-600">Łączne opinie</div>
                     </div>
-                    <div className="text-center p-3 bg-gray-50 rounded">
-                      <div className={`text-lg font-semibold ${getRatingColor(result.finalRating || 0)}`}>
+                    <div className="text-center p-1 md:p-3 bg-gray-50 rounded">
+                      <div className={`text-sm md:text-lg font-semibold ${getRatingColor(result.finalRating || 0)}`}>
                         {result.finalRating?.toFixed(2)}
                       </div>
-                      <div className="text-xs text-gray-600">Finalna ocena</div>
+                      <div className="text-[10px] md:text-xs text-gray-600">Finalna ocena</div>
                     </div>
                   </div>
 
-                  <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
-                    <div className="flex items-center gap-2 text-orange-700 mb-2">
-                      <AlertCircle className="w-5 h-5" />
-                      <span className="font-medium">Uwaga: Trudne do osiągnięcia</span>
+                  <div className="p-2 md:p-4 bg-orange-50 rounded-lg border border-orange-200">
+                    <div className="flex items-center gap-1 md:gap-2 text-orange-700 mb-1 md:mb-2">
+                      <AlertCircle className="w-4 h-4 md:w-5 md:h-5" />
+                      <span className="text-xs md:text-sm font-medium">Uwaga: Trudne do osiągnięcia</span>
                     </div>
-                    <p className="text-sm text-orange-700">
+                    <p className="text-xs md:text-sm text-orange-700">
                       Potrzeba ponad 100 nowych opinii, aby osiągnąć docelową średnią. 
                       Rozważ skorzystanie z profesjonalnej pomocy w zarządzaniu opiniami.
                     </p>
@@ -451,37 +452,37 @@ export default function ReviewCalculator() {
               )}
 
               {result.type === 'remove' && (
-                <div className="space-y-4">
-                  <div className="text-center p-4 bg-yellow-50 rounded-lg">
-                    <div className="text-3xl font-bold text-yellow-600 mb-2">
+                <div className="space-y-3 md:space-y-4">
+                  <div className="text-center p-2 md:p-4 bg-yellow-50 rounded-lg">
+                    <div className="text-xl md:text-3xl font-bold text-yellow-600 mb-1 md:mb-2">
                       {result.count}
                     </div>
-                    <div className="text-sm text-yellow-700">
+                    <div className="text-xs md:text-sm text-yellow-700">
                       {result.rating}-gwiazdkowych opinii do usunięcia
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-3 bg-gray-50 rounded">
-                      <div className="text-lg font-semibold text-gray-800 break-words">
+                  <div className="grid grid-cols-2 gap-1 md:gap-4">
+                    <div className="text-center p-1 md:p-3 bg-gray-50 rounded">
+                      <div className="text-sm md:text-lg font-semibold text-gray-800 break-words">
                         {(totalReviews - result.count).toLocaleString('pl-PL')}
                       </div>
-                      <div className="text-xs text-gray-600">Pozostałe opinie</div>
+                      <div className="text-[10px] md:text-xs text-gray-600">Pozostałe opinie</div>
                     </div>
-                    <div className="text-center p-3 bg-gray-50 rounded">
-                      <div className={`text-lg font-semibold ${getRatingColor(result.finalRating || 0)}`}>
+                    <div className="text-center p-1 md:p-3 bg-gray-50 rounded">
+                      <div className={`text-sm md:text-lg font-semibold ${getRatingColor(result.finalRating || 0)}`}>
                         {result.finalRating?.toFixed(2)}
                       </div>
-                      <div className="text-xs text-gray-600">Finalna ocena</div>
+                      <div className="text-[10px] md:text-xs text-gray-600">Finalna ocena</div>
                     </div>
                   </div>
                 </div>
               )}
               
               {result.type === 'impossible' && (
-                <div className="text-center p-4 bg-red-50 rounded-lg">
-                  <AlertCircle className="w-8 h-8 text-red-500 mx-auto mb-2" />
-                  <div className="text-red-700">
+                <div className="text-center p-2 md:p-4 bg-red-50 rounded-lg">
+                  <AlertCircle className="w-6 h-6 md:w-8 md:h-8 text-red-500 mx-auto mb-1 md:mb-2" />
+                  <div className="text-red-700 text-xs md:text-sm">
                     Osiągnięcie średniej {targetAverage.toFixed(1)} jest trudne przy obecnych ocenach. Spróbuj innej strategii lub skontaktuj się z nami po profesjonalną pomoc.
                   </div>
                 </div>
@@ -491,20 +492,20 @@ export default function ReviewCalculator() {
 
           {/* Scenarios section */}
           {result?.scenarios && (
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold mb-4">Scenariusze dla różnych ocen</h3>
-              <div className="space-y-3">
+            <div className="bg-gray-50 p-3 md:p-6 rounded-lg">
+              <h3 className="text-sm md:text-lg font-semibold mb-2 md:mb-4">Scenariusze dla różnych ocen</h3>
+              <div className="space-y-2 md:space-y-3">
                 {result.scenarios.map((scenario) => (
-                  <div key={scenario.rating} className="flex items-center justify-between p-3 bg-white rounded border">
-                    <div className="flex items-center gap-2">
+                  <div key={scenario.rating} className="flex items-center justify-between p-2 md:p-3 bg-white rounded border">
+                    <div className="flex items-center gap-1 md:gap-2">
                       <div className="flex">
                         {renderStars(scenario.rating)}
                       </div>
-                      <span className="text-sm text-gray-600">
+                      <span className="text-xs md:text-sm text-gray-600">
                         ({scenario.rating} gwiazdek)
                       </span>
                     </div>
-                    <div className="font-medium text-[#002a5c]">
+                    <div className="font-medium text-[#002a5c] text-xs md:text-sm">
                       {scenario.needed !== null ? `${scenario.needed} opinii` : 'Niemożliwe'}
                     </div>
                   </div>
@@ -514,11 +515,11 @@ export default function ReviewCalculator() {
           )}
 
           {/* Tips section */}
-          <div className="bg-yellow-50 p-4 rounded-lg">
-            <h4 className="font-semibold text-yellow-800 mb-2 flex items-center gap-2">
-              <Info className="w-4 h-4" /> Wskazówki
+          <div className="bg-yellow-50 p-2 md:p-4 rounded-lg">
+            <h4 className="font-semibold text-yellow-800 mb-1 md:mb-2 flex items-center gap-1 md:gap-2 text-xs md:text-sm">
+              <Info className="w-3 h-3 md:w-4 md:h-4" /> Wskazówki
             </h4>
-            <ul className="text-sm text-yellow-700 space-y-1">
+            <ul className="text-xs md:text-sm text-yellow-700 space-y-0.5 md:space-y-1">
               <li>• Im wyższa obecna ocena, tym trudniej ją podnieść</li>
               <li>• 5-gwiazdkowe opinie najszybciej podnoszą średnią</li>
               <li>• Regularne zbieranie opinii jest kluczowe</li>
@@ -527,14 +528,14 @@ export default function ReviewCalculator() {
             </ul>
           </div>
           
-          {/* CTA box */}          <div className="bg-[#002a5c] text-white p-5 rounded-lg">
-            <h4 className="font-bold text-lg mb-2">Potrzebujesz profesjonalnej pomocy?</h4>
-            <p className="text-gray-100 mb-4 text-sm">
+          {/* CTA box */}          <div className="bg-[#002a5c] text-white p-3 md:p-5 rounded-lg">
+            <h4 className="font-bold text-sm md:text-lg mb-1 md:mb-2">Potrzebujesz profesjonalnej pomocy?</h4>
+            <p className="text-gray-100 mb-2 md:mb-4 text-xs md:text-sm">
               Nasi specjaliści pomogą Ci zoptymalizować Twój profil Google i usunąć negatywne opinie zgodnie z zasadami Google.
             </p>
             <a 
               href="/uslugi/usuwanie-opinii-google" 
-              className="block text-center bg-white text-[#002a5c] font-medium py-2 px-4 rounded hover:bg-blue-50 transition duration-200"
+              className="block text-center bg-white text-[#002a5c] font-medium py-1.5 md:py-2 px-3 md:px-4 rounded text-xs md:text-sm hover:bg-blue-50 transition duration-200"
             >
               Sprawdź nasze usługi
             </a>

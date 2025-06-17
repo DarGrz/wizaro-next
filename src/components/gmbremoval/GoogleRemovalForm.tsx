@@ -156,7 +156,10 @@ export default function GoogleRemovalForm() {
   };
 
   const addRemoval = () => {
-    setRemovals([...removals, { companyName: "", nip: "", url: "" }]);
+    // Pobierz NIP z poprzedniego profilu (ostatniego na liście)
+    const previousNip = removals.length > 0 ? removals[removals.length - 1].nip : "";
+    
+    setRemovals([...removals, { companyName: "", nip: previousNip, url: "" }]);
     setExpandedIndex(removals.length);
   };
 

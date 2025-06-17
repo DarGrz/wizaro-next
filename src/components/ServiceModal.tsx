@@ -46,7 +46,7 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
           <line x1="14" y1="11" x2="14" y2="17"></line>
         </svg>
       ),
-      href: '/formularz-profil',
+      href: '/formularz-profil-bazy',
       color: 'bg-[#002a5c] hover:bg-[#001e47] text-white'
     },
     {

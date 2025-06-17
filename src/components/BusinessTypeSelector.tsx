@@ -24,7 +24,7 @@ export default function BusinessTypeSelector() {
   const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie') => {
     switch(type) {
       case 'gowork-aleo':
-        return '/formularz-profil';
+        return '/formularz-profil-bazy';
       case 'mapy-google':
         return '/formularz-profil-google';
       case 'opinie':
@@ -93,7 +93,7 @@ export default function BusinessTypeSelector() {
                 >
                   <button
                     onClick={() => setStep('profile-type')}
-                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
+                    className="w-full h-12  bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
                   >
                     Profil firmy
                   </button>
@@ -109,9 +109,9 @@ export default function BusinessTypeSelector() {
                 >
                   <Link
                     href={getLink('opinie')}
-                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-md font-semibold"
                   >
-                    Pojedyncze opinie
+                   Opinie
                   </Link>
                 </motion.div>
               </div>

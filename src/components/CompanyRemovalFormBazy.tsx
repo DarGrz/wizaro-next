@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-import RemovalFormLimited from "@/components/formSteps/RemovalFormLimited";
+import RemovalFormBazy from "@/components/formSteps/RemovalFormBazy";
 import CompanyProfileFormStep from "@/components/formSteps/CompanyProfileFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
-import SummaryStepProfileForm from "@/components/formSteps/SummaryStepProfileForm";
+import SummaryStepRemovalBazy from "@/components/formSteps/SummaryStepRemovalBazy";
 import SocialProof from "./SocialProof";
 import RemovalFormExplenation from "./Explenations/RemovalFormExplenation";
 import CompanyProfileFormExplenation from "./Explenations/CompanyProfileFormStepExplenation";
@@ -16,7 +16,18 @@ import ExplenationProfileRemoval from "./ExplenationProfileRemoval";
 interface Removal {
   companyName: string;
   nip: string;
-  url: string;
+  portal: string;
+  customPortal?: string;
+}
+
+interface GUSCompanyData {
+  name: string;
+  street: string;
+  city: string;
+  zip: string;
+  nip: string;
+  regon: string;
+  krs?: string;
 }
 
 interface CompanyData {
@@ -71,10 +82,8 @@ export default function CompanyFormRemoval() {
     city: "",
     zip: "",
     different_payer: false,
-  };
-
-  const [removals, setRemovals] = useState<Removal[]>([
-    { companyName: "", nip: "", url: "" },
+  };  const [removals, setRemovals] = useState<Removal[]>([
+    { companyName: "", nip: "", portal: "" },
   ]);
 
   const [company, setCompany] = useState<CompanyData>(defaultCompany);
@@ -98,37 +107,121 @@ export default function CompanyFormRemoval() {
     window.addEventListener("beforeunload", cleanup);
     return () => window.removeEventListener("beforeunload", cleanup);
   }, []);
-
-  const calculatePriceForLink = (url: string): number => {
-    const lowerUrl = url.toLowerCase();
-    if (lowerUrl.includes("map") || lowerUrl.includes("google") || lowerUrl.includes("goo")) {
-      return 129900;
-    }
-    if (
-      lowerUrl.includes("gowork") ||
-      lowerUrl.includes("aleo") ||
-      lowerUrl.includes("panorama") ||
-      lowerUrl.includes("pkt")
-    ) {
-      return 69900;
-    }
-    return 69900;
+  const PORTAL_PRICES = {
+    "ALEO": 699,
+    "GoWork": 699,
+    "Panorama Firm": 699,
+    "Biznes Finder": 699,
+    "PKT.pl": 699,
+    "Podobne Firmy": 699,
+    "Inne": 699
+  };  const calculatePriceForPortals = (portal: string): number => {
+    return PORTAL_PRICES[portal as keyof typeof PORTAL_PRICES] || 699;
   };
 
-  const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLink(r.url), 0);
-  const displayPrice = totalPrice / 100;
-
-  const handleRemovalChange = (index: number, field: keyof Removal, value: string) => {
+  const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForPortals(r.portal), 0);
+  const displayPrice = totalPrice;  const handleRemovalChange = (index: number, field: keyof Removal, value: string | string[]) => {
     const updated = [...removals];
-    updated[index][field] = value;
+    if (field === 'portal') {
+      updated[index].portal = value as string;
+      // Jeśli ustawiamy portal na "Inne", dodaj puste customPortal
+      if (value === "Inne") {
+        updated[index].customPortal = "";
+      } else {
+        // Jeśli nie "Inne", usuń customPortal
+        delete updated[index].customPortal;
+      }
+    } else if (field === 'customPortal') {
+      updated[index].customPortal = value as string;    } else if (field === 'companyName') {
+      // Ustaw nazwę firmy dla tego profilu
+      updated[index].companyName = value as string;
+      
+      // Automatycznie skopiuj nazwę firmy do wszystkich innych profili (jeśli jest niepusta)
+      const stringValue = value as string;
+      if (stringValue && stringValue.trim()) {
+        updated.forEach((removal, i) => {
+          if (i !== index && removal.portal) {
+            updated[i].companyName = stringValue;
+          }
+        });
+      }
+    } else if (field === 'nip') {
+      // Ustaw NIP dla tego profilu
+      updated[index].nip = value as string;
+      
+      // Automatycznie skopiuj NIP do wszystkich innych profili (jeśli jest niepusty)
+      const stringValue = value as string;
+      if (stringValue && stringValue.trim()) {
+        updated.forEach((removal, i) => {
+          if (i !== index && removal.portal) {
+            updated[i].nip = stringValue;
+          }
+        });
+      }
+    }
     setRemovals(updated);
   };
-
-  const addRemoval = () => {
-    // Pobierz NIP z poprzedniego profilu (ostatniego na liście)
-    const previousNip = removals.length > 0 ? removals[removals.length - 1].nip : "";
+  // Nowa funkcja do obsługi multiselect portali
+  const handlePortalMultiselect = (portalName: string, isChecked: boolean) => {
+    if (isChecked) {
+      // Sprawdź czy portal już istnieje
+      const existingPortalIndex = removals.findIndex(r => r.portal === portalName);
+      
+      if (existingPortalIndex === -1) {
+        // Znajdź pierwszy profil z danymi GUS, żeby skopiować dane
+        const profileWithData = removals.find(r => r.companyName && r.nip);
+        
+        // Dodaj nowy profil z tym portalem i skopiowanymi danymi
+        const newRemoval: Removal = {
+          companyName: profileWithData?.companyName || "",
+          nip: profileWithData?.nip || "",
+          portal: portalName,
+          customPortal: portalName === "Inne" ? "" : undefined
+        };
+        
+        const newRemovals = [...removals, newRemoval];
+        setRemovals(newRemovals);
+        setExpandedIndex(newRemovals.length - 1); // Rozwiń nowo dodany profil
+      } else {
+        // Portal już istnieje - rozwiń istniejący profil
+        setExpandedIndex(existingPortalIndex);
+      }
+    } else {
+      // Usuń profil z tym portalem
+      const portalIndex = removals.findIndex(r => r.portal === portalName);
+      if (portalIndex !== -1) {
+        const newRemovals = removals.filter((_, i) => i !== portalIndex);
+        setRemovals(newRemovals);
+        if (expandedIndex === portalIndex) {
+          setExpandedIndex(newRemovals.length > 0 ? 0 : -1);
+        } else if (expandedIndex > portalIndex) {
+          setExpandedIndex(expandedIndex - 1);
+        }
+      }
+    }
+  };
+  // Funkcja do automatycznego wypełniania danych firmy z GUS
+  const handleGUSDataReceived = (gusData: GUSCompanyData) => {
+    console.log('Received GUS data for company form:', gusData);
     
-    setRemovals([...removals, { companyName: "", nip: previousNip, url: "" }]);
+    // Automatycznie wypełnij dane firmy z pierwszego znalezionego profilu
+    if (gusData && gusData.name) {
+      setCompany(prev => ({
+        ...prev,
+        name: gusData.name || prev.name,
+        nip: gusData.nip || prev.nip,
+        street: gusData.street || prev.street,
+        city: gusData.city || prev.city,
+        zip: gusData.zip || prev.zip,
+      }));
+      
+      console.log('Company data updated with GUS data');
+    }
+  };  const addRemoval = () => {
+    // Ta funkcja będzie wywoływana przez nowy system multiselect
+    // Dodajemy pusty profil, który zostanie skonfigurowany przez handlePortalChange
+    const newRemoval: Removal = { companyName: "", nip: "", portal: "" };
+    setRemovals([...removals, newRemoval]);
     setExpandedIndex(removals.length);
   };
 
@@ -172,22 +265,35 @@ export default function CompanyFormRemoval() {
         currentPayerId = payerData.payer_id;
       }
 
-      setPayerId(currentPayerId);
+      setPayerId(currentPayerId);      // Przekształć removals aby przekazać nazwę portalu jako url
+      const removalDataForAPI = removals.map(removal => ({
+        ...removal,
+        url: removal.portal === "Inne" ? (removal.customPortal || "Inne") : removal.portal
+      }));
 
       const res = await fetch("/api/company-profile-removal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company, removals, totalPrice, payer_id: currentPayerId }),
+        body: JSON.stringify({ company, removals: removalDataForAPI, totalPrice, payer_id: currentPayerId }),
       });
       if (!res.ok) throw new Error("Błąd zapisu danych firmy i zgłoszeń");
       const data = await res.json();
-      const company_id = data.company_id;      const docRes = await fetch("/api/documents", {
+      const company_id = data.company_id;
+      
+      const docRes = await fetch("/api/documents", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+        headers: { "Content-Type": "application/json" },        body: JSON.stringify({
           company_id,
           type: "żądanie usunięcia profilu",
           payer_id: currentPayerId,
+          totalPrice: totalPrice,
+          items: removals.map(removal => ({
+            url: removal.portal === "Inne" ? (removal.customPortal || "Inne") : removal.portal,
+            name: removal.companyName,
+            nip: removal.nip,
+            price: PORTAL_PRICES[removal.portal as keyof typeof PORTAL_PRICES] || 699,
+            portal: removal.portal
+          }))
         }),
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
@@ -216,14 +322,12 @@ export default function CompanyFormRemoval() {
       animate="visible"
       variants={containerVariants}
     >
-      <motion.div className="md:flex px-4 py-10 md:gap-8" variants={fadeInUp}>
+      <motion.div className="md:flex px-2 md:px-4 py-10 md:gap-8" variants={fadeInUp}>
         <motion.div className="md:w-1/2 mb-10 md:mb-0" variants={fadeInUp}>
-          <div className="bg-white rounded-xl shadow-lg p-8 w-full space-y-6">
-            {step === "removal" && (
-              <RemovalFormLimited
+          <div className="bg-white rounded-xl shadow-sm md:shadow-lg md:p-8 p-4 w-full space-y-6">            {step === "removal" && (
+              <RemovalFormBazy
                 removals={removals}
                 expandedIndex={expandedIndex}
-                totalPrice={displayPrice}
                 onChange={handleRemovalChange}
                 onAdd={addRemoval}
                 onRemove={removeRemoval}
@@ -232,6 +336,8 @@ export default function CompanyFormRemoval() {
                   e.preventDefault();
                   setStep("company");
                 }}
+                onGUSDataReceived={handleGUSDataReceived}
+                onPortalMultiselect={handlePortalMultiselect}
               />
             )}
 
@@ -255,16 +361,12 @@ export default function CompanyFormRemoval() {
                 onSubmit={() => setStep("summary")}
                 onBack={() => setStep("company")}
               />
-            )}
-
-            {step === "summary" && (
-              <SummaryStepProfileForm
+            )}            {step === "summary" && (
+              <SummaryStepRemovalBazy
                 company={company}
-                reviews={removals.map((removal) => ({
-                  author: removal.companyName,
-                  content: `NIP: ${removal.nip}`,
-                  url: removal.url,
-                  date_added: new Date().toISOString().split("T")[0],
+                removals={removals.map((removal) => ({
+                  ...removal,
+                  price: calculatePriceForPortals(removal.portal)
                 }))}
                 totalPrice={displayPrice}
                 isLoading={isLoading}
@@ -280,7 +382,7 @@ export default function CompanyFormRemoval() {
         <motion.div
           className="md:w-1/2"
           variants={fadeInUp}
-          initial="hidden"
+          initial="visible"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >

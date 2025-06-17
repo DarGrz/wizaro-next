@@ -24,7 +24,7 @@ export default function BusinessTypeSelectorMobile() {
   const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie') => {
     switch(type) {
       case 'gowork-aleo':
-        return '/formularz-profil';
+        return '/formularz-profil-bazy';
       case 'mapy-google':
         return '/formularz-profil-google';
       case 'opinie':

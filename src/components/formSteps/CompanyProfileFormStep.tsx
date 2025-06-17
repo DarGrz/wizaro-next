@@ -39,6 +39,17 @@ export default function CompanyProfileFormStep({
        Uzupełnij dane firmy
       </h2>
 
+
+        <input
+        type="text"
+        name="nip"
+        placeholder="NIP"
+        value={company.nip}
+        onChange={onChange}
+        className="w-full border border-gray-300 rounded px-4 py-2"
+        
+      />
+
       <input
         type="text"
         name="name"
@@ -49,16 +60,7 @@ export default function CompanyProfileFormStep({
         required
       />
 
-      <input
-        type="text"
-        name="nip"
-        placeholder="NIP"
-        value={company.nip}
-        onChange={onChange}
-        className="w-full border border-gray-300 rounded px-4 py-2"
-        
-      />
-
+    
       <input
         type="text"
         name="street"
