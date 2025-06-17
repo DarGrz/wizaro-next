@@ -44,8 +44,8 @@ const PLACES_API_URL = 'https://maps.googleapis.com/maps/api/place/autocomplete/
 
 export async function GET(request: NextRequest) {
   try {
-    // Apply rate limiting (10 requests per minute)
-    const rateLimited = rateLimit(request, 10);
+    // Apply rate limiting (60 requests per minute)
+    const rateLimited = rateLimit(request, 60);
     if (rateLimited) return rateLimited;
 
     // Get query parameters

@@ -116,13 +116,13 @@ export default function ReviewForm({
         <button
           type="button"
           onClick={onAdd}
-          className="w-48 px-3 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+          className="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
         >
           Dodaj kolejną opinię
         </button>
         <button
           type="submit"
-          className="w-48 px-3 py-2.5 bg-[#002a5c] text-white hover:bg-[#001e47] rounded text-sm"
+          className="px-12 py-2.5 bg-[#002a5c] text-white hover:bg-[#001e47] rounded text-sm"
         >
           Przejdź dalej
         </button>
