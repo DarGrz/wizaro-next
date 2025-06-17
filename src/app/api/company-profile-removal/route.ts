@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
       .from('companies')
       .insert({
         ...company,
-        price: totalPrice/100,
+        price: totalPrice,
         profile_removal_count: removals.length,
         payer_id,
         // Dodaj akceptację regulaminu bezpośrednio przy tworzeniu

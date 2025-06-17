@@ -160,8 +160,7 @@ export default function CompanyFormRemoval() {
       }
     }
     setRemovals(updated);
-  };
-  // Nowa funkcja do obsługi multiselect portali
+  };  // Nowa funkcja do obsługi multiselect portali
   const handlePortalMultiselect = (portalName: string, isChecked: boolean) => {
     if (isChecked) {
       // Sprawdź czy portal już istnieje
@@ -179,7 +178,9 @@ export default function CompanyFormRemoval() {
           customPortal: portalName === "Inne" ? "" : undefined
         };
         
-        const newRemovals = [...removals, newRemoval];
+        // Usuń pusty początkowy element jeśli istnieje (pusty portal)
+        const filteredRemovals = removals.filter(r => r.portal !== "");
+        const newRemovals = [...filteredRemovals, newRemoval];
         setRemovals(newRemovals);
         setExpandedIndex(newRemovals.length - 1); // Rozwiń nowo dodany profil
       } else {
@@ -191,6 +192,12 @@ export default function CompanyFormRemoval() {
       const portalIndex = removals.findIndex(r => r.portal === portalName);
       if (portalIndex !== -1) {
         const newRemovals = removals.filter((_, i) => i !== portalIndex);
+        
+        // Jeśli nie ma żadnych portali, dodaj pusty element z powrotem
+        if (newRemovals.length === 0 || newRemovals.every(r => r.portal === "")) {
+          newRemovals.push({ companyName: "", nip: "", portal: "" });
+        }
+        
         setRemovals(newRemovals);
         if (expandedIndex === portalIndex) {
           setExpandedIndex(newRemovals.length > 0 ? 0 : -1);

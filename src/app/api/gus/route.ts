@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const GUS_API_URL = 'https://wyszukiwarkaregon.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc';
-const GUS_API_KEY = 'fc3f6a1b7b3d439fbc91';
+const GUS_API_URL = process.env.BIR_API_URL!;
+const GUS_API_KEY = process.env.BIR_API_KEY!;
 
 interface GUSCompanyData {
   name: string;
