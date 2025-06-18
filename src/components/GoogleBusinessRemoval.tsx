@@ -66,7 +66,7 @@ export default function GoogleBusinessRemoval() {
                 </svg>
                 <span className="text-gray-700">Usunięcie wszystkich opinii z Google Maps</span>
               </li>
-            </ul>            <Link href="/formularz-profil" className="w-full md:w-auto block">
+            </ul>            <Link href="/formularz-profil-google" className="w-full md:w-auto block">
               <button className="px-6 py-3 bg-[#002a5c] text-white rounded-md font-semibold hover:bg-[#001e47] transition w-full md:w-auto">
                 Usuń firmę z Google
               </button>

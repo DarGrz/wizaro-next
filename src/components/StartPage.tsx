@@ -112,8 +112,8 @@ export default function StartPage() {
         <CaseStudies />
       </div>
       
-      <div className="md:flex py-10 md:gap-8 ">
-        <BusinessTypeSelectorCTA />
+      <div className="md:flex py-10 md:gap-8 w-full ">
+        <BusinessTypeSelector />
       </div>
       <div className="md:flex py-10 md:gap-8 ">
         <SocialProof />
@@ -128,8 +128,8 @@ export default function StartPage() {
         <WhyRemoveProfilesAndReviews />
       </div>
 
-       <div className="md:flex py-10 md:gap-8 ">
-        <BusinessTypeSelectorCTA />
+       <div className="md:flex py-10 md:gap-8  w-full">
+        <BusinessTypeSelector/>
       </div>
       
       <div className="md:flex py-10 md:gap-8 ">
