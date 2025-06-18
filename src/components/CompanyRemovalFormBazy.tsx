@@ -108,19 +108,19 @@ export default function CompanyFormRemoval() {
     return () => window.removeEventListener("beforeunload", cleanup);
   }, []);
   const PORTAL_PRICES = {
-    "ALEO": 699,
-    "GoWork": 699,
-    "Panorama Firm": 699,
-    "Biznes Finder": 699,
-    "PKT.pl": 699,
-    "Podobne Firmy": 699,
-    "Inne": 699
+    "ALEO": 69900,
+    "GoWork": 69900,
+    "Panorama Firm": 69900,
+    "Biznes Finder": 69900,
+    "PKT.pl": 69900,
+    "Podobne Firmy": 69900,
+    "Inne": 69900
   };  const calculatePriceForPortals = (portal: string): number => {
     return PORTAL_PRICES[portal as keyof typeof PORTAL_PRICES] || 699;
   };
 
   const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForPortals(r.portal), 0);
-  const displayPrice = totalPrice;  const handleRemovalChange = (index: number, field: keyof Removal, value: string | string[]) => {
+  const displayPrice = totalPrice/100;  const handleRemovalChange = (index: number, field: keyof Removal, value: string | string[]) => {
     const updated = [...removals];
     if (field === 'portal') {
       updated[index].portal = value as string;

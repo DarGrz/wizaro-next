@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
 
     console.log('🟢 Firma:', company);
     console.log('🟢 Profile do usunięcia:', removals);
-    console.log('💰 Cena całkowita:', totalPrice);
+    console.log('💰 Cena całkowita (przed podziałem przez 100):', totalPrice);
     console.log('🆔 Payer ID:', payer_id);
 
     if (!removals || removals.length === 0) {
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
       .from('companies')
       .insert({
         ...company,
-        price: totalPrice,
+        price: totalPrice / 100, // Dzielimy cenę przez 100 przed zapisem
         profile_removal_count: removals.length,
         payer_id,
         // Dodaj akceptację regulaminu bezpośrednio przy tworzeniu

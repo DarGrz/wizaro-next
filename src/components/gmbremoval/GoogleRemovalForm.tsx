@@ -152,33 +152,42 @@ export default function GoogleRemovalForm() {
   }, [explanationInView]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("companyFormRemovalData");
-    if (saved) setCompany(JSON.parse(saved));
-    
-    // Check if there's a stored mode (reset or removal)
-    const storedMode = localStorage.getItem("profileOperationMode");
-    const serviceDescription = localStorage.getItem("serviceDescription");
-    
-    if (storedMode) {
-      // This data will be used by the summary and other components
-      console.log("Service mode:", storedMode);
-      console.log("Service description:", serviceDescription);
+    // Check if window is defined (client-side only)
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem("companyFormRemovalData");
+      if (saved) setCompany(JSON.parse(saved));
+      
+      // Check if there's a stored mode (reset or removal)
+      const storedMode = localStorage.getItem("profileOperationMode");
+      const serviceDescription = localStorage.getItem("serviceDescription");
+      
+      if (storedMode) {
+        // This data will be used by the summary and other components
+        console.log("Service mode:", storedMode);
+        console.log("Service description:", serviceDescription);
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("companyFormRemovalData", JSON.stringify(company));
+    // Check if window is defined (client-side only)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("companyFormRemovalData", JSON.stringify(company));
+    }
   }, [company]);
 
   useEffect(() => {
-    const cleanup = () => localStorage.removeItem("companyFormRemovalData");
-    window.addEventListener("beforeunload", cleanup);
-    return () => window.removeEventListener("beforeunload", cleanup);
+    // Check if window is defined (client-side only)
+    if (typeof window !== 'undefined') {
+      const cleanup = () => localStorage.removeItem("companyFormRemovalData");
+      window.addEventListener("beforeunload", cleanup);
+      return () => window.removeEventListener("beforeunload", cleanup);
+    }
   }, []);
 
   const calculatePriceForLink = (url: string): number => {
     // Check if we're in reset mode (stored in localStorage)
-    const isResetMode = localStorage.getItem("profileOperationMode") === "reset";
+    const isResetMode = typeof window !== 'undefined' && localStorage.getItem("profileOperationMode") === "reset";
     
     // For reset mode, return 2199 zł (219900 in cents)
     if (isResetMode) {
@@ -295,7 +304,10 @@ export default function GoogleRemovalForm() {
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
       const docData = await docRes.json();
 
-      localStorage.removeItem("companyFormRemovalData");
+      // Only remove from localStorage if we're in a browser environment
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem("companyFormRemovalData");
+      }
       
       // Przekierowanie na stronę thankyou z tokenem śledzenia
       if (docData.tracking_token) {

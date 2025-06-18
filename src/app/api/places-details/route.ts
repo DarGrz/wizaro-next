@@ -18,6 +18,7 @@ interface PlaceDetailsResponse {
     business_status?: string;
     types?: string[];
     rating?: number;
+    user_ratings_total?: number;
   };
   status: string;
 }
@@ -33,6 +34,7 @@ interface PlaceDetails {
   businessStatus?: string;
   types?: string[];
   rating?: number;
+  user_ratings_total?: number;
 }
 
 // Google Places API endpoint
@@ -91,7 +93,8 @@ export async function GET(request: NextRequest) {
       'photos', 
       'business_status', 
       'types', 
-      'rating'
+      'rating',
+      'user_ratings_total'
     ].join(',');
 
     // Call Google Places API
@@ -125,7 +128,8 @@ export async function GET(request: NextRequest) {
       photos: photoUrls,
       businessStatus: data.result.business_status,
       types: data.result.types,
-      rating: data.result.rating
+      rating: data.result.rating,
+      user_ratings_total: data.result.user_ratings_total
     };
 
     // Cache the results for 1 day (86400000 ms)

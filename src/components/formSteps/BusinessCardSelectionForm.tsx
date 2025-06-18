@@ -126,10 +126,9 @@ export default function BusinessCardSelectionForm({
       }
       
       const data = await response.json();
-      
-      if (data.details) {
-        // Add user_ratings_total if it's not in the details
-        if (!data.details.user_ratings_total && data.details.rating) {
+        if (data.details) {
+        // Ensure user_ratings_total is always available
+        if (data.details.user_ratings_total === undefined) {
           data.details.user_ratings_total = 0; // Default to 0 if not provided
         }
         
@@ -229,9 +228,7 @@ Wybierz profil Google, z którego chcesz usunąć opinie.
             >
               {selectedPlaceDetails.name}
             </a>
-            <span className="text-gray-600 text-xs md:text-sm block truncate">{selectedPlaceDetails.address}</span>
-            
-            {/* Rating information */}
+            <span className="text-gray-600 text-xs md:text-sm block truncate">{selectedPlaceDetails.address}</span>                  {/* Rating information */}
             {selectedPlaceDetails.rating !== undefined && (
               <div className="mt-2">
                 <div className="flex items-center">
@@ -251,15 +248,13 @@ Wybierz profil Google, z którego chcesz usunąć opinie.
                   <span className="ml-1 text-sm font-medium text-gray-700">
                     {selectedPlaceDetails.rating.toFixed(1)}
                   </span>
-                  {selectedPlaceDetails.user_ratings_total !== undefined && (
-                    <span className="ml-1 text-xs text-gray-500">
-                      ({selectedPlaceDetails.user_ratings_total} {selectedPlaceDetails.user_ratings_total === 1 ? 'opinia' : 
-                       selectedPlaceDetails.user_ratings_total < 5 ? 'opinie' : 'opinii'})
-                    </span>
-                  )}
+                  <span className="ml-1 text-xs text-gray-500">
+                    ({selectedPlaceDetails.user_ratings_total ?? 0} {(selectedPlaceDetails.user_ratings_total === 1 || selectedPlaceDetails.user_ratings_total === 0) ? 'opinia' : 
+                     (selectedPlaceDetails.user_ratings_total ?? 0) < 5 ? 'opinie' : 'opinii'})
+                  </span>
                 </div>
               </div>
-            )}              {/* Warning message for low ratings */}
+            )}{/* Warning message for low ratings */}
             {selectedPlaceDetails.rating !== undefined && selectedPlaceDetails.rating < 3.9 && (
               <div className="mt-3 p-3 bg-yellow-50    text-sm">
                 <div className="flex items-start">
