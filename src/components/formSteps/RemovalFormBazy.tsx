@@ -310,7 +310,7 @@ export default function RemovalForm({
                         ? 'text-orange-700' 
                         : 'text-green-700'
                     }`}>
-                      {isCompany(gusDataForIndex[actualIndex]) ? 'ℹ️' : '✓'} Dane pobrane z rejestru GUS:
+                      {isCompany(gusDataForIndex[actualIndex]) ? 'ℹ️' : '✓'} Dane pobrane z rejestru:
                     </p>
                     <p className={`text-xs mt-1 ${
                       isCompany(gusDataForIndex[actualIndex])
@@ -328,7 +328,7 @@ export default function RemovalForm({
                           💬 Wymagana konsultacja
                         </p>
                         <p className="text-xs text-yellow-700 mt-1">
-                          Wykryliśmy, że to spółka {gusDataForIndex[actualIndex].krs ? '(posiada numer KRS)' : '(nazwa zawiera słowo "spółka")'}. 
+                         
                           Dla tego typu podmiotów oferujemy indywidualną wycenę i doradztwo.
                         </p>
                       </div>

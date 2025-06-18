@@ -59,6 +59,8 @@ export default function RemovalForm({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [selectedPlaceDetails, setSelectedPlaceDetails] = useState<PlaceDetails | null>(null);
   const [isLoadingDetails, setIsLoadingDetails] = useState<boolean>(false);
+  const [isResetMode, setIsResetMode] = useState<boolean>(false);
+  const [modeChangeNotification, setModeChangeNotification] = useState<string | null>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   
   // Dodajemy referencję do poprzedniej liczby profili, aby wykryć dodanie nowego
@@ -332,10 +334,70 @@ export default function RemovalForm({
     );
   };
 
+  // Handle mode change and show notification
+  const handleModeChange = (newMode: boolean) => {
+    setIsResetMode(newMode);
+    setModeChangeNotification(
+      newMode 
+        ? "Zmieniono tryb na resetowanie opinii. Cena: 2199 zł."
+        : "Zmieniono tryb na usuwanie profilu. Cena: 1299 zł."
+    );
+    
+    // Hide notification after 3 seconds
+    setTimeout(() => {
+      setModeChangeNotification(null);
+    }, 3000);
+  };
+
   return (
     <form onSubmit={onSubmit} className="space-y-2 mt-5 md:mt-0">
       <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">
-Usuń Profil Firmy z Map Google      </h2>
+        {isResetMode ? "Resetuj Opinie na Profilu firmy w Mapach Google" : "Usuń Profil Firmy z Map Google"}
+      </h2>
+
+      {/* Mode toggle switch */}
+      <div className="flex justify-center mb-4">
+        <div className="flex items-center space-x-3 bg-gray-100 p-1 rounded-lg">
+          <button
+            type="button"
+            className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+              !isResetMode 
+                ? 'bg-[#0D2959] text-white' 
+                : 'bg-transparent text-gray-600 hover:bg-gray-200'
+            }`}
+            onClick={() => handleModeChange(false)}
+          >
+            Usuwanie profilu
+          </button>
+          <button
+            type="button"
+            className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+              isResetMode 
+                ? 'bg-[#0D2959] text-white' 
+                : 'bg-transparent text-gray-600 hover:bg-gray-200'
+            }`}
+            onClick={() => handleModeChange(true)}
+          >
+            Resetowanie opinii
+          </button>
+        </div>
+      </div>
+
+      {/* Mode change notification */}
+      {modeChangeNotification && (
+        <div className="fixed top-4 right-4 bg-[#0D2959] text-white px-4 py-2 rounded shadow-md z-50 animate-fade-in-out">
+          {modeChangeNotification}
+        </div>
+      )}
+
+      {/* Description based on selected mode */}
+      <div className="text-center mb-4 text-sm text-[#5DA157]">
+        {isResetMode ? (
+          <p>Usuwamy starą wizytówkę ze wszystkimi opiniami firmy z Map Google i na jej miejsce zakładamy nową wizytówkę.</p>
+        ) : (
+          <p>Usługa usuwania profilu całkowicie usuwa wizytówkę firmy z Map Google.</p>
+        )}
+      </div>
 
       {removals.map((removal, index) => (
         <div key={index} className="bg-white mb-2 md:mb-4">
@@ -676,7 +738,7 @@ Usuń Profil Firmy z Map Google      </h2>
       {removals.some(r => r.companyName && r.url) && (
         <div className="mt-3 md:mt-4 p-2 md:p-4 text-center">
           <p className="text-gray-700 text-sm md:text-base">
-            Cena: <strong>{totalPrice} zł brutto</strong> <span className="text-xxs md:text-xs text-gray-500">(z VAT 23%)</span>
+            Cena: <strong>{isResetMode ? "2199" : totalPrice} zł brutto</strong> <span className="text-xxs md:text-xs text-gray-500">(z VAT 23%)</span>
           </p>
         </div>
       )}
@@ -713,10 +775,25 @@ Usuń Profil Firmy z Map Google      </h2>
               ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
               : 'bg-[#0D2959] text-white hover:bg-[#0a1f40]'
           }`}
+          onClick={() => {
+            // Store the mode in localStorage for other components to access
+            localStorage.setItem("profileOperationMode", isResetMode ? "reset" : "removal");
+            // Store the service description for summary page
+            localStorage.setItem("serviceDescription", isResetMode 
+              ? "Resetowanie opinii na profilu firmy w Mapach Google" 
+              : "Usuwanie profilu firmy z Map Google");
+          }}
         >
           Przejdź dalej
         </button>
       </div>
+
+      {/* Notification for mode change */}
+      {modeChangeNotification && (
+        <div className="fixed top-4 right-4 bg-[#0D2959] text-white px-4 py-2 rounded shadow-md z-50 animate-fade-in-out">
+          {modeChangeNotification}
+        </div>
+      )}
     </form>
   );
 }

@@ -154,6 +154,16 @@ export default function GoogleRemovalForm() {
   useEffect(() => {
     const saved = localStorage.getItem("companyFormRemovalData");
     if (saved) setCompany(JSON.parse(saved));
+    
+    // Check if there's a stored mode (reset or removal)
+    const storedMode = localStorage.getItem("profileOperationMode");
+    const serviceDescription = localStorage.getItem("serviceDescription");
+    
+    if (storedMode) {
+      // This data will be used by the summary and other components
+      console.log("Service mode:", storedMode);
+      console.log("Service description:", serviceDescription);
+    }
   }, []);
 
   useEffect(() => {
@@ -167,6 +177,15 @@ export default function GoogleRemovalForm() {
   }, []);
 
   const calculatePriceForLink = (url: string): number => {
+    // Check if we're in reset mode (stored in localStorage)
+    const isResetMode = localStorage.getItem("profileOperationMode") === "reset";
+    
+    // For reset mode, return 2199 zł (219900 in cents)
+    if (isResetMode) {
+      return 219900;
+    }
+    
+    // Regular removal price calculation
     const lowerUrl = url.toLowerCase();
     if (lowerUrl.includes("map") || lowerUrl.includes("google") || lowerUrl.includes("goo") ||  lowerUrl.includes("g.co") ) {
       return 129900;
