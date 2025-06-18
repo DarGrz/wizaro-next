@@ -349,6 +349,22 @@ export default function RemovalForm({
     }, 3000);
   };
 
+  // Sprawdź czy tryb resetowania jest określony w URL
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const resetParam = urlParams.get('reset');
+    
+    if (resetParam === 'true') {
+      setIsResetMode(true);
+      setModeChangeNotification("Wybrano tryb resetowania opinii. Cena: 2199 zł.");
+      
+      // Ukryj powiadomienie po 3 sekundach
+      setTimeout(() => {
+        setModeChangeNotification(null);
+      }, 3000);
+    }
+  }, []);
+
   return (
     <form onSubmit={onSubmit} className="space-y-2 mt-5 md:mt-0">
       <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">

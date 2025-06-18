@@ -21,7 +21,7 @@ export default function BusinessTypeSelectorMobile() {
     exit: { opacity: 0, x: -30, transition: { duration: 0.2 } },
   };
 
-  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie' | 'opinie-google') => {
+  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie' | 'opinie-google' | 'reset-google') => {
     switch(type) {
       case 'gowork-aleo':
         return '/formularz-profil-bazy';
@@ -31,6 +31,8 @@ export default function BusinessTypeSelectorMobile() {
         return '/formularz-opinie';
       case 'opinie-google':
         return '/formularz-opinie-google';
+      case 'reset-google':
+        return '/formularz-profil-google?reset=true';
       default:
         return '/formularz-opinie';
     }
@@ -79,7 +81,7 @@ export default function BusinessTypeSelectorMobile() {
                 <h2 className="text-xl font-semibold text-center text-gray-900 mb-2">
                   Co chcesz usunąć?
                 </h2>
-                <p className="text-gray-600 text-center text-xs sm:text-sm">
+                <p className="text-gray-600 text-center text-sm sm:text-sm">
                   Wybierz, co chcesz usunąć.
                 </p>
               </div>
@@ -133,7 +135,7 @@ export default function BusinessTypeSelectorMobile() {
                 <h2 className="text-xl font-semibold text-center text-gray-900 mb-2">
                   Wybierz typ profilu
                 </h2>
-                <p className="text-gray-600 text-center text-xs sm:text-sm">
+                <p className="text-gray-600 text-center text-sm sm:text-sm">
                   Wybierz jedną z opcji
                 </p>
               </div>
@@ -170,6 +172,8 @@ export default function BusinessTypeSelectorMobile() {
                     Mapy Google
                   </Link>
                 </motion.div>
+
+              
               </div>
             </motion.div>
           )}

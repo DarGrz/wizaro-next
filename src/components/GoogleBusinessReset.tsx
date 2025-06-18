@@ -31,7 +31,7 @@ export default function GoogleBusinessReset() {
               <p className="text-sm text-gray-600">brutto (z VAT 23%)</p>
             </div> */}
             
-            <Link href="/formularz-profil-google" className="w-full md:w-auto">
+            <Link href="/formularz-profil-google?reset=true" className="w-full md:w-auto">
               <button className="w-full bg-[#002a5c] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#001e43] transition">
                 Zamów resetowanie wizytówki
               </button>
