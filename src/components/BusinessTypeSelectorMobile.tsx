@@ -37,7 +37,7 @@ export default function BusinessTypeSelectorMobile() {
   };
 
   return (
-    <div className="relative w-full mx-auto mt-5 px-4">
+    <div className="relative w-full mx-auto mt-5 px-2">
       <div className="bg-white rounded p-6 w-full h-[280px] overflow-hidden flex flex-col justify-between relative">
         <AnimatePresence mode="wait">
           {step === 'start' && (
@@ -50,15 +50,15 @@ export default function BusinessTypeSelectorMobile() {
               className="absolute inset-0 p-6 flex flex-col justify-center items-center"
             >
               <div className="h-[100px] flex flex-col items-center justify-center w-full">
-                <h1 className="text-2xl font-bold text-center text-gray-900 mb-3">
+                <h1 className="text-3xl font-bold text-center text-gray-900 mb-3">
                   Usuń Opinie lub Profil Swojej Firmy
                 </h1>
-                <p className="text-gray-600 text-center text-xs sm:text-sm mb-6">
+                <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
                  Usuń profil firmy lub wybrane opinie. Skutecznie likwidujemy niechciane treści z Map Google, GoWork, Aleo i innych serwisów.
                 </p>
                 <button
                   onClick={() => setStep('choice')}
-                  className="w-full max-w-xs h-12 bg-[#002a5c] text-white rounded py-2 font-semibold text-base hover:bg-[#001e47] transition"
+                  className="w-full max-w-xs h-12 bg-[#002a5c] text-white rounded py-2 font-semibold text-lg hover:bg-[#001e47] transition"
                 >
                   Start
                 </button>
