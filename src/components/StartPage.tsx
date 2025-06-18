@@ -3,7 +3,6 @@
 "use client";
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
-import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
 import CaseStudies from "./CaseStudies";
 import ExplenationStartPage from "./ExplenationStartPage";
 import FaqSection from "./FaqSection";
