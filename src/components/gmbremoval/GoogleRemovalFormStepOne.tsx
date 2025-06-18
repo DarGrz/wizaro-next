@@ -360,7 +360,7 @@ export default function RemovalForm({
         <div className="flex items-center space-x-3 bg-gray-100 p-1 rounded-lg">
           <button
             type="button"
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+            className={`px-2 py-1.5 text-sm rounded-md transition-colors ${
               !isResetMode 
                 ? 'bg-[#0D2959] text-white' 
                 : 'bg-transparent text-gray-600 hover:bg-gray-200'
@@ -371,7 +371,7 @@ export default function RemovalForm({
           </button>
           <button
             type="button"
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+            className={`px-2 py-1.5 text-sm rounded-md transition-colors ${
               isResetMode 
                 ? 'bg-[#0D2959] text-white' 
                 : 'bg-transparent text-gray-600 hover:bg-gray-200'
