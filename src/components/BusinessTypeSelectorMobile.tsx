@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export default function BusinessTypeSelectorMobile() {
-  const [step, setStep] = useState<'start' | 'choice' | 'profile-type'>('start');
+  const [step, setStep] = useState<'start' | 'choice' | 'profile-type' | 'review-type'>('start');
 
   const buttonVariants = {
     hidden: { opacity: 0, x: 30 },
@@ -21,7 +21,7 @@ export default function BusinessTypeSelectorMobile() {
     exit: { opacity: 0, x: -30, transition: { duration: 0.2 } },
   };
 
-  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie') => {
+  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie' | 'opinie-google') => {
     switch(type) {
       case 'gowork-aleo':
         return '/formularz-profil-bazy';
@@ -29,6 +29,8 @@ export default function BusinessTypeSelectorMobile() {
         return '/formularz-profil-google';
       case 'opinie':
         return '/formularz-opinie';
+      case 'opinie-google':
+        return '/formularz-opinie-google';
       default:
         return '/formularz-opinie';
     }
@@ -107,12 +109,12 @@ export default function BusinessTypeSelectorMobile() {
                   exit="exit"
                   variants={buttonVariants}
                 >
-                  <Link
-                    href={getLink('opinie')}
-                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                  <button
+                    onClick={() => setStep('review-type')}
+                    className="w-full h-12 bg-gray-200 font-semibold text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
                   >
-                    Pojedyncze opinie
-                  </Link>
+                    Opinie
+                  </button>
                 </motion.div>
               </div>
             </motion.div>
@@ -171,13 +173,67 @@ export default function BusinessTypeSelectorMobile() {
               </div>
             </motion.div>
           )}
+          
+          {step === 'review-type' && (
+            <motion.div
+              key="review-type"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 p-6 flex flex-col justify-between"
+            >
+              <div className="h-[80px]">
+                <h2 className="text-xl font-semibold text-center text-gray-900 mb-2">
+                  Wybierz portal z opiniami
+                </h2>
+                <p className="text-gray-600 text-center text-xs sm:text-sm">
+                  Wybierz jedną z opcji
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {/* Inne portale z opiniami */}
+                <motion.div
+                  custom={0}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={buttonVariants}
+                >
+                  <Link
+                    href={getLink('opinie')}
+                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                  >
+                    Gowork, Aleo i inne
+                  </Link>
+                </motion.div>
+
+                {/* Opinie Google */}
+                <motion.div
+                  custom={1}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={buttonVariants}
+                >
+                  <Link
+                    href={getLink('opinie-google')}
+                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
+                  >
+                    Mapy Google
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
 
       {step !== 'start' && (
         <button
           onClick={() => {
-            if (step === 'profile-type') {
+            if (step === 'profile-type' || step === 'review-type') {
               setStep('choice');
             } else {
               setStep('start');

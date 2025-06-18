@@ -145,16 +145,7 @@ export default function CompanyFormStep({
           type="checkbox"
           name="different_payer"
           checked={company.different_payer}
-          onChange={(e) =>
-            onChange({
-              ...e,
-              target: {
-                ...e.target,
-                name: "different_payer",
-                value: String(e.target.checked),
-              },
-            } as React.ChangeEvent<HTMLInputElement>)
-          }
+          onChange={onChange}
         />
         Dane płatnika różnią się od danych firmy
       </label>

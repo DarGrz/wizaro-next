@@ -28,6 +28,7 @@ interface PlaceDetails {
   businessStatus?: string;
   types?: string[];
   rating?: number;
+  user_ratings_total?: number;
 }
 
 interface Props {
@@ -62,6 +63,41 @@ export default function RemovalForm({
   
   // Dodajemy referencję do poprzedniej liczby profili, aby wykryć dodanie nowego
   const previousRemovalsLength = useRef<number>(removals.length);
+  
+  // Check if there's a pre-filled business from URL parameters
+  useEffect(() => {
+    // If there's already a company name and URL in the first removal, try to create a PlaceDetails object
+    if (removals.length > 0 && removals[0].companyName && removals[0].url) {
+      // Get address from URL if possible
+      const urlParams = new URLSearchParams(window.location.search);
+      const address = urlParams.get('address');
+      const phone = urlParams.get('phone');
+      
+      if (!selectedPlaceDetails) {
+        // Pobierz dodatkowe informacje z URL, jeśli są dostępne
+        const rating = urlParams.get('rating');
+        const userRatingsTotal = urlParams.get('userRatingsTotal');
+        const website = urlParams.get('website');
+        
+        // Create a placeholder PlaceDetails object from the URL data
+        const placeDetails: PlaceDetails = {
+          id: '',
+          name: removals[0].companyName,
+          address: address || '',
+          googleMapsUrl: removals[0].url,
+          phoneNumber: phone || '',
+          website: website || undefined,
+          photos: [],
+          businessStatus: 'OPERATIONAL',
+          types: [],
+          rating: rating ? parseFloat(rating) : undefined,
+          user_ratings_total: userRatingsTotal ? parseInt(userRatingsTotal, 10) : undefined
+        };
+        
+        setSelectedPlaceDetails(placeDetails);
+      }
+    }
+  }, [removals, selectedPlaceDetails]);
   
   // Efekt obsługujący dodanie nowego profilu
   useEffect(() => {

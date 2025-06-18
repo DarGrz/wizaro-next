@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export default function MobileActionButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState<'choice' | 'profile-type'>('choice');
+  const [step, setStep] = useState<'choice' | 'profile-type' | 'review-type'>('choice');
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -36,7 +36,7 @@ export default function MobileActionButton() {
     }
   };
 
-  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie') => {
+  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie' | 'opinie-google') => {
     switch(type) {
       case 'gowork-aleo':
         return '/formularz-profil-bazy';
@@ -44,6 +44,8 @@ export default function MobileActionButton() {
         return '/formularz-profil-google';
       case 'opinie':
         return '/formularz-opinie';
+      case 'opinie-google':
+        return '/formularz-opinie-google';
       default:
         return '/formularz-opinie';
     }
@@ -112,13 +114,12 @@ export default function MobileActionButton() {
                     exit="exit"
                     variants={buttonVariants}
                   >
-                    <Link
-                      href={getLink('opinie')}
-                      className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
-                      onClick={() => setIsOpen(false)}
+                    <button
+                      onClick={() => setStep('review-type')}
+                      className="w-full h-12 font-semibold bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
                     >
-                      Pojedyncze opinie
-                    </Link>
+                      Opinie
+                    </button>
                   </motion.div>
                 </div>
               </>
@@ -168,6 +169,69 @@ export default function MobileActionButton() {
                     </Link>
                   </motion.div>
                 </div>
+
+                <button
+                  onClick={() => setStep('choice')}
+                  className="mt-3 text-sm text-gray-500 hover:text-gray-700 transition"
+                >
+                  ← Wstecz
+                </button>
+              </>
+            )}
+            
+            {step === 'review-type' && (
+              <>
+                <div className="text-center mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Wybierz portal z opiniami
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Wybierz jedną z opcji
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  {/* Inne portale z opiniami */}
+                  <motion.div
+                    custom={0}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={buttonVariants}
+                  >
+                    <Link
+                      href={getLink('opinie')}
+                      className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Gowork, Aleo i inne
+                    </Link>
+                  </motion.div>
+                  
+                  {/* Opinie Google */}
+                  <motion.div
+                    custom={1}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={buttonVariants}
+                  >
+                    <Link
+                      href={getLink('opinie-google')}
+                      className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Mapy Google
+                    </Link>
+                  </motion.div>
+                </div>
+
+                <button
+                  onClick={() => setStep('choice')}
+                  className="mt-3 text-sm text-gray-500 hover:text-gray-700 transition"
+                >
+                  ← Wstecz
+                </button>
               </>
             )}
           </motion.div>

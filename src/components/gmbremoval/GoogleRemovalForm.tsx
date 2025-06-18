@@ -108,6 +108,42 @@ export default function GoogleRemovalForm() {
     }
   }, []);
   
+  // Process URL parameters if available
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      
+      const businessName = params.get('businessName');
+      const googleMapsUrl = params.get('googleMapsUrl');
+      const address = params.get('address');
+      const phone = params.get('phone');
+      // Pobranie dodatkowych parametrów (nie są używane bezpośrednio tutaj, ale są przekazywane przez URL)
+      // const website = params.get('website');
+      // const rating = params.get('rating');
+      // const userRatingsTotal = params.get('userRatingsTotal');
+      
+      if (businessName && googleMapsUrl) {
+        // Update the removals array with data from URL
+        setRemovals([
+          { 
+            companyName: businessName, 
+            nip: "", 
+            url: googleMapsUrl 
+          }
+        ]);
+        
+        // Update company information
+        setCompany(prevCompany => ({
+          ...prevCompany,
+          name: businessName,
+          url: googleMapsUrl,
+          street: address || "",
+          phone: phone || ""
+        }));
+      }
+    }
+  }, []);
+  
   // Hide arrow when explanation is in view
   useEffect(() => {
     if (explanationInView) {

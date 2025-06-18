@@ -31,9 +31,7 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
   const modalVariants = {
     hidden: { scale: 0.95, opacity: 0, y: 10 },
     visible: { scale: 1, opacity: 1, y: 0 }
-  };
-
-  const serviceOptions = [
+  };  const serviceOptions = [
     {
       title: 'Usunięcie profilu firmy z opiniami',
       description: 'Kompleksowe usunięcie profilu firmy wraz ze wszystkimi opiniami',
@@ -48,6 +46,21 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
       ),
       href: '/formularz-profil-bazy',
       color: 'bg-[#002a5c] hover:bg-[#001e47] text-white'
+    },
+    {
+      title: 'Usunięcie opinii z Google',
+      description: 'Usunięcie negatywnych opinii z wizytówki Twojej firmy w Mapach Google',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          <line x1="22" y1="16" x2="14" y2="16"></line>
+        </svg>
+      ),
+      href: '/formularz-opinie-google',
+      color: 'bg-gray-100 hover:bg-gray-200 text-gray-800'
     },
     {
       title: 'Usunięcie pojedynczych opinii',
