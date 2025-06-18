@@ -371,26 +371,49 @@ export default function RemovalForm({
         {isResetMode ? "Resetuj Opinie na Profilu firmy w Mapach Google" : "Usuń Profil Firmy z Map Google"}
       </h2>
 
-      {/* Mode toggle switch */}
+      {/* Mode toggle switch with fluid animation */}
       <div className="flex justify-center mb-4">
-        <div className="flex items-center space-x-3 bg-gray-100 p-1 rounded-lg">
+        <div className="relative flex items-center bg-gray-100 p-1 rounded-lg overflow-hidden">
+          {/* Fluid background animation */}
+          <div 
+            className={`absolute top-1 bottom-1 rounded-md transition-all duration-300 ease-in-out z-0 bg-[#0D2959]
+              ${isResetMode ? 'right-1 left-[calc(50%_-_8px)]' : 'left-1 right-[calc(50%_-_8px)]'}
+            `}
+            style={{
+              boxShadow: '0 0 8px rgba(13, 41, 89, 0.4)',
+              transform: isResetMode ? 'translateX(4px)' : 'translateX(-4px)',
+            }}
+          >
+            {/* Fluid bubble effect */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute rounded-full w-8 h-8 bg-white/30 animate-float" style={{ top: '-10%', left: '10%' }}></div>
+                <div className="absolute rounded-full w-6 h-6 bg-white/30 animate-float-delay" style={{ top: '40%', right: '15%' }}></div>
+                <div className="absolute rounded-full w-4 h-4 bg-white/30 animate-float-slow" style={{ bottom: '20%', left: '30%' }}></div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Button for profile removal */}
           <button
             type="button"
-            className={`px-2 py-1.5 text-sm rounded-md transition-colors ${
+            className={`px-3 py-1.5 text-sm rounded-md transition-colors relative z-10 ${
               !isResetMode 
-                ? 'bg-[#0D2959] text-white' 
-                : 'bg-transparent text-gray-600 hover:bg-gray-200'
+                ? 'text-white' 
+                : 'text-gray-600 hover:text-gray-800'
             }`}
             onClick={() => handleModeChange(false)}
           >
             Usuwanie profilu
           </button>
+          
+          {/* Button for review reset */}
           <button
             type="button"
-            className={`px-2 py-1.5 text-sm rounded-md transition-colors ${
+            className={`px-3 py-1.5 text-sm rounded-md transition-colors relative z-10 ${
               isResetMode 
-                ? 'bg-[#0D2959] text-white' 
-                : 'bg-transparent text-gray-600 hover:bg-gray-200'
+                ? 'text-white' 
+                : 'text-gray-600 hover:text-gray-800'
             }`}
             onClick={() => handleModeChange(true)}
           >
