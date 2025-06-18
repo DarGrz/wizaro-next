@@ -32,7 +32,7 @@ export default function ReviewFormGoogle({
   onRemove,
   onExpand,
   onSubmit,
-  onBack,
+//   onBack,
 }: Props) {
   // Auto-fill the URL field with the business card name when expanding a review
   const handleExpand = (index: number) => {
@@ -140,13 +140,13 @@ export default function ReviewFormGoogle({
         Cena: <strong className="text-lg">{totalPrice} zł brutto (z VAT 23%)</strong>
       </p>
       <div className="flex justify-between gap-3">
-        <button
+        {/* <button
           type="button"
           onClick={onBack}
           className="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 rounded text-sm"
         >
           Wróć do wyboru wizytówki
-        </button>
+        </button> */}
         <button
           type="button"
           onClick={onAdd}

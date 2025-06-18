@@ -40,6 +40,7 @@ export default function BusinessCardSelectionForm({
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Debounce search function
   useEffect(() => {
@@ -189,8 +190,13 @@ export default function BusinessCardSelectionForm({
       setLocations([]);
       setShowResults(false);
       setErrorMessage(null);
+    } else {
+      // Show results as soon as user types at least 2 characters
+      setShowResults(true);
     }
-  };  // Select a location from search results
+  };
+  
+  // Select a location from search results
   const selectLocation = (location: GmbLocation) => {
     // Clear the search
     setSearchQuery("");
@@ -289,16 +295,44 @@ Wybierz profil Google, z którego chcesz usunąć opinie.
                   value={searchQuery}
                   onChange={handleSearchChange}
                   className="w-full rounded-lg px-4 text-md md:text-xl py-4 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
+                  ref={inputRef}
                 />
                 <div className="absolute left-3 top-2.5 text-gray-400">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
-                  </svg>                </div>
+                  </svg>
+                </div>
                 
                 {/* Loading spinner */}
                 {isSearching && (
                   <div className="absolute right-3 top-3 md:top-4">
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#0D2959]"></div>
+                  </div>
+                )}
+                
+                {/* Search results - positioned directly below the search input */}
+                {showResults && (
+                  <div className="z-10 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto mt-1">
+                    <div className="p-3 bg-blue-50 border-b border-blue-100 flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {isSearching 
+                        ? "Szukam firm..."
+                        : locations.length > 0 
+                          ? `Znaleziono ${locations.length} firm - kliknij, aby wybrać`
+                          : "Szukam pasujących firm..."}
+                    </div>
+                    {locations.map((location) => (
+                      <div
+                        key={location.id}
+                        onClick={() => selectLocation(location)}
+                        className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                      >
+                        <div className="font-medium text-gray-900">{location.name}</div>
+                        <div className="text-sm text-gray-600">{location.address}</div>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
@@ -313,28 +347,6 @@ Wybierz profil Google, z którego chcesz usunąć opinie.
                   Przejdź do formularza ogólnego
                 </a>
               </div>
-
-              {/* Search results */}
-              {showResults && (
-                <div className="absolute z-10 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto">
-                  <div className="p-3 bg-blue-50 border-b border-blue-100 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Znaleziono {locations.length} firm - kliknij, aby wybrać
-                  </div>
-                  {locations.map((location) => (
-                    <div
-                      key={location.id}
-                      onClick={() => selectLocation(location)}
-                      className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
-                    >
-                      <div className="font-medium text-gray-900">{location.name}</div>
-                      <div className="text-sm text-gray-600">{location.address}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Loading state for place details */}
