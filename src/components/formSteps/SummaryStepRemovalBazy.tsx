@@ -110,7 +110,7 @@ export default function SummaryStepRemovalBazy({
                 </div>
                 <div className="text-right">
                   <p className="font-semibold text-blue-600">
-                    {removal.price} zł
+                    {removal.price/100} zł
                   </p>
                 </div>
               </div>
