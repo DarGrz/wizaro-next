@@ -156,7 +156,7 @@ export default function SummaryStepRemovalBazy({
               Przetwarzanie...
             </div>
           ) : (
-            "Potwierdź i wyślij zlecenie"
+            "Wyślij zlecenie"
           )}
         </button>
       </div>
