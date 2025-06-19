@@ -532,6 +532,13 @@ export default function RemovalForm({
                       )}
                     </div>
                     
+                    {/* Link do formularza ogólnego */}
+                    <div className="text-center mb-4">
+                      <p className="text-sm text-gray-600">
+                        Nie możesz znaleźć swojej firmy? <a href="/formularz-profil" className="text-[#0D2959] hover:text-[#0a1f40] font-medium">Kliknij tutaj</a>
+                      </p>
+                    </div>
+                    
                     {/* Wyniki wyszukiwania wyświetlane nad sekcją informacji */}
                     {showResults && locations.length > 0 && (
                       <div className="absolute z-20 left-0 right-0 top-16 md:top-24 bg-white shadow-lg rounded-md max-h-60 md:max-h-80 overflow-auto border border-gray-200">
