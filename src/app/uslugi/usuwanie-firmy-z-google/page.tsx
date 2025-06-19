@@ -26,7 +26,7 @@ export default function UsuwanieProfiluGooglePage() {
         </p>
 
         <div className="flex justify-center mt-8">
-          <Link href="/formularz-profil" className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
+          <Link href="/formularz-profil-google" className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
             Zamów usunięcie profilu z Google Maps
           </Link>
         </div>
@@ -123,7 +123,7 @@ export default function UsuwanieProfiluGooglePage() {
         </ul>
 
         <div className="flex justify-center mt-6">
-          <Link href="/resetowanie-wizytowki-formularz" className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
+          <Link href="/formularz-profil-google?reset=true" className="bg-[#002a5c] hover:bg-[#004a8c] text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
             Zamów resetowanie wizytówki Google
           </Link>
         </div>

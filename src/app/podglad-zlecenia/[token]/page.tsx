@@ -43,11 +43,19 @@ export default async function Page({ params }: Props) {
     : { data: null };
 
   // Fetch profile removals if this is a profile removal order
-  const { data: profileRemovals } = order.type === 'żądanie usunięcia profilu'
+  const { data: profileRemovals } = order.type === 'żądanie usunięcia profilu' || order.type === 'Usuwanie Wizytówki Google' || order.type === 'Resetowanie Wizytówki Google'
     ? await supabase
         .from('profile_removals')
         .select('*')
         .eq('company_id', order.company_id)
+    : { data: null };
+    
+  // Fetch profile resets if this is a Google profile reset order
+  const { data: profileResets } = order.type === 'Resetowanie Wizytówki Google'
+    ? await supabase
+        .from('profile_resets')
+        .select('*')
+        .eq('document_id', order.id)
     : { data: null };
 
   return (
@@ -185,7 +193,7 @@ export default async function Page({ params }: Props) {
       )}
 
       {/* Display profile removals if this is a profile removal order */}
-      {order.type === 'żądanie usunięcia profilu' && profileRemovals && profileRemovals.length > 0 && (
+      {(order.type === 'żądanie usunięcia profilu' || order.type === 'Resetowanie Wizytówki Google' || order.type === 'Usuwanie Wizytówki Google') && profileRemovals && profileRemovals.length > 0 && (
         <div className="bg-white shadow rounded-xl p-6 mb-6">
           <h2 className="text-lg font-semibold mb-4">Profile do usunięcia</h2>
           <div className="overflow-x-auto">
@@ -220,9 +228,57 @@ export default async function Page({ params }: Props) {
         </div>
       )}
 
+      {/* Display profile resets if this is a Google profile reset order */}
+      {order.type === 'Resetowanie Wizytówki Google' && profileResets && profileResets.length > 0 && (
+        <div className="bg-white shadow rounded-xl p-6 mb-6">
+          <h2 className="text-lg font-semibold mb-4">Resetowanie Wizytówki Google</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="p-3 text-left">Nazwa firmy</th>
+                  <th className="p-3 text-left">URL wizytówki</th>
+                  <th className="p-3 text-left">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {profileResets.map((reset) => (
+                  <tr key={reset.id} className="border-t">
+                    <td className="p-3">{reset.company_name || order.companies?.name}</td>
+                    <td className="p-3">
+                      <a 
+                        href={reset.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-blue-600 hover:underline"
+                      >
+                        {reset.url}
+                      </a>
+                    </td>
+                    <td className="p-3">
+                      <span className={`px-2 py-1 rounded-full text-xs ${
+                        reset.status === 'completed' ? 'bg-green-100 text-green-800' :
+                        reset.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
+                        {reset.status === 'completed' ? 'Zakończone' :
+                         reset.status === 'in_progress' ? 'W trakcie' :
+                         'Nowe'}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {/* Add message when no items to remove are found */}
       {((order.type === 'żądanie usunięcia opinii' && (!reviews || reviews.length === 0)) ||
-        (order.type === 'żądanie usunięcia profilu' && (!profileRemovals || profileRemovals.length === 0))) && (
+        ((order.type === 'żądanie usunięcia profilu' || order.type === 'Usuwanie Wizytówki Google') && (!profileRemovals || profileRemovals.length === 0)) ||
+        (order.type === 'Resetowanie Wizytówki Google' && 
+          ((!profileRemovals || profileRemovals.length === 0) && (!profileResets || profileResets.length === 0)))) && (
         <div className="bg-yellow-50 border border-yellow-100 rounded-xl p-4">
           <p className="text-yellow-700">
             Nie znaleziono jeszcze elementów do usunięcia dla tego zlecenia. Być może dane są w trakcie przetwarzania. 

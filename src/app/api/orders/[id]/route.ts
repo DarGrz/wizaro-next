@@ -74,6 +74,36 @@ export async function GET(
         ...document,
         profile_removals: removals || []
       });
+    } else if (document.type === 'Resetowanie Wizytówki Google') {
+      const { data: resets, error: resetsError } = await supabase
+        .from('profile_removals')
+        .select('*')
+        .eq('document_id', id);
+
+      if (resetsError) {
+        console.error('❌ Error fetching profile resets:', resetsError);
+        return NextResponse.json({ error: 'Error fetching profile resets' }, { status: 500 });
+      }
+
+      return NextResponse.json({
+        ...document,
+        profile_resets: resets || []
+      });
+    } else if (document.type === 'Usuwanie Wizytówki Google') {
+      const { data: removals, error: removalsError } = await supabase
+        .from('profile_removals')
+        .select('*')
+        .eq('document_id', id);
+
+      if (removalsError) {
+        console.error('❌ Error fetching Google profile removals:', removalsError);
+        return NextResponse.json({ error: 'Error fetching Google profile removals' }, { status: 500 });
+      }
+
+      return NextResponse.json({
+        ...document,
+        google_profile_removals: removals || []
+      });
     }
 
     return NextResponse.json(document);

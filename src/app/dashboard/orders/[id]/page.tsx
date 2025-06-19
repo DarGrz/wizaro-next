@@ -331,6 +331,80 @@ export default async function OrderDetailsPage({ params }: Props) {
         </div>
       )}
 
+      {/* Resetownanie Wizytówki Google */}
+      {order.type === 'Resetowanie Wizytówki Google' && profileRemovals && profileRemovals.length > 0 && (
+        <div className="bg-white shadow rounded-xl p-6">
+          <h2 className="text-lg font-semibold mb-4">Profile do usunięcia</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="p-3 text-left">Nazwa firmy</th>
+                  <th className="p-3 text-left">NIP</th>
+                  <th className="p-3 text-left">URL</th>
+                </tr>
+              </thead>
+              <tbody>
+                {profileRemovals.map((removal) => (
+                  <tr key={removal.id} className="border-t">
+                    <td className="p-3">{removal.company_name}</td>
+                    <td className="p-3">{removal.nip}</td>
+                    <td className="p-3">
+                      <a 
+                        href={removal.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-blue-600 hover:underline"
+                      >
+                        {removal.url}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Usuwanie Wizytówki Google */}
+      {order.type === 'Usuwanie Wizytówki Google' && profileRemovals && profileRemovals.length > 0 && (
+        <div className="bg-white shadow rounded-xl p-6">
+          <h2 className="text-lg font-semibold mb-4">Profile do usunięcia</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="p-3 text-left">Nazwa firmy</th>
+                  <th className="p-3 text-left">NIP</th>
+                  <th className="p-3 text-left">URL</th>
+                </tr>
+              </thead>
+              <tbody>
+                {profileRemovals.map((removal) => (
+                  <tr key={removal.id} className="border-t">
+                    <td className="p-3">{removal.company_name}</td>
+                    <td className="p-3">{removal.nip}</td>
+                    <td className="p-3">
+                      <a 
+                        href={removal.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-blue-600 hover:underline"
+                      >
+                        {removal.url}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+
+
       {/* Szybkie dodawanie linków do faktury i płatności */}
       <div className="bg-white shadow rounded-xl p-6 mt-6">
         <h2 className="text-lg font-semibold mb-4">Szybkie dodawanie linków</h2>

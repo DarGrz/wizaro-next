@@ -45,7 +45,7 @@ export default function Header() {
               className={`absolute left-0 mt-1 w-72 overflow-hidden z-10 transition-all duration-300 ${servicesMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
             >
               <div className="bg-white rounded-md shadow-xl border border-gray-100 p-1 mt-1">
-                <Link href="/uslugi/formularz-profil-google" 
+                <Link href="/uslugi/usuwanie-firmy-z-google" 
                   className="flex items-center p-3 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] rounded-md transition-colors duration-200 group/item">
                   <div className="mr-3 bg-blue-50 p-2 rounded-md text-[#002a5c] group-hover/item:bg-[#002a5c] group-hover/item:text-white transition-colors duration-200">
                     <Trash2 size={18} />
