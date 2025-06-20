@@ -65,24 +65,24 @@ export default async function DashboardPage() {
 
   return (
     <main className="max-w-8xl mx-auto p-4 m-2">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">📊 Dashboard – Wizaro</h1>
-        <div className="flex space-x-4">
+        <div className="flex space-x-5">
           <Link 
             href="/dashboard/searched-nip" 
-            className="bg-[#5EA154] text-white px-4 py-2 rounded-lg hover:bg-[#4b8446] transition-colors"
+            className="bg-[rgb(212,114,27)] text-white px-4 py-2 rounded hover:bg-[#4b8446] transition-colors text-sm"
           >
             Wyszukiwane NIP
           </Link>
           <Link 
             href="/dashboard/searched-gmb" 
-            className="bg-[#5DA157] text-white px-4 py-2 rounded-lg hover:bg-[#4b8446] transition-colors"
+            className="bg-[#5DA157] text-white px-4 py-2 rounded hover:bg-[#4b8446] transition-colors text-sm"
           >
             Wyszukiwane Profile GMB
           </Link>
           <Link 
             href="/dashboard/orders" 
-            className="bg-[#002a5c] text-white px-4 py-2 rounded-lg hover:bg-[#001e47] transition-colors"
+            className="bg-[#002a5c] text-white px-4 py-2 rounded hover:bg-[#001e47] transition-colors text-sm"
           >
             Zobacz zamówienia
           </Link>
