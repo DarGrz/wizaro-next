@@ -187,7 +187,7 @@ export default function RootLayout({
         </Script>
 
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-W72NWNSH"

@@ -432,7 +432,7 @@ export default function RemovalForm({
       {/* Description based on selected mode */}
       <div className="text-center mb-4 text-sm text-[#5DA157]">
         {isResetMode ? (
-          <p>Usuwamy starą wizytówkę ze wszystkimi opiniami firmy z Map Google i na jej miejsce zakładamy nową wizytówkę.</p>
+          <p>Usuwamy starą wizytówkę ze wszystkimi opiniami firmy z Map Google i na jej miejsce zakładamy nową.</p>
         ) : (
           <p>Usługa usuwania profilu całkowicie usuwa wizytówkę firmy z Map Google.</p>
         )}

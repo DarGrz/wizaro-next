@@ -69,6 +69,12 @@ export default async function DashboardPage() {
         <h1 className="text-2xl font-bold">📊 Dashboard – Wizaro</h1>
         <div className="flex space-x-4">
           <Link 
+            href="/dashboard/searched-nip" 
+            className="bg-[#5EA154] text-white px-4 py-2 rounded-lg hover:bg-[#4b8446] transition-colors"
+          >
+            Wyszukiwane NIP
+          </Link>
+          <Link 
             href="/dashboard/searched-gmb" 
             className="bg-[#5DA157] text-white px-4 py-2 rounded-lg hover:bg-[#4b8446] transition-colors"
           >

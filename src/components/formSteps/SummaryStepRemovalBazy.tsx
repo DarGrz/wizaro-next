@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+// Import the version string, not the page component
+import { REGULAMIN_VERSION } from "@/app/constants/regulamin-version";
 
 interface Company {
   name: string;
@@ -53,6 +55,19 @@ export default function SummaryStepRemovalBazy({
   onConfirm,
   payer,
 }: Props) {
+  const [regulaminAccepted, setRegulaminAccepted] = React.useState(false);
+  
+  const handleConfirm = () => {
+    if (regulaminAccepted && typeof onConfirm === "function") {
+      // Zapisz akceptację regulaminu lokalnie
+      localStorage.setItem('regulamin_accepted', 'true');
+      localStorage.setItem('regulamin_version', REGULAMIN_VERSION);
+      localStorage.setItem('regulamin_accepted_date', new Date().toISOString());
+      
+      // Wywołaj funkcję onConfirm
+      onConfirm();
+    }
+  };
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-semibold text-center text-gray-800">
@@ -131,7 +146,28 @@ export default function SummaryStepRemovalBazy({
         </div>
         <p className="text-sm text-gray-600 mt-1">
           (zawiera VAT 23%)
-        </p>
+        </p>      </div>
+      
+      {/* Terms and Conditions Acceptance */}
+      <div className="flex items-center text-sm gap-2 mb-4">
+        <input
+          type="checkbox"
+          checked={regulaminAccepted}
+          onChange={e => setRegulaminAccepted(e.target.checked)}
+          className="accent-[#002a5c]"
+          id="regulamin-checkbox"
+        />
+        <label htmlFor="regulamin-checkbox">
+          Akceptuję
+          <a
+            href="/regulamin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline text-[#002a5c] ml-1"
+          >
+            regulamin świadczenia usług
+          </a>
+        </label>
       </div>
 
       {/* Action Buttons */}
@@ -146,8 +182,8 @@ export default function SummaryStepRemovalBazy({
         </button>
         <button
           type="button"
-          onClick={onConfirm}
-          disabled={isLoading}
+          onClick={handleConfirm}
+          disabled={isLoading || !regulaminAccepted}
           className="flex-1 px-4 py-2 bg-[#002a5c] text-white hover:bg-[#001e47] rounded text-sm font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           {isLoading ? (

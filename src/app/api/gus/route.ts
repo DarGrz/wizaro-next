@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createServerSupabaseClient } from '@/app/lib/supabase-client';
 
 const GUS_API_URL = process.env.BIR_API_URL!;
 const GUS_API_KEY = process.env.BIR_API_KEY!;
@@ -49,9 +50,17 @@ export async function POST(request: NextRequest) {
     
     if (!companyData) {
       return NextResponse.json({ error: 'Nie znaleziono firmy o podanym NIP' }, { status: 404 });
+    }    console.log('Company data found successfully');
+
+    // Save the searched NIP to Supabase
+    try {
+      await saveSearchedNIP(companyData, request);
+      console.log('NIP search saved to database');
+    } catch (error) {
+      console.error('Error saving NIP search to database:', error);
+      // Continue with the response even if saving fails
     }
 
-    console.log('Company data found successfully');
     return NextResponse.json({ success: true, data: companyData });
 
   } catch (error) {
@@ -287,5 +296,48 @@ function parseCompanyDataFromXML(xmlResponse: string): GUSCompanyData | null {
   } catch (error) {
     console.error('Failed to parse company data from XML:', error);
     return null;
+  }
+}
+
+// Add function to save searched NIP to Supabase
+async function saveSearchedNIP(data: GUSCompanyData, request: NextRequest) {
+  try {
+    const supabase = createServerSupabaseClient();
+    
+    // Get IP from request headers
+    let ip = request.headers.get('x-forwarded-for') || 
+             request.headers.get('x-real-ip') || 
+             'unknown';
+    
+    // If IP contains multiple addresses, take the first one
+    if (ip.includes(',')) {
+      ip = ip.split(',')[0].trim();
+    }
+    
+    const userAgent = request.headers.get('user-agent') || 'unknown';
+    
+    // Insert into searched_nip table
+    const { error } = await supabase
+      .from('searched_nip')
+      .insert({
+        nip: data.nip,
+        company_name: data.name,
+        street: data.street,
+        city: data.city,
+        zip: data.zip,
+        regon: data.regon,
+        krs: data.krs || null,
+        ip_address: ip,
+        user_agent: userAgent
+      });
+    
+    if (error) {
+      console.error('Error saving searched NIP to Supabase:', error);
+    } else {
+      console.log('Successfully saved searched NIP to Supabase');
+    }
+  } catch (err) {
+    console.error('Error in saveSearchedNIP function:', err);
+    // Don't throw error here, just log it - we don't want to interrupt the main flow
   }
 }
