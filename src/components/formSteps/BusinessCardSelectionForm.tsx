@@ -404,7 +404,7 @@ Wybierz profil Google, z którego chcesz usunąć opinie.
               : 'bg-gray-400 cursor-not-allowed'
           }`}
         >
-          Przejdź do wyboru opinii
+          Dodaj opinie do usunięcia
         </button>
       </div>
     </form>
