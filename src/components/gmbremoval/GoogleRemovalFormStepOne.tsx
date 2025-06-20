@@ -195,7 +195,8 @@ export default function RemovalForm({
       if (data.details) {
         setSelectedPlaceDetails(data.details);
         
-        // Save the searched GMB profile to Supabase
+        // Save the GMB profile to the database with all available details
+        // This is the only place where we save to the database to avoid duplication
         try {
           await fetch('/api/searched-gmb', {
             method: 'POST',
@@ -215,7 +216,7 @@ export default function RemovalForm({
             }),
           });
         } catch (error) {
-          console.error('Error saving searched GMB data:', error);
+          console.error('Error saving GMB data to database:', error);
         }
       } else if (data.error) {
         // Handle specific error messages from the API
@@ -273,7 +274,7 @@ export default function RemovalForm({
   };
 
   // Select a location from search results
-  const selectLocation = (location: GmbLocation, index: number) => {
+  const selectLocation = async (location: GmbLocation, index: number) => {
     // Generate Google Maps URL with additional query parameters for better identification
     const googleMapsUrl = `https://www.google.com/maps/place/?q=place_id:${location.placeId}&query=${encodeURIComponent(location.name)}`;
     
@@ -284,13 +285,16 @@ export default function RemovalForm({
     // Zawsze używaj stałej wartości "-" dla pola nip
     onChange(index, "nip", "-");
 
+    // Note: We're not saving to the database here anymore to avoid duplication
+    // This will now be handled exclusively by the fetchPlaceDetails function
+
     // Clear the search
     setSearchQuery("");
     setShowResults(false);
     setErrorMessage(null);
     
     // Fetch more details about the place and store in state
-    // The fetchPlaceDetails function will also save the data to Supabase
+    // This will also save the complete data to the database
     fetchPlaceDetails(location.placeId);
   };
 

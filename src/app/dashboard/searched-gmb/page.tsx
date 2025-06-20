@@ -37,7 +37,7 @@ export default async function SearchedGMBPage() {
   }
 
   return (
-    <main className="max-w-8xl mx-auto p-4 m-2">
+    <main className="w-full mx-auto p-4 m-2">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">🔍 Wyszukiwane Profile GMB</h1>
         <Link 
