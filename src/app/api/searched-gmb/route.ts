@@ -18,8 +18,7 @@ export async function POST(request: NextRequest) {
       googleMapsUrl,
       businessStatus,
       rating,
-      types,
-      nip  // Add NIP to the list of fields we extract from the request
+      types
     } = await request.json();
 
     // Create Supabase client
@@ -38,7 +37,6 @@ export async function POST(request: NextRequest) {
         business_status: businessStatus || null,
         rating: rating || null,
         types: types || null,
-        nip: nip || null,  // Add NIP to the inserted data
         ip_address: ip,
         user_agent: request.headers.get('user-agent') || 'unknown'
       })
