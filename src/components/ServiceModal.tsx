@@ -32,23 +32,9 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
     hidden: { scale: 0.95, opacity: 0, y: 10 },
     visible: { scale: 1, opacity: 1, y: 0 }
   };  const serviceOptions = [
+  
     {
-      title: 'Usunięcie profilu firmy z opiniami',
-      description: 'Kompleksowe usunięcie profilu firmy wraz ze wszystkimi opiniami',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 6h18"></path>
-          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-          <line x1="10" y1="11" x2="10" y2="17"></line>
-          <line x1="14" y1="11" x2="14" y2="17"></line>
-        </svg>
-      ),
-      href: '/formularz-profil-bazy',
-      color: 'bg-[#002a5c] hover:bg-[#001e47] text-white'
-    },
-    {
-      title: 'Usunięcie opinii z Google',
+      title: 'Usunięcie opinii z Map Google',
       description: 'Usunięcie negatywnych opinii z wizytówki Twojej firmy w Mapach Google',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -62,20 +48,8 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
       href: '/formularz-opinie-google',
       color: 'bg-gray-100 hover:bg-gray-200 text-gray-800'
     },
-    {
-      title: 'Usunięcie pojedynczych opinii',
-      description: 'Usunięcie wybranych negatywnych opinii o Twojej firmie',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-          <line x1="9" y1="11" x2="15" y2="11"></line>
-          <line x1="9" y1="15" x2="13" y2="15"></line>
-        </svg>
-      ),
-      href: '/formularz-opinie',
-      color: 'bg-gray-100 hover:bg-gray-200 text-gray-800'
-    },
-    {
+
+     {
       title: 'Usunięcie firmy z Google',
       description: 'Usunięcie profilu i danych Twojej firmy z Google Maps i Google Moja Firma',
       icon: (
@@ -89,6 +63,34 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
       ),
       href: '/formularz-profil-google',
       color: 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+    },
+    {
+      title: 'Usunięcie pojedynczych opinii z GoWork, Aleo i innych',
+      description: 'Usunięcie wybranych negatywnych opinii o Twojej firmie',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          <line x1="9" y1="11" x2="15" y2="11"></line>
+          <line x1="9" y1="15" x2="13" y2="15"></line>
+        </svg>
+      ),
+      href: '/formularz-opinie',
+      color: 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+    },
+      {
+      title: 'Usunięcie profilu firmy GoWork, Aleo i innych',
+      description: 'Kompleksowe usunięcie profilu firmy wraz ze wszystkimi opiniami',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 6h18"></path>
+          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+          <line x1="10" y1="11" x2="10" y2="17"></line>
+          <line x1="14" y1="11" x2="14" y2="17"></line>
+        </svg>
+      ),
+      href: '/formularz-profil-bazy',
+      color: 'bg-[#002a5c] hover:bg-[#001e47] text-white'
     }
   ];
 
