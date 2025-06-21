@@ -50,7 +50,7 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
     },
 
      {
-      title: 'Usunięcie firmy z Map Google',
+      title: 'Usunięcie firmy z Google',
       description: 'Usunięcie profilu i danych Twojej firmy z Google Maps i Google Moja Firma',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -62,7 +62,7 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
         </svg>
       ),
       href: '/formularz-profil-google',
-      color: 'bg-[#002a5c] hover:bg-[#001e47] text-white'
+      color: 'bg-gray-100 hover:bg-gray-200 text-gray-800'
     },
     {
       title: 'Usunięcie pojedynczych opinii z GoWork, Aleo i innych',
@@ -78,7 +78,7 @@ export default function ServiceModal({ isOpen, onClose }: ServiceModalProps) {
       color: 'bg-gray-100 hover:bg-gray-200 text-gray-800'
     },
       {
-      title: 'Usunięcie profilu firmy z GoWork, Aleo i innych',
+      title: 'Usunięcie profilu firmy GoWork, Aleo i innych',
       description: 'Kompleksowe usunięcie profilu firmy wraz ze wszystkimi opiniami',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
