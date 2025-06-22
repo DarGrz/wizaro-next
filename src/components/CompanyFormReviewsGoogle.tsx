@@ -263,11 +263,11 @@ export default function CompanyFormReviews() {
       // Akceptacja regulaminu jest już zapisana w trakcie tworzenia firmy
       localStorage.removeItem("companyFormData");
       
-      // Przekierowanie na stronę thankyou z tokenem śledzenia
+      // Przekierowanie na stronę sukces z tokenem śledzenia
       if (data.tracking_token) {
-        window.location.href = `/thankyou?tracking_token=${data.tracking_token}`;
+        window.location.href = `/sukces?tracking_token=${data.tracking_token}`;
       } else {
-        window.location.href = "/thankyou";
+        window.location.href = "/sukces";
       }
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
