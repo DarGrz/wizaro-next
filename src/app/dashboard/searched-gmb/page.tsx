@@ -67,7 +67,17 @@ export default async function SearchedGMBPage() {
               searchedGMB.map((item: SearchedGMB) => (
                 <tr key={item.id} className="border-t border-gray-200 hover:bg-gray-50">
                   <td className="px-4 py-2">{item.id}</td>
-                  <td className="px-4 py-2">{new Date(item.created_at).toLocaleString('pl-PL')}</td>
+                  <td className="px-4 py-2">
+                    {new Date(item.created_at).toLocaleString('pl-PL', {
+                      timeZone: 'Europe/Warsaw',
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      second: '2-digit'
+                    })}
+                  </td>
                   <td className="px-4 py-2 font-medium">{item.name}</td>
                   <td className="px-4 py-2">{item.address}</td>
                   <td className="px-4 py-2">{item.phone_number || '-'}</td>
