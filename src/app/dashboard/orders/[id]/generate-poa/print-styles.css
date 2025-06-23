@@ -1,0 +1,30 @@
+/* Print styles for power of attorney document */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #poa-document, #poa-document * {
+    visibility: visible;
+  }
+  #poa-document {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+  }
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+  .print-hide {
+    display: none !important;
+  }
+  h2 {
+    font-size: 18pt;
+  }
+  p, li {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+}

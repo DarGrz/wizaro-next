@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
 import DeleteOrderButton from '@/app/dashboard/orders/components/DeleteOrderButton';
+import PowerOfAttorneyDropdown from '@/app/dashboard/orders/components/PowerOfAttorneyDropdown';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -224,6 +225,17 @@ export default async function OrderDetailsPage({ params }: Props) {
                     Oznacz jako &quot;zakończone&quot;
                   </button>
                 </form>
+              )}
+              
+              {/* Przyciski pełnomocnictw */}
+              {(order.type === 'żądanie usunięcia profilu' || 
+                order.type?.toLowerCase().includes('gowork') || 
+                order.type?.toLowerCase().includes('aleo')) && (
+                <PowerOfAttorneyDropdown 
+                  orderId={order.id}
+                  showGoWork={order.type === 'żądanie usunięcia profilu' || order.type?.toLowerCase().includes('gowork')}
+                  showAleo={order.type === 'żądanie usunięcia profilu' || order.type?.toLowerCase().includes('aleo')}
+                />
               )}
               
               <DeleteOrderButton orderId={order.id} />
