@@ -73,9 +73,13 @@ export default function BusinessCardSelectionForm({
     
     setIsSearching(true);
     setErrorMessage(null);
-    
-    try {
-      const response = await fetch(`/api/gmb-search?query=${encodeURIComponent(query)}`);
+      try {
+      const response = await fetch(`/api/gmb-search?query=${encodeURIComponent(query)}&_=${Date.now()}`, {
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      });
       const data = await response.json();
       
       if (response.ok && data.results) {

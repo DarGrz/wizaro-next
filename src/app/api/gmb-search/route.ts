@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { rateLimit } from '../utils/rateLimit';
+// import { rateLimit } from '../utils/rateLimit'; // Temporarily commented out for debugging
 import { getCacheItem, setCacheItem, trackApiUsage } from '../utils/cache';
 
 // Define types for Google Places API responses
@@ -44,24 +44,25 @@ const PLACES_API_URL = 'https://maps.googleapis.com/maps/api/place/autocomplete/
 
 export async function GET(request: NextRequest) {
   try {
-    // Apply rate limiting (60 requests per minute)
-    const rateLimited = rateLimit(request, 60);
-    if (rateLimited) return rateLimited;
-
-    // Get query parameters
+    // Temporarily disable rate limiting to debug cross-browser issues
+    // const rateLimited = rateLimit(request, 60);
+    // if (rateLimited) return rateLimited;    // Get query parameters
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('query');
     
+    // Log request info for debugging
+    const userAgent = request.headers.get('user-agent') || 'unknown';
+    console.log('GMB Search API called with query:', query);
+    console.log('User Agent:', userAgent);
+    
     if (!query) {
       return NextResponse.json({ error: 'Missing query parameter' }, { status: 400 });
-    }
-
-    // Check cache first
-    const cacheKey = `gmb-search:${query}`;
+    }    // Check cache first - only use pure query string for cache key
+    const cacheKey = `gmb-search-query:${query}`;
     const cachedResults = getCacheItem<{ results: GmbLocation[] }>(cacheKey);
     
     if (cachedResults) {
-      // Return cached results
+      console.log('Returning cached results for query:', query);
       return NextResponse.json(cachedResults);
     }
 
@@ -100,13 +101,19 @@ export async function GET(request: NextRequest) {
       name: prediction.structured_formatting?.main_text || prediction.description,
       address: prediction.structured_formatting?.secondary_text || '',
       placeId: prediction.place_id
-    }));
-
-    // Cache the results for 1 hour (3600000 ms)
+    }));    // Cache the results for 1 hour (3600000 ms)
     const responseData = { results };
     setCacheItem(cacheKey, responseData, 3600000);
 
-    return NextResponse.json(responseData);
+    // Return response with cache control headers to prevent browser caching issues
+    return NextResponse.json(responseData, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'Surrogate-Control': 'no-store'
+      }
+    });
   } catch (error) {
     console.error('GMB Search API error:', error);
     return NextResponse.json(

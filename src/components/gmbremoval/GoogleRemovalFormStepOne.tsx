@@ -120,7 +120,12 @@ export default function RemovalForm({
     setErrorMessage(null);
     
     try {
-      const response = await fetch(`/api/gmb-search?query=${encodeURIComponent(query)}`);
+      const response = await fetch(`/api/gmb-search?query=${encodeURIComponent(query)}&_=${Date.now()}`, {
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      });
       
       // Handle rate limiting and other errors
       if (!response.ok) {
