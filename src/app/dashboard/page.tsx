@@ -136,11 +136,11 @@ export default async function DashboardPage() {
                   <td className="p-2 font-mono">{ip || '—'}</td>
                   <td className="p-2">{v.gclid || '—'}</td>
                   <td className="p-2">{v.keyword || '—'}</td>
-                  <td className="p-2">{v.location || '—'}</td>
                   <td className="p-2">{v.referrer || '—'}</td>
-                  <td className="p-2">{v.landing_page}</td>
+                  <td className="p-2">{v.landing_page || '—'}</td>
                   <td className="p-2">{v.utm_source || '—'}</td>
                   <td className="p-2">{v.utm_campaign || '—'}</td>
+                  <td className="p-2">{v.location || '—'}</td>
                 </tr>
               );
             })}
