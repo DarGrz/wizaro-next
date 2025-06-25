@@ -1,4 +1,4 @@
-// components/formSteps/RemovalForm.tsx
+﻿// components/formSteps/RemovalForm.tsx
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -63,7 +63,7 @@ export default function RemovalForm({
   const [modeChangeNotification, setModeChangeNotification] = useState<string | null>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   
-  // Dodajemy referencję do poprzedniej liczby profili, aby wykryć dodanie nowego
+  // Dodajemy referencjÄ™ do poprzedniej liczby profili, aby wykryÄ‡ dodanie nowego
   const previousRemovalsLength = useRef<number>(removals.length);
   
   // Check if there's a pre-filled business from URL parameters
@@ -76,7 +76,7 @@ export default function RemovalForm({
       const phone = urlParams.get('phone');
       
       if (!selectedPlaceDetails) {
-        // Pobierz dodatkowe informacje z URL, jeśli są dostępne
+        // Pobierz dodatkowe informacje z URL, jeĹ›li sÄ… dostÄ™pne
         const rating = urlParams.get('rating');
         const userRatingsTotal = urlParams.get('userRatingsTotal');
         const website = urlParams.get('website');
@@ -101,10 +101,10 @@ export default function RemovalForm({
     }
   }, [removals, selectedPlaceDetails]);
   
-  // Efekt obsługujący dodanie nowego profilu
+  // Efekt obsĹ‚ugujÄ…cy dodanie nowego profilu
   useEffect(() => {
     if (removals.length > previousRemovalsLength.current) {
-      // Jeśli dodano nowy profil, resetujemy selectedPlaceDetails
+      // JeĹ›li dodano nowy profil, resetujemy selectedPlaceDetails
       if (expandedIndex === removals.length - 1) {
         setSelectedPlaceDetails(null);
       }
@@ -120,12 +120,7 @@ export default function RemovalForm({
     setErrorMessage(null);
     
     try {
-      const response = await fetch(`/api/gmb-search?query=${encodeURIComponent(query)}&_=${Date.now()}`, {
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache'
-        }
-      });
+      const response = await fetch(`/api/gmb-search?query=${encodeURIComponent(query)}`);
       
       // Handle rate limiting and other errors
       if (!response.ok) {
@@ -136,10 +131,10 @@ export default function RemovalForm({
           const retryAfter = response.headers.get('Retry-After');
           const waitSeconds = retryAfter ? parseInt(retryAfter, 10) : 60;
           
-          throw new Error(`Przekroczono limit zapytań. Spróbuj ponownie za ${waitSeconds} sekund.`);
+          throw new Error(`Przekroczono limit zapytaĹ„. SprĂłbuj ponownie za ${waitSeconds} sekund.`);
         }
         
-        throw new Error(`Błąd serwera: ${response.status}`);
+        throw new Error(`BĹ‚Ä…d serwera: ${response.status}`);
       }
       
       const data = await response.json();
@@ -149,25 +144,28 @@ export default function RemovalForm({
         setLocations(data.results);
         setShowResults(data.results.length > 0);
         
-        // Show message if no results found
+        // Only display message when there are no results
         if (data.results.length === 0) {
-          setErrorMessage("Nie znaleziono żadnych firm Google My Business dla wpisanej frazy.");
+          setErrorMessage('Nie wszystkie wizytĂłwki Google sÄ… dostÄ™pne w wyszukiwarce. JeĹ›li nie moĹĽesz znaleĹşÄ‡ swojej firmy, skorzystaj z formularza ogĂłlnego.');
+        } else {
+          // Clear error message when results are found
+          setErrorMessage(null);
         }
       } else if (data.error) {
         // Handle specific error messages from the API
-        setErrorMessage(data.error);
+        setErrorMessage(data.message || data.error);
         setLocations([]);
         setShowResults(false);
       } else {
         setLocations([]);
         setShowResults(false);
-        setErrorMessage("Nie znaleziono żadnych firm Google My Business dla wpisanej frazy.");
+        setErrorMessage("Nie znaleziono ĹĽadnych firm Google My Business dla wpisanej frazy.");
       }
     } catch (error) {
       console.error("Error searching for locations:", error);
       setLocations([]);
       setShowResults(false);
-      setErrorMessage(error instanceof Error ? error.message : "Wystąpił błąd podczas wyszukiwania. Spróbuj ponownie.");
+      setErrorMessage(error instanceof Error ? error.message : "WystÄ…piĹ‚ bĹ‚Ä…d podczas wyszukiwania. SprĂłbuj ponownie.");
     } finally {
       setIsSearching(false);
     }
@@ -189,10 +187,10 @@ export default function RemovalForm({
           const retryAfter = response.headers.get('Retry-After');
           const waitSeconds = retryAfter ? parseInt(retryAfter, 10) : 60;
           
-          throw new Error(`Przekroczono limit zapytań. Spróbuj ponownie za ${waitSeconds} sekund.`);
+          throw new Error(`Przekroczono limit zapytaĹ„. SprĂłbuj ponownie za ${waitSeconds} sekund.`);
         }
         
-        throw new Error(`Błąd serwera: ${response.status}`);
+        throw new Error(`BĹ‚Ä…d serwera: ${response.status}`);
       }
       
       const data = await response.json();
@@ -235,7 +233,7 @@ export default function RemovalForm({
     } catch (error) {
       console.error("Error fetching place details:", error);
       setSelectedPlaceDetails(null);
-      setErrorMessage(error instanceof Error ? error.message : "Wystąpił błąd podczas wyszukiwania. Spróbuj ponownie.");
+      setErrorMessage(error instanceof Error ? error.message : "WystÄ…piĹ‚ bĹ‚Ä…d podczas wyszukiwania. SprĂłbuj ponownie.");
     } finally {
       setIsLoadingDetails(false);
     }
@@ -275,6 +273,11 @@ export default function RemovalForm({
       setLocations([]);
       setShowResults(false);
       setErrorMessage(null);
+    } else {
+      // Only show the search container when typing (don't show error message yet)
+      setShowResults(true);
+      // Don't set error message immediately - wait for search results
+      setErrorMessage(null);
     }
   };
 
@@ -287,7 +290,7 @@ export default function RemovalForm({
     onChange(index, "companyName", location.name);
     onChange(index, "url", googleMapsUrl);
     
-    // Zawsze używaj stałej wartości "-" dla pola nip
+    // Zawsze uĹĽywaj staĹ‚ej wartoĹ›ci "-" dla pola nip
     onChange(index, "nip", "-");
 
     // Note: We're not saving to the database here anymore to avoid duplication
@@ -310,35 +313,67 @@ export default function RemovalForm({
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 >= 0.5;
     const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-    const starColor = rating < 4.0 ? "text-red-600" : "text-[#5DA157]";
+    
+    // Determine star color based on rating thresholds
+    let starColor = "text-[#5DA157]"; // Default green for good ratings
+    let warningMessage = null;
+    
+    if (rating < 3.3) {
+      starColor = "text-red-600"; // Red for very bad ratings
+      warningMessage = (
+        <div className="mt-1 text-red-600 text-xs md:text-sm font-medium">
+          <span className="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            WizytĂłwka nadaje siÄ™ do usuniÄ™cia! Tracisz bardzo duĹĽo klientĂłw przez zĹ‚e opinie!
+          </span>
+        </div>
+      );
+    } else if (rating < 4.0) {
+      starColor = "text-yellow-500"; // Yellow for bad ratings
+      warningMessage = (
+        <div className="mt-1 text-yellow-600 text-xs md:text-sm">
+          <span className="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clipRule="evenodd" />
+            </svg>
+            WizytĂłwka nadaje siÄ™ do usuniÄ™cia. Tracisz duĹĽo klientĂłw przez zĹ‚e opinie.
+          </span>
+        </div>
+      );
+    }
     
     return (
-      <div className="flex items-center mt-1">
-        {[...Array(fullStars)].map((_, i) => (
-          <svg key={`full-${i}`} className={`w-4 h-4 md:w-5 md:h-5 ${starColor}`} fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        ))}
+      <div className="mt-1">
+        <div className="flex items-center">
+          {[...Array(fullStars)].map((_, i) => (
+            <svg key={`full-${i}`} className={`w-4 h-4 md:w-5 md:h-5 ${starColor}`} fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          ))}
+          
+          {halfStar && (
+            <svg className={`w-4 h-4 md:w-5 md:h-5 ${starColor}`} fill="currentColor" viewBox="0 0 20 20">
+              <defs>
+                <linearGradient id="half-star-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="50%" stopColor="currentColor" />
+                  <stop offset="50%" stopColor="#d1d5db" />
+                </linearGradient>
+              </defs>
+              <path fill="url(#half-star-gradient)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          )}
+          
+          {[...Array(emptyStars)].map((_, i) => (
+            <svg key={`empty-${i}`} className="w-4 h-4 md:w-5 md:h-5 text-gray-200" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
+          
+          <span className={`ml-1 text-xs md:text-sm ${rating < 3.3 ? 'text-red-600 font-medium' : rating < 4.0 ? 'text-yellow-600 font-medium' : 'text-gray-600'}`}>({rating.toFixed(1)})</span>
+        </div>
         
-        {halfStar && (
-          <svg className={`w-4 h-4 md:w-5 md:h-5 ${starColor}`} fill="currentColor" viewBox="0 0 20 20">
-            <defs>
-              <linearGradient id="half-star-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="50%" stopColor="currentColor" />
-                <stop offset="50%" stopColor="#d1d5db" />
-              </linearGradient>
-            </defs>
-            <path fill="url(#half-star-gradient)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        )}
-        
-        {[...Array(emptyStars)].map((_, i) => (
-          <svg key={`empty-${i}`} className="w-4 h-4 md:w-5 md:h-5 text-gray-200" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        ))}
-        
-        <span className={`ml-1 text-xs md:text-sm ${rating < 4.0 ? 'text-red-600 font-medium' : 'text-gray-600'}`}>({rating.toFixed(1)})</span>
+        {warningMessage}
       </div>
     );
   };
@@ -348,8 +383,8 @@ export default function RemovalForm({
     setIsResetMode(newMode);
     setModeChangeNotification(
       newMode 
-        ? "Zmieniono tryb na resetowanie opinii. Cena: 2199 zł."
-        : "Zmieniono tryb na usuwanie profilu. Cena: 1299 zł."
+        ? "Wybrano resetowanie opinii dla tego profilu. Cena: 2199 zĹ‚."
+        : "Wybrano usuwanie profilu. Cena: 1299 zĹ‚."
     );
     
     // Hide notification after 3 seconds
@@ -358,14 +393,14 @@ export default function RemovalForm({
     }, 3000);
   };
 
-  // Sprawdź czy tryb resetowania jest określony w URL
+  // SprawdĹş czy tryb resetowania jest okreĹ›lony w URL
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const resetParam = urlParams.get('reset');
     
     if (resetParam === 'true') {
       setIsResetMode(true);
-      setModeChangeNotification("Wybrano tryb resetowania opinii. Cena: 2199 zł.");
+      setModeChangeNotification("Wybrano tryb resetowania opinii. Cena: 2199 zĹ‚.");
       
       // Ukryj powiadomienie po 3 sekundach
       setTimeout(() => {
@@ -377,59 +412,8 @@ export default function RemovalForm({
   return (
     <form onSubmit={onSubmit} className="space-y-2 mt-5 md:mt-0">
       <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">
-        {isResetMode ? "Resetuj Opinie w Mapach Google" : "Usuń Profil Firmy z Map Google"}
+        ZarzÄ…dzanie Profilami Firmy w Mapach Google
       </h2>
-
-      {/* Mode toggle switch with fluid animation */}
-      <div className="flex justify-center mb-4">
-        <div className="relative flex items-center bg-gray-100 p-1 rounded-lg overflow-hidden">
-          {/* Fluid background animation */}
-          <div 
-            className={`absolute top-1 bottom-1 rounded-md transition-all duration-300 ease-in-out z-0 bg-[#0D2959]
-              ${isResetMode ? 'right-1 left-[calc(50%_-_8px)]' : 'left-1 right-[calc(50%_-_8px)]'}
-            `}
-            style={{
-              boxShadow: '0 0 8px rgba(13, 41, 89, 0.4)',
-              transform: isResetMode ? 'translateX(4px)' : 'translateX(-4px)',
-            }}
-          >
-            {/* Fluid bubble effect */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute rounded-full w-8 h-8 bg-white/30 animate-float" style={{ top: '-10%', left: '10%' }}></div>
-                <div className="absolute rounded-full w-6 h-6 bg-white/30 animate-float-delay" style={{ top: '40%', right: '15%' }}></div>
-                <div className="absolute rounded-full w-4 h-4 bg-white/30 animate-float-slow" style={{ bottom: '20%', left: '30%' }}></div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Button for profile removal */}
-          <button
-            type="button"
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors relative z-10 ${
-              !isResetMode 
-                ? 'text-white' 
-                : 'text-gray-600 hover:text-gray-800'
-            }`}
-            onClick={() => handleModeChange(false)}
-          >
-            Usuwanie profilu
-          </button>
-          
-          {/* Button for review reset */}
-          <button
-            type="button"
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors relative z-10 ${
-              isResetMode 
-                ? 'text-white' 
-                : 'text-gray-600 hover:text-gray-800'
-            }`}
-            onClick={() => handleModeChange(true)}
-          >
-            Resetowanie opinii
-          </button>
-        </div>
-      </div>
 
       {/* Mode change notification */}
       {modeChangeNotification && (
@@ -438,14 +422,12 @@ export default function RemovalForm({
         </div>
       )}
 
-      {/* Description based on selected mode */}
-      <div className="text-center mb-4 text-sm text-[#5DA157]">
-        {isResetMode ? (
-          <p>Usuwamy starą wizytówkę ze wszystkimi opiniami firmy z Map Google i na jej miejsce zakładamy nową wizytówkę.</p>
-        ) : (
-          <p>Całkowite usunięcie profilu firmy z Map Google wraz ze wszystkimi opiniami..</p>
-        )}
-      </div>
+      {/* Description based on selected mode - only shown when no profile is selected */}
+      {!selectedPlaceDetails && (
+        <div className="text-center mb-4 text-sm text-[#5DA157]">
+          <p>Wybierz profile do zarzÄ…dzania, a nastÄ™pnie okreĹ›l operacjÄ™ dla kaĹĽdego z nich</p>
+        </div>
+      )}
 
       {removals.map((removal, index) => (
         <div key={index} className="bg-white mb-2 md:mb-4">
@@ -462,40 +444,40 @@ export default function RemovalForm({
                 </div>
               ) : (
                 <p className="font-medium">
-                  Profil #{index + 1} {removal.companyName && `– ${removal.companyName}`}
+                  Profil #{index + 1} {removal.companyName && `â€“ ${removal.companyName}`}
                 </p>
               )}
             </div>
             <div className="flex items-center space-x-2 ml-3">
-              {/* Usuń wizytówkę - pokazuje się zawsze dla wielu wizytówek lub gdy wybrano wizytówkę */}
+              {/* UsuĹ„ wizytĂłwkÄ™ - pokazuje siÄ™ zawsze dla wielu wizytĂłwek lub gdy wybrano wizytĂłwkÄ™ */}
               {(removals.length > 1 || (selectedPlaceDetails && removal.companyName)) && (
                 <button
                   type="button"
                   onClick={() => {
                     if (selectedPlaceDetails && removal.companyName) {
-                      // Jeśli wybrano wizytówkę, resetujemy dane
+                      // JeĹ›li wybrano wizytĂłwkÄ™, resetujemy dane
                       setSelectedPlaceDetails(null);
                       onChange(index, "companyName", "");
                       onChange(index, "url", "");
                       onChange(index, "nip", "-");
                     } else {
-                      // Standardowe usuwanie wizytówki
+                      // Standardowe usuwanie wizytĂłwki
                       onRemove(index);
                     }
                   }}
                   className="text-[#0D2959] text-sm hover:underline mr-2"
                 >
-                  Usuń
+                  UsuĹ„
                 </button>
               )}
-              {/* Przycisk Rozwiń/Zwiń - pokazuje się tylko gdy wybrano wizytówkę */}
+              {/* Przycisk RozwiĹ„/ZwiĹ„ - pokazuje siÄ™ tylko gdy wybrano wizytĂłwkÄ™ */}
               {removal.companyName && (
                 <button
                   type="button"
                   className="text-sm text-white bg-[#0D2959] hover:bg-[#0a1f40] px-3 py-1 rounded"
                   onClick={() => onExpand(index)}
                 >
-                  {expandedIndex === index ? "Zwiń" : "Rozwiń"}
+                  {expandedIndex === index ? "ZwiĹ„" : "RozwiĹ„"}
                 </button>
               )}
             </div>
@@ -511,20 +493,148 @@ export default function RemovalForm({
             </div>
           )}
 
-          {/* Pokazujemy wyszukiwarkę gdy profil jest rozwinięty LUB gdy profil nie ma jeszcze wybranych danych */}
+          {/* Conditionally render different layouts based on whether a profile is selected */}
           {(expandedIndex === index || !removal.companyName) && (
-            <>
-              {/* Wyszukiwanie i link "Nie możesz znaleźć" pokazywane tylko gdy nie wybrano wizytówki */}
-              {!selectedPlaceDetails && (
-                <>
+            <div className={`${selectedPlaceDetails ? 'w-full' : ''}`}>
+              {selectedPlaceDetails ? (
+                // Full-width layout when a profile is selected
+                <div className="w-full mt-6">
+                  {/* Place Details Card - displayed after selection */}
+                  {isLoadingDetails ? (
+                    <div className="flex items-center justify-center py-3 md:py-4 mt-2 md:mt-3 rounded bg-gray-50">
+                      <div className="w-4 md:w-5 h-4 md:h-5 border-t-2 border-[#0D2959] rounded-full animate-spin mr-2"></div>
+                      <span className="text-gray-600 text-xs md:text-sm">Ĺadowanie szczegĂłĹ‚Ăłw...</span>
+                    </div>
+                  ) : (
+                    <div className="mt-3 md:mt-4 bg-white rounded-lg overflow-hidden shadow-sm w-full">
+                      <div className="bg-[#0D2959]/5 p-2 md:p-3 flex justify-between items-center">
+                        <div className="flex items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 md:h-4 w-3 md:w-4 text-[#0D2959] mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span className="font-medium text-gray-800 text-xs md:text-sm">Wybrana wizytĂłwka Google</span>
+                        </div>
+                        <a 
+                          href={selectedPlaceDetails.googleMapsUrl} 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#0D2959] hover:text-[#0a1f40] text-xs flex items-center"
+                        >
+                          <svg className="h-2.5 md:h-3 w-2.5 md:w-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                            <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                          </svg>
+                          <span>Zobacz na Mapach</span>
+                        </a>
+                      </div>
+                      <div className="p-3 md:p-4">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h3 className="font-medium text-gray-900">{selectedPlaceDetails.name}</h3>
+                            {renderStarRating(selectedPlaceDetails.rating)}
+                          </div>
+                        </div>
+                        
+                        <div className="mt-2 md:mt-3 space-y-1.5 md:space-y-2 text-xs md:text-sm">
+                          <div className="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 md:h-4 w-3.5 md:w-4 text-gray-500 mr-1.5 md:mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                            </svg>
+                            <span className="text-gray-700">{selectedPlaceDetails.address}</span>
+                          </div>
+                          
+                          {selectedPlaceDetails.phoneNumber && (
+                            <div className="flex items-center">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 md:h-4 w-3.5 md:w-4 text-gray-500 mr-1.5 md:mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                              </svg>
+                              <a href={`tel:${selectedPlaceDetails.phoneNumber}`} className="text-[#0D2959] hover:text-[#0a1f40]">
+                                {selectedPlaceDetails.phoneNumber}
+                              </a>
+                            </div>
+                          )}
+                          
+                          {selectedPlaceDetails.website && (
+                            <div className="flex items-center">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 md:h-4 w-3.5 md:w-4 text-gray-500 mr-1.5 md:mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clipRule="evenodd" />
+                              </svg>
+                              <a href={selectedPlaceDetails.website} target="_blank" rel="noopener noreferrer" className="text-[#0D2959] hover:text-[#0a1f40] truncate">
+                                {selectedPlaceDetails.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                              </a>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Simplified photos section */}
+                        {selectedPlaceDetails.photos && selectedPlaceDetails.photos.length > 0 && (
+                          <div className="mt-3 md:mt-4 pt-2 md:pt-3 border-t border-gray-50">
+                            <div className="flex flex-wrap gap-1.5 md:gap-2">
+                              {selectedPlaceDetails.photos.slice(0, 3).map((photoUrl, i) => (
+                                <div key={i} className="h-12 md:h-14 w-12 md:w-14 rounded overflow-hidden shadow-sm">
+                                  <Image 
+                                    src={photoUrl} 
+                                    alt={`${selectedPlaceDetails.name} - zdjÄ™cie ${i+1}`}
+                                    width={56}
+                                    height={56}
+                                    className="object-cover w-full h-full"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Radio buttons for selecting profile operation mode */}
+                        <div className="mt-4 pt-3 border-t border-gray-100">
+                          <p className="text-sm font-medium text-gray-700 mb-2">Wybierz rodzaj operacji dla tego profilu:</p>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <label className={`flex items-center p-3 rounded-lg border cursor-pointer transition-all ${!isResetMode ? 'border-[#0D2959] bg-[#0D2959]/5' : 'border-gray-200 hover:bg-gray-50'}`}>
+                              <input
+                                type="radio"
+                                name="profileMode"
+                                checked={!isResetMode}
+                                onChange={() => handleModeChange(false)}
+                                className="h-4 w-4 text-[#0D2959]"
+                              />
+                              <div className="ml-3">
+                                <span className="block text-sm font-medium text-gray-800">Usuwanie Profilu</span>
+                                <span className="block text-xs text-gray-500 mt-0.5">CaĹ‚kowite usuniÄ™cie wizytĂłwki z Map Google</span>
+                              </div>
+                            </label>
+                            <label className={`flex items-center p-3 rounded-lg border cursor-pointer transition-all ${isResetMode ? 'border-[#0D2959] bg-[#0D2959]/5' : 'border-gray-200 hover:bg-gray-50'}`}>
+                              <input
+                                type="radio"
+                                name="profileMode"
+                                checked={isResetMode}
+                                onChange={() => handleModeChange(true)}
+                                className="h-4 w-4 text-[#0D2959]"
+                              />
+                              <div className="ml-3">
+                                <span className="block text-sm font-medium text-gray-800">Resetowanie Profilu</span>
+                                <span className="block text-xs text-gray-500 mt-0.5">UsuniÄ™cie starej wizytĂłwki i zaĹ‚oĹĽenie nowej</span>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        
+                        <div className="mt-3 md:mt-4 pt-2 md:pt-3 border-t border-gray-50 text-xxs md:text-xs text-gray-600">
+                          <p>
+                            To jest wizytĂłwka Google, ktĂłrÄ… chcesz {isResetMode ? 'zresetowaÄ‡' : 'usunÄ…Ä‡'}.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                // Original layout with search when no profile is selected
+                <div>
                   <div className="relative" ref={searchRef}>
-                    {/* <label className="block text-gray-700 text-sm font-medium mb-1 mt-3">
-                      Wyszukaj firmę w Google (wpisz minimum 3 znaki)
-                    </label> */}
                     <div className="relative my-6 md:my-12">
                       <input
                         type="text"
-                        placeholder="Wpisz nazwę firmy, aby wyszukać..."
+                        placeholder="Wpisz nazwÄ™ firmy, aby wyszukaÄ‡..."
                         value={searchQuery}
                         onChange={handleSearchChange}
                         className="w-full rounded-lg px-4 text-md md:text-xl py-4 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
@@ -541,21 +651,21 @@ export default function RemovalForm({
                       )}
                     </div>
                     
-                    {/* Link do formularza ogólnego */}
+                    {/* Link do formularza ogĂłlnego */}
                     <div className="text-center mb-4">
                       <p className="text-sm text-gray-600">
-                        Nie możesz znaleźć swojej firmy? <a href="/formularz-profil" className="text-[#0D2959] hover:text-[#0a1f40] font-medium">Kliknij tutaj</a>
+                        Nie moĹĽesz znaleĹşÄ‡ swojej firmy? <a href="/formularz-profil" className="text-[#0D2959] hover:text-[#0a1f40] font-medium">Kliknij tutaj</a>
                       </p>
                     </div>
                     
-                    {/* Wyniki wyszukiwania wyświetlane nad sekcją informacji */}
+                    {/* Wyniki wyszukiwania wyĹ›wietlane nad sekcjÄ… informacji */}
                     {showResults && locations.length > 0 && (
                       <div className="absolute z-20 left-0 right-0 top-16 md:top-24 bg-white shadow-lg rounded-md max-h-60 md:max-h-80 overflow-auto border border-gray-200">
                         <div className="p-2 bg-gray-50 text-xs text-gray-500 flex items-center sticky top-0">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-[#0D2959]" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clipRule="evenodd" />
                           </svg>
-                          Znaleziono {locations.length} firm - kliknij, aby wybrać
+                          Znaleziono {locations.length} firm - kliknij, aby wybraÄ‡
                         </div>
                         {locations.map((location) => (
                           <div
@@ -575,7 +685,7 @@ export default function RemovalForm({
                       </div>
                     )}
                     
-                    {/* Komunikat o błędzie wyświetlany nad sekcją informacji */}
+                    {/* Komunikat o bĹ‚Ä™dzie wyĹ›wietlany nad sekcjÄ… informacji */}
                     {errorMessage && searchQuery.length >= 3 && !isSearching && !showResults && (
                       <div className="absolute z-20 left-0 right-0 top-16 md:top-24 bg-white shadow-lg border border-gray-200 rounded-md p-3 md:p-4">
                         <div className="flex flex-col md:flex-row md:items-start gap-3 md:gap-4">
@@ -592,7 +702,7 @@ export default function RemovalForm({
                             </h3>
                             <div className="mt-1 md:mt-2 text-xs md:text-sm text-yellow-700">
                               <p>
-                                Nie wszystkie wizytówki Google są dostępne w wyszukiwarce. Jeśli nie możesz znaleźć swojej firmy, skorzystaj z formularza ogólnego.
+                                Nie wszystkie wizytĂłwki Google sÄ… dostÄ™pne w wyszukiwarce. JeĹ›li nie moĹĽesz znaleĹşÄ‡ swojej firmy, skorzystaj z formularza ogĂłlnego.
                               </p>
                             </div>
                             <div className="mt-2 md:mt-4">
@@ -603,7 +713,7 @@ export default function RemovalForm({
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                                 </svg>
-                                Przejdź do formularza dla wszystkich profili
+                                PrzejdĹş do formularza dla wszystkich profili
                               </a>
                             </div>
                           </div>
@@ -611,16 +721,16 @@ export default function RemovalForm({
                       </div>
                     )}
                     
-                    {/* Najważniejsze punkty */}
+                    {/* NajwaĹĽniejsze punkty - pokazywane tylko gdy nie wybrano wizytĂłwki */}
                     <div className="bg-gray-50 rounded-lg p-3 md:p-4 mb-3 md:mb-6">
-                      <h3 className="text-sm md:text-sm font-medium text-gray-700 mb-2 md:mb-3">Najważniejsze informacje:</h3>
+                      <h3 className="text-sm md:text-sm font-medium text-gray-700 mb-2 md:mb-3">NajwaĹĽniejsze informacje:</h3>
                       <ul className="space-y-1 md:space-y-2">
                         <li className="flex items-start">
                           <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5DA157] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
-                            <strong className="text-gray-800">Płatność dopiero po usunięciu wizytówki</strong> - zapłacisz tylko za skuteczną usługę
+                            <strong className="text-gray-800">PĹ‚atnoĹ›Ä‡ dopiero po usuniÄ™ciu wizytĂłwki</strong> - zapĹ‚acisz tylko za skutecznÄ… usĹ‚ugÄ™
                           </span>
                         </li>
                         <li className="flex items-start">
@@ -628,7 +738,7 @@ export default function RemovalForm({
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
-                            <strong className="text-gray-800">Gwarancja skuteczności</strong> - używamy sprawdzonych metod
+                            <strong className="text-gray-800">Gwarancja skutecznoĹ›ci</strong> - uĹĽywamy sprawdzonych metod
                           </span>
                         </li>
                         <li className="flex items-start">
@@ -636,122 +746,10 @@ export default function RemovalForm({
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
-                            <strong className="text-gray-800">Szybka realizacja</strong> - usunięcie profilu w ciągu 7 dni roboczych
+                            <strong className="text-gray-800">Szybka realizacja</strong> - usuniÄ™cie profilu w ciÄ…gu 7 dni roboczych
                           </span>
                         </li>
                       </ul>
-                    </div>
-                  </div>
-                  
-                  {/* <div className="mt-3 text-center">
-                    <a 
-                      href="/formularz-profil" 
-                      className="inline-flex items-center justify-center px-4 py-2 text-[#5DA157] bg-[#5DA157]/5 hover:bg-[#5DA157]/10 rounded-md text-sm font-medium w-full md:w-auto transition-colors duration-200"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-[#5DA157]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      Nie możesz znaleźć swojej firmy? Kliknij tutaj
-                    </a>
-                  </div> */}
-                </>
-              )}
-
-              {/* Place Details Card - displayed after selection */}
-              {isLoadingDetails && (
-                <div className="flex items-center justify-center py-3 md:py-4 mt-2 md:mt-3 rounded bg-gray-50">
-                  <div className="w-4 md:w-5 h-4 md:h-5 border-t-2 border-[#0D2959] rounded-full animate-spin mr-2"></div>
-                  <span className="text-gray-600 text-xs md:text-sm">Ładowanie szczegółów...</span>
-                </div>
-              )}
-
-              {selectedPlaceDetails && !isLoadingDetails && (
-                <div className="mt-3 md:mt-4 bg-white rounded-lg overflow-hidden shadow-sm">
-                  <div className="bg-[#0D2959]/5 p-2 md:p-3 flex justify-between items-center">
-                    <div className="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3 md:h-4 w-3 md:w-4 text-[#0D2959] mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="font-medium text-gray-800 text-xs md:text-sm">Wybrana wizytówka Google</span>
-                    </div>
-                    <a 
-                      href={selectedPlaceDetails.googleMapsUrl} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#0D2959] hover:text-[#0a1f40] text-xs flex items-center"
-                    >
-                      <svg className="h-2.5 md:h-3 w-2.5 md:w-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                      </svg>
-                      <span>Zobacz na Mapach</span>
-                    </a>
-                  </div>
-                  <div className="p-3 md:p-4">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="font-medium text-gray-900">{selectedPlaceDetails.name}</h3>
-                        {renderStarRating(selectedPlaceDetails.rating)}
-                      </div>
-                      {/* <div className="text-xs px-2 py-1 bg-[#5DA157]/10 text-[#5DA157] rounded-full">
-                        Wybrano
-                      </div> */}
-                    </div>
-                    
-                    <div className="mt-2 md:mt-3 space-y-1.5 md:space-y-2 text-xs md:text-sm">
-                      <div className="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 md:h-4 w-3.5 md:w-4 text-gray-500 mr-1.5 md:mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-gray-700">{selectedPlaceDetails.address}</span>
-                      </div>
-                      
-                      {selectedPlaceDetails.phoneNumber && (
-                        <div className="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 md:h-4 w-3.5 md:w-4 text-gray-500 mr-1.5 md:mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                          </svg>
-                          <a href={`tel:${selectedPlaceDetails.phoneNumber}`} className="text-[#0D2959] hover:text-[#0a1f40]">
-                            {selectedPlaceDetails.phoneNumber}
-                          </a>
-                        </div>
-                      )}
-                      
-                      {selectedPlaceDetails.website && (
-                        <div className="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 md:h-4 w-3.5 md:w-4 text-gray-500 mr-1.5 md:mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clipRule="evenodd" />
-                          </svg>
-                          <a href={selectedPlaceDetails.website} target="_blank" rel="noopener noreferrer" className="text-[#0D2959] hover:text-[#0a1f40] truncate">
-                            {selectedPlaceDetails.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-                          </a>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Simplified photos section */}
-                    {selectedPlaceDetails.photos && selectedPlaceDetails.photos.length > 0 && (
-                      <div className="mt-3 md:mt-4 pt-2 md:pt-3 border-t border-gray-50">
-                        <div className="flex flex-wrap gap-1.5 md:gap-2">
-                          {selectedPlaceDetails.photos.slice(0, 3).map((photoUrl, i) => (
-                            <div key={i} className="h-12 md:h-14 w-12 md:w-14 rounded overflow-hidden shadow-sm">
-                              <Image 
-                                src={photoUrl} 
-                                alt={`${selectedPlaceDetails.name} - zdjęcie ${i+1}`}
-                                width={56}
-                                height={56}
-                                className="object-cover w-full h-full"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    
-                    <div className="mt-3 md:mt-4 pt-2 md:pt-3 border-t border-gray-50 text-xxs md:text-xs text-gray-600">
-                      <p>
-                        To jest wizytówka Google, którą chcesz usunąć.
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -782,10 +780,10 @@ export default function RemovalForm({
 
               <div className="mt-4">
                 {/* <p className="text-xs text-center text-gray-600">
-                  Wyszukaj i wybierz firmę, której profil Google chcesz usunąć.
+                  Wyszukaj i wybierz firmÄ™, ktĂłrej profil Google chcesz usunÄ…Ä‡.
                 </p> */}
               </div>
-            </>
+            </div>
           )}
         </div>
       ))}
@@ -793,7 +791,10 @@ export default function RemovalForm({
       {removals.some(r => r.companyName && r.url) && (
         <div className="mt-3 md:mt-4 p-2 md:p-4 text-center">
           <p className="text-gray-700 text-sm md:text-base">
-            Cena: <strong>{isResetMode ? "2199" : totalPrice} zł brutto</strong> <span className="text-xxs md:text-xs text-gray-500">(z VAT 23%)</span>
+            Cena: <strong>{isResetMode ? "2199" : totalPrice} zĹ‚ brutto</strong> <span className="text-xxs md:text-xs text-gray-500">(z VAT 23%)</span>
+          </p>
+          <p className="text-xs text-gray-500 mt-1">
+            Cena za usuniÄ™cie profilu: 1299 zĹ‚ | Cena za resetowanie profilu: 2199 zĹ‚
           </p>
         </div>
       )}
@@ -801,7 +802,7 @@ export default function RemovalForm({
       {!removals.some(r => r.companyName && r.url) && (
         <div className="mt-2 md:mt-3 text-center">
           <p className="text- md:text-xs">
-            Wybierz przynajmniej jeden profil, aby kontynuować.
+            Wybierz przynajmniej jeden profil, aby kontynuowaÄ‡.
           </p>
         </div>
       )}
@@ -813,7 +814,7 @@ export default function RemovalForm({
               type="button"
               onClick={() => {
                 onAdd();
-                // Rozwijamy nowo dodany profil - przekazujemy indeks, który będzie miał nowy profil
+                // Rozwijamy nowo dodany profil - przekazujemy indeks, ktĂłry bÄ™dzie miaĹ‚ nowy profil
                 onExpand(removals.length);
               }}
               className="w-46 px-2 md:px-4 py-2.5 md:py-2.5 bg-gray-100 hover:bg-gray-200 rounded text-sm md:text-sm"
@@ -839,7 +840,7 @@ export default function RemovalForm({
               : "Usuwanie profilu firmy z Map Google");
           }}
         >
-          Przejdź dalej
+          PrzejdĹş dalej
         </button>
       </div>
 

@@ -35,7 +35,8 @@ export default async function OrderDetailsPage({ params }: Props) {
         nip,
         street,
         city,
-        zip
+        zip,
+        price
       ),
       payments (
         status
@@ -121,6 +122,15 @@ export default async function OrderDetailsPage({ params }: Props) {
             
             <dt className="text-sm text-gray-500">Typ zamówienia</dt>
             <dd className="font-medium">{order.type}</dd>
+            
+            <dt className="text-sm text-gray-500">Cena</dt>
+            <dd className="font-medium">
+              {order.companies?.price != null ? (
+                <span>{Number(order.companies.price).toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}</span>
+              ) : (
+                <span className="text-gray-400">—</span>
+              )}
+            </dd>
             
             <dt className="text-sm text-gray-500">Data utworzenia</dt>
             <dd className="font-medium">
