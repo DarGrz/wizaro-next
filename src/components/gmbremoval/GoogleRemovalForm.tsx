@@ -20,6 +20,14 @@ interface Removal {
   companyName: string;
   nip: string;
   url: string;
+  // Additional PlaceDetails data for the summary
+  address?: string;
+  phoneNumber?: string;
+  website?: string;
+  photos?: string[];
+  rating?: number;
+  businessStatus?: string;
+  types?: string[];
 }
 
 interface CompanyData {
@@ -77,7 +85,18 @@ export default function GoogleRemovalForm() {
   };
 
   const [removals, setRemovals] = useState<Removal[]>([
-    { companyName: "", nip: "", url: "" },
+    { 
+      companyName: "", 
+      nip: "", 
+      url: "",
+      address: undefined,
+      phoneNumber: undefined,
+      website: undefined,
+      photos: undefined,
+      rating: undefined,
+      businessStatus: undefined,
+      types: undefined
+    },
   ]);
 
   const [company, setCompany] = useState<CompanyData>(defaultCompany);
@@ -128,7 +147,14 @@ export default function GoogleRemovalForm() {
           { 
             companyName: businessName, 
             nip: "", 
-            url: googleMapsUrl 
+            url: googleMapsUrl,
+            address: address || undefined,
+            phoneNumber: phone || undefined,
+            website: undefined,
+            photos: undefined,
+            rating: undefined,
+            businessStatus: undefined,
+            types: undefined
           }
         ]);
         
@@ -213,9 +239,9 @@ export default function GoogleRemovalForm() {
   const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLink(r.url), 0);
   const displayPrice = totalPrice / 100;
 
-  const handleRemovalChange = (index: number, field: keyof Removal, value: string) => {
+  const handleRemovalChange = (index: number, field: keyof Removal, value: string | string[] | number | undefined) => {
     const updated = [...removals];
-    updated[index][field] = value;
+    (updated[index] as Record<keyof Removal, string | string[] | number | undefined>)[field] = value;
     setRemovals(updated);
   };
 
@@ -223,7 +249,18 @@ export default function GoogleRemovalForm() {
     // Pobierz NIP z poprzedniego profilu (ostatniego na liście)
     const previousNip = removals.length > 0 ? removals[removals.length - 1].nip : "";
     
-    setRemovals([...removals, { companyName: "", nip: previousNip, url: "" }]);
+    setRemovals([...removals, { 
+      companyName: "", 
+      nip: previousNip, 
+      url: "",
+      address: undefined,
+      phoneNumber: undefined,
+      website: undefined,
+      photos: undefined,
+      rating: undefined,
+      businessStatus: undefined,
+      types: undefined
+    }]);
     setExpandedIndex(removals.length);
   };
 
@@ -397,7 +434,13 @@ export default function GoogleRemovalForm() {
                   companyName: removal.companyName,
                   nip: removal.nip,
                   url: removal.url,
-                  // Możemy dodać więcej szczegółów z PlaceDetails, jeśli są dostępne
+                  address: removal.address,
+                  phoneNumber: removal.phoneNumber,
+                  website: removal.website,
+                  photos: removal.photos,
+                  rating: removal.rating,
+                  businessStatus: removal.businessStatus,
+                  types: removal.types,
                 }))}
                 totalPrice={displayPrice}
                 isLoading={isLoading}

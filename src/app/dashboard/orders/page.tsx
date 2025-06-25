@@ -10,7 +10,11 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY!
 );
 
-export default async function OrdersPage() {
+export default async function OrdersPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ filter?: string }>;
+}) {
   // 🔐 Sprawdzenie logowania
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
   if (!isLoggedIn) redirect('/login');
@@ -38,6 +42,15 @@ export default async function OrdersPage() {
     `)
     .order('created_at', { ascending: false });
 
+  // Filtrowanie zamówień
+  const params = await searchParams;
+  const filter = params.filter || 'all';
+  const filteredOrders = orders?.filter(order => {
+    if (filter === 'removal') return order.type === 'żądanie usunięcia opinii';
+    if (filter === 'profile') return order.type !== 'żądanie usunięcia opinii';
+    return true;
+  }) || [];
+
   return (
     <main className=" mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
@@ -53,6 +66,42 @@ export default async function OrdersPage() {
       <Suspense fallback={null}>
         <DeletedMessageAlert />
       </Suspense>
+
+      {/* Filtrowanie */}
+      <div className="mb-4">
+        <div className="flex gap-2">
+          <Link
+            href="/dashboard/orders"
+            className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+              filter === 'all' 
+                ? 'bg-blue-600 text-white' 
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Wszystkie ({orders?.length || 0})
+          </Link>
+          <Link
+            href="/dashboard/orders?filter=removal"
+            className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+              filter === 'removal' 
+                ? 'bg-blue-600 text-white' 
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Żądanie usunięcia opinii ({orders?.filter(o => o.type === 'żądanie usunięcia opinii').length || 0})
+          </Link>
+          <Link
+            href="/dashboard/orders?filter=profile"
+            className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+              filter === 'profile' 
+                ? 'bg-blue-600 text-white' 
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Usuwanie profilu ({orders?.filter(o => o.type !== 'żądanie usunięcia opinii').length || 0})
+          </Link>
+        </div>
+      </div>
 
       <div className="bg-white shadow rounded-xl w-full overflow-x-auto">
         <table className="min-w-[1200px] w-full text-sm">
@@ -74,7 +123,7 @@ export default async function OrdersPage() {
             </tr>
           </thead>
           <tbody>
-            {orders?.map((order) => (
+            {filteredOrders?.map((order) => (
               <tr key={order.id} className="border-t hover:bg-gray-50">
                 <td className="p-3 font-mono">{order.id}</td>
                 <td className="p-3">{order.type}</td>

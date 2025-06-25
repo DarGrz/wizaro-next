@@ -128,7 +128,7 @@ export default function SummaryStepGoogleProfile({
         Podsumowanie
       </h2>      <div className="bg-[#F9FAFB] p-5 rounded-lg mb-6">
         <h3 className="text-md font-semibold text-[#0D2959] mb-3">Dane zamawiającego:</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-3 text-sm text-gray-700">
           <div>
             <div className="font-medium">Firma:</div>
             <div>{company.name}</div>

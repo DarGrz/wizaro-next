@@ -8,6 +8,14 @@ interface Removal {
   companyName: string;
   nip: string;
   url: string;
+  // Additional PlaceDetails data for the summary
+  address?: string;
+  phoneNumber?: string;
+  website?: string;
+  photos?: string[];
+  rating?: number;
+  businessStatus?: string;
+  types?: string[];
 }
 
 interface GmbLocation {
@@ -35,7 +43,7 @@ interface Props {
   removals: Removal[];
   expandedIndex: number;
   totalPrice: number;
-  onChange: (index: number, field: keyof Removal, value: string) => void;
+  onChange: (index: number, field: keyof Removal, value: string | string[] | number | undefined) => void;
   onAdd: () => void;
   onRemove: (index: number) => void;
   onExpand: (index: number) => void;
@@ -174,7 +182,7 @@ export default function RemovalForm({
   };
 
   // Get place details
-  const fetchPlaceDetails = async (placeId: string) => {
+  const fetchPlaceDetails = async (placeId: string, index: number) => {
     setIsLoadingDetails(true);
     
     try {
@@ -199,6 +207,15 @@ export default function RemovalForm({
       
       if (data.details) {
         setSelectedPlaceDetails(data.details);
+        
+        // Update the removal data with the detailed place information
+        onChange(index, "address", data.details.address);
+        onChange(index, "phoneNumber", data.details.phoneNumber);
+        onChange(index, "website", data.details.website);
+        onChange(index, "photos", data.details.photos);
+        onChange(index, "rating", data.details.rating);
+        onChange(index, "businessStatus", data.details.businessStatus);
+        onChange(index, "types", data.details.types);
         
         // Save the GMB profile to the database with all available details
         // This is the only place where we save to the database to avoid duplication
@@ -300,7 +317,7 @@ export default function RemovalForm({
     
     // Fetch more details about the place and store in state
     // This will also save the complete data to the database
-    fetchPlaceDetails(location.placeId);
+    fetchPlaceDetails(location.placeId, index);
   };
 
   // Generate star rating display
