@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -265,11 +265,17 @@ export default function GoogleRemovalForm() {
   const totalPrice = removals.reduce((sum, r) => sum + calculatePriceForLink(r.url), 0);
   const displayPrice = totalPrice / 100;
 
-  const handleRemovalChange = (index: number, field: keyof Removal, value: string | string[] | number | undefined) => {
+  const handleRemovalChange = useCallback((index: number, field: keyof Removal, value: string | string[] | number | undefined) => {
     const updated = [...removals];
     (updated[index] as Record<keyof Removal, string | string[] | number | undefined>)[field] = value;
     setRemovals(updated);
-  };
+  }, [removals]);
+
+  const handleModeChange = useCallback((newIsResetMode: boolean) => {
+    setIsResetMode(newIsResetMode);
+    // Also update localStorage immediately for consistency
+    localStorage.setItem("profileOperationMode", newIsResetMode ? "reset" : "removal");
+  }, []);
 
   const addRemoval = () => {
     // Pobierz NIP z poprzedniego profilu (ostatniego na liście)
@@ -400,10 +406,12 @@ export default function GoogleRemovalForm() {
               <GoogleRemovalFormStepOne
                 removals={removals}
                 expandedIndex={expandedIndex}
+                isResetMode={isResetMode}
                 onChange={handleRemovalChange}
                 onAdd={addRemoval}
                 onRemove={removeRemoval}
                 onExpand={(index) => setExpandedIndex(expandedIndex === index ? -1 : index)}
+                onModeChange={handleModeChange}
                 onSubmit={(e) => {
                   e.preventDefault();
                   // Double-check that at least one profile is selected

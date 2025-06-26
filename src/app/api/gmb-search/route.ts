@@ -89,21 +89,39 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Call Google Places API - removed country restriction to allow global search
-    // Add country restriction only if specified
-    let apiUrl = `${PLACES_API_URL}?input=${encodeURIComponent(query)}&types=establishment&language=en&key=${apiKey}`;
+    // First try to search for Polish businesses only
+    let apiUrl = `${PLACES_API_URL}?input=${encodeURIComponent(query)}&types=establishment&language=pl&key=${apiKey}`;
     
+    // If country is specified, use it; otherwise restrict to Poland first
     if (country) {
       apiUrl += `&components=country:${country}`;
+    } else {
+      apiUrl += '&components=country:pl';
     }
     
-    const response = await fetch(apiUrl);
+    let response = await fetch(apiUrl);
 
     if (!response.ok) {
       throw new Error(`Google API error: ${response.status}`);
     }
 
-    const data = await response.json() as PlacesAutocompleteResponse;    // Transform the data to the format expected by the frontend
+    let data = await response.json() as PlacesAutocompleteResponse;
+    
+    // If no Polish results found and no specific country was requested, search globally
+    if (!country && (!data.predictions || data.predictions.length === 0)) {
+      console.log('No Polish results found, searching globally for query:', query);
+      
+      // Search globally without country restriction
+      const globalApiUrl = `${PLACES_API_URL}?input=${encodeURIComponent(query)}&types=establishment&language=pl&key=${apiKey}`;
+      
+      response = await fetch(globalApiUrl);
+      
+      if (!response.ok) {
+        throw new Error(`Google API error (global search): ${response.status}`);
+      }
+      
+      data = await response.json() as PlacesAutocompleteResponse;
+    }    // Transform the data to the format expected by the frontend
     const results: GmbLocation[] = data.predictions.map((prediction, index) => ({
       id: `gmb-${index}-${prediction.place_id}`,
       name: prediction.structured_formatting?.main_text || prediction.description,

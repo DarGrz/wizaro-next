@@ -42,20 +42,24 @@ interface PlaceDetails {
 interface Props {
   removals: Removal[];
   expandedIndex: number;
+  isResetMode: boolean;
   onChange: (index: number, field: keyof Removal, value: string | string[] | number | undefined) => void;
   onAdd: () => void;
   onRemove: (index: number) => void;
   onExpand: (index: number) => void;
+  onModeChange: (isReset: boolean) => void;
   onSubmit: (e: React.FormEvent) => void;
 }
 
 export default function RemovalForm({
   removals,
   expandedIndex,
+  isResetMode: parentIsResetMode,
   onChange,
   onAdd,
   onRemove,
   onExpand,
+  onModeChange,
   onSubmit,
 }: Props) {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -65,7 +69,6 @@ export default function RemovalForm({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [selectedPlaceDetails, setSelectedPlaceDetails] = useState<PlaceDetails | null>(null);
   const [isLoadingDetails, setIsLoadingDetails] = useState<boolean>(false);
-  const [isResetMode, setIsResetMode] = useState<boolean>(false);
   const [modeChangeNotification, setModeChangeNotification] = useState<string | null>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   
@@ -360,7 +363,7 @@ export default function RemovalForm({
 
   // Handle mode change and show notification
   const handleModeChange = (newMode: boolean) => {
-    setIsResetMode(newMode);
+    onModeChange(newMode);
     setModeChangeNotification(
       newMode 
         ? "Zmieniono tryb na resetowanie opinii. Cena: 2199 zł."
@@ -379,7 +382,7 @@ export default function RemovalForm({
     const resetParam = urlParams.get('reset');
     
     if (resetParam === 'true') {
-      setIsResetMode(true);
+      onModeChange(true);
       setModeChangeNotification("Wybrano tryb resetowania opinii. Cena: 2199 zł.");
       
       // Ukryj powiadomienie po 3 sekundach
@@ -387,14 +390,14 @@ export default function RemovalForm({
         setModeChangeNotification(null);
       }, 3000);
     }
-  }, []);
+  }, [onModeChange]);
 
   // Calculate total price based on mode and number of profiles
   const calculateTotalPrice = () => {
     const profileCount = removals.filter(r => r.companyName && r.url).length;
     if (profileCount === 0) return 0;
     
-    if (isResetMode) {
+    if (parentIsResetMode) {
       return profileCount * 2199; // 2199 zł per profile for reset mode
     } else {
       return profileCount * 1299; // 1299 zł per profile for removal mode
@@ -404,7 +407,7 @@ export default function RemovalForm({
   return (
     <form onSubmit={onSubmit} className="space-y-2 mt-5 md:mt-0">
       <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">
-        {isResetMode ? "Resetuj Opinie w Mapach Google" : "Usuń Profil Firmy z Map Google"}
+        {parentIsResetMode ? "Resetuj Opinie w Mapach Google" : "Usuń Profil Firmy z Map Google"}
       </h2>
 
       {/* Mode change notification */}
@@ -728,7 +731,10 @@ export default function RemovalForm({
                     
                     <div className="mt-3 md:mt-4 pt-2 md:pt-3 border-t border-gray-50 text-xxs md:text-xs text-gray-600">
                       <p>
-                        To jest wizytówka Google, którą chcesz usunąć.
+                        {parentIsResetMode 
+                          ? "To jest wizytówka Google, której opinie chcesz zresetować."
+                          : "To jest wizytówka Google, którą chcesz usunąć."
+                        }
                       </p>
                     </div>
                   </div>
@@ -748,7 +754,7 @@ export default function RemovalForm({
                           type="radio"
                           name="operationMode"
                           value="removal"
-                          checked={!isResetMode}
+                          checked={!parentIsResetMode}
                           onChange={() => handleModeChange(false)}
                           className="mt-1 h-4 w-4 text-[#0D2959] border-gray-300 focus:ring-[#0D2959] focus:ring-2"
                         />
@@ -769,7 +775,7 @@ export default function RemovalForm({
                           type="radio"
                           name="operationMode"
                           value="reset"
-                          checked={isResetMode}
+                          checked={parentIsResetMode}
                           onChange={() => handleModeChange(true)}
                           className="mt-1 h-4 w-4 text-[#0D2959] border-gray-300 focus:ring-[#0D2959] focus:ring-2"
                         />
@@ -863,9 +869,9 @@ export default function RemovalForm({
           }`}
           onClick={() => {
             // Store the mode in localStorage for other components to access
-            localStorage.setItem("profileOperationMode", isResetMode ? "reset" : "removal");
+            localStorage.setItem("profileOperationMode", parentIsResetMode ? "reset" : "removal");
             // Store the service description for summary page
-            localStorage.setItem("serviceDescription", isResetMode 
+            localStorage.setItem("serviceDescription", parentIsResetMode 
               ? "Resetowanie opinii na profilu firmy w Mapach Google" 
               : "Usuwanie profilu firmy z Map Google");
           }}
