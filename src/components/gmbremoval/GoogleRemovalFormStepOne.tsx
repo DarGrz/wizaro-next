@@ -488,24 +488,27 @@ export default function RemovalForm({
                     {/* <label className="block text-gray-700 text-sm font-medium mb-1 mt-3">
                       Wyszukaj firmę w Google (wpisz minimum 3 znaki)
                     </label> */}
-                    <div className="relative my-6 md:my-12">
+                    <div className="relative my-6 md:my-12 flex gap-2">
                       <input
                         type="text"
                         placeholder="Wpisz nazwę firmy, aby wyszukać..."
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className="w-full rounded-lg px-4 text-md md:text-xl py-4 md:py-3 pl-10 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
+                        className="flex-1 rounded-lg px-4 text-md md:text-xl py-4 md:py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0D2959]/30 transition-all duration-200"
                       />
-                      <div className="absolute left-3 top-2.5 text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-4zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      {isSearching && (
-                        <div className="absolute right-3 top-3">
-                          <div className="w-4 h-4 border-t-2 border-[#0D2959] rounded-full animate-spin"></div>
-                        </div>
-                      )}
+                      <button
+                        type="button"
+                        onClick={() => searchQuery.length >= 2 && searchLocations(searchQuery)}
+                        className="px-4 py-4 md:py-3 bg-[#0D2959] hover:bg-[#0a1f40] text-white rounded-lg transition-colors duration-200 flex items-center justify-center"
+                      >
+                        {isSearching ? (
+                          <div className="w-5 h-5 border-t-2 border-white rounded-full animate-spin"></div>
+                        ) : (
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-4zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                      </button>
                     </div>
                     
                     {/* Link do formularza ogólnego */}
