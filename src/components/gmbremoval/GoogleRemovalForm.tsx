@@ -374,7 +374,6 @@ export default function GoogleRemovalForm() {
               <GoogleRemovalFormStepOne
                 removals={removals}
                 expandedIndex={expandedIndex}
-                totalPrice={displayPrice}
                 onChange={handleRemovalChange}
                 onAdd={addRemoval}
                 onRemove={removeRemoval}

@@ -42,7 +42,6 @@ interface PlaceDetails {
 interface Props {
   removals: Removal[];
   expandedIndex: number;
-  totalPrice: number;
   onChange: (index: number, field: keyof Removal, value: string | string[] | number | undefined) => void;
   onAdd: () => void;
   onRemove: (index: number) => void;
@@ -53,7 +52,6 @@ interface Props {
 export default function RemovalForm({
   removals,
   expandedIndex,
-  totalPrice,
   onChange,
   onAdd,
   onRemove,
@@ -391,62 +389,23 @@ export default function RemovalForm({
     }
   }, []);
 
+  // Calculate total price based on mode and number of profiles
+  const calculateTotalPrice = () => {
+    const profileCount = removals.filter(r => r.companyName && r.url).length;
+    if (profileCount === 0) return 0;
+    
+    if (isResetMode) {
+      return profileCount * 2199; // 2199 zł per profile for reset mode
+    } else {
+      return profileCount * 1299; // 1299 zł per profile for removal mode
+    }
+  };
+
   return (
     <form onSubmit={onSubmit} className="space-y-2 mt-5 md:mt-0">
       <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">
         {isResetMode ? "Resetuj Opinie w Mapach Google" : "Usuń Profil Firmy z Map Google"}
       </h2>
-
-      {/* Mode toggle switch with fluid animation */}
-      <div className="flex justify-center mb-4">
-        <div className="relative flex items-center bg-gray-100 p-1 rounded-lg overflow-hidden">
-          {/* Fluid background animation */}
-          <div 
-            className={`absolute top-1 bottom-1 rounded-md transition-all duration-300 ease-in-out z-0 bg-[#0D2959]
-              ${isResetMode ? 'right-1 left-[calc(50%_-_8px)]' : 'left-1 right-[calc(50%_-_8px)]'}
-            `}
-            style={{
-              boxShadow: '0 0 8px rgba(13, 41, 89, 0.4)',
-              transform: isResetMode ? 'translateX(4px)' : 'translateX(-4px)',
-            }}
-          >
-            {/* Fluid bubble effect */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute rounded-full w-8 h-8 bg-white/30 animate-float" style={{ top: '-10%', left: '10%' }}></div>
-                <div className="absolute rounded-full w-6 h-6 bg-white/30 animate-float-delay" style={{ top: '40%', right: '15%' }}></div>
-                <div className="absolute rounded-full w-4 h-4 bg-white/30 animate-float-slow" style={{ bottom: '20%', left: '30%' }}></div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Button for profile removal */}
-          <button
-            type="button"
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors relative z-10 ${
-              !isResetMode 
-                ? 'text-white' 
-                : 'text-gray-600 hover:text-gray-800'
-            }`}
-            onClick={() => handleModeChange(false)}
-          >
-            Usuwanie profilu
-          </button>
-          
-          {/* Button for review reset */}
-          <button
-            type="button"
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors relative z-10 ${
-              isResetMode 
-                ? 'text-white' 
-                : 'text-gray-600 hover:text-gray-800'
-            }`}
-            onClick={() => handleModeChange(true)}
-          >
-            Resetowanie opinii
-          </button>
-        </div>
-      </div>
 
       {/* Mode change notification */}
       {modeChangeNotification && (
@@ -454,15 +413,6 @@ export default function RemovalForm({
           {modeChangeNotification}
         </div>
       )}
-
-      {/* Description based on selected mode */}
-      <div className="text-center mb-4 text-sm text-[#5DA157]">
-        {isResetMode ? (
-          <p>Usuwamy starą wizytówkę ze wszystkimi opiniami firmy z Map Google i na jej miejsce zakładamy nową wizytówkę.</p>
-        ) : (
-          <p>Całkowite usunięcie profilu firmy z Map Google wraz ze wszystkimi opiniami..</p>
-        )}
-      </div>
 
       {removals.map((removal, index) => (
         <div key={index} className="bg-white mb-2 md:mb-4">
@@ -774,6 +724,59 @@ export default function RemovalForm({
                 </div>
               )}
 
+              {/* Mode selection with radio buttons - show after profile is selected */}
+              {selectedPlaceDetails && !isLoadingDetails && (
+                <div className="mt-4">
+                  <div className="bg-gray-50 rounded-lg p-4 w-full">
+                    <p className="text-sm font-medium text-gray-700 mb-3 text-center">Wybierz rodzaj usługi:</p>
+                    
+                    <div className="space-y-3">
+                      {/* Radio button for profile removal */}
+                      <label className="flex items-start cursor-pointer group">
+                        <input
+                          type="radio"
+                          name="operationMode"
+                          value="removal"
+                          checked={!isResetMode}
+                          onChange={() => handleModeChange(false)}
+                          className="mt-1 h-4 w-4 text-[#0D2959] border-gray-300 focus:ring-[#0D2959] focus:ring-2"
+                        />
+                        <div className="ml-3 flex-1">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-900">Usuwanie profilu</span>
+                            <span className="text-sm font-semibold text-[#0D2959]">1299 zł</span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Całkowite usunięcie profilu firmy z Map Google wraz ze wszystkimi opiniami
+                          </p>
+                        </div>
+                      </label>
+
+                      {/* Radio button for review reset */}
+                      <label className="flex items-start cursor-pointer group">
+                        <input
+                          type="radio"
+                          name="operationMode"
+                          value="reset"
+                          checked={isResetMode}
+                          onChange={() => handleModeChange(true)}
+                          className="mt-1 h-4 w-4 text-[#0D2959] border-gray-300 focus:ring-[#0D2959] focus:ring-2"
+                        />
+                        <div className="ml-3 flex-1">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-900">Resetowanie opinii</span>
+                            <span className="text-sm font-semibold text-[#0D2959]">2199 zł</span>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">
+                            Usunięcie starej wizytówki ze wszystkimi opiniami i założenie nowej wizytówki
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <input
                 type="hidden"
                 name="companyName"
@@ -810,7 +813,7 @@ export default function RemovalForm({
       {removals.some(r => r.companyName && r.url) && (
         <div className="mt-3 md:mt-4 p-2 md:p-4 text-center">
           <p className="text-gray-700 text-sm md:text-base">
-            Cena: <strong>{isResetMode ? "2199" : totalPrice} zł brutto</strong> <span className="text-xxs md:text-xs text-gray-500">(z VAT 23%)</span>
+            Cena: <strong>{calculateTotalPrice()} zł brutto</strong> <span className="text-xxs md:text-xs text-gray-500">(z VAT 23%)</span>
           </p>
         </div>
       )}
