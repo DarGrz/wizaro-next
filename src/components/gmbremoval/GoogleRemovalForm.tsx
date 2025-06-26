@@ -11,6 +11,7 @@ import SummaryStepGoogleProfile from "@/components/formSteps/SummaryStepGooglePr
 import SocialProof from "../SocialProof";
 import CompanyProfileFormExplenation from "../Explenations/CompanyProfileFormStepExplenation";
 import GoogleRemovalFormStepExplenation from "../Explenations/GoogleRemovalFormStepExplenation";
+import GoogleResetFormExplanation from "../Explenations/GoogleResetFormExplanation";
 import PaymentExplanation from "../Explenations/PaymentExplanation";
 import ExplenationProfileRemoval from "../ExplenationProfileRemoval";
 import GuaranteeSection from "../GuaranteeSection";
@@ -106,6 +107,7 @@ export default function GoogleRemovalForm() {
   const [step, setStep] = useState<"removal" | "company" | "payer" | "summary">("removal");
   const [isLoading, setIsLoading] = useState(false);
   const [showScrollArrow, setShowScrollArrow] = useState(false);
+  const [isResetMode, setIsResetMode] = useState(false);
   
   // Intersection observer to detect when explanation section is visible
   const { ref: explanationRef, inView: explanationInView } = useInView({
@@ -208,6 +210,30 @@ export default function GoogleRemovalForm() {
       const cleanup = () => localStorage.removeItem("companyFormRemovalData");
       window.addEventListener("beforeunload", cleanup);
       return () => window.removeEventListener("beforeunload", cleanup);
+    }
+  }, []);
+
+  // Monitor localStorage for reset mode changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const checkResetMode = () => {
+        const resetMode = localStorage.getItem("profileOperationMode") === "reset";
+        setIsResetMode(resetMode);
+      };
+      
+      // Check initially
+      checkResetMode();
+      
+      // Listen for storage changes
+      window.addEventListener("storage", checkResetMode);
+      
+      // Also check periodically since storage event doesn't fire on same window
+      const interval = setInterval(checkResetMode, 500);
+      
+      return () => {
+        window.removeEventListener("storage", checkResetMode);
+        clearInterval(interval);
+      };
     }
   }, []);
 
@@ -462,7 +488,7 @@ export default function GoogleRemovalForm() {
           {step === "company" ? (
             <CompanyProfileFormExplenation />
           ) : step === "removal" ? (
-            <GoogleRemovalFormStepExplenation />
+            isResetMode ? <GoogleResetFormExplanation /> : <GoogleRemovalFormStepExplenation />
           ) : step === "summary" ? (
             <PaymentExplanation />
           ) : null}

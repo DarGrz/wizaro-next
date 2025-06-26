@@ -5,27 +5,26 @@ export default function GoogleResetFormExplanation() {
         Resetowanie wizytówki Google pozwala na usunięcie wszystkich negatywnych opinii i rozpoczęcie budowania reputacji od nowa.
       </div>
     
-      <ol className="space-y-3">
-        {/* Krok 1 */}
+     <ol className="space-y-3">        {/* Krok 1 */}
         <li className="bg-white p-3">
-          <p className="font-medium mb-1">1. Wprowadź dane firmy i link do wizytówki</p>
+          <p className="font-medium mb-1">1. Wyszukaj profil Google Business</p>
           <ul className="list-disc list-inside space-y-0.5 text-gray-700">
-            <li>Nazwa firmy – np. „ABC Sp. z o.o.&quot;</li>
-            <li>NIP firmy – wymagany do weryfikacji</li>
-            <li>Link do wizytówki Google – pełny adres URL</li>
+            <li>Wpisz nazwę firmy w wyszukiwarce</li>
+            <li>Wybierz właściwy profil z listy wyników</li>
+            <li>Sprawdź czy dane się zgadzają</li>
           </ul>
         </li>
     
         {/* Krok 2 */}
         <li className="bg-white p-3">
-          <p className="font-medium mb-1">2. Dodaj więcej wizytówek (jeśli potrzebujesz)</p>
-          <p className="text-gray-700">Kliknij <span className="text-[#5FA054]">&quot;Dodaj wizytówkę&quot;</span>, aby dodać kolejne – każdą z osobna możesz edytować.</p>
+          <p className="font-medium mb-1">2. Dodaj więcej profili (jeśli potrzebujesz)</p>
+          <p className="text-gray-700">Kliknij <span className="text-[#5FA054]">&bdquo;Dodaj profil&rdquo;</span>, aby usunąć kilka wizytówek Google jednocześnie.</p>
         </li>
-    
+
         {/* Krok 3 */}
         <li className="bg-white p-3">
           <p className="font-medium mb-1">3. Sprawdź cenę i przejdź dalej</p>
-          <p className="text-gray-700">Stała cena za usługę to <span className="font-medium">2199 zł brutto</span>. Kliknij <span className="text-[#5FA054]">&quot;Przejdź dalej&quot;</span>, aby kontynuować.</p>
+          <p className="text-gray-700">Cena pojawi się automatycznie. Kliknij <span className="text-[#5FA054]">&bdquo;Przejdź dalej&rdquo;</span>, aby kontynuować.</p>
         </li>
       </ol>
     </section>

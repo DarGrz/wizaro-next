@@ -2,7 +2,7 @@ export default function GoogleRemovalFormStepExplenation() {
   return (
     <section className="text-gray-800 p-4 rounded-xl max-w-2xl mx-auto text-sm mt-2">
       <div className="text-xl sm:text-md text-center font-semibold border-b border-gray-200 rounded p-4 md:pt-0 pt-4 mb-4">
-        Usunięcie wizytówki Google eliminuje ryzyko utraty klientów przez negatywne opinie.
+        Usunięcie Wizytówki Google eliminuje ryzyko utraty klientów przez negatywne opinie.
       </div>
     
       <ol className="space-y-3">        {/* Krok 1 */}

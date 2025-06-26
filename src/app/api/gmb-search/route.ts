@@ -49,16 +49,19 @@ export async function GET(request: NextRequest) {
     // if (rateLimited) return rateLimited;    // Get query parameters
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('query');
+    const country = searchParams.get('country'); // Optional country filter
     
     // Log request info for debugging
     const userAgent = request.headers.get('user-agent') || 'unknown';
-    console.log('GMB Search API called with query:', query);
+    console.log('GMB Search API called with query:', query, 'country:', country);
     console.log('User Agent:', userAgent);
     
     if (!query) {
       return NextResponse.json({ error: 'Missing query parameter' }, { status: 400 });
-    }    // Check cache first - only use pure query string for cache key
-    const cacheKey = `gmb-search-query:${query}`;
+    }
+
+    // Check cache first - include country in cache key if provided
+    const cacheKey = `gmb-search-query:${query}${country ? `-country:${country}` : ''}`;
     const cachedResults = getCacheItem<{ results: GmbLocation[] }>(cacheKey);
     
     if (cachedResults) {
@@ -86,10 +89,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Call Google Places API
-    const response = await fetch(
-      `${PLACES_API_URL}?input=${encodeURIComponent(query)}&types=establishment&language=pl&components=country:pl&key=${apiKey}`
-    );
+    // Call Google Places API - removed country restriction to allow global search
+    // Add country restriction only if specified
+    let apiUrl = `${PLACES_API_URL}?input=${encodeURIComponent(query)}&types=establishment&language=en&key=${apiKey}`;
+    
+    if (country) {
+      apiUrl += `&components=country:${country}`;
+    }
+    
+    const response = await fetch(apiUrl);
 
     if (!response.ok) {
       throw new Error(`Google API error: ${response.status}`);
