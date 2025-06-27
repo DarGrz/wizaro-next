@@ -95,6 +95,21 @@ export default function CompanyFormReviews() {
   const [expandedIndex, setExpandedIndex] = useState(0);
   const [step, setStep] = useState<"reviews" | "company" | "payer" | "summary">("reviews");
   const [isLoading, setIsLoading] = useState(false);
+  const [reviewsEnabled, setReviewsEnabled] = useState(true);
+
+  // Pobierz status opinii przy ładowaniu komponentu
+  useEffect(() => {
+    const fetchReviewsStatus = async () => {
+      try {
+        const response = await fetch('/api/reviews-settings');
+        const data = await response.json();
+        setReviewsEnabled(data.reviews_enabled);
+      } catch (error) {
+        console.error('Error fetching reviews status:', error);
+      }
+    };
+    fetchReviewsStatus();
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem("companyFormData");
@@ -248,6 +263,7 @@ export default function CompanyFormReviews() {
                 reviews={reviews}
                 expandedIndex={expandedIndex}
                 totalPrice={totalPrice}
+                reviewsEnabled={reviewsEnabled}
                 onChange={handleChange}
                 onAdd={addReview}
                 onRemove={removeReview}

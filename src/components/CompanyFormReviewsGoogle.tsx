@@ -9,12 +9,14 @@ import CompanyFormStep from "@/components/formSteps/CompanyFormStep";
 import PayerFormStep from "@/components/formSteps/PayerFormStep";
 import SummaryStepReviewForm from "@/components/formSteps/SummaryStepReviewForm";
 
-import ReviewFormExplenation from "./Explenations/ReviewFormExplenation";
+import GoogleReviewFormExplenation from "./Explenations/GoogleReviewFormExplenation";
 import CompanyReviewRemovalFormExplenation from "./Explenations/CompanyReviewRemovalFormExplenation";
 import SocialProof from "./SocialProof";
 import ReviewRemovalSummaryExplenation from "./Explenations/ReviewRemovalSummaryExplenation";
 import PayerFormExplenation from "./Explenations/PayerFormExplenation";
 import ExplenationReviewRemoval from "./ExplenationReviewRemoval";
+import GuaranteeSection from "./GuaranteeSection";
+import UseCaseSection from "./UseCaseSection";
 
 interface Review {
   author: string;
@@ -106,12 +108,27 @@ export default function CompanyFormReviews() {
   const [expandedIndex, setExpandedIndex] = useState(0);
   const [step, setStep] = useState<"business-card" | "reviews" | "company" | "payer" | "summary">("business-card");
   const [isLoading, setIsLoading] = useState(false);
+  const [reviewsEnabled, setReviewsEnabled] = useState(true);
   
   // New state for business card selection
   const [selectedBusinessCard, setSelectedBusinessCard] = useState<{
     name: string;
     googleMapsUrl: string;
   } | null>(null);
+
+  // Pobierz status opinii przy ładowaniu komponentu
+  useEffect(() => {
+    const fetchReviewsStatus = async () => {
+      try {
+        const response = await fetch('/api/reviews-settings');
+        const data = await response.json();
+        setReviewsEnabled(data.reviews_enabled);
+      } catch (error) {
+        console.error('Error fetching reviews status:', error);
+      }
+    };
+    fetchReviewsStatus();
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem("companyFormData");
@@ -190,6 +207,11 @@ export default function CompanyFormReviews() {
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStep("company");
+  };
+
+  const handleProfileRemoval = () => {
+    // Przekieruj do formularza usuwania całego profilu
+    window.location.href = '/formularz-profil-google';
   };
 
   const handleCompanySubmit = (e: React.FormEvent) => {
@@ -302,6 +324,7 @@ export default function CompanyFormReviews() {
                 expandedIndex={expandedIndex}
                 totalPrice={totalPrice}
                 businessCardName={selectedBusinessCard.name}
+                reviewsEnabled={reviewsEnabled}
                 onChange={handleChange}
                 onAdd={addReview}
                 onRemove={removeReview}
@@ -310,6 +333,7 @@ export default function CompanyFormReviews() {
                 }
                 onSubmit={handleReviewSubmit}
                 onBack={() => setStep("business-card")}
+                onProfileRemoval={handleProfileRemoval}
               />
             )}
 
@@ -357,13 +381,34 @@ export default function CompanyFormReviews() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          {step === "business-card" && <ReviewFormExplenation />}
-          {step === "reviews" && <ReviewFormExplenation />}
+          {step === "business-card" && <GoogleReviewFormExplenation />}
+          {step === "reviews" && <GoogleReviewFormExplenation />}
           {step === "company" && <CompanyReviewRemovalFormExplenation />}
           {step === "payer" && <PayerFormExplenation />}
           {step === "summary" && <ReviewRemovalSummaryExplenation />}
         </motion.div>
       </motion.div>
+
+       <motion.div
+              className="md:flex justify-center"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <GuaranteeSection />
+            </motion.div>
+      
+             <motion.div
+              className="md:flex justify-center"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <UseCaseSection />
+            </motion.div>
+      
 
       <motion.div
         className="md:flex py-10 m-4 md:gap-8"

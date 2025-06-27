@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 import VisitorsChart from '@/components/VisitorsChart';
 import Link from 'next/link';
+import ReviewsToggleButton from '@/components/ReviewsToggleButton';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -87,6 +88,12 @@ export default async function DashboardPage() {
             Zobacz zamówienia
           </Link>
         </div>
+      </div>
+
+      {/* Sekcja zarządzania opiniami */}
+      <div className="mb-6 bg-white shadow rounded-xl p-4">
+        <h2 className="text-lg font-semibold mb-3">⚙️ Zarządzanie usługami</h2>
+        <ReviewsToggleButton />
       </div>
 
       <div className="grid grid-cols-3 gap-4 mb-6">
