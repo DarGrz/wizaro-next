@@ -43,7 +43,7 @@ export default function StartPage() {
 
       
 
-      <div className="md:flex  md:gap-8 pt-5 w-full md:hidden block">
+      <div className=" md:gap-8 pt-5 w-full md:hidden block">
         <BusinessTypeSelectorMobile />
       </div>
 

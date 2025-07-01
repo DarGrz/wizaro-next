@@ -308,11 +308,11 @@ export default function CompanyFormRemoval() {
 
       localStorage.removeItem("companyFormRemovalData");
       
-      // Przekierowanie na stronę thankyou z tokenem śledzenia
+      // Przekierowanie na stronę dziekuje z tokenem śledzenia
       if (docData.tracking_token) {
-        window.location.href = `/thankyou?tracking_token=${docData.tracking_token}`;
+        window.location.href = `/dziekuje?tracking_token=${docData.tracking_token}`;
       } else {
-        window.location.href = "/thankyou";
+        window.location.href = "/dziekuje";
       }
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
