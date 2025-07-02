@@ -74,7 +74,7 @@ export default function SummaryStep({
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-semibold text-center mb-4">
-        Podsumowanie zgłoszenia
+       Sprawdź i wyślij
       </h2>
 
       {/* Dane firmy */}
