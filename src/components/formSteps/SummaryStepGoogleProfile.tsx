@@ -293,7 +293,7 @@ export default function SummaryStepGoogleProfile({
         <div className="flex justify-between gap-4">
           <button
             onClick={onBack}
-            className="px-4 py-2 rounded text-gray-700 bg-gray-100 hover:bg-gray-200 transition text-xs"
+            className="px-6 py-3 rounded text-gray-700 bg-gray-100 hover:bg-gray-200 transition text-sm"
           >
             ← Wróć
           </button>
@@ -301,7 +301,7 @@ export default function SummaryStepGoogleProfile({
             id="confirmButtonSendOrder"
             onClick={handleConfirm}
             disabled={isLoading || !regulaminAccepted || !profiles || profiles.length === 0 || !profiles.some(p => p.companyName && p.url)}
-            className={`px-4 py-2 rounded text-xs flex items-center justify-center gap-2 
+            className={`px-6 py-3 rounded text-sm flex items-center justify-center gap-2 
               ${isLoading || !regulaminAccepted || !profiles || profiles.length === 0 || !profiles.some(p => p.companyName && p.url) 
                 ? "bg-gray-300 text-gray-500 cursor-not-allowed" 
                 : "bg-[#0D2959] hover:bg-[#001e47] text-white"}
