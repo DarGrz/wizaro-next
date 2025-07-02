@@ -203,7 +203,7 @@ export default function RemovalForm({
           <div className={`border rounded p-3 mt-2 ${
             isCompanyType
               ? 'bg-orange-50 border-orange-200' 
-              : 'bg-[#5BA155] bg-opacity-10 border-[#5BA155] border-opacity-20'
+              : ' border-[#5BA155] border-opacity-20'
           }`}>            <p className={`text-sm font-medium ${
               isCompanyType
                 ? 'text-orange-700' 

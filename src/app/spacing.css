@@ -1,0 +1,121 @@
+/* Standardized Spacing Utilities for Wizaro.pl */
+
+/* 
+  SPACING SYSTEM DOCUMENTATION
+  ============================
+  
+  This file defines consistent spacing patterns for the entire application.
+  
+  SPACING SCALE:
+  - micro: 4px   - For borders, tight spacing
+  - xs: 8px      - For small gaps, form field spacing
+  - sm: 12px     - For button padding, small margins
+  - base: 16px   - For standard text spacing, form elements
+  - md: 24px     - For card padding, section spacing
+  - lg: 32px     - For larger cards, major component spacing
+  - xl: 48px     - For section dividers, major layout spacing
+  - xxl: 64px    - For large sections, hero spacing
+  - section: 80px - For major page sections
+  - page: 96px   - For page-level top/bottom spacing
+  
+  USAGE PATTERNS:
+  - Cards: p-md (mobile) -> md:p-lg (desktop)
+  - Buttons: px-lg py-sm -> md:px-xl md:py-base
+  - Sections: py-xl -> md:py-section
+  - Page containers: py-section -> md:py-page
+  - Form elements: p-base -> md:p-md
+*/
+
+/* Component-specific utility classes */
+.card-spacing {
+  @apply p-md md:p-lg;
+}
+
+.card-spacing-lg {
+  @apply p-lg md:p-xl;
+}
+
+.button-spacing {
+  @apply px-lg py-sm md:px-xl md:py-base;
+}
+
+.button-spacing-sm {
+  @apply px-base py-xs md:px-lg md:py-sm;
+}
+
+.section-spacing {
+  @apply py-xl md:py-section;
+}
+
+.section-spacing-lg {
+  @apply py-section md:py-page;
+}
+
+.container-spacing {
+  @apply px-base md:px-lg max-w-6xl mx-auto;
+}
+
+.form-spacing {
+  @apply p-base md:p-md;
+}
+
+.gap-standard {
+  @apply gap-base md:gap-md;
+}
+
+.gap-section {
+  @apply gap-md md:gap-lg;
+}
+
+/* Grid and flex utilities with consistent spacing */
+.grid-standard {
+  @apply grid gap-base md:gap-md;
+}
+
+.flex-standard {
+  @apply flex gap-base md:gap-md;
+}
+
+/* Modal and overlay spacing */
+.modal-spacing {
+  @apply p-lg md:p-xl;
+}
+
+.overlay-spacing {
+  @apply p-base;
+}
+
+/* Header and footer spacing */
+.header-spacing {
+  @apply px-base py-sm md:px-lg md:py-base;
+}
+
+.footer-spacing {
+  @apply px-base py-lg md:px-lg md:py-xl;
+}
+
+/* Content spacing patterns */
+.content-spacing {
+  @apply space-y-base md:space-y-md;
+}
+
+.content-spacing-lg {
+  @apply space-y-md md:space-y-lg;
+}
+
+/* Mobile-first responsive spacing helpers */
+.mobile-tight {
+  @apply p-sm md:p-base;
+}
+
+.mobile-standard {
+  @apply p-base md:p-md;
+}
+
+.mobile-comfortable {
+  @apply p-md md:p-lg;
+}
+
+.mobile-spacious {
+  @apply p-lg md:p-xl;
+}
