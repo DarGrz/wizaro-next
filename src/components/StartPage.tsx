@@ -89,7 +89,7 @@ export default function StartPage() {
               Zadzwoń jeśli masz pytania lub potrzebujesz pomocy
             </p>
             <Link href="tel:+48792861513" className="mx-auto mt-2">
-              <button className="bg-[#3EA34B] text-white px-6 py-2 rounded font-semibold hover:bg-[#3EA34B] transition">
+              <button className="bg-[#5BA155] text-white px-6 py-2 rounded font-semibold hover:bg-[#5BA155] transition">
                 +48 792 861 513
               </button>
             </Link>

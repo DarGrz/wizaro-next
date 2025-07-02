@@ -69,7 +69,7 @@ export default async function Page({ params }: Props) {
           <div>
             <strong>Status płatności:</strong> 
             <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
-              order.payments?.[0]?.status === 'true' ? 'bg-green-100 text-green-800' :
+              order.payments?.[0]?.status === 'true' ? 'bg-[#5BA155] bg-opacity-10 text-[#5BA155]' :
               order.payments?.[0]?.status === 'false' ? 'bg-yellow-100 text-yellow-800' :
               'bg-gray-100 text-gray-800'
             }`}>
@@ -81,7 +81,7 @@ export default async function Page({ params }: Props) {
           <div>
             <strong>Status realizacji:</strong> 
             <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
-              order.processing_status === 'zakończone' ? 'bg-green-100 text-green-800' :
+              order.processing_status === 'zakończone' ? 'bg-[#5BA155] bg-opacity-10 text-[#5BA155]' :
               order.processing_status === 'w trakcie' ? 'bg-blue-100 text-blue-800' :
               'bg-gray-100 text-gray-800'
             }`}>
@@ -257,7 +257,7 @@ export default async function Page({ params }: Props) {
                     </td>
                     <td className="p-3">
                       <span className={`px-2 py-1 rounded-full text-xs ${
-                        reset.status === 'completed' ? 'bg-green-100 text-green-800' :
+                        reset.status === 'completed' ? 'bg-[#5BA155] bg-opacity-10 text-[#5BA155]' :
                         reset.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
                         'bg-gray-100 text-gray-800'
                       }`}>

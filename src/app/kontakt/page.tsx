@@ -173,7 +173,7 @@ export default function ContactPage() {
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">Formularz kontaktowy</h2>
               
               {submitStatus && (
-                <div className={`p-4 mb-6 rounded-lg ${submitStatus.success ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200'}`}>
+                <div className={`p-4 mb-6 rounded-lg ${submitStatus.success ? 'bg-[#5BA155] bg-opacity-10 text-[#5BA155] border border-[#5BA155] border-opacity-20' : 'bg-red-50 text-red-800 border border-red-200'}`}>
                   {submitStatus.message}
                 </div>
               )}

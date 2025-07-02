@@ -133,7 +133,7 @@ export default function GuaranteeSection() {
             onClick={handleShieldClick}
             title={clickCount > 0 && clickCount < 10 ? `Kliknięto ${clickCount} z 10 razy` : ""}
           >
-            <ShieldCheck className="w-12 h-12 text-emerald-600" strokeWidth={1.5} />
+            <ShieldCheck className="w-12 h-12 text-[#5BA155]" strokeWidth={1.5} />
           </div>
         </div>
         
@@ -143,7 +143,7 @@ export default function GuaranteeSection() {
         
         <div className=" backdrop-blur-sm p-6 rounded-lg shadow-sm border border-gray-100">
           <p className="text-gray-800 text-lg mb-3">
-            <span className="font-semibold text-gray-900 inline-block border-b-2 border-emerald-500 pb-1">
+            <span className="font-semibold text-gray-900 inline-block border-b-2 border-[#5BA155] pb-1">
             Opłata tylko po skutecznym usunięciu opinii lub profilu
             </span>
           </p>
@@ -154,7 +154,7 @@ export default function GuaranteeSection() {
           
           <div className="flex justify-center mt-6">
             <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <span className="inline-block w-3 h-3 rounded-full bg-emerald-500"></span>
+              <span className="inline-block w-3 h-3 rounded-full bg-[#5BA155]"></span>
               <span>100% gwarancji rezultatu</span>
             </div>
           </div>

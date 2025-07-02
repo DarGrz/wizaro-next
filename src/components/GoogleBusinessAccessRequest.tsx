@@ -291,7 +291,7 @@ export default function GoogleBusinessAccessRequest() {
       >
         {notification && (
           <div className={`mb-4 p-3 rounded-md ${
-            notification.type === 'success' ? 'bg-green-100 text-green-800' :
+            notification.type === 'success' ? 'bg-[#5BA155] bg-opacity-10 text-[#5BA155] border border-[#5BA155] border-opacity-20' :
             notification.type === 'error' ? 'bg-red-100 text-red-800' :
             notification.type === 'warning' ? 'bg-yellow-100 text-yellow-800' :
             'bg-blue-100 text-blue-800'
@@ -395,7 +395,7 @@ export default function GoogleBusinessAccessRequest() {
               onChange={handlePlaceIdChange}
             />
             <button 
-              className={`px-4 py-2 font-medium text-white rounded-r-md ${isLoading ? 'bg-green-400' : 'bg-green-600 hover:bg-green-700'} transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`}
+              className={`px-4 py-2 font-medium text-white rounded-r-md ${isLoading ? 'bg-[#5BA155] opacity-60' : 'bg-[#5BA155] hover:bg-[#4A8F47]'} transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#5BA155] focus:ring-opacity-50`}
               onClick={generateAccessLink}
               disabled={isLoading}
             >
@@ -416,7 +416,7 @@ export default function GoogleBusinessAccessRequest() {
               onChange={handleGoogleMapUrlChange}
             />
             <button 
-              className={`px-4 py-2 font-medium text-white rounded-r-md ${isLoading ? 'bg-green-400' : 'bg-green-600 hover:bg-green-700'} transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`}
+              className={`px-4 py-2 font-medium text-white rounded-r-md ${isLoading ? 'bg-[#5BA155] opacity-60' : 'bg-[#5BA155] hover:bg-[#4A8F47]'} transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#5BA155] focus:ring-opacity-50`}
               onClick={extractPlaceIdFromUrl}
               disabled={isLoading}
             >

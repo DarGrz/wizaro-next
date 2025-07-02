@@ -77,7 +77,7 @@ export default async function DashboardPage() {
           </Link>
           <Link 
             href="/dashboard/searched-gmb" 
-            className="bg-[#5DA157] text-white px-4 py-2 rounded hover:bg-[#4b8446] transition-colors text-sm"
+            className="bg-[#5BA155] text-white px-4 py-2 rounded hover:bg-[#4b8446] transition-colors text-sm"
           >
             Wyszukiwane Profile GMB
           </Link>

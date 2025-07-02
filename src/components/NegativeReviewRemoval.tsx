@@ -26,10 +26,10 @@ const NegativeReviewRemoval = () => {
         <div className="flex flex-col md:flex-row items-center gap-6">
           {/* Ikona Reviews */}          <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
-              <circle cx="12" cy="12" r="10" fill="#edfff3" stroke="#3EA34B" strokeWidth="1" />
-              <circle cx="9" cy="9" r="1.5" fill="#3EA34B" />
-              <circle cx="15" cy="9" r="1.5" fill="#3EA34B" />
-              <path d="M8 14a4 4 0 0 0 8 0" fill="none" stroke="#3EA34B" strokeWidth="1.5" strokeLinecap="round" />
+              <circle cx="12" cy="12" r="10" fill="white" stroke="#5BA155" strokeWidth="2" />
+              <circle cx="9" cy="9" r="1.5" fill="#5BA155" />
+              <circle cx="15" cy="9" r="1.5" fill="#5BA155" />
+              <path d="M8 14a4 4 0 0 0 8 0" fill="none" stroke="#5BA155" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </div>
 
@@ -44,25 +44,25 @@ const NegativeReviewRemoval = () => {
             </p>
             <ul className="mb-4 space-y-2">
               <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 mr-2 text-[#5BA155]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
                 <span>Usuwamy negatywne opinie z Google Maps</span>
               </li>
               <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 mr-2 text-[#5BA155]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
                 <span>Zajmujemy się recenzjami naruszającymi regulamin</span>
               </li>
               <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 mr-2 text-[#5BA155]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
                 <span>Zapewniamy szybkie i dyskretne działanie</span>
               </li>
               <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 mr-2 text-[#5BA155]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
                 <span>Płatność dopiero po skutecznym usunięciu opinii</span>

@@ -76,7 +76,7 @@ export default function GoworkRemovalPage() {
                   onClick={handleStart}
                   disabled={isStarted}
                   className={`px-8 py-4 text-lg font-semibold text-white transition-all transform rounded-md ${
-                    isStarted ? "bg-green-500" : "bg-[#002a5c] hover:bg-[#001e47]"
+                    isStarted ? "bg-[#5BA155]" : "bg-[#002a5c] hover:bg-[#001e47]"
                   } shadow-md focus:outline-none`}
                 >
                   {isStarted ? "Rozpoczynamy..." : "Start"}
@@ -94,7 +94,7 @@ export default function GoworkRemovalPage() {
                     onClick={() => handleOptionSelect("profile")}
                     disabled={selectedOption !== null}
                     className={`px-6 py-4 text-base font-medium text-white transition-all transform rounded-md ${
-                      selectedOption === "profile" ? "bg-green-500" : "bg-[#002a5c] hover:bg-[#001e47]"
+                      selectedOption === "profile" ? "bg-[#5BA155]" : "bg-[#002a5c] hover:bg-[#001e47]"
                     } shadow-md focus:outline-none`}
                   >
                     Usuwanie profilu
@@ -103,7 +103,7 @@ export default function GoworkRemovalPage() {
                     onClick={() => handleOptionSelect("opinion")}
                     disabled={selectedOption !== null}
                     className={`px-6 py-4 text-base font-medium text-white transition-all transform rounded-md ${
-                      selectedOption === "opinion" ? "bg-green-500" : "bg-[#002a5c] hover:bg-[#001e47]"
+                      selectedOption === "opinion" ? "bg-[#5BA155]" : "bg-[#002a5c] hover:bg-[#001e47]"
                     } shadow-md focus:outline-none`}
                   >
                     Usuwanie opinii

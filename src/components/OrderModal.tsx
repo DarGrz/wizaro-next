@@ -68,7 +68,7 @@ export default function OrderModal({ isOpen, onClose, order }: ModalProps) {
                 <div><strong>Status:</strong> 
                   <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
                     order.status === 'paid' 
-                      ? 'bg-green-100 text-green-800'
+                      ? 'bg-[#5BA155] bg-opacity-10 text-[#5BA155]'
                       : 'bg-yellow-100 text-yellow-800'
                   }`}>
                     {order.status === 'paid' ? 'Opłacone' : 'Oczekuje'}

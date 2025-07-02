@@ -68,7 +68,7 @@ export default function CaseStudies() {
                 <ul className="mt-1 space-y-1">
                   {caseStudy.results.map((result, index) => (
                     <li key={index} className="flex items-start text-sm">
-                      <span className="text-green-500 mr-2 flex-shrink-0">✓</span>
+                      <span className="text-[#5BA155] mr-2 flex-shrink-0">✓</span>
                       <span>{result}</span>
                     </li>
                   ))}

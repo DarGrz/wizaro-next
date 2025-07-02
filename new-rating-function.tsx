@@ -7,7 +7,7 @@
     const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
     
     // Determine star color based on rating thresholds
-    let starColor = "text-[#5DA157]"; // Default green for good ratings
+    let starColor = "text-[#5BA155]"; // Default green for good ratings
     
     if (rating < 3.3) {
       starColor = "text-red-600"; // Red for very bad ratings

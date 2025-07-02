@@ -328,7 +328,7 @@ export default function RemovalForm({
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 >= 0.5;
     const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-    const starColor = rating < 4.0 ? "text-red-600" : "text-[#5DA157]";
+    const starColor = rating < 4.0 ? "text-red-600" : "text-[#5BA155]";
     
     return (
       <div className="flex items-center mt-1">
@@ -378,21 +378,41 @@ export default function RemovalForm({
 
   // Sprawdź czy tryb resetowania jest określony w URL
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const resetParam = urlParams.get('reset');
-    
-    if (resetParam === 'true') {
-      onModeChange(true);
-      setModeChangeNotification("Wybrano tryb resetowania opinii. Cena: 2199 zł.");
+    const checkUrlParams = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const resetParam = urlParams.get('reset');
       
-      // Ukryj powiadomienie po 3 sekundach
-      setTimeout(() => {
-        setModeChangeNotification(null);
-      }, 3000);
-    } else {
-      // Domyślnie ustaw tryb usuwania profilu
-      onModeChange(false);
-    }
+      if (resetParam === 'true') {
+        onModeChange(true);
+        setModeChangeNotification("Wybrano tryb resetowania opinii. Cena: 2199 zł.");
+        
+        // Ukryj powiadomienie po 3 sekundach
+        setTimeout(() => {
+          setModeChangeNotification(null);
+        }, 3000);
+      } else {
+        // Domyślnie ustaw tryb usuwania profilu
+        onModeChange(false);
+      }
+    };
+
+    // Sprawdź parametry URL przy pierwszym załadowaniu
+    checkUrlParams();
+
+    // Nasłuchuj na zmiany URL (w tym parametry zapytania)
+    const handlePopState = () => {
+      checkUrlParams();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    
+    // Nasłuchuj również na zmiany hashchange dla większej kompatybilności
+    window.addEventListener('hashchange', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handlePopState);
+    };
   }, [onModeChange]);
 
   // Calculate total price based on mode and number of profiles
@@ -430,7 +450,7 @@ export default function RemovalForm({
                     {removal.companyName ? removal.companyName : `Profil #${index + 1}`}
                   </span>
                   {removal.companyName && selectedPlaceDetails && (
-                    <span className="ml-2 text-xs px-2 py-0.5 bg-[#5DA157]/10 text-[#5DA157] rounded-full">Wybrano</span>
+                    <span className="ml-2 text-xs px-2 py-0.5 bg-[#5BA155]/10 text-[#5BA155] rounded-full">Wybrano</span>
                   )}
                 </div>
               ) : (
@@ -592,7 +612,7 @@ export default function RemovalForm({
                       <h3 className="text-sm md:text-sm font-medium text-gray-700 mb-2 md:mb-3">Najważniejsze informacje:</h3>
                       <ul className="space-y-1 md:space-y-2">
                         <li className="flex items-start">
-                          <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5DA157] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5BA155] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
@@ -600,7 +620,7 @@ export default function RemovalForm({
                           </span>
                         </li>
                         <li className="flex items-start">
-                          <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5DA157] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5BA155] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
@@ -608,7 +628,7 @@ export default function RemovalForm({
                           </span>
                         </li>
                         <li className="flex items-start">
-                          <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5DA157] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5BA155] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
@@ -616,7 +636,7 @@ export default function RemovalForm({
                           </span>
                         </li>
                         <li className="flex items-start">
-                          <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5DA157] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5BA155] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
@@ -630,9 +650,9 @@ export default function RemovalForm({
                   {/* <div className="mt-3 text-center">
                     <a 
                       href="/formularz-profil" 
-                      className="inline-flex items-center justify-center px-4 py-2 text-[#5DA157] bg-[#5DA157]/5 hover:bg-[#5DA157]/10 rounded-md text-sm font-medium w-full md:w-auto transition-colors duration-200"
+                      className="inline-flex items-center justify-center px-4 py-2 text-[#5BA155] bg-[#5BA155]/5 hover:bg-[#5BA155]/10 rounded-md text-sm font-medium w-full md:w-auto transition-colors duration-200"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-[#5DA157]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-[#5BA155]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       Nie możesz znaleźć swojej firmy? Kliknij tutaj
@@ -677,7 +697,7 @@ export default function RemovalForm({
                         <h3 className="font-medium text-gray-900">{selectedPlaceDetails.name}</h3>
                         {renderStarRating(selectedPlaceDetails.rating)}
                       </div>
-                      {/* <div className="text-xs px-2 py-1 bg-[#5DA157]/10 text-[#5DA157] rounded-full">
+                      {/* <div className="text-xs px-2 py-1 bg-[#5BA155]/10 text-[#5BA155] rounded-full">
                         Wybrano
                       </div> */}
                     </div>

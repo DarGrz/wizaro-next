@@ -72,7 +72,7 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
               onClick={() => setFilter('paid')}
               className={`px-3 py-1 rounded-full text-sm ${
                 filter === 'paid'
-                  ? 'bg-green-100 text-green-800'
+                  ? 'bg-[#5BA155] bg-opacity-10 text-[#5BA155]'
                   : 'bg-gray-100 text-gray-800'
               }`}
             >
@@ -151,7 +151,7 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
                     <span
                       className={`px-2 py-1 rounded-full text-xs ${
                         order.status === 'paid'
-                          ? 'bg-green-100 text-green-800'
+                          ? 'bg-[#5BA155] bg-opacity-10 text-[#5BA155]'
                           : order.status === 'pending'
                           ? 'bg-yellow-100 text-yellow-800'
                           : 'bg-gray-100 text-gray-800'

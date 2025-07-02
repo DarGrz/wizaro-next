@@ -188,7 +188,7 @@ export default function RemovalForm({
           </button>
           {validatedNIP && (
             <div className="absolute right-16 top-1/2 transform -translate-y-1/2">
-              <span className="text-green-500 text-sm">✓</span>
+              <span className="text-[#5BA155] text-sm">✓</span>
             </div>
           )}
         </div>        <p className="text-xs text-gray-500">
@@ -203,18 +203,18 @@ export default function RemovalForm({
           <div className={`border rounded p-3 mt-2 ${
             isCompanyType
               ? 'bg-orange-50 border-orange-200' 
-              : 'bg-green-50 border-green-200'
+              : 'bg-[#5BA155] bg-opacity-10 border-[#5BA155] border-opacity-20'
           }`}>            <p className={`text-sm font-medium ${
               isCompanyType
                 ? 'text-orange-700' 
-                : 'text-green-700'
+                : 'text-[#5BA155]'
             }`}>
               {isCompanyType ? 'ℹ️' : '✓'} Dane pobrane z rejestru:
             </p>
             <p className={`text-xs mt-1 ${
               isCompanyType
                 ? 'text-orange-600' 
-                : 'text-green-600'
+                : 'text-[#5BA155]'
             }`}>
               <strong>Nazwa:</strong> {gusData.name}<br/>
               {gusData.street && <><strong>Adres:</strong> {gusData.street}, {gusData.zip} {gusData.city}<br/></>}
@@ -264,7 +264,7 @@ export default function RemovalForm({
                         {portal.name}
                       </span>
                       {hasCompanyData && (
-                        <span className="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded-full flex-shrink-0">OK</span>
+                        <span className="text-xs px-2 py-0.5 bg-[#5BA155] bg-opacity-10 text-[#5BA155] rounded-full flex-shrink-0">OK</span>
                       )}
                     </div>
                     <span className="font-semibold text-sm ml-2 flex-shrink-0" style={{ color: '#5EA154' }}>

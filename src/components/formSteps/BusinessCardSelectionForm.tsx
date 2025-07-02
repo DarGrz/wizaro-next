@@ -226,7 +226,7 @@ Wybierz profil Google, z którego chcesz usunąć opinie.
               ? "bg-red-50 border border-red-200" 
               : selectedPlaceDetails.rating !== undefined && selectedPlaceDetails.rating < 3.9 
                 ? "bg-yellow-50 border border-yellow-200" 
-                : "bg-green-50 border border-green-200"
+                : "bg-[#5BA155] bg-opacity-10 border border-[#5BA155] border-opacity-20"
           } rounded-lg`}>
             <div className="flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3 md:h-4 w-3 md:w-4 text-[#0D2959] mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
