@@ -102,7 +102,7 @@ export default function ServiceComparisonTable() {
               <div key={index} className="flex justify-between items-center border-b border-gray-100 pb-3">
                 <div className="font-medium">{row.aspect}</div>
                 {activeTab === 'nasza-firma' && (
-                  <div className="text-right font-medium text-green-600">{row.ourCompany.value}</div>
+                  <div className="text-right font-medium text-[#002a5c]">{row.ourCompany.value}</div>
                 )}
                 {activeTab === 'samodzielnie' && (
                   <div className="text-right text-red-500">{row.selfAction.value}</div>

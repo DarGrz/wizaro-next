@@ -125,13 +125,12 @@ export default function WhyRemoveProfilesAndReviews() {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          <p className="text-gray-700 font-medium">
+        <div className="mt-25 text-center md:shadow-md rounded-lg bg-white md:p-10 text-lg">
+          <p className="text-[#5BA155] font-medium">
             Nie pozwól, aby niepożądane treści w sieci szkodziły Twojej firmie.
+             Skontaktuj się z nami i rozpocznij proces usuwania nieaktualnych informacji już dziś.
           </p>
-          <p className="text-gray-700 font-medium mt-2">
-            Skontaktuj się z nami i rozpocznij proces usuwania nieaktualnych informacji już dziś.
-          </p>
+        
         </div>
       </motion.div>
     </div>

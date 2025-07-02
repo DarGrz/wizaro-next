@@ -90,7 +90,7 @@ export default function FaqSection() {
             Znajdź odpowiedzi na najczęściej zadawane pytania dotyczące naszych usług
           </p>
           
-          <div className="space-y-4 bg-white rounded-xl shadow-sm p-6 divide-y divide-gray-100">
+          <div className="space-y-4 bg-white rounded-xl md:shadow-sm p-6 divide-y divide-gray-100">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
