@@ -389,6 +389,9 @@ export default function RemovalForm({
       setTimeout(() => {
         setModeChangeNotification(null);
       }, 3000);
+    } else {
+      // Domyślnie ustaw tryb usuwania profilu
+      onModeChange(false);
     }
   }, [onModeChange]);
 
