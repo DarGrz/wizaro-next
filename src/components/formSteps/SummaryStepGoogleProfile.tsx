@@ -130,7 +130,7 @@ export default function SummaryStepGoogleProfile({
       
       <div className="bg-[#F9FAFB] p-3 rounded-lg">
         <h3 className="text-sm font-semibold text-[#0D2959] mb-2">Dane zamawiającego:</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-700">
           <div className="flex justify-between md:block">
             <span className="font-medium">Firma:</span>
             <span className="md:block">{company.name}</span>
