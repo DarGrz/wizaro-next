@@ -32,7 +32,7 @@ export default function GoogleResetForm({
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <h2 className="text-xl font-semibold text-center text-gray-800 mb-4">
-        Resetowanie wizytówki Google
+        Resetowanie Wizytówki Google
       </h2>
       <p className="text-center">
         Całkowite resetowanie wizytówki Google Business Profile (dawniej Google Moja Firma)

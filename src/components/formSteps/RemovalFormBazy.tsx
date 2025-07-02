@@ -123,6 +123,12 @@ export default function RemovalForm({
       setValidatedNIP(false);
       setIsCompanyType(false);
     }
+    
+    // Auto-search when NIP has exactly 10 digits
+    const cleanNip = value.replace(/[^0-9]/g, '');
+    if (cleanNip.length === 10 && !gusLoading) {
+      handleNIPSearch(cleanNip);
+    }
   };
 
   const handlePortalChange = (portalName: string, isChecked: boolean) => {
@@ -192,7 +198,7 @@ export default function RemovalForm({
             </div>
           )}
         </div>        <p className="text-xs text-gray-500">
-          Podaj NIP firmy (10 cyfr) - kliknij przycisk &quot;Wyszukaj&quot;, aby pobrać dane z rejestru GUS
+          Podaj NIP firmy (10 cyfr) - wyszukiwanie uruchomi się automatycznie po wpisaniu 10 cyfr
         </p>
         
         {gusError && (
