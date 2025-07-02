@@ -639,14 +639,14 @@ export default function RemovalForm({
                     <div className="bg-gray-50 rounded-lg p-3 md:p-4 mb-3 md:mb-6">
                       <h3 className="text-sm md:text-sm font-medium text-gray-700 mb-2 md:mb-3">Najważniejsze informacje:</h3>
                       <ul className="space-y-1 md:space-y-2">
-                        <li className="flex items-start">
+                        {/* <li className="flex items-start">
                           <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5BA155] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
                             <strong className="text-gray-800">Wyszukiwanie globalne</strong> - obsługujemy firmy z całego świata (USA, Kanada, Europa, itp.)
                           </span>
-                        </li>
+                        </li> */}
                         <li className="flex items-start">
                           <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5BA155] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -668,7 +668,7 @@ export default function RemovalForm({
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm md:text-sm text-gray-600">
-                            <strong className="text-gray-800">Szybka realizacja</strong> - usunięcie profilu w ciągu 7 dni roboczych
+                            <strong className="text-gray-800">Szybka realizacja</strong> - usunięcie profilu w ciągu <strong className="text-[#5BA155]">7 dni</strong> roboczych
                           </span>
                         </li>
                       </ul>
