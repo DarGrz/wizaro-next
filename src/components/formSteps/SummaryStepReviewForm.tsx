@@ -104,15 +104,15 @@ export default function SummaryStep({
       {reviews?.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-md font-semibold text-gray-800 mb-2">
-            Zgłoszone do usunięcia:
+            Opinie zgłoszone do usunięcia:
           </h3>
           {reviews.map((review, index) => (
             <div
               key={index}
               className="border border-gray-200 rounded-lg p-4 bg-gray-50 text-sm"
             >
-              <p><strong>Firma / Autor:</strong> {review.author}</p>
-              {review.content && <p><strong>Treść lub NIP:</strong> {review.content}</p>}
+              <p><strong>Autor:</strong> {review.author}</p>
+              {review.content && <p><strong>Treść:</strong> {review.content}</p>}
               {review.date_added && <p><strong>Data dodania:</strong> {review.date_added}</p>}
               {review.url && (
                 <p>

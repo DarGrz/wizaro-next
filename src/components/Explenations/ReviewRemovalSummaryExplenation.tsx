@@ -26,9 +26,9 @@ export default function ReviewRemovalSummaryExplenation() {
 
         {/* Krok 3 */}
         <li className="bg-white p-3">
-          <p className="font-medium mb-1">3. Przejdź do płatności</p>
+          <p className="font-medium mb-1">3. Wyślij zlecenie</p>
           <p className="text-gray-700">
-            Klikając „Przejdź do płatności”, rozpoczniesz finalizację zamówienia. Płatność odbywa się w bezpiecznym systemie płatniczym online.
+           Opinie zgłoszone do usunięcie od razu trafiają do realizacji, Ty już nic nie musisz robić. 
           </p>
         </li>
       </ol>
