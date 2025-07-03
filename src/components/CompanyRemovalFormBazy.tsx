@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 import RemovalFormBazy from "@/components/formSteps/RemovalFormBazy";
 import CompanyProfileFormStep from "@/components/formSteps/CompanyProfileFormStep";
@@ -93,34 +92,6 @@ export default function CompanyFormRemoval() {
   const [expandedIndex, setExpandedIndex] = useState(0);
   const [step, setStep] = useState<"removal" | "company" | "payer" | "summary">("removal");
   const [isLoading, setIsLoading] = useState(false);
-  const [showScrollArrow, setShowScrollArrow] = useState(false);
-  
-  // Intersection observer to detect when explanation section is visible
-  const { ref: explanationRef, inView: explanationInView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  // Show scroll arrow on mobile devices only when explanation is not in view
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    
-    if (isMobile) {
-      // Show arrow after a short delay to allow page to load
-      const timer = setTimeout(() => {
-        setShowScrollArrow(true);
-      }, 1500);
-      
-      return () => clearTimeout(timer);
-    }
-  }, []);
-  
-  // Hide arrow when explanation is in view
-  useEffect(() => {
-    if (explanationInView) {
-      setShowScrollArrow(false);
-    }
-  }, [explanationInView]);
 
   useEffect(() => {
     const saved = localStorage.getItem("companyFormRemovalData");
@@ -433,13 +404,11 @@ export default function CompanyFormRemoval() {
       </motion.div>
 
       <motion.div
-        id="explanation-section"
         className="md:flex py-10 m-4 md:gap-8"
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        ref={explanationRef}
       >
         <ExplenationProfileRemoval />
       </motion.div>
@@ -453,42 +422,6 @@ export default function CompanyFormRemoval() {
       >
         <SocialProof />
       </motion.div>
-      
-      {/* Scroll Down Arrow - Only shows on mobile when explanations are not in view */}
-      <AnimatePresence>
-        {showScrollArrow && !explanationInView && (
-          <motion.button
-            className="fixed bottom-6 right-6 z-50 bg-[#0D2959] text-white rounded-full p-3 shadow-lg md:hidden"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => {
-              // Create an ID for the explanation section so we can scroll to it
-              const explanationElement = document.getElementById('explanation-section');
-              if (explanationElement) {
-                explanationElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            aria-label="Przewiń do wyjaśnień"
-          >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-6 w-6 animate-bounce" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-              />
-            </svg>
-          </motion.button>
-        )}
-      </AnimatePresence>
     </motion.div>
   );
 }
