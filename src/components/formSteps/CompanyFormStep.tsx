@@ -140,7 +140,7 @@ export default function CompanyFormStep({
 
       
 
-      <label className="flex items-center gap-2">
+      <label className=" items-center gap-2 hidden">
         <input
           type="checkbox"
           name="different_payer"

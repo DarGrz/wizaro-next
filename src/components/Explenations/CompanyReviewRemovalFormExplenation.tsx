@@ -31,7 +31,7 @@ export default function CompanyReviewRemovalFormExplenation() {
           </li>
   
           {/* Krok 4 */}
-          <li className="bg-white p-3">
+          <li className="bg-white p-3 hidden">
             <p className="font-medium mb-1">4. Dane płatnika</p>
             <p className="text-gray-700">
               Jeśli faktura ma być wystawiona na inną firmę/osobę, zaznacz opcję „Dane płatnika różnią się od danych firmy” – pojawi się dodatkowy formularz.
