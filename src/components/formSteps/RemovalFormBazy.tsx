@@ -123,6 +123,12 @@ export default function RemovalForm({
       setValidatedNIP(false);
       setIsCompanyType(false);
     }
+    
+    // Auto-trigger search when 10 digits are entered
+    const nip = value.replace(/[^0-9]/g, '');
+    if (nip.length === 10 && !gusLoading) {
+      handleNIPSearch(nip);
+    }
   };
 
   const handlePortalChange = (portalName: string, isChecked: boolean) => {
