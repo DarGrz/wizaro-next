@@ -198,7 +198,7 @@ export default function SummaryStepRemovalBazy({
       </div>
 
       {/* Additional Information */}
-      <div className="text-xs text-gray-500 text-center space-y-1">
+      <div className="text-xs text-gray-500 text-center space-y-1 hidden">
         <p>
           Po potwierdzeniu otrzymasz email z potwierdzeniem zlecenia.
         </p>

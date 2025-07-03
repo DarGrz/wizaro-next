@@ -244,8 +244,7 @@ export default function RemovalForm({
       {/* Only show portal selection if NIP is validated and it's not a company */}
       {validatedNIP && !isCompanyType && (
         <>
-          <h4 className="font-medium text-gray-800">Wybierz portale do usunięcia:</h4>
-          <p className="text-center">Wybierz portale z których chcesz usunąć dane firmy. Każdy zaznaczony portal automatycznie dodaje go do usunięcia.</p>
+          <h4 className="font-medium text-gray-800 ps-1">Wybierz portale z których chcesz usunąć dane:</h4>
           
           {/* Multiselect Portal Selector */}
           <div className="space-y-3 mb-6">
@@ -270,7 +269,7 @@ export default function RemovalForm({
                         {portal.name}
                       </span>
                       {hasCompanyData && (
-                        <span className="text-xs px-2 py-0.5 bg-[#5BA155] bg-opacity-10 text-[#5BA155] rounded-full flex-shrink-0">OK</span>
+                        <span className="text-xs px-2 py-0.5 bg-[#5BA155] bg-opacity-10 text-white rounded-full flex-shrink-0">OK</span>
                       )}
                     </div>
                     <span className="font-semibold text-sm ml-2 flex-shrink-0" style={{ color: '#5EA154' }}>

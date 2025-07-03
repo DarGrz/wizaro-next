@@ -4,15 +4,15 @@ export default function ReviewRemovalSummaryExplenation() {
   return (
     <section className="text-gray-800 p-4 rounded-xl max-w-2xl mx-auto text-sm">
       <div className="text-xl sm:text-md text-center font-semibold border-b border-gray-200 rounded p-4 mb-4">
-        Sprawdź wszystkie dane przed finalizacją – po kliknięciu „Przejdź do płatności” zostaniesz przekierowany do bezpiecznej strony płatności.
+        Sprawdź wszystkie informacje przed finalizacją zlecenia.
       </div>
 
       <ol className="space-y-3">
         {/* Krok 1 */}
         <li className="bg-white p-3">
-          <p className="font-medium mb-1">1. Zweryfikuj dane firmy i płatnika</p>
+          <p className="font-medium mb-1">1. Zweryfikuj dane firmy</p>
           <p className="text-gray-700">
-            Upewnij się, że dane firmy i – jeśli dotyczy – dane płatnika są poprawne. Zostaną one wykorzystane do wystawienia faktury i przygotowania dokumentów.
+            Upewnij się, że dane firmy są poprawne. Zostaną one wykorzystane do wystawienia faktury i przygotowania dokumentów.
           </p>
         </li>
 
