@@ -233,7 +233,7 @@ export default function RemovalForm({
                   ℹ️ Informacja dla spółek
                 </p>
                 <p className="text- text-blue-700 mt-1">
-                  Dla spółek oferujemy usługę usuwania pojedynczych opinii. 
+                  Dla spółek oferujemy obecnie jedynie usługę usuwania pojedynczych opinii. 
                   <a href="/formularz-opinie" className="text-blue-600 hover:text-blue-800 underline ml-1">
                     Przejdź do formularza opinii
                   </a>
