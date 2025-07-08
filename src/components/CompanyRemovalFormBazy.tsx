@@ -12,6 +12,7 @@ import RemovalFormExplenation from "./Explenations/RemovalFormExplenation";
 import CompanyProfileFormExplenation from "./Explenations/CompanyProfileFormStepExplenation";
 import PaymentExplanation from "./Explenations/PaymentExplanation";
 import ExplenationProfileRemoval from "./ExplenationProfileRemoval";
+import GuaranteeSection from "./GuaranteeSection";
 
 interface Removal {
   companyName: string;
@@ -403,6 +404,18 @@ export default function CompanyFormRemoval() {
         </motion.div>
       </motion.div>
 
+      <motion.div
+        className=" py-10 m-4 md:gap-8 mx-auto"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <GuaranteeSection />
+      </motion.div>
+
+      
+     
       <motion.div
         className="md:flex py-10 m-4 md:gap-8"
         variants={fadeInUp}
