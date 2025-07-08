@@ -405,7 +405,7 @@ export default function CompanyFormRemoval() {
       </motion.div>
 
       <motion.div
-        className=" py-10 m-4 md:gap-8 mx-auto"
+        className=" md:flex justify-center  md:gap-8 mx-auto"
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
@@ -417,7 +417,7 @@ export default function CompanyFormRemoval() {
       
      
       <motion.div
-        className="md:flex py-10 m-4 md:gap-8"
+        className="md:flex   md:gap-8"
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
@@ -427,7 +427,7 @@ export default function CompanyFormRemoval() {
       </motion.div>
 
       <motion.div
-        className="md:flex py-10 m-4 md:gap-8"
+        className="md:flex my-20  md:gap-8"
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
