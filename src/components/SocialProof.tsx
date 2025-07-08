@@ -96,7 +96,7 @@ export default function SocialProof() {
   if (randomReviews.length === 0) return null;
 
   return (
-    <section className="mx-auto w-full px-4 md:px-6 py-10">
+    <section className="mx-auto w-full  md:px-6 py-10">
       <h2 className="text-lg font-semibold text-center text-gray-800 mb-8">Opinie użytkowników</h2>
       <div className="grid gap-6 md:grid-cols-2">
         {randomReviews.map((review, idx) => (

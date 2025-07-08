@@ -102,7 +102,7 @@ export default function GuaranteeSection() {
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 rounded-xl">
+    <section className="py-16  sm:px-6 lg:px-8 rounded-xl">
       {showConfetti && (
         <Confetti
           width={windowSize.width}

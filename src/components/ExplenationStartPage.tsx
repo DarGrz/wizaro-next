@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ExplenationStartPage = () => {
   return (
-    <div className="w-full grid gap-6 text-left mt-20 px-2 text-[#0D2959] overflow-hidden">
+    <div className="w-full grid gap-6 text-left mt-20  text-[#0D2959] overflow-hidden">
       <h2 className="text-lg font-semibold text-center text-[#0D2959]">
         Jak to działa?
       </h2>

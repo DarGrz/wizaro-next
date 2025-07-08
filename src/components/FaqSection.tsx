@@ -58,7 +58,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="py-20 px-4 " ref={ref}>
+    <section className="py-20  " ref={ref}>
       {/* Rozdzielacz */}
       <div className="max-w-6xl mx-auto mb-16">
         <div className="relative">
@@ -86,11 +86,11 @@ export default function FaqSection() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
             Często zadawane pytania
           </h2>
-          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-2">
             Znajdź odpowiedzi na najczęściej zadawane pytania dotyczące naszych usług
           </p>
           
-          <div className="space-y-4 bg-white rounded-xl md:shadow-sm p-6 divide-y divide-gray-100">
+          <div className="space-y-4 bg-white rounded-xl md:shadow-sm  divide-y divide-gray-100">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
