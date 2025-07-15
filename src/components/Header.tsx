@@ -15,7 +15,6 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   return (
     <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm ">
