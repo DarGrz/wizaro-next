@@ -50,13 +50,6 @@ export default function StartPage() {
       <div className="md:flex  md:gap-8 pt-5 ">
         <GuaranteeSection />
       </div>
-      <div className="md:flex py-5 mb-15 md:gap-8 ">
-        <NegativeReviewRemoval />
-      </div>
-
-
-
-   
 
       {/* Sekcja usuwania firmy z Google */}
       <div className="md:flex py-5 mb-15 md:gap-8">
@@ -66,6 +59,10 @@ export default function StartPage() {
       {/* Sekcja resetowania wizytówki Google */}
       <div className="md:flex py-5 md:gap-8 mb-10">
         <GoogleBusinessReset />
+      </div>
+
+        <div className="md:flex py-5 mb-15 md:gap-8 ">
+        <NegativeReviewRemoval />
       </div>
 
       {/* Separator */}
