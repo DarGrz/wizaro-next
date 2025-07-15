@@ -11,10 +11,27 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [isServicesExpanded, setIsServicesExpanded] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleServices = () => setIsServicesExpanded(!isServicesExpanded);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const handleDropdownEnter = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+    }
+    setIsDropdownOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 1000); // 1000ms delay
+    setDropdownTimeout(timeout);
+  };
 
   return (
     <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm ">
@@ -26,8 +43,8 @@ export default function Header() {
         <nav className="hidden md:flex space-x-6 text-sm items-center">
           <div className="relative">
             <button 
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              onMouseLeave={() => setIsDropdownOpen(false)}
+              onMouseEnter={handleDropdownEnter}
+              onMouseLeave={handleDropdownLeave}
               className="text-gray-700 hover:text-[#002a5c] transition-colors duration-200 flex items-center"
             >
               Usługi
@@ -38,8 +55,8 @@ export default function Header() {
             
             {isDropdownOpen && (
               <div 
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
+                onMouseEnter={handleDropdownEnter}
+                onMouseLeave={handleDropdownLeave}
                 className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
               >
                 <div className="py-2">
@@ -47,13 +64,19 @@ export default function Header() {
                     href="/formularz-profil-bazy" 
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
                   >
-                    Usuwanie GoWork, ALEO itp
+                    Usuwanie GoWork, ALEO itp.
                   </Link>
                   <Link 
                     href="/formularz-profil-google" 
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
                   >
                     Usuwanie Firmy z Map Google
+                  </Link>
+                  <Link 
+                    href="/formularz-profil-google?reset=true" 
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
+                  >
+                   Resetowanie Wizytówki Google
                   </Link>
                 </div>
               </div>
@@ -108,12 +131,51 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 px-4 pb-4">
           <nav className="flex flex-col space-y-2 text-sm">
-            <Link href="/formularz-profil-bazy" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
-              Usuwanie GoWork, ALEO itp
-            </Link>
-            <Link href="/formularz-profil-google" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
-              Usuwanie Firmy z Map Google
-            </Link>
+            {/* Services Section */}
+            <div>
+              <button 
+                onClick={toggleServices}
+                className="flex items-center justify-between w-full text-left text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200"
+              >
+                <span>Usługi</span>
+                <svg 
+                  className={`w-4 h-4 transition-transform duration-200 ${isServicesExpanded ? 'rotate-180' : ''}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {isServicesExpanded && (
+                <div className="ml-4 space-y-0">
+                  <Link 
+                    href="/formularz-profil-bazy" 
+                    onClick={toggleMenu} 
+                    className="block text-gray-600 hover:text-[#002a5c] py-2 transition-colors duration-200"
+                  >
+                    Usuwanie GoWork, ALEO itp.
+                  </Link>
+                  <Link 
+                    href="/formularz-profil-google" 
+                    onClick={toggleMenu} 
+                    className="block text-gray-600 hover:text-[#002a5c] py-2 transition-colors duration-200"
+                  >
+                    Usuwanie Firmy z Map Google
+                  </Link>
+                  <Link 
+                    href="/formularz-profil-google?reset=true" 
+                    onClick={toggleMenu} 
+                    className="block text-gray-600 hover:text-[#002a5c] py-2 transition-colors duration-200"
+                  >
+                    Resetowanie Wizytówki Google
+                  </Link>
+                </div>
+              )}
+            </div>
+            
+            {/* Main Navigation */}
              <Link href="/o-nas" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
               O nas
             </Link>
