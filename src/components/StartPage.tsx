@@ -18,6 +18,7 @@ import Link from "next/link";
 import MobileActionButton from "./MobileActionButton";
 import NegativeReviewRemoval from "./NegativeReviewRemoval";
 import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
+import BusinessPortalRemoval from "./BusinessPortalRemoval";
 
 
 
@@ -50,10 +51,16 @@ export default function StartPage() {
       <div className="md:flex  md:gap-8 pt-5 ">
         <GuaranteeSection />
       </div>
+   
 
       {/* Sekcja usuwania firmy z Google */}
       <div className="md:flex py-5 mb-15 md:gap-8">
         <GoogleBusinessRemoval />
+      </div>
+
+      {/* Sekcja usuwania danych z portali biznesowych */}
+      <div className="md:flex py-5 mb-15 md:gap-8">
+        <BusinessPortalRemoval />
       </div>
 
       {/* Sekcja resetowania wizytówki Google */}
@@ -61,7 +68,7 @@ export default function StartPage() {
         <GoogleBusinessReset />
       </div>
 
-        <div className="md:flex py-5 mb-15 md:gap-8 ">
+         <div className="md:flex py-5 mb-15 md:gap-8 ">
         <NegativeReviewRemoval />
       </div>
 
