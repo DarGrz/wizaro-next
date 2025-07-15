@@ -132,7 +132,7 @@ export default function Header() {
         <div className="md:hidden border-t border-gray-200 px-4 pb-4">
           <nav className="flex flex-col space-y-2 text-sm">
             {/* Services Section */}
-            <div>
+            <div className="bg-gray-100 -mx-4 px-4 py-2 rounded-lg">
               <button 
                 onClick={toggleServices}
                 className="flex items-center justify-between w-full text-left text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200"
