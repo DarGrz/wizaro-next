@@ -64,7 +64,7 @@ export default function Header() {
                     href="/formularz-profil-bazy" 
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
                   >
-                    Usuwanie GoWork, ALEO itp.
+                    Usuwanie GoWork, ALEO i więcej
                   </Link>
                   <Link 
                     href="/formularz-profil-google" 
@@ -76,7 +76,13 @@ export default function Header() {
                     href="/formularz-profil-google?reset=true" 
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
                   >
-                   Resetowanie Wizytówki Google
+                   Resetowanie Opinii Google
+                  </Link>
+                  <Link 
+                    href="/formularz-opinie" 
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
+                  >
+                   Usuwanie opinii z GoWork, ALEO i więcej
                   </Link>
                 </div>
               </div>
@@ -155,21 +161,35 @@ export default function Header() {
                     onClick={toggleMenu} 
                     className="block text-gray-600 hover:text-[#002a5c] py-2 transition-colors duration-200"
                   >
-                    Usuwanie GoWork, ALEO itp.
+                    Usuwanie firmy z GoWork, ALEO i więcej
                   </Link>
                   <Link 
                     href="/formularz-profil-google" 
                     onClick={toggleMenu} 
                     className="block text-gray-600 hover:text-[#002a5c] py-2 transition-colors duration-200"
                   >
-                    Usuwanie Firmy z Map Google
+                    Usuwanie firmy z Map Google
                   </Link>
                   <Link 
                     href="/formularz-profil-google?reset=true" 
                     onClick={toggleMenu} 
                     className="block text-gray-600 hover:text-[#002a5c] py-2 transition-colors duration-200"
                   >
-                    Resetowanie Wizytówki Google
+                    Resetowanie opinii Google
+                  </Link>
+                  <Link 
+                    href="/formularz-opinie" 
+                    onClick={toggleMenu} 
+                    className="block text-gray-600 hover:text-[#002a5c] py-2 transition-colors duration-200"
+                  >
+                    Usuwanie opinii z GoWork, ALEO i więcej
+                  </Link>
+                  <Link 
+                    href="/formularz-opinie-google" 
+                    onClick={toggleMenu} 
+                    className="block text-gray-600 hover:text-[#002a5c] py-2 transition-colors duration-200"
+                  >
+                    Usuwanie opinii z Map Google.
                   </Link>
                 </div>
               )}
