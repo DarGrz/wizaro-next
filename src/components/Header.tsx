@@ -10,10 +10,12 @@ import ServiceModal from './ServiceModal';
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   return (
     <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm ">
@@ -23,7 +25,41 @@ export default function Header() {
         <Image src="/images/wizaro-logo.png" alt="Logo" width={120} height={36}  placeholder="empty" />
         </Link>        {/* Desktop menu */}
         <nav className="hidden md:flex space-x-6 text-sm items-center">
-          
+          <div className="relative">
+            <button 
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+              className="text-gray-700 hover:text-[#002a5c] transition-colors duration-200 flex items-center"
+            >
+              Usługi
+              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {isDropdownOpen && (
+              <div 
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+                className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+              >
+                <div className="py-2">
+                  <Link 
+                    href="/formularz-profil-bazy" 
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
+                  >
+                    Usuwanie GoWork, ALEO itp
+                  </Link>
+                  <Link 
+                    href="/formularz-profil-google" 
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
+                  >
+                    Usuwanie Firmy z Map Google
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
           <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
             O nas
           </Link>
@@ -73,6 +109,12 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 px-4 pb-4">
           <nav className="flex flex-col space-y-2 text-sm">
+            <Link href="/formularz-profil-bazy" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
+              Usuwanie GoWork, ALEO itp
+            </Link>
+            <Link href="/formularz-profil-google" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
+              Usuwanie Firmy z Map Google
+            </Link>
              <Link href="/o-nas" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
               O nas
             </Link>
