@@ -130,11 +130,11 @@ export default function BusinessTypeSelector() {
               className="absolute inset-0 p-10 flex flex-col justify-between"
             >
               <div className="h-[100px]">
-                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
-                  Co chcesz usunąć?
+                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2" style={{ fontSize: '1.5rem' }}>
+                  Co chcesz usunąć z Google?
                 </h2>
-                <p className="text-gray-600 text-center text-sm">
-                 Wybierz czy chcesz usunąć cały profil firmy, czy pojedyncze opinie.
+                <p className="text-gray-600 text-center text-sm" style={{ fontSize: '0.875rem' }}>
+                  Wybierz typ treści
                 </p>
               </div>
 
@@ -184,11 +184,11 @@ export default function BusinessTypeSelector() {
               className="absolute inset-0 p-10 flex flex-col justify-between"
             >
               <div className="h-[100px]">
-                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
+                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2" style={{ fontSize: '1.5rem' }}>
                   Co chcesz usunąć?
                 </h2>
-                <p className="text-gray-600 text-center text-sm">
-                  Wybierz czy chcesz usunąć cały profil firmy, czy pojedyncze opinie.
+                <p className="text-gray-600 text-center text-sm" style={{ fontSize: '0.875rem' }}>
+                  Wybierz typ treści
                 </p>
               </div>
 

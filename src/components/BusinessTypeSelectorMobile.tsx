@@ -77,11 +77,11 @@ export default function BusinessTypeSelectorMobile() {
               className="absolute inset-0 p-6 flex flex-col justify-between"
             >
               <div className="h-[80px]">
-                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
+                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2" style={{ fontSize: '1.5rem' }}>
                   Skąd chcesz usunąć?
                 </h2>
-                <p className="text-gray-600 text-center ">
-                  Wybierz serwis, z którego chcesz usunąć profil lub opinię
+                <p className="text-gray-600 text-center text-sm" style={{ fontSize: '0.875rem' }}>
+                  Wybierz miejsce, z którego chcesz usunąć firmę lub opinię
                 </p>
               </div>
 
@@ -131,10 +131,10 @@ export default function BusinessTypeSelectorMobile() {
               className="absolute inset-0 p-6 flex flex-col justify-between"
             >
               <div className="h-[80px]">
-                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
+                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2" style={{ fontSize: '1.5rem' }}>
                   Co chcesz usunąć?
                 </h2>
-                <p className="text-gray-600 text-center ">
+                <p className="text-gray-600 text-center text-sm" style={{ fontSize: '0.875rem' }}>
                   Wybierz czy chcesz usunąć cały profil firmy, czy pojedyncze opinie.
                 </p>
               </div>
@@ -185,10 +185,10 @@ export default function BusinessTypeSelectorMobile() {
               className="absolute inset-0 p-6 flex flex-col justify-between"
             >
               <div className="h-[80px]">
-                <h2 className="text-xl font-semibold text-center text-gray-900 mb-2">
+                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2" style={{ fontSize: '1.5rem' }}>
                   Co chcesz usunąć?
                 </h2>
-                <p className="text-gray-600 text-center text-sm sm:text-sm">
+                <p className="text-gray-600 text-center text-sm" style={{ fontSize: '0.875rem' }}>
                   Wybierz czy chcesz usunąć cały profil firmy, czy pojedyncze opinie.
                 </p>
               </div>
