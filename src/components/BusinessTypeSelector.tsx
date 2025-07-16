@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export default function BusinessTypeSelector() {
-  const [step, setStep] = useState<'start' | 'choice' | 'profile-type' | 'review-type'>('start');
+  const [step, setStep] = useState<'start' | 'platform' | 'google-type' | 'other-type'>('start');
 
   const buttonVariants = {
     hidden: { opacity: 0, x: 30 },
@@ -21,15 +21,15 @@ export default function BusinessTypeSelector() {
     exit: { opacity: 0, x: -30, transition: { duration: 0.2 } },
   };
 
-  const getLink = (type: 'gowork-aleo' | 'mapy-google' | 'opinie' | 'opinie-google') => {
+  const getLink = (type: 'gowork-aleo-profile' | 'gowork-aleo-reviews' | 'google-profile' | 'google-reviews') => {
     switch(type) {
-      case 'gowork-aleo':
+      case 'gowork-aleo-profile':
         return '/formularz-profil-bazy';
-      case 'mapy-google':
+      case 'google-profile':
         return '/formularz-profil-google';
-      case 'opinie':
+      case 'gowork-aleo-reviews':
         return '/formularz-opinie';
-      case 'opinie-google':
+      case 'google-reviews':
         return '/formularz-opinie-google';
       default:
         return '/formularz-opinie';
@@ -57,18 +57,72 @@ export default function BusinessTypeSelector() {
                  Kliknij <strong>START</strong>, aby rozpocząć proces usuwania niechcianych treści z internetu.
                 </p>
                 <button
-                  onClick={() => setStep('choice')}
+                  onClick={() => setStep('platform')}
                   className="w-full max-w-xs h-14 bg-[#002a5c] text-white rounded py-2 font-semibold text-lg hover:bg-[#001e47] transition"
                 >
-                  START
+                  Start
                 </button>
               </div>
             </motion.div>
           )}
 
-          {step === 'choice' && (
+          {step === 'platform' && (
             <motion.div
-              key="choice"
+              key="platform"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 p-10 flex flex-col justify-between"
+            >
+              <div className="h-[100px]">
+                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
+                  Skąd chcesz usunąć?
+                </h2>
+                <p className="text-gray-600 text-center text-sm">
+                  Wybierz platformę
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {/* Google Maps / Google */}
+                <motion.div
+                  custom={0}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={buttonVariants}
+                >
+                  <button
+                    onClick={() => setStep('google-type')}
+                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
+                  >
+                    Mapy Google
+                  </button>
+                </motion.div>
+
+                {/* Gowork, Aleo i inne */}
+                <motion.div
+                  custom={1}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={buttonVariants}
+                >
+                  <button
+                    onClick={() => setStep('other-type')}
+                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-md font-semibold"
+                  >
+                    Gowork, Aleo i więcej
+                  </button>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+          
+          {step === 'google-type' && (
+            <motion.div
+              key="google-type"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -80,28 +134,28 @@ export default function BusinessTypeSelector() {
                   Co chcesz usunąć?
                 </h2>
                 <p className="text-gray-600 text-center text-sm">
-                  Wybierz jedną z opcji
+                 Wybierz czy chcesz usunąć cały profil firmy, czy pojedyncze opinie.
                 </p>
               </div>
 
               <div className="flex flex-col gap-4">
-                {/* Profil z opiniami */}
+                {/* Profil firmy */}
                 <motion.div
                   custom={0}
                   initial="hidden"
                   animate="visible"
                   exit="exit"
                   variants={buttonVariants}
-                >
-                  <button
-                    onClick={() => setStep('profile-type')}
-                    className="w-full h-12  bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
+                >                  
+                  <Link
+                    href={getLink('google-profile')}
+                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
                   >
                     Profil firmy
-                  </button>
+                  </Link>
                 </motion.div>
 
-                {/* Pojedyncze opinie */}
+                {/* Opinie */}
                 <motion.div
                   custom={1}
                   initial="hidden"
@@ -109,20 +163,20 @@ export default function BusinessTypeSelector() {
                   exit="exit"
                   variants={buttonVariants}
                 >
-                  <button
-                    onClick={() => setStep('review-type')}
-                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-md font-semibold"
+                  <Link
+                    href={getLink('google-reviews')}
+                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
                   >
                     Opinie
-                  </button>
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>
           )}
-          
-          {step === 'profile-type' && (
+
+          {step === 'other-type' && (
             <motion.div
-              key="profile-type"
+              key="other-type"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -131,15 +185,15 @@ export default function BusinessTypeSelector() {
             >
               <div className="h-[100px]">
                 <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
-                  Wybierz typ profilu
+                  Co chcesz usunąć?
                 </h2>
                 <p className="text-gray-600 text-center text-sm">
-                  Wybierz jedną z opcji
+                  Wybierz czy chcesz usunąć cały profil firmy, czy pojedyncze opinie.
                 </p>
               </div>
 
               <div className="flex flex-col gap-4">
-                {/* Gowork, Aleo i inne */}
+                {/* Profil firmy */}
                 <motion.div
                   custom={0}
                   initial="hidden"
@@ -148,14 +202,14 @@ export default function BusinessTypeSelector() {
                   variants={buttonVariants}
                 >                  
                   <Link
-                    href={getLink('gowork-aleo')}
-                    className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
+                    href={getLink('gowork-aleo-profile')}
+                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
                   >
-                    Gowork, Aleo i inne
+                    Profil firmy
                   </Link>
                 </motion.div>
 
-                {/* Mapy Google */}
+                {/* Opinie */}
                 <motion.div
                   custom={1}
                   initial="hidden"
@@ -164,64 +218,10 @@ export default function BusinessTypeSelector() {
                   variants={buttonVariants}
                 >
                   <Link
-                    href={getLink('mapy-google')}
-                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
-                  >
-                    Mapy Google
-                  </Link>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
-
-          {step === 'review-type' && (
-            <motion.div
-              key="review-type"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 p-10 flex flex-col justify-between"
-            >
-              <div className="h-[100px]">
-                <h2 className="text-2xl font-semibold text-center text-gray-900 mb-2">
-                  Wybierz portal z opiniami
-                </h2>
-                <p className="text-gray-600 text-center text-sm">
-                  Wybierz jedną z opcji
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                {/* Inne portale z opiniami */}
-                <motion.div
-                  custom={0}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  variants={buttonVariants}
-                >                  
-                  <Link
-                    href={getLink('opinie')}
+                    href={getLink('gowork-aleo-reviews')}
                     className="w-full h-12 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition flex items-center justify-center text-center text-sm"
                   >
-                    Gowork, Aleo i inne
-                  </Link>
-                </motion.div>
-
-                {/* Opinie Google */}
-                <motion.div
-                  custom={1}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  variants={buttonVariants}
-                >
-                  <Link
-                    href={getLink('opinie-google')}
-                    className="w-full h-12 bg-[#002a5c] text-white rounded hover:bg-[#001e47] transition flex items-center justify-center text-center"
-                  >
-                    Mapy Google
+                    Opinie
                   </Link>
                 </motion.div>
               </div>
@@ -233,8 +233,8 @@ export default function BusinessTypeSelector() {
       {step !== 'start' && (
         <button
           onClick={() => {
-            if (step === 'profile-type' || step === 'review-type') {
-              setStep('choice');
+            if (step === 'google-type' || step === 'other-type') {
+              setStep('platform');
             } else {
               setStep('start');
             }
