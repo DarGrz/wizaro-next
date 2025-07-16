@@ -56,7 +56,8 @@ export default function BusinessTypeSelectorMobile() {
                   Usuń Opinie lub Profil Swojej Firmy
                 </h1>
                 <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
-                 Usuń profil firmy lub wybrane opinie. Skutecznie likwidujemy niechciane treści z Map Google, GoWork, Aleo i innych serwisów.
+                 Szybko pozbędziesz się informacji o swojej firmie. Bez zbędnych
+            komplikacji, w pełni legalnie i dyskretnie. Kliknij START i wypełnij prosty formularz, resztą zajmiemy się my.
                 </p>
                 <button
                   onClick={() => setStep('choice')}

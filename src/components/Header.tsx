@@ -84,6 +84,12 @@ export default function Header() {
                   >
                    Usuwanie opinii z GoWork, ALEO i więcej
                   </Link>
+                  <Link 
+                    href="/formularz-opinie-google" 
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#002a5c] transition-colors duration-200"
+                  >
+                   Usuwanie opinii z Map Google
+                  </Link>
                 </div>
               </div>
             )}

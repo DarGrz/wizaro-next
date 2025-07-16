@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -71,6 +72,8 @@ const containerVariants = {
 };
 
 export default function GoogleRemovalForm() {
+  const searchParams = useSearchParams();
+  
   const defaultCompany: CompanyData = {
     name: "",
     first_name: "",
@@ -178,6 +181,25 @@ export default function GoogleRemovalForm() {
       setShowScrollArrow(false);
     }
   }, [explanationInView]);
+
+  // Check for reset parameter in URL and set the mode accordingly
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const resetParam = searchParams.get('reset');
+      if (resetParam === 'true') {
+        localStorage.setItem("profileOperationMode", "reset");
+        localStorage.setItem("serviceDescription", "Resetowanie wizytówki Google Business");
+        setIsResetMode(true);
+      } else {
+        // If no reset parameter, check if we should set removal mode
+        const currentMode = localStorage.getItem("profileOperationMode");
+        if (!currentMode) {
+          localStorage.setItem("profileOperationMode", "removal");
+          localStorage.setItem("serviceDescription", "Usuwanie wizytówki Google Business");
+        }
+      }
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     // Check if window is defined (client-side only)
