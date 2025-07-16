@@ -637,7 +637,7 @@ export default function RemovalForm({
                     
                     {/* Najważniejsze punkty */}
                     <div className="bg-gray-50 rounded-lg p-3 md:p-4 mb-3 md:mb-6">
-                      <h3 className="text-sm md:text-sm font-medium text-gray-700 mb-2 md:mb-3">Najważniejsze informacje:</h3>
+                      {/* <h3 className="text-sm md:text-sm font-medium text-gray-700 mb-2 md:mb-3">Najważniejsze informacje:</h3> */}
                       <ul className="space-y-1 md:space-y-2">
                         {/* <li className="flex items-start">
                           <svg className="h-4 md:h-5 w-4 md:w-5 text-[#5BA155] mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -858,7 +858,7 @@ export default function RemovalForm({
       {!removals.some(r => r.companyName && r.url) && (
         <div className="mt-2 md:mt-3 text-center">
           <p className="text- md:text-xs">
-            Wybierz przynajmniej jeden profil, aby kontynuować.
+            Wybierz profil swojej firmy, aby kontynuować. <strong>Cena pojawi się automatycznie.</strong>
           </p>
         </div>
       )}
