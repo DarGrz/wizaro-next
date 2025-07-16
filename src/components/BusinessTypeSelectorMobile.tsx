@@ -81,7 +81,7 @@ export default function BusinessTypeSelectorMobile() {
                   Skąd chcesz usunąć?
                 </h2>
                 <p className="text-gray-600 text-center ">
-                  Wybierz platformę
+                  Wybierz serwis, z którego chcesz usunąć profil lub opinię
                 </p>
               </div>
 
