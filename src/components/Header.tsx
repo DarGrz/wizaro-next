@@ -111,7 +111,7 @@ export default function Header() {
             className="flex items-center gap-1 text-gray-100 bg-[#002a5c] py-2 px-5 rounded font-medium hover:bg-[#00234d] transition-colors"
           >
             <PlayCircle size={18} className="mr-1" />
-            Start
+            START
           </button>
           <a
             href="mailto:kontakt@wizaro.pl"
@@ -222,7 +222,7 @@ export default function Header() {
                 className="flex items-center gap-1 text-gray-100 bg-[#002a5c] py-2 px-4 rounded font-medium hover:bg-[#00234d] transition-colors"
               >
                 <PlayCircle size={18} className="mr-1" />
-                Start
+                START
               </button>
               <a
                 href="mailto:kontakt@wizaro.pl"

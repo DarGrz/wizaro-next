@@ -57,13 +57,13 @@ export default function BusinessTypeSelectorMobile() {
                 </h1>
                 <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
                  Szybko pozbędziesz się informacji o swojej firmie. Bez zbędnych
-            komplikacji, w pełni legalnie i dyskretnie. Kliknij START i wypełnij prosty formularz, resztą zajmiemy się my.
+            komplikacji, w pełni legalnie i dyskretnie. Kliknij <strong>START</strong> i wypełnij prosty formularz, resztą zajmiemy się my.
                 </p>
                 <button
                   onClick={() => setStep('choice')}
                   className="w-full max-w-xs h-12 bg-[#002a5c] text-white rounded py-2 font-semibold text-lg hover:bg-[#001e47] transition"
                 >
-                  Start
+                  START
                 </button>
               </div>
             </motion.div>
