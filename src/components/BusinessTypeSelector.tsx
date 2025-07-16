@@ -51,10 +51,10 @@ export default function BusinessTypeSelector() {
             >
               <div className="h-[100px] flex flex-col items-center justify-center w-full">
                 <h2 className="text-2xl font-semibold text-center text-gray-900 mb-4">
-                  Usuń Opinie lub Profil Swojej Firmy
+                  Usuń Opinie lub Profil Firmy
                 </h2>
                 <p className="text-gray-600 text-center text-md mb-8">
-                  Szybko, legalnie i dyskretnie. Rozpocznij, klikając poniżej.
+                 Kliknij <strong>START</strong>, aby rozpocząć proces usuwania niechcianych treści z internetu.
                 </p>
                 <button
                   onClick={() => setStep('choice')}

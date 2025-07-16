@@ -6,7 +6,13 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {      fontSize: {
+    extend: {
+      fontFamily: {
+        'sans': ['var(--font-poppins)', 'sans-serif'],
+        'geist-sans': ['var(--font-geist-sans)', 'sans-serif'],
+        'geist-mono': ['var(--font-geist-mono)', 'monospace'],
+      },
+      fontSize: {
         'xxs': '0.625rem', // 10px
       },
       backgroundImage: {
