@@ -51,7 +51,7 @@ export default function BusinessTypeSelectorMobile() {
             >
               <div className="h-[100px] flex flex-col items-center justify-center w-full">
                 <h1 className="text-3xl font-bold text-center text-gray-900 mb-3">
-                  Usuń Opinie lub Profil Swojej Firmy
+                  Usuń Opinie lub Profil Firmy
                 </h1>
                 <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
                  Szybko pozbędziesz się informacji o swojej firmie. Bez zbędnych

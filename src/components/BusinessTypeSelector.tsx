@@ -60,7 +60,7 @@ export default function BusinessTypeSelector() {
                   onClick={() => setStep('platform')}
                   className="w-full max-w-xs h-14 bg-[#002a5c] text-white rounded py-2 font-semibold text-lg hover:bg-[#001e47] transition"
                 >
-                  Start
+                  START
                 </button>
               </div>
             </motion.div>
