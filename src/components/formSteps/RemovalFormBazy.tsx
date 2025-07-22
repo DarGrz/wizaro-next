@@ -208,18 +208,18 @@ export default function RemovalForm({
         {validatedNIP && gusData && (
           <div className={`border rounded p-3 mt-2 ${
             isCompanyType
-              ? 'bg-blue-50 border-blue-200' 
+              ? 'bg-orange-50 border-orange-200' 
               : ' border-[#5BA155] border-opacity-20'
           }`}>            <p className={`text-sm font-medium ${
               isCompanyType
-                ? 'text-blue-700' 
+                ? 'text-orange-700' 
                 : 'text-[#5BA155]'
             }`}>
-               Dane pobrane z rejestru:
+              {isCompanyType ? 'ℹ️' : '✓'} Dane pobrane z rejestru:
             </p>
             <p className={`text-xs mt-1 ${
               isCompanyType
-                ? 'text-blue-600' 
+                ? 'text-orange-600' 
                 : 'text-[#5BA155]'
             }`}>
               <strong>Nazwa:</strong> {gusData.name}<br/>
@@ -228,15 +228,12 @@ export default function RemovalForm({
               {gusData.krs && <><strong>KRS:</strong> {gusData.krs}</>}
             </p>
             {isCompanyType && (
-              <div className="mt-2 py-2 bg-blue-50  border-t-2 border-blue-200 ">
-                <p className="text-sm text-blue-800 font-medium">
-                  ℹ️ Informacja dla spółek
+              <div className="mt-2 p-2 bg-yellow-50 border border-yellow-300 rounded">
+                <p className="text-xs text-yellow-800 font-medium">
+                  💬 Wymagana konsultacja
                 </p>
-                <p className="text- text-blue-700 mt-1">
-                  Dla spółek oferujemy obecnie jedynie usługę usuwania pojedynczych opinii. 
-                  <a href="/formularz-opinie" className="text-blue-600 hover:text-blue-800 underline ml-1">
-                    Przejdź do formularza opinii
-                  </a>
+                <p className="text-xs text-yellow-700 mt-1">
+                  Dla tego typu podmiotów oferujemy indywidualną wycenę i doradztwo.
                 </p>
               </div>
             )}
@@ -367,18 +364,15 @@ export default function RemovalForm({
         </>
       )}
       
-      {/* For company type - show information about individual review removal */}
+      {/* For company type - show consultation message */}
       {validatedNIP && isCompanyType && (
-        <div className="text-center p-4 bg-blue-50 border border-blue-200 rounded-xl">
-          <p className="text-blue-800 font-medium mb-2 hidden">
-            Dla spółek, nie ma obecnie możliwości usunięcia całe profilu. Skorzystaj z usuwania pojedynczych opinii.
-          </p>
-          <a 
-            href="/formularz-opinie"
-            className="inline-block px-5 py-2.5 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors"
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="w-46 px-3 md:px-5 py-2.5 rounded text-sm bg-orange-200 text-orange-700 cursor-not-allowed border border-orange-300"
           >
-            Przejdź do formularza opinii
-          </a>
+            Wymagana konsultacja
+          </button>
         </div>
       )}
     </form>

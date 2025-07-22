@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import Footer from "@/components/Footer";
@@ -18,12 +18,6 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -46,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pl" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable}`}>
+    <html lang="pl" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
         {/* Open Graph tags for social sharing */}
         <meta property="og:title" content="Wizaro.pl - Ochrona Wizerunku Online" />

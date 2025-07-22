@@ -67,18 +67,27 @@ const NegativeReviewRemoval = () => {
                 </svg>
                 <span>Płatność dopiero po skutecznym usunięciu opinii</span>
               </li>
-            </ul>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/formularz-opinie-google" className="w-full sm:w-auto block">
-                <button className="px-6 py-3 bg-[#002a5c] text-white rounded-md font-semibold hover:bg-[#001e47] transition w-full sm:w-auto">
-                  Mapy Google
-                </button>
-              </Link>
-              <Link href="/formularz-opinie" className="w-full sm:w-auto block">
-                <button className="px-6 py-3 bg-[#E5E7EB] text-black rounded-md font-semibold hover:bg-[#D1D5DB] transition w-full sm:w-auto">
-                  GoWork, ALEO...
-                </button>
-              </Link>
+            </ul>            <div className="space-y-4">
+              <p className="font-medium text-gray-800">Usuń szkodliwą opinię z:</p>
+              <div className="flex flex-row sm:flex-row gap-4 md:bl ">
+                <Link href="/formularz-opinie-google">
+                  <button className="bg-[#002a5c] text-white px-3 md:px-6 py-3 rounded text-sm md:text-md  font-semibold hover:bg-blue-800 transition flex items-center justify-center">
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                      <path d="M12 6.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5zm0 10c-2.33 0-7 1.17-7 3.5V20h14v-.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg> */}
+                    Mapy Google
+                  </button>
+                </Link>
+                <Link href="/formularz-opinie">
+                  <button className="bg-[#002a5c] text-white text-sm md:text-md px-3 md:px-6 py-3 rounded font-semibold hover:bg-blue-800 transition flex items-center justify-center">
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/>
+                    </svg> */}
+                    GoWork, ALEO...
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

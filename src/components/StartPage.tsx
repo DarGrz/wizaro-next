@@ -18,7 +18,6 @@ import Link from "next/link";
 import MobileActionButton from "./MobileActionButton";
 import NegativeReviewRemoval from "./NegativeReviewRemoval";
 import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
-import BusinessPortalRemoval from "./BusinessPortalRemoval";
 
 
 
@@ -56,11 +55,6 @@ export default function StartPage() {
       {/* Sekcja usuwania firmy z Google */}
       <div className="md:flex py-5 mb-15 md:gap-8">
         <GoogleBusinessRemoval />
-      </div>
-
-      {/* Sekcja usuwania danych z portali biznesowych */}
-      <div className="md:flex py-5 mb-15 md:gap-8">
-        <BusinessPortalRemoval />
       </div>
 
       {/* Sekcja resetowania wizytówki Google */}
@@ -102,6 +96,10 @@ export default function StartPage() {
       <div className="md:flex py-10 md:gap-8 ">
         <ExplenationStartPage />
       </div>
+
+       <div className="md:flex py-10 md:gap-8 w-full ">
+        <BusinessTypeSelector />
+      </div>
       
       <div className="md:flex py-10 md:gap-8 ">
         <WhyTrustUs />
@@ -125,9 +123,7 @@ export default function StartPage() {
         <ForWhom />
       </div>
      
-      
-      {/* Sekcja: Dlaczego warto usuwać profile i opinie */}
-      <div className="md:flex py-10 md:gap-8 ">
+            <div className="md:flex py-10 md:gap-8 ">
         <WhyRemoveProfilesAndReviews />
       </div>
 
