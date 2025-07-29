@@ -4,7 +4,7 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
-import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
+import BusinessTypeSelectorMobileAleo from "./BusinessTypeSelectorMobileAleo";
 import Link from "next/link";
 
 export default function AleoRemovalPage() {
@@ -30,11 +30,16 @@ export default function AleoRemovalPage() {
 
       {/* Mobilna wersja selektora */}
       <div className="md:gap-8 pt-5 w-full md:hidden block">
-        <BusinessTypeSelectorMobile />
+        <BusinessTypeSelectorMobileAleo />
+      </div>
+
+        {/* Separator */}
+      <div className="w-full max-w-4xl px-4">
+        <hr className="border-t border-gray-300 my-8" />
       </div>
 
       {/* CTA telefoniczne */}
-      <div className="flex flex-col items-center gap-2 mt-6 mb-10">
+      {/* <div className="flex flex-col items-center gap-2 mt-6 mb-10">
         <p className="text-center text-gray-700 font-bold">
           Zadzwoń jeśli masz pytania lub potrzebujesz pomocy
         </p>
@@ -43,7 +48,7 @@ export default function AleoRemovalPage() {
             +48 792 861 513
           </button>
         </Link>
-      </div>
+      </div> */}
 
       {/* Główny artykuł SEO */}
       <article className="w-full max-w-4xl px-4 py-8">
