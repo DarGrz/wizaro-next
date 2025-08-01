@@ -55,7 +55,7 @@ export default function BusinessTypeSelectorMobile() {
                 </h1>
                 <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
                  Szybko pozbędziesz się niechcianych informacji. Bez zbędnych
-            komplikacji, w pełni legalnie i dyskretnie. Kliknij <strong>START</strong> i wypełnij prosty formularz, resztą zajmiemy się my.
+            komplikacji, w pełni legalnie i dyskretnie. Kliknij <strong>START</strong> żeby rozpocząć, resztą zajmiemy się my.
                 </p>
                 <button
                   onClick={() => setStep('platform')}
