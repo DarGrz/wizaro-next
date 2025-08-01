@@ -51,10 +51,10 @@ export default function BusinessTypeSelectorMobile() {
             >
               <div className="h-[100px] flex flex-col items-center justify-center w-full">
                 <h1 className="text-3xl font-bold text-center text-gray-900 mb-3">
-                  Usuń Opinie lub Profil Firmy
+                  Ochrona Wizerunku Online
                 </h1>
                 <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
-                 Szybko pozbędziesz się informacji o swojej firmie. Bez zbędnych
+                 Szybko pozbędziesz się niechcianych informacji. Bez zbędnych
             komplikacji, w pełni legalnie i dyskretnie. Kliknij <strong>START</strong> i wypełnij prosty formularz, resztą zajmiemy się my.
                 </p>
                 <button
@@ -81,7 +81,7 @@ export default function BusinessTypeSelectorMobile() {
                   Skąd chcesz usunąć?
                 </h2>
                 <p className="text-gray-600 text-center text-sm" style={{ fontSize: '0.875rem' }}>
-                  Wybierz miejsce, z którego chcesz usunąć firmę lub opinię
+                  Wybierz miejsce, z którego chcesz usunąć dane firmy lub opinie
                 </p>
               </div>
 
