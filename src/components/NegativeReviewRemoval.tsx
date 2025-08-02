@@ -36,10 +36,10 @@ const NegativeReviewRemoval = () => {
           {/* Treść */}
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-gray-900 mb-3">
-              Usuwanie Negatywnych Opinii
+              Usuwanie Szkodliwych Opinii
             </h2>
             <p className="text-gray-600 mb-4">
-              Negatywne opinie mogą znacząco wpłynąć na reputację Twojej firmy i zniechęcić potencjalnych klientów.
+              Szkodliwe opinie mogą znacząco wpłynąć na reputację Twojej firmy i zniechęcić potencjalnych klientów.
               Oferujemy profesjonalną usługę usuwania szkodliwych recenzji z internetu, działając zgodnie z przepisami prawa.
             </p>
             <ul className="mb-4 space-y-2">
