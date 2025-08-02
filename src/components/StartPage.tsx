@@ -33,7 +33,7 @@ export default function StartPage() {
           Ochrona Wizerunku Online
           </h1>
           <p className="text-gray-600 text-center mb-8">
-                 Skutecznie usuwamy niechciane informacje z Map Google, GoWork, Aleo i innych serwisów. Płatność następuje dopiero po wykonaniu usługi.
+                 Skutecznie usuwamy szkodliwe informacje z Map Google, GoWork, Aleo i innych serwisów. Płatność następuje dopiero po wykonaniu usługi.
           </p>
           
         </div>
