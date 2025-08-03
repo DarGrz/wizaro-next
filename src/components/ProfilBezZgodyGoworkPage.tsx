@@ -4,7 +4,7 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
-import BusinessTypeSelectorMobileGowork from "./BusinessTypeSelectorMobileGowork";
+import BusinessTypeSelectorMobileGoWork from "./BusinessTypeSelectorMobileGoWork";
 import Link from "next/link";
 
 export default function ProfilBezZgodyGoworkPage() {
@@ -30,7 +30,7 @@ export default function ProfilBezZgodyGoworkPage() {
 
       {/* Mobilna wersja selektora */}
       <div className="md:gap-8 pt-5 w-full md:hidden block">
-        <BusinessTypeSelectorMobileGowork />
+        <BusinessTypeSelectorMobileGoWork />
       </div>
 
       {/* Separator */}
