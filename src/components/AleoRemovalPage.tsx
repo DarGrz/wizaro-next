@@ -542,35 +542,41 @@ export default function AleoRemovalPage() {
 
           {/* Sekcja z linkami do powiązanych usług */}
           <div className="w-full max-w-4xl mx-auto mt-12 p-6 bg-gray-50 rounded-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
               Sprawdź nasze inne usługi usuwania treści
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <Link href="/jak-usunac-opinie-z-gowork" className="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-gray-900 mb-2">Usuwanie z GoWork</h4>
-                <p className="text-gray-600 text-sm">Profesjonalne usuwanie opinii i profili z platformy biznesowej GoWork</p>
-              </Link>
-              <Link href="/jak-usunac-firme-z-google-maps" className="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-gray-900 mb-2">Usuwanie z Google Maps</h4>
-                <p className="text-gray-600 text-sm">Skuteczne usuwanie firm i opinii z Google Maps i Google Business</p>
-              </Link>
-              <Link href="/jak-usunac-opinie-z-panoramy-firm" className="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-gray-900 mb-2">Usuwanie z Panoramy Firm</h4>
-                <p className="text-gray-600 text-sm">Usuwanie negatywnych opinii z serwisu Panorama Firm</p>
-              </Link>
-              <Link href="/usuwanie-aleo" className="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-gray-900 mb-2">Ogólne usuwanie z Aleo</h4>
-                <p className="text-gray-600 text-sm">Kompleksowe usługi usuwania różnych treści z serwisu Aleo</p>
-              </Link>
-              <Link href="/usuwanie-gowork" className="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-gray-900 mb-2">Ogólne usuwanie z GoWork</h4>
-                <p className="text-gray-600 text-sm">Kompleksowe usługi usuwania treści z platformy GoWork</p>
-              </Link>
-              <Link href="/jak-usunac-firme-z-gowork" className="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-gray-900 mb-2">Usuwanie firm z GoWork</h4>
-                <p className="text-gray-600 text-sm">Specjalistyczne usuwanie profili firm z serwisu GoWork</p>
-              </Link>
-            </div>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/jak-usunac-opinie-z-gowork" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                  Usuwanie z GoWork - Profesjonalne usuwanie opinii i profili z platformy biznesowej GoWork
+                </Link>
+              </li>
+              <li>
+                <Link href="/jak-usunac-firme-z-google-maps" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                  Usuwanie z Google Maps - Skuteczne usuwanie firm i opinii z Google Maps i Google Business
+                </Link>
+              </li>
+              <li>
+                <Link href="/jak-usunac-opinie-z-panoramy-firm" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                  Usuwanie z Panoramy Firm - Usuwanie negatywnych opinii z serwisu Panorama Firm
+                </Link>
+              </li>
+              <li>
+                <Link href="/usuwanie-aleo" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                  Ogólne usuwanie z Aleo - Kompleksowe usługi usuwania różnych treści z serwisu Aleo
+                </Link>
+              </li>
+              <li>
+                <Link href="/usuwanie-gowork" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                  Ogólne usuwanie z GoWork - Kompleksowe usługi usuwania treści z platformy GoWork
+                </Link>
+              </li>
+              <li>
+                <Link href="/jak-usunac-firme-z-gowork" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                  Usuwanie firm z GoWork - Specjalistyczne usuwanie profili firm z serwisu GoWork
+                </Link>
+              </li>
+            </ul>
           </div>
 
         </div>
