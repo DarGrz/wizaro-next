@@ -4,7 +4,7 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
-import BusinessTypeSelectorMobilePanorama from "./BusinessTypeSelectorMobilePanorama";
+import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
 import Link from "next/link";
 
 export default function UsuwaniePanoramaFirmDanePage() {
@@ -30,7 +30,7 @@ export default function UsuwaniePanoramaFirmDanePage() {
 
       {/* Mobilna wersja selektora */}
       <div className="md:gap-8 pt-5 w-full md:hidden block">
-        <BusinessTypeSelectorMobilePanorama />
+        <BusinessTypeSelectorMobile />
       </div>
 
       {/* Separator */}

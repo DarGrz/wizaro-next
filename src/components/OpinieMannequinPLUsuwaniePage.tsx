@@ -4,7 +4,7 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
-import BusinessTypeSelectorMobileGeneral from "./BusinessTypeSelectorMobileGeneral";
+import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
 import Link from "next/link";
 
 export default function OpinieMannequinPLUsuwaniePage() {
@@ -30,7 +30,7 @@ export default function OpinieMannequinPLUsuwaniePage() {
 
       {/* Mobilna wersja selektora */}
       <div className="md:gap-8 pt-5 w-full md:hidden block">
-        <BusinessTypeSelectorMobileGeneral />
+        <BusinessTypeSelectorMobile />
       </div>
 
       {/* Separator */}
@@ -380,12 +380,12 @@ export default function OpinieMannequinPLUsuwaniePage() {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/jak-usunac-opinie-z-aleo" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                <Link href="/falsze-opinie-aleo-usuwanie" className="text-blue-600 hover:text-blue-800 underline font-medium">
                   Usuwanie opinii z Aleo - Profesjonalne usuwanie negatywnych opinii z serwisu Aleo
                 </Link>
               </li>
               <li>
-                <Link href="/jak-usunac-opinie-z-gowork" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                <Link href="/profil-bez-zgody-gowork" className="text-blue-600 hover:text-blue-800 underline font-medium">
                   Usuwanie opinii z GoWork - Skuteczne usuwanie negatywnych recenzji z platformy GoWork
                 </Link>
               </li>
@@ -395,7 +395,7 @@ export default function OpinieMannequinPLUsuwaniePage() {
                 </Link>
               </li>
               <li>
-                <Link href="/jak-usunac-opinie-z-panoramy-firm" className="text-blue-600 hover:text-blue-800 underline font-medium">
+                <Link href="/usuwanie-panorama-firm-dane" className="text-blue-600 hover:text-blue-800 underline font-medium">
                   Usuwanie z Panoramy Firm - Profesjonalne usuwanie opinii z katalogu Panorama Firm
                 </Link>
               </li>
