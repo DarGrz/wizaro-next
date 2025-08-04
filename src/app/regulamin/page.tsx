@@ -57,7 +57,7 @@ export default function Page() {
         <section id="zakres">
           <h2 className="text-xl font-bold text-[#002a5c] mb-2 mt-4">§2. Zakres usług</h2>
           <ul className="list-disc pl-6 space-y-1 text-gray-800">
-            <li>Usługi świadczone obejmują m.in.: usuwanie wizytówek firmowych z Map Google, usuwanie opinii z portali internetowych (GoWork, Aleo, Panorama Firm, PKT, Wenet), sporządzanie pism, wniosków, żądań prawnych, a także doradztwo w zakresie ochrony reputacji w internecie.</li>
+            <li>Usługi świadczone obejmują m.in.: usuwanie wizytówek firmowych z Map Google, usuwanie opinii z portali internetowych (Google Maps, GoWork, Aleo, Panorama Firm, PKT, Wenet), sporządzanie pism, wniosków, żądań prawnych, a także doradztwo w zakresie ochrony reputacji w internecie.</li>
             <li>Szczegółowy opis usługi oraz zakres działań znajduje się w formularzu zamówienia lub w potwierdzeniu e-mail przesyłanym przez Usługodawcę.</li>
           </ul>
         </section>

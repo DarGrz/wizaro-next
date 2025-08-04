@@ -54,7 +54,7 @@ export default function BusinessTypeSelectorMobile() {
                   Ochrona Wizerunku Online
                 </h1>
                 <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
-                 Szybko pozbędziesz się niechcianych informacji. Bez zbędnych
+                 Szybko pozbędziesz się szkodliwych informacji. Bez zbędnych
             komplikacji, w pełni legalnie i dyskretnie. Kliknij <strong>START</strong> żeby rozpocząć, resztą zajmiemy się my.
                 </p>
                 <button

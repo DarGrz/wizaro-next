@@ -54,7 +54,7 @@ export default function BusinessTypeSelector() {
                   Usuń Opinie lub Profil Firmy
                 </h2>
                 <p className="text-gray-600 text-center text-md mb-8">
-                 Kliknij <strong>START</strong>, aby rozpocząć proces usuwania niechcianych treści z internetu.
+                 Kliknij <strong>START</strong>, aby rozpocząć proces usuwania szkodliwych treści z internetu.
                 </p>
                 <button
                   onClick={() => setStep('platform')}
