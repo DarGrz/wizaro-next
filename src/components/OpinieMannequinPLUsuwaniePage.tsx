@@ -6,9 +6,46 @@ import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
 import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
 import Link from "next/link";
+import { ArticleSchema, ServiceSchema, FAQSchema } from "./schemas";
 
 export default function OpinieMannequinPLUsuwaniePage() {
+  const faqs = [
+    {
+      question: "Jak długo trwa usuwanie opinii z MannequinPL?",
+      answer: "Proces usuwania opinii z MannequinPL może trwać od kilku dni do kilku tygodni, w zależności od złożoności sprawy i typu problematycznej opinii."
+    },
+    {
+      question: "Czy usuwanie opinii z MannequinPL jest legalne?",
+      answer: "Tak, usuwanie nieprawdziwych, krzywdzących lub naruszających regulamin opinii jest całkowicie legalne i zgodne z przepisami RODO oraz polskim prawem."
+    },
+    {
+      question: "Ile kosztuje usuwanie opinii z MannequinPL?",
+      answer: "Koszt zależy od złożoności sprawy. Oferujemy bezpłatną konsultację i gwarancję rezultatu - płacisz tylko za skuteczne usunięcie opinii."
+    },
+    {
+      question: "Które opinie można usunąć z MannequinPL?",
+      answer: "Można usuwać opinie fałszywe, napisane przez konkurencję, naruszające regulamin, zawierające nieprawdziwe informacje lub krzywdzące treści."
+    }
+  ];
+
   return (
+    <>
+      {/* JSON-LD Structured Data */}
+      <ArticleSchema
+        headline="Usuwanie opinii z MannequinPL - Profesjonalne usuwanie negatywnych recenzji"
+        description="Skuteczne usuwanie negatywnych opinii z serwisu MannequinPL. Profesjonalne podejście zgodne z RODO, gwarancja rezultatu przy usuwaniu krzywdzących recenzji."
+        url="https://wizaro.pl/opinie-mannequinpl-usuwanie"
+        keywords={["usuwanie opinii MannequinPL", "negatywne opinie beauty", "recenzje salonów kosmetycznych", "reputacja online"]}
+        category="Beauty Services"
+      />
+      <ServiceSchema
+        serviceName="Usuwanie opinii z MannequinPL"
+        description="Profesjonalne usuwanie negatywnych, fałszywych i krzywdzących opinii z platformy MannequinPL dla salonów kosmetycznych i firm beauty."
+        url="https://wizaro.pl/opinie-mannequinpl-usuwanie"
+        serviceType="Reputation Management"
+      />
+      <FAQSchema faqs={faqs} />
+
     <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-10">
       {/* Przycisk mobilny */}
       <MobileActionButton />
@@ -434,5 +471,6 @@ export default function OpinieMannequinPLUsuwaniePage() {
       </div>
 
     </div>
+    </>
   );
 }

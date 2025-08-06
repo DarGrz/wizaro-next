@@ -6,9 +6,69 @@ import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
 import BusinessTypeSelectorMobileGoWork from "./BusinessTypeSelectorMobileGoWork";
 import Link from "next/link";
+import { ArticleSchema, FAQSchema, AggregateRatingSchema, ProductWithRatingSchema, BreadcrumbSchema } from "./schemas";
 
 export default function GoworkRemovalPage() {
+  const faqs = [
+    {
+      question: "Jak długo trwa usuwanie opinii z GoWork?",
+      answer: "Proces usuwania opinii z GoWork może trwać od kilku dni do kilku tygodni, w zależności od typu opinii i argumentów prawnych."
+    },
+    {
+      question: "Czy można usunąć negatywne opinie pracodawców z GoWork?",
+      answer: "Tak, można usuwać opinie fałszywe, naruszające regulamin lub zawierające nieprawdziwe informacje o firmie."
+    },
+    {
+      question: "Ile kosztuje usuwanie opinii z GoWork?",
+      answer: "Koszt zależy od liczby opinii i złożoności sprawy. Oferujemy bezpłatną konsultację i płatność tylko za rezultat."
+    },
+    {
+      question: "Czy usuwanie opinii z GoWork jest legalne?",
+      answer: "Tak, usuwanie fałszywych lub krzywdzących opinii jest legalne i zgodne z polskim prawem oraz RODO."
+    },
+    {
+      question: "Jak chronić firmę przed negatywnymi opiniami w GoWork?",
+      answer: "Najlepszą ochroną jest aktywne zarządzanie profilem, budowanie pozytywnej reputacji i szybka reakcja na problemy."
+    }
+  ];
+
+  const breadcrumbs = [
+    { name: "Strona główna", url: "https://wizaro.pl" },
+    { name: "Usuwanie opinii", url: "https://wizaro.pl/usuwanie-opinii" },
+    { name: "GoWork", url: "https://wizaro.pl/jak-usunac-opinie-z-gowork" }
+  ];
+
   return (
+    <>
+      {/* JSON-LD Structured Data */}
+      <ArticleSchema
+        headline="Jak usunąć opinie z GoWork - Skuteczne metody usuwania 2025"
+        description="Profesjonalne usuwanie negatywnych opinii z platformy GoWork. Skuteczne metody, gwarancja rezultatu, zgodność z prawem."
+        url="https://wizaro.pl/jak-usunac-opinie-z-gowork"
+        keywords={["usuwanie opinii gowork", "negatywne opinie o pracodawcach", "usuwanie recenzji firmy", "reputacja pracodawcy"]}
+        category="HR Services"
+      />
+      
+      <ProductWithRatingSchema
+        name="Usuwanie opinii z GoWork"
+        description="Profesjonalne usługi usuwania negatywnych opinii z platformy rekrutacyjnej GoWork."
+        url="https://wizaro.pl/jak-usunac-opinie-z-gowork"
+        ratingValue={4.8}
+        reviewCount={89}
+      />
+      
+      <AggregateRatingSchema
+        ratingValue={4.8}
+        reviewCount={89}
+        itemType="Service"
+        itemName="Usuwanie opinii z GoWork"
+        itemUrl="https://wizaro.pl/jak-usunac-opinie-z-gowork"
+      />
+      
+      <BreadcrumbSchema items={breadcrumbs} />
+      
+      <FAQSchema faqs={faqs} />
+
     <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-10">
       {/* Przycisk mobilny */}
       <MobileActionButton />
@@ -580,5 +640,6 @@ export default function GoworkRemovalPage() {
       </div>
 
     </div>
+    </>
   );
 }
