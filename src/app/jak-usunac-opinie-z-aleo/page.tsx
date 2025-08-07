@@ -1,4 +1,5 @@
 import AleoRemovalPage from '@/components/AleoRemovalPage';
+import { ArticleSchema, FAQSchema, AggregateRatingSchema, ProductWithRatingSchema, BreadcrumbSchema } from '@/components/schemas';
 
 export const metadata = {
   title: 'Jak usunąć opinie z Aleo? Skuteczne usuwanie profili i opinii z Aleo - Wizaro.pl',
@@ -11,5 +12,67 @@ export const metadata = {
 };
 
 export default function JakUsunacOpinieZAleo() {
-  return <AleoRemovalPage />;
+  const faqs = [
+    {
+      question: "Jak długo trwa usuwanie opinii z Aleo?",
+      answer: "Proces usuwania opinii z Aleo może trwać od kilku dni do kilku tygodni, w zależności od typu opinii i argumentów prawnych."
+    },
+    {
+      question: "Czy można usunąć wszystkie dane firmy z Aleo?",
+      answer: "Tak, możemy usunąć kompletny profil firmy z Aleo, włączając w to wszystkie dane firmowe, opinie i oceny."
+    },
+    {
+      question: "Ile kosztuje usuwanie opinii z Aleo?",
+      answer: "Koszt zależy od liczby opinii i złożoności sprawy. Oferujemy bezpłatną konsultację i płatność tylko za rezultat."
+    },
+    {
+      question: "Czy usuwanie opinii z Aleo jest legalne?",
+      answer: "Tak, usuwanie fałszywych lub krzywdzących opinii jest legalne i zgodne z polskim prawem oraz RODO."
+    },
+    {
+      question: "Jak chronić firmę przed negatywnymi opiniami w Aleo?",
+      answer: "Najlepszą ochroną jest aktywne zarządzanie profilem, budowanie pozytywnej reputacji i szybka reakcja na problemy."
+    }
+  ];
+
+  const breadcrumbs = [
+    { name: "Strona główna", url: "https://wizaro.pl" },
+    { name: "Usuwanie opinii", url: "https://wizaro.pl/usuwanie-opinii" },
+    { name: "Aleo", url: "https://wizaro.pl/jak-usunac-opinie-z-aleo" }
+  ];
+
+  return (
+    <>
+      {/* JSON-LD Structured Data */}
+      <ArticleSchema
+        headline="Jak usunąć opinie z Aleo - Skuteczne metody usuwania 2025"
+        description="Profesjonalne usuwanie opinii i profili firm z serwisu Aleo. Skutecznie likwidujemy niechciane treści i dane firmowe. Płatność po wykonaniu usługi."
+        url="https://wizaro.pl/jak-usunac-opinie-z-aleo"
+        keywords={["usunąć opinie z aleo", "jak usunąć firmę z aleo", "usunąć dane z aleo", "usuwanie profili aleo"]}
+        category="Legal Services"
+      />
+      
+      <ProductWithRatingSchema
+        name="Usuwanie opinii z Aleo"
+        description="Profesjonalne usługi usuwania negatywnych opinii i profili firm z platformy Aleo."
+        url="https://wizaro.pl/jak-usunac-opinie-z-aleo"
+        ratingValue={4.9}
+        reviewCount={156}
+      />
+      
+      <AggregateRatingSchema
+        ratingValue={4.9}
+        reviewCount={156}
+        itemType="Service"
+        itemName="Usuwanie opinii z Aleo"
+        itemUrl="https://wizaro.pl/jak-usunac-opinie-z-aleo"
+      />
+      
+      <BreadcrumbSchema items={breadcrumbs} />
+      
+      <FAQSchema faqs={faqs} />
+      
+      <AleoRemovalPage />
+    </>
+  );
 }
