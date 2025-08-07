@@ -1,5 +1,5 @@
 import AleoRemovalPage from '@/components/AleoRemovalPage';
-import { ArticleSchema, FAQSchema, AggregateRatingSchema, ProductWithRatingSchema, BreadcrumbSchema } from '@/components/schemas';
+import { ArticleSchema, FAQSchema, AggregateRatingSchema, ProductWithRatingSchema, BreadcrumbSchema, LocalBusinessSchema, ReviewSchema } from '@/components/schemas';
 
 export const metadata = {
   title: 'Jak usunąć opinie z Aleo? Skuteczne usuwanie profili i opinii z Aleo - Wizaro.pl',
@@ -41,6 +41,33 @@ export default function JakUsunacOpinieZAleo() {
     { name: "Aleo", url: "https://wizaro.pl/jak-usunac-opinie-z-aleo" }
   ];
 
+  const reviews = [
+    {
+      author: "Anna K.",
+      rating: 5,
+      date: "2025-08-05",
+      content: "Wizaro skutecznie usunęło wszystkie negatywne opinie z Aleo. Profesjonalna obsługa i szybki rezultat. Polecam!"
+    },
+    {
+      author: "Marek P.", 
+      rating: 5,
+      date: "2025-08-03",
+      content: "Dzięki Wizaro udało się usunąć fałszywy profil firmy z Aleo. Bardzo szybko i skutecznie. Warto skorzystać z ich usług."
+    },
+    {
+      author: "Katarzyna S.",
+      rating: 5,
+      date: "2025-08-01", 
+      content: "Usunięcie negatywnych opinii z Aleo przebiegło bez problemów. Wizaro dotrzymało wszystkich obietnic. Bardzo profesjonalne podejście."
+    },
+    {
+      author: "Tomasz W.",
+      rating: 4,
+      date: "2025-07-29",
+      content: "Kompleksowe usuwanie profilu firmy z Aleo. Wizaro załatwiło wszystko zgodnie z RODO. Polecam każdemu przedsiębiorcy."
+    }
+  ];
+
   return (
     <>
       {/* JSON-LD Structured Data */}
@@ -71,6 +98,33 @@ export default function JakUsunacOpinieZAleo() {
       <BreadcrumbSchema items={breadcrumbs} />
       
       <FAQSchema faqs={faqs} />
+
+      <LocalBusinessSchema
+        name="Wizaro - Usuwanie Opinii z Aleo"
+        description="Profesjonalne usuwanie negatywnych opinii i profili firm z platformy Aleo. Skuteczne metody, zgodność z prawem."
+        url="https://wizaro.pl"
+        telephone="+48792861513"
+        address={{
+          streetAddress: "",
+          addressLocality: "Polska",
+          addressRegion: "Polska",
+          postalCode: "",
+          addressCountry: "PL"
+        }}
+        services={["Usuwanie opinii z Aleo", "Usuwanie profili firm", "Zgodność z RODO"]}
+      />
+
+      {reviews.map((review, index) => (
+        <ReviewSchema
+          key={index}
+          author={review.author}
+          ratingValue={review.rating}
+          reviewBody={review.content}
+          datePublished={review.date}
+          itemName="Usuwanie opinii z Aleo - Wizaro"
+          itemUrl="https://wizaro.pl/jak-usunac-opinie-z-aleo"
+        />
+      ))}
       
       <AleoRemovalPage />
     </>

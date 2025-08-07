@@ -2,104 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ArticleSchema, FAQSchema, ServiceSchema } from './schemas';
 
 export default function WhyRemoveProfilesAndReviews() {
-  // JSON-LD Schema for Wizaro Organization
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Wizaro - Usuwanie Opinii i Profili",
-    "url": "https://wizaro.pl",
-    "logo": "https://wizaro.pl/images/wizaro-logo.png",
-    "image": "https://wizaro.pl/images/wizaro-logo.png",
-    "telephone": "+48792861513",
-    "email": "kontakt@wizaro.pl",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "PL",
-      "addressRegion": "Polska"
-    },
-    "description": "Profesjonalne usuwanie negatywnych opinii i profili firm z platform internetowych. Skuteczne metody, zgodność z prawem, gwarancja rezultatu.",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "bestRating": 5,
-      "worstRating": 1,
-      "ratingCount": 247,
-      "ratingValue": 5.0
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Anna K."
-        },
-        "datePublished": "2025-08-05T10:30:00+02:00",
-        "reviewBody": "Wizaro skutecznie usunęło wszystkie negatywne opinie z Google Maps. Profesjonalna obsługa i szybki rezultat. Polecam!",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": 5
-        }
-      },
-      {
-        "@type": "Review", 
-        "author": {
-          "@type": "Person",
-          "name": "Marek P."
-        },
-        "datePublished": "2025-08-03T14:15:00+02:00",
-        "reviewBody": "Dzięki Wizaro udało się usunąć profil firmy z Gowork i Aleo. Bardzo szybko i skutecznie. Warto skorzystać z ich usług.",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": 5
-        }
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person", 
-          "name": "Katarzyna S."
-        },
-        "datePublished": "2025-08-01T09:45:00+02:00",
-        "reviewBody": "Usunięcie negatywnych opinii z GoWork przebiegło bez problemów. Wizaro dotrzymało wszystkich obietnic. Bardzo profesjonalne podejście.",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": 5
-        }
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Tomasz W."
-        },
-        "datePublished": "2025-07-29T16:20:00+02:00", 
-        "reviewBody": "Kompleksowe usuwanie profilu firmy z kilku platform jednocześnie. Wizaro załatwiło wszystko zgodnie z RODO. Polecam każdemu przedsiębiorcy.",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": 5
-        }
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Joanna M."
-        },
-        "datePublished": "2025-07-27T11:10:00+02:00",
-        "reviewBody": "Wizytówka Google restauracji została usunięta szybko i zgodnie z ustaleniami!",
-        "reviewRating": {
-          "@type": "Rating", 
-          "ratingValue": 5
-        }
-      }
-    ],
-    "serviceArea": {
-      "@type": "Country",
-      "name": "Polska"
-    },
-    "areaServed": "PL"
-  };
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -111,6 +16,29 @@ export default function WhyRemoveProfilesAndReviews() {
       }
     }
   };
+
+  const faqs = [
+    {
+      question: "Dlaczego negatywne opinie szkodzą mojej firmie?",
+      answer: "Negatywne opinie, nawet nieprawdziwe, znacząco wpływają na decyzje zakupowe klientów. Statystyki pokazują, że 88% konsumentów czyta opinie przed zakupem, a jedna negatywna opinia może zniechęcić nawet 22% potencjalnych klientów."
+    },
+    {
+      question: "Czy usuwanie opinii jest legalne?",
+      answer: "Tak, usuwanie fałszywych, krzywdzących lub naruszających regulamin opinii jest w pełni legalne i zgodne z polskim prawem oraz przepisami RODO. Każdy ma prawo do ochrony swojej reputacji."
+    },
+    {
+      question: "Jak długo trwa proces usuwania profilu firmy?",
+      answer: "Czas usuwania zależy od platformy i rodzaju danych. Zazwyczaj proces trwa od kilku dni do kilku tygodni. Proste profile można usunąć szybciej, złożone przypadki wymagają więcej czasu na procedury prawne."
+    },
+    {
+      question: "Co się stanie z moimi danymi po usunięciu profilu?",
+      answer: "Po usunięciu profilu wszystkie powiązane dane są permanentnie usuwane z serwisu. Obejmuje to informacje kontaktowe, opinie, zdjęcia i inne treści związane z firmą."
+    },
+    {
+      question: "Czy usunięcie profilu wpłynie na SEO mojej strony?",
+      answer: "Usunięcie negatywnych profili może pozytywnie wpłynąć na SEO, usuwając źródła negatywnych sygnałów. Ważne jest jednak, aby równocześnie budować pozytywną obecność online w innych miejscach."
+    }
+  ];
 
   const reasonItems = [
     {
@@ -181,14 +109,26 @@ export default function WhyRemoveProfilesAndReviews() {
 
   return (
     <>
-      {/* JSON-LD Structured Data for Organization */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema)
-        }}
+      {/* JSON-LD Structured Data */}
+      <ArticleSchema
+        headline="Dlaczego warto usuwać profile i opinie - Ochrona reputacji online"
+        description="Poznaj 6 kluczowych powodów, dla których warto usuwać negatywne opinie i profile firm. Ochrona reputacji, kontrola danych, zgodność z RODO."
+        url="https://wizaro.pl/dlaczego-usuwac-profile-opinie"
+        keywords={["usuwanie opinii", "ochrona reputacji", "RODO", "zarządzanie reputacją online"]}
+        category="Business Services"
       />
       
+      <ServiceSchema
+        serviceName="Usuwanie profili i opinii firm"
+        description="Profesjonalne usługi usuwania negatywnych opinii i niepożądanych profili firmowych z różnych platform internetowych."
+        url="https://wizaro.pl"
+        serviceType="Reputation Management"
+        provider="Wizaro"
+        areaServed="Polska"
+      />
+      
+      <FAQSchema faqs={faqs} />
+
       <div className="w-full">
       <motion.div 
         initial="hidden"
