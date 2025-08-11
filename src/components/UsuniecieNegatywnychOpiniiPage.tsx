@@ -57,7 +57,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             Jak działamy?
           </h2>
           
-          <div className="bg-gray-50 rounded-lg p-6 mb-8">
+          <div className="bg-gray-50 rounded-lg mb-12">
             <div className="space-y-4">
               <div className="flex items-start gap-4">
                 <div className="bg-[#5BA155] text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0">
@@ -95,7 +95,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             Wpływ niskich ocen na Twój biznes
           </h2>
 
-          <div className="bg-white rounded-2xl p-8 mb-8 shadow-lg border border-gray-100">
+          <div className="bg-white rounded-2xl  mb-8 ">
             
             {/* Główne statystyki w kartach */}
             <div className="grid md:grid-cols-4 gap-6 mb-8">
@@ -221,7 +221,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-8 mb-8 shadow-lg border border-gray-100">
+          <div className="bg-white rounded-lg mb-8">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Czas to pieniądz - działaj dziś!</h3>
               <p className="text-gray-600 max-w-2xl mx-auto">
