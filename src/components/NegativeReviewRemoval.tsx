@@ -36,39 +36,40 @@ const NegativeReviewRemoval = () => {
           {/* Treść */}
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-gray-900 mb-3">
-              Usuwanie Opinii
+              Pomoc prawna w sprawach opinii online
             </h2>
             <p className="text-gray-600 mb-4">
-              Szkodliwe opinie mogą znacząco wpłynąć na reputację Twojej firmy i zniechęcić potencjalnych klientów.
-              Oferujemy profesjonalną usługę usuwania szkodliwych recenzji z internetu, działając zgodnie z przepisami prawa.
+              Oferujemy doradztwo i reprezentację w przypadku opinii naruszających regulaminy lub przepisy prawa. 
+              Sporządzamy pisma i wnioski do platform, prowadzimy korespondencję w imieniu klienta, 
+              dbając o pełną poufność i zgodność działań z prawem.
             </p>
             <ul className="mb-4 space-y-2">
               <li className="flex items-center">
                 <svg className="w-4 h-4 mr-2 text-[#5BA155]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                <span>Usuwamy negatywne opinie z Google Maps</span>
+                <span>Analizujemy treści i identyfikujemy naruszenia regulaminów</span>
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 mr-2 text-[#5BA155]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                <span>Zajmujemy się recenzjami naruszającymi regulamin</span>
+                <span>Przygotowujemy formalne zgłoszenia wymagane przez platformy</span>
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 mr-2 text-[#5BA155]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                <span>Zapewniamy szybkie i dyskretne działanie</span>
+                <span>Monitorujemy przebieg postępowania i informujemy o rezultatach</span>
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 mr-2 text-[#5BA155]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                <span>Płatność dopiero po skutecznym usunięciu opinii</span>
+                <span>Zapewniamy pełną zgodność z obowiązującymi regulacjami</span>
               </li>
             </ul>            <div className="space-y-4">
-              <p className="font-medium text-gray-800">Usuń szkodliwą opinię z:</p>
+              <p className="font-medium text-gray-800">Potrzebujesz pomocy prawnej z treściami w:</p>
               <div className="flex flex-row sm:flex-row gap-4 md:bl ">
                 <Link href="/formularz-opinie-google">
                   <button className="bg-[#002a5c] text-white px-3 md:px-6 py-3 rounded text-sm md:text-md  font-semibold hover:bg-blue-800 transition flex items-center justify-center">
