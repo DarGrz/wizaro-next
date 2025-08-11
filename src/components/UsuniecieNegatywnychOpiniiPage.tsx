@@ -57,7 +57,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             Jak działamy?
           </h2>
           
-          <div className="bg-gray-50 rounded-lg mb-12">
+          <div className="bg-gray-50 rounded-lg mb-12 p-4">
             <div className="space-y-4">
               <div className="flex items-start gap-4">
                 <div className="bg-[#5BA155] text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0">
