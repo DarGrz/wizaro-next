@@ -102,7 +102,7 @@ export default function GuaranteeSection() {
   };
 
   return (
-    <section className="py-16  sm:px-6 lg:px-8 rounded-xl">
+    <section className="py-16 sm:px-6 lg:px-8 rounded-xl">
       {showConfetti && (
         <Confetti
           width={windowSize.width}
@@ -141,7 +141,7 @@ export default function GuaranteeSection() {
           Płatność za rezultat
         </h2>
         
-        <div className=" backdrop-blur-sm p-6 rounded-lg shadow-sm border border-gray-100">
+        <div className=" backdrop-blur-sm p-6 rounded-lg  w-full">
           <p className="text-gray-800 text-lg mb-3">
             <span className="font-semibold text-gray-900 inline-block border-b-2 border-[#5BA155] pb-1">
             Opłata tylko po skutecznym usunięciu opinii lub profilu
@@ -149,15 +149,10 @@ export default function GuaranteeSection() {
           </p>
           
           <p className="text-gray-600">
-            Skuteczność gwarantowana – bez ryzyka, bez zaliczek.
+            Bez ryzyka, bez zaliczek.
           </p>
           
-          <div className="flex justify-center mt-6">
-            <div className="flex items-center space-x-2 text-sm text-gray-500">
-              <span className="inline-block w-3 h-3 rounded-full bg-[#5BA155]"></span>
-              <span>100% gwarancji rezultatu</span>
-            </div>
-          </div>
+         
         </div>
       </div>
     </section>
