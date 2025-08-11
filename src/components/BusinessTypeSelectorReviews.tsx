@@ -51,11 +51,11 @@ export default function BusinessTypeSelectorReviews() {
             >
               <div className="h-[100px] flex flex-col items-center justify-center w-full">
                 <h1 className="text-3xl font-bold text-center text-gray-900 mb-3">
-                  Usuwanie Fałszywych Opinii - Płatność tylko za rezultat
+                  Usuwanie Fałszywych Opinii
                 </h1>
                 <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
                  Szybko pozbędziesz się fałszywych i szkodliwych informacji. Bez zbędnych
-            komplikacji, w pełni legalnie i dyskretnie. Kliknij <strong>START</strong> żeby rozpocząć, resztą zajmiemy się my.
+            komplikacji, w pełni legalnie i dyskretnie.  Kliknij <strong>START</strong> żeby rozpocząć, resztą zajmiemy się my.
                 </p>
                 <button
                   onClick={() => setStep('platform')}
