@@ -36,11 +36,11 @@ const NegativeReviewRemoval = () => {
           {/* Treść */}
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-gray-900 mb-3">
-              Pomoc prawna w sprawach opinii online
+              Usuwanie Fałszywych Opinii
             </h2>
             <p className="text-gray-600 mb-4">
-              Oferujemy doradztwo i reprezentację w przypadku opinii naruszających regulaminy lub przepisy prawa. 
-              Sporządzamy pisma i wnioski do platform, prowadzimy korespondencję w imieniu klienta, 
+              Oferujemy pomoc w usuwaniu opinii naruszających regulaminy lub przepisy prawa. 
+              Używamy rozwiązań technicznych. Sporządzamy pisma i wnioski do platform, prowadzimy korespondencję w imieniu klienta, 
               dbając o pełną poufność i zgodność działań z prawem.
             </p>
             <ul className="mb-4 space-y-2">
