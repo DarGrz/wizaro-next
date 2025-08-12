@@ -17,7 +17,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Usuwanie Fałszywych Opinii - Płatność tylko za ezultat
+            Usuwanie Fałszywych Opinii - Płatność tylko za rezultat
           </h1>
           <p className="text-gray-600 text-center mb-8">
             Używamy rozwiązań technicznych oraz sporządzamy pisma i wnioski do platform, dbając o pełną poufność i zgodność działań z prawem.
