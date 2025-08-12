@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function UsuniecieNegatywnychOpiniiPage() {
   return (
-    <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-10">
+    <div className="min-h-screen mx-auto flex items-center justify-center px-2 flex-col max-w-4xl pt-10">
       {/* Przycisk mobilny */}
       <MobileActionButton />
       
