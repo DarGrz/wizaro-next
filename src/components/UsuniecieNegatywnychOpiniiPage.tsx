@@ -6,6 +6,7 @@ import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
 import BusinessTypeSelectorReviews from "./BusinessTypeSelectorReviews";
 import Link from "next/link";
+import GuaranteeSection from "./GuaranteeSection";
 
 export default function UsuniecieNegatywnychOpiniiPage() {
   return (
@@ -17,7 +18,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Usuwanie Fałszywych Opinii - Płatność tylko za rezultat
+            Usuwanie Fałszywych Opinii
           </h1>
           <p className="text-gray-600 text-center mb-8">
             Używamy rozwiązań technicznych oraz sporządzamy pisma i wnioski do platform, dbając o pełną poufność i zgodność działań z prawem.
@@ -48,6 +49,10 @@ export default function UsuniecieNegatywnychOpiniiPage() {
           </button>
         </Link>
       </div> */}
+
+      <div className="md:flex  md:gap-8 pt-5 ">
+              <GuaranteeSection />
+            </div>
 
       {/* Główny artykuł */}
       <article className="w-full max-w-4xl px-4 py-8">
