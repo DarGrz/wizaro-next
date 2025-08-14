@@ -188,6 +188,13 @@ export default function RootLayout({
 
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
+        <Script id="supabase-config" strategy="beforeInteractive">
+          {`
+            window.__SUPABASE_URL__ = "${process.env.SUPABASE_URL}";
+            window.__SUPABASE_ANON_KEY__ = "${process.env.SUPABASE_ANON_KEY}";
+          `}
+        </Script>
+        
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-W72NWNSH"

@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 export default function SocialProofPage() {
-  const reviews = [
+  const reviews = useMemo(() => [
     {
       name: "Jacek Borowiec",
       text: "Jako właściciel niewielkiej firmy transportowej wiem, jak opinie w internecie potrafią zniszczyć reputację budowaną latami. Trafiłem na Wizaro z polecenia znajomego – i nie zawiodłem się. Profesjonalne podejście, jasna komunikacja i przede wszystkim – skuteczność. Wszystko załatwili bez komplikacji."
@@ -84,14 +84,14 @@ export default function SocialProofPage() {
       name: "Maria Kubicka",
       text: "Mam 61 lat i prowadzę kwiaciarnię. Jakiś czas temu pojawiły się w internecie nieprawdziwe opinie o moim sklepie. Nie wiedziałam, co z tym zrobić. Córka poleciła mi Wizaro i jestem im bardzo wdzięczna. Wszystko odbyło się spokojnie, profesjonalnie i skutecznie. Czułam się zaopiekowana na każdym kroku."
     }
-  ];
+  ], []);
 
   const [randomReviews, setRandomReviews] = useState<typeof reviews>([]);
 
   useEffect(() => {
     const shuffled = [...reviews].sort(() => 0.5 - Math.random());
     setRandomReviews(shuffled.slice(0, 60));
-  }, []); // <--- removed 'reviews' from dependency array
+  }, [reviews]); // Added reviews to dependency array
 
   if (randomReviews.length === 0) return null;
 
