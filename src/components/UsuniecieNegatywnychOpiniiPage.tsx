@@ -235,7 +235,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-8 ">
               <div className="text-center p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-[#081D44] rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -431,7 +431,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             <div className="bg-white rounded-lg border border-gray-200 p-8">
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mr-4" style={{backgroundColor: '#081D44'}}>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mr-4" style={{backgroundColor: '#6C9F5D'}}>
                     <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
@@ -487,7 +487,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             <div className="bg-white rounded-lg border border-gray-200 p-8">
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mr-4" style={{backgroundColor: '#081D44'}}>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mr-4" style={{backgroundColor: '#6C9F5D'}}>
                     <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
                     </svg>
