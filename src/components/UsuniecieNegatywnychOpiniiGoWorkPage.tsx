@@ -18,10 +18,10 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Usuwanie Szkodliwych Opinii i Profili z GoWork
+            Pomoc w Sprawach Opinii na GoWork
           </h1>
           <p className="text-gray-600 text-center mb-8">
-            Specjalizujemy się w usuwaniu nieprawdziwych i krzywdzących opinii z platformy GoWork. Używamy rozwiązań technicznych oraz sporządzamy pisma i wnioski do platform, dbając o pełną poufność i zgodność działań z prawem.
+            Oferujemy doradztwo prawne w sprawach opinii na platformie GoWork. Analizujemy podstawy prawne i sporządzamy pisma zgodnie z regulaminami platform i obowiązującym prawem.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
         <div className="prose prose-lg max-w-none">
           
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            Jak działamy przy usuwaniu opinii z GoWork?
+            Jak działamy w sprawach opinii na GoWork?
           </h2>
           
           <div className="space-y-6 mb-12">
@@ -86,9 +86,9 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
             Specyfika platformy GoWork
           </h2>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
             <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
-              <svg className="w-5 h-5 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-5 h-5 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
               </svg>
               O platformie GoWork
@@ -100,19 +100,19 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
             </p>
             <div className="space-y-2 text-sm text-gray-600">
               <div className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
                 Platforma dla ocen pracodawców
               </div>
               <div className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
                 Wpływ na rekrutację i wizerunek firmy
               </div>
               <div className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
                 Możliwość dodawania opinii przez osoby niebędące pracownikami
@@ -134,7 +134,7 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
                     <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
                   </svg>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">73%</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">73%*</div>
                 <div className="text-gray-600 text-sm font-medium">kandydatów sprawdza opinie o firmie przed aplikowaniem</div>
               </div>
               
@@ -144,7 +144,7 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
                     <path fillRule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clipRule="evenodd"></path>
                   </svg>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">45%</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">45%*</div>
                 <div className="text-gray-600 text-sm font-medium">spadek aplikacji przy negatywnych opiniach</div>
               </div>
               
@@ -155,7 +155,7 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd"></path>
                   </svg>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">15 000 zł</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">Est. 15 000 zł</div>
                 <div className="text-gray-600 text-sm font-medium">średnie koszty dodatkowej rekrutacji</div>
               </div>
               
@@ -165,7 +165,7 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
                     <path fillRule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
                   </svg>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">8x</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">Do 8x</div>
                 <div className="text-gray-600 text-sm font-medium">większe zainteresowanie dobrze ocenianą firmą</div>
               </div>
             </div>
