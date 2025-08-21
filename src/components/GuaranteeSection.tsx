@@ -144,12 +144,11 @@ export default function GuaranteeSection() {
         <div className=" backdrop-blur-sm p-6 rounded-lg  w-full">
           <p className="text-gray-800 text-lg mb-3">
             <span className="font-semibold text-gray-900 inline-block border-b-2 border-[#5BA155] pb-1">
-            Opłata tylko po skutecznym usunięciu opinii lub profilu
+            Opłata tylko jeśli usuniemy opinię.
             </span>
           </p>
           
-          <p className="text-gray-600">
-            Bez ryzyka, bez zaliczek.
+          <p className="text-gray-600">Bez zaliczek i ukrytych kosztów.
           </p>
           
          
