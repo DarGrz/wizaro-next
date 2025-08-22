@@ -51,10 +51,10 @@ export default function BusinessTypeSelectorCTA() {
             >
               <div className="flex flex-col items-center justify-center w-full">
                 <h2 className="text-3xl font-bold text-white mb-3 text-center">
-                  Usuń niechciane informacje o swojej firmie
+                  Skorzystaj z naszej pomocy
                 </h2>
                 <p className="text-gray-200 text-lg text-center mb-8">
-                  Kliknij <strong>START</strong>, aby rozpocząć proces usuwania szkodliwych treści z internetu.
+                  Kliknij <strong>START</strong>, aby szybko pozbyć się problematycznych treści.
                 </p>
                 <button
                   onClick={() => setStep('platform')}

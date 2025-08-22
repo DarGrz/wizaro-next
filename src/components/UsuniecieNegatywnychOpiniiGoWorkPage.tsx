@@ -7,6 +7,7 @@ import MobileActionButton from "./MobileActionButton";
 import BusinessTypeSelectorGoworkReviews from "./BusinessTypeSelectorGoworkReviews";
 import Link from "next/link";
 import GuaranteeSection from "./GuaranteeSection";
+import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
 
 export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
   return (
@@ -18,10 +19,10 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Pomoc w Sprawach Opinii na GoWork
+            Szybka Pomoc w Usuwaniu GoWork
           </h1>
           <p className="text-gray-600 text-center mb-8">
-            Oferujemy doradztwo prawne w sprawach opinii na platformie GoWork. Analizujemy podstawy prawne i sporządzamy pisma zgodnie z regulaminami platform i obowiązującym prawem.
+            Oferujemy rozwiązania technicznie i doradztwo w sprawach dotyczących platformy GoWork. Analizujemy podstawy prawne i sporządzamy pisma zgodnie z regulaminami platform i obowiązującym prawem.
           </p>
         </div>
 
@@ -633,23 +634,10 @@ export default function UsuniecieNegatywnychOpiniiGoWorkPage() {
         </div>
       </article>
 
-      {/* Dodatkowy CTA na końcu */}
-      <div className="w-full max-w-4xl px-4 py-8 mb-6">
-        <div className="bg-[#081D44] text-white p-8 rounded-lg text-center">
-          <h3 className="text-2xl font-bold mb-4">
-            Problemy z opiniami na GoWork?
-          </h3>
-          <p className="mb-6 text-gray-200">
-            Skontaktuj się z nami już dziś i otrzymaj bezpłatną konsultację prawną 
-            oraz profesjonalne doradztwo w zakresie ochrony wizerunku pracodawcy w internecie.
-          </p>
-          <Link href="tel:+48792861513">
-            <button className="bg-white text-gray-800 px-8 py-3 rounded font-bold text-lg hover:bg-gray-100 transition">
-              Zadzwoń: +48 792 861 513
-            </button>
-          </Link>
-        </div>
-      </div>
+      {/* Business Type Selector CTA */}
+            <div className="w-full max-w-4xl px-4 py-8 mb-6">
+              <BusinessTypeSelectorCTA />
+            </div>
 
     </div>
   );
