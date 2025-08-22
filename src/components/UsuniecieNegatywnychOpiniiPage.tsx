@@ -276,7 +276,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
           </div>
 
           <h2 className="text-3xl font-bold text-gray-900 mb-6 pt-6">
-            Wsparcie w rozwiązaniu problemów z profilem w mapach internetowych
+            Wsparcie w rozwiązaniu problemów z profilem firmowym
           </h2>
           
           <p className="text-gray-700 mb-6 leading-relaxed">
