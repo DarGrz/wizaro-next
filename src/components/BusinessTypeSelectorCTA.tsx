@@ -77,7 +77,7 @@ export default function BusinessTypeSelectorCTA() {
             >
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-white mb-3">
-                  Skąd chcesz usunąć?
+                  Z czym masz problem?
                 </h2>
                 <p className="text-gray-200 text-lg">
                   Wybierz platformę
