@@ -54,7 +54,7 @@ export default function BusinessTypeSelectorCTA() {
                   Skorzystaj z naszej pomocy
                 </h2>
                 <p className="text-gray-200 text-lg text-center mb-8">
-                  Kliknij <strong>START</strong>, aby szybko pozbyć się problematycznych treści.
+                  Kliknij <strong>START</strong>, aby szybko poprawić swój wizerunek w internecie.
                 </p>
                 <button
                   onClick={() => setStep('platform')}
