@@ -277,7 +277,7 @@ export default function MobileFormApp() {
             <svg className="w-5 h-5 text-[#5BA155]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.602-4.777l1.13 1.13A8.502 8.502 0 0118 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8c1.878 0 3.606.649 4.97 1.738l1.13 1.13" />
             </svg>
-            <span className="text-sm font-semibold text-gray-900">100% Legalne i Dyskretne</span>
+            <span className="text-sm font-semibold text-gray-900">100% Legalne</span>
           </div>
           <p className="text-xs text-gray-600">
             Wszystkie działania wykonujemy zgodnie z obowiązującym prawem

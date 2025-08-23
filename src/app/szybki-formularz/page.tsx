@@ -62,22 +62,7 @@ export default function Page() {
           
           <MobileFormApp />
           
-          <div className="mt-8 text-center">
-            <div className="bg-white rounded-lg p-6 shadow-md border border-gray-200">
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-[#5BA155] rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-lg font-semibold text-gray-900">Gwarancja rezultatu</span>
-              </div>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Bezpieczne i dyskretne usuwanie nielegalnych treści.<br />
-                Płatność dopiero po wykonaniu usługi.
-              </p>
-            </div>
-          </div>
+         
         </div>
       </div>
     </main>
