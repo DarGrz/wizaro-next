@@ -19,10 +19,10 @@ export default function UsuniecieNegatywnychOpiniiPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Szybka Pomoc w Sprawach Opinii Online
+            Pomoc w Sprawach Pomówień Online
           </h1>
           <p className="text-gray-600 text-center mb-8">
-            Używamy sprawdzonych metod i skutecznych rozwiązań technicznych. Analizujemy podstawy prawne i sporządzamy pisma zgodnie z regulaminami platform i obowiązującym prawem.
+            Analizujemy podstawy prawne i sporządzamy pisma zgodnie z regulaminami platform i obowiązującym prawem.
           </p>
         </div>
 
