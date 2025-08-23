@@ -77,8 +77,8 @@ export default function MobileFormApp() {
                 </h2>
                 <p className="text-gray-600 text-base leading-relaxed max-w-sm mx-auto">
                   Bez zbędnych komplikacji, w pełni legalnie i dyskretnie. 
-                  
-                  <strong>Kliknij START</strong> żeby rozpocząć, resztą zajmiemy się my.
+
+                  <strong>&nbsp;Kliknij START</strong> żeby rozpocząć, resztą zajmiemy się my.
                 </p>
               </div>
               
