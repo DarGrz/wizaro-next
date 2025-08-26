@@ -1,4 +1,4 @@
-//UsuniecieNegatywnychOpiniiPage.tsx
+//PomocZAleoPage.tsx
 
 "use client";
 
@@ -9,7 +9,7 @@ import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
 import Link from "next/link";
 import GuaranteeSection from "./GuaranteeSection";
 
-export default function UsuniecieNegatywnychOpiniiPage() {
+export default function PomocZAleoPage() {
   return (
     <div className="min-h-screen mx-auto flex items-center justify-center px-2 flex-col max-w-4xl pt-10">
       {/* Przycisk mobilny */}
@@ -19,10 +19,10 @@ export default function UsuniecieNegatywnychOpiniiPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Pomoc w Sprawach Opinii Online
+            Pomoc z ALEO.com - Profesjonalne Wsparcie
           </h1>
           <p className="text-gray-600 text-center mb-8">
-            Analizujemy podstawy prawne i sporządzamy pisma zgodnie z regulaminami platform i obowiązującym prawem.
+            Specjalizujemy się w sprawach dotyczących serwisu ALEO.com. Oferujemy pomoc prawną zgodną z przepisami prawa i regulaminami platformy.
           </p>
         </div>
 
@@ -39,97 +39,6 @@ export default function UsuniecieNegatywnychOpiniiPage() {
         <hr className="border-t border-gray-300 my-8" />
       </div>
 
-      {/* Dodatkowe usługi */}
-      <div className="w-full max-w-4xl px-4 mb-8">
-        <div className="grid md:grid-cols-1 gap-6">
-          
-          {/* Usuwanie firmy z Google */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              {/* Ikona Google */}
-              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-              </div>
-
-              {/* Treść */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Usuwanie firmy z Google Maps
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Pomożemy Ci usunąć profil Twojej firmy z Google Maps i Google Moja Firma. 
-                  Kompleksowe usunięcie zgodnie z procedurami Google.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie profilu GMB</span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie z Maps</span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie opinii</span>
-                </div>
-                <Link href="/formularz-profil-google" className="inline-block">
-                  <button className="px-6 py-3 bg-[#002a5c] text-white rounded-lg font-semibold hover:bg-[#001e47] transition duration-200 shadow-sm">
-                    Usuń firmę z Google
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Resetowanie wizytówki Google */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              {/* Ikona Resetowania */}
-              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5BA155" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
-                  <path d="M21 3v5h-5"/>
-                  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
-                  <path d="M3 21v-5h5"/>
-                </svg>
-              </div>
-
-              {/* Treść */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Resetowanie wizytówki Google
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Wizytówka z negatywnymi opiniami? Zresetujemy ją całkowicie, 
-                  zachowując pozycję w Google Maps i umożliwiając budowanie reputacji od nowa.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie opinii</span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Zachowanie pozycji</span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Nowy start</span>
-                </div>
-                <Link href="/resetowanie-wizytowki-formularz" className="inline-block">
-                  <button className="px-6 py-3 bg-[#5BA155] text-white rounded-lg font-semibold hover:bg-[#4a8c47] transition duration-200 shadow-sm">
-                    Resetuj wizytówkę
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* CTA telefoniczne */}
-      {/* <div className="flex flex-col items-center gap-2 mt-6 mb-10 shadow-lg rounded-lg p-6">
-        <p className="text-center text-gray-700 font-bold">
-          Zadzwoń jeśli potrzebujesz pomocy prawnej w sprawach opinii
-        </p>
-        <Link href="tel:+48792861513" className="mx-auto mt-2">
-          <button className="bg-[#5BA155] text-white px-6 py-2 rounded font-semibold hover:bg-[#5BA155] transition">
-            +48 792 861 513
-          </button>
-        </Link>
-      </div> */}
-
       <div className="md:flex  md:gap-8 pt-5 ">
               <GuaranteeSection />
             </div>
@@ -139,7 +48,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
         <div className="prose prose-lg max-w-none">
           
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            Jak działamy?
+            Jak działamy w sprawach ALEO.com?
           </h2>
           
           <div className="space-y-6 mb-12">
@@ -148,8 +57,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                 1
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Analizujemy treści i identyfikujemy naruszenia</h3>
-                <p className="text-gray-600 leading-relaxed">Sprawdzamy, które treści naruszają regulaminy platform lub przepisy prawa, oceniając podstawy do działania.</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Analizujemy treści w ALEO.com</h3>
+                <p className="text-gray-600 leading-relaxed">Sprawdzamy, które treści naruszają regulamin ALEO.com lub przepisy prawa, oceniając możliwości prawne działania.</p>
               </div>
             </div>
             
@@ -158,8 +67,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                 2
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Przygotowujemy formalne zgłoszenia i dokumenty</h3>
-                <p className="text-gray-600 leading-relaxed">Sporządzamy profesjonalne wnioski wymagane przez platformy, uwzględniając wszystkie proceduralne wymagania.</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Przygotowujemy wnioski zgodne z procedurami ALEO</h3>
+                <p className="text-gray-600 leading-relaxed">Sporządzamy profesjonalne zgłoszenia uwzględniające specyfikę platformy ALEO.com i jej wymagania proceduralne.</p>
               </div>
             </div>
             
@@ -168,14 +77,14 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                 3
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Monitorujemy przebieg postępowania</h3>
-                <p className="text-gray-600 leading-relaxed">Prowadzimy korespondencję w imieniu klienta i informujemy o rezultatach na każdym etapie procesu.</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Monitorujemy postęp sprawy</h3>
+                <p className="text-gray-600 leading-relaxed">Prowadzimy korespondencję z ALEO.com w imieniu klienta i informujemy o każdym etapie postępowania.</p>
               </div>
             </div>
           </div>
 
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Wpływ niskich ocen na Twój biznes
+            Wpływ negatywnych opinii w ALEO.com na Twój biznes
           </h2>
 
           <div className="bg-white  mb-8">
@@ -188,8 +97,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
                   </svg>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">87%</div>
-                <div className="text-gray-600 text-sm font-medium">sprawdza opinie przed wizytą w firmie</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">78%</div>
+                <div className="text-gray-600 text-sm font-medium">użytkowników sprawdza ALEO przed wyborem usługi</div>
               </div>
               
               <div className="bg-gray-50 rounded-lg p-6 text-center border border-gray-200">
@@ -198,8 +107,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     <path fillRule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clipRule="evenodd"></path>
                   </svg>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">68%</div>
-                <div className="text-gray-600 text-sm font-medium">spadek przychodów przy ocenie 3+ gwiazdki</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">45%</div>
+                <div className="text-gray-600 text-sm font-medium">spadek zapytań przy ocenie poniżej 3.5 gwiazdki</div>
               </div>
               
               <div className="bg-gray-50 rounded-lg p-6 text-center border border-gray-200">
@@ -209,8 +118,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd"></path>
                   </svg>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">10 000 zł</div>
-                <div className="text-gray-600 text-sm font-medium">średnie straty miesięczne z oceną &lt; 4.0</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">8 000 zł</div>
+                <div className="text-gray-600 text-sm font-medium">średnie straty miesięczne przy złej opinii w ALEO</div>
               </div>
               
               <div className="bg-gray-50 rounded-lg p-6 text-center border border-gray-200">
@@ -219,14 +128,14 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     <path fillRule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
                   </svg>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">Do 12x</div>
-                <div className="text-gray-600 text-sm font-medium">większe szanse wyboru z oceną 4.5+ vs 3.5</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">Do 8x</div>
+                <div className="text-gray-600 text-sm font-medium">więcej zapytań z oceną 4.5+ vs 3.0 w ALEO</div>
               </div>
             </div>
 
             {/* Wykres poziomy z paskami */}
             <div className="bg-gray-50 rounded-lg p-8 border border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Szacunkowy poziom zaufania klientów według oceny</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Szacunkowy poziom zaufania klientów według oceny w ALEO.com</h3>
               
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -246,8 +155,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     4.1-4.4 ⭐
                   </div>
                   <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '75%'}}>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm">75%</span>
+                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '80%'}}>
+                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm">80%</span>
                     </div>
                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Dobra</span>
                   </div>
@@ -258,8 +167,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     3.5-4.0 ⭐
                   </div>
                   <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '50%'}}>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm">50%</span>
+                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '55%'}}>
+                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm">55%</span>
                     </div>
                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Średnia</span>
                   </div>
@@ -270,9 +179,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     3.0-3.4 ⭐
                   </div>
                   <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '30%'}}>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm hidden sm:block">30%</span>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-xs sm:hidden">30%</span>
+                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '25%'}}>
+                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-xs">25%</span>
                     </div>
                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Słaba</span>
                   </div>
@@ -283,8 +191,8 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     &lt;3.0 ⭐
                   </div>
                   <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '15%'}}>
-                      <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white font-semibold text-xs">15%</span>
+                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '10%'}}>
+                      <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white font-semibold text-xs">10%</span>
                     </div>
                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Krytyczna</span>
                   </div>
@@ -297,217 +205,144 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                   <div className="text-gray-600 text-lg">💡</div>
                   <div>
                     <p className="font-semibold text-gray-900">Kluczowa informacja:</p>
-                    <p className="text-gray-600 text-sm">Firmy z oceną poniżej 4.1 gwiazdek mogą tracić znaczną część potencjalnych klientów jeszcze przed pierwszym kontaktem.</p>
+                    <p className="text-gray-600 text-sm">Firmy z oceną poniżej 4.0 gwiazdek w ALEO.com mogą tracić znaczną część potencjalnych klientów przed pierwszym kontaktem.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white  mb-8 pt-6 ">
-            <div className="text-center mb-8 ">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Szybka reakcja to klucz do sukcesu</h3>
-              <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Szybka reakcja na szkodliwe opinie może znacząco wpłynąć na reputację firmy. 
-                Każdy dzień opóźnienia może skutkować utratą potencjalnych klientów.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-8 ">
-              <div className="text-center p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 bg-[#081D44] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div className="text-2xl font-bold text-gray-900 mb-2">24h</div>
-                <div className="text-gray-600 font-medium">Średni czas reakcji na negatywną opinię</div>
-              </div>
-
-              <div className="text-center p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#081D44'}}>
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
-                  </svg>
-                </div>
-                <div className="text-2xl font-bold text-gray-900 mb-2">Śr. -22</div>
-                <div className="text-gray-600 font-medium">Utraconych klientów miesięcznie przez jedną opinię</div>
-              </div>
-
-              <div className="text-center p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#081D44'}}>
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div className="text-2xl font-bold text-gray-900 mb-2">Do +40%</div>
-                <div className="text-gray-600 font-medium">Wzrost konwersji po poprawie reputacji*</div>
-              </div>
-            </div>
-
-            <div className="rounded-lg p-6 text-white text-center  mb-6" style={{backgroundColor: '#081D44'}}>
-              <h4 className="font-bold text-lg mb-2">💡 Ważna informacja</h4>
-              <p className="text-gray-200">
-                Dane wskazują, że firmy reagujące szybko na negatywne opinie mają znacznie większe szanse na zachowanie dobrej reputacji 
-                niż te, które opóźniają reakcję.*
-              </p>
-            </div>
-          </div>
-
           <h2 className="text-3xl font-bold text-gray-900 mb-6 pt-6">
-            Wsparcie w rozwiązaniu problemów z profilem firmowym
+            Specjalistyczne wsparcie w sprawach ALEO.com
           </h2>
           
           <p className="text-gray-700 mb-6 leading-relaxed">
-            Oferujemy pomoc prawną i doradztwo w zakresie zgłaszania treści lub danych w serwisach mapowych 
-            i katalogach firmowych. Działamy zgodnie z przepisami prawa oraz regulaminami platform, 
-            reprezentując klienta w procesie wnioskowania o usunięcie lub korektę informacji.
+            Oferujemy kompleksową pomoc prawną w sprawach dotyczących serwisu ALEO.com. Działamy zgodnie z przepisami prawa 
+            oraz regulaminami platformy, reprezentując klienta w procesie wnioskowania o usunięcie lub korektę treści.
           </p>
 
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
-            <h3 className="font-semibold text-gray-900 mb-2">Obszary naszego wsparcia:</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">Obszary naszego wsparcia w ALEO.com:</h3>
             <ul className="space-y-2 text-gray-700">
               <li className="flex items-center">
                 <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                Mapy internetowe i katalogi firm
+                Usuwanie nieprawdziwych opinii o firmie
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                Serwisy opinii i recenzji
+                Korekta nieprawdziwych danych firmowych
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                Profile firmowe w platformach społecznościowych
+                Usuwanie profili utworzonych bez zgody
+              </li>
+              <li className="flex items-center">
+                <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                </svg>
+                Ochrona przed manipulacją ocenami
               </li>
             </ul>
           </div>
 
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Przywracanie reputacji profilu firmowego
+            Strategia odbudowy reputacji w ALEO.com
           </h2>
 
           <p className="text-gray-700 mb-6 leading-relaxed">
-            Analizujemy treści i oceniamy, które naruszają przepisy lub regulaminy. Przygotowujemy formalne 
-            zgłoszenia o ich usunięcie oraz doradzamy w strategii odbudowy reputacji w serwisach opinii, 
-            zgodnie z zasadami platform.
+            Analizujemy treści i oceniamy, które naruszają regulamin ALEO.com lub przepisy prawa. Przygotowujemy strategię 
+            odbudowy reputacji firmy w serwisie, zgodnie z zasadami platformy i etyką biznesową.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-3">Analiza prawna</h3>
-              <p className="text-gray-700">Oceniamy, które treści naruszają regulaminy platform lub przepisy prawa, tworząc solidne podstawy do działania.</p>
+              <h3 className="font-semibold text-gray-900 mb-3">Analiza sytuacji w ALEO</h3>
+              <p className="text-gray-700">Sprawdzamy status profilu, analizujemy treści naruszające regulamin i oceniamy możliwości prawne działania.</p>
             </div>
             <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-3">Strategia odbudowy</h3>
-              <p className="text-gray-700">Doradzamy w zakresie długoterminowej strategii budowania pozytywnej reputacji online zgodnie z etyką biznesu.</p>
+              <h3 className="font-semibold text-gray-900 mb-3">Plan działania</h3>
+              <p className="text-gray-700">Opracowujemy strategię długoterminowej odbudowy reputacji w ALEO.com zgodnie z najlepszymi praktykami.</p>
             </div>
           </div>
 
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Dlaczego my?
+            Dlaczego wybrać nasze wsparcie?
           </h2>
 
           <p className="text-gray-700 mb-6 leading-relaxed">
-            Łączymy doświadczenie prawne i techniczne, co pozwala skutecznie analizować sprawy wizerunkowe. 
-            Mamy doświadczenie w ponad 2000 przypadkach. Zapewniamy pełną poufność i zgodność z obowiązującymi regulacjami.
+            Specjalizujemy się w sprawach dotyczących platformy ALEO.com. Mamy doświadczenie w ponad 500 przypadkach 
+            związanych z tym serwisem. Zapewniamy profesjonalne podejście i pełną dyskrecję.
           </p>
 
           <div className="bg-gray-50 rounded-lg p-6 mb-8 border border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-4">Nasze zalety:</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">Nasze zalety w sprawach ALEO.com:</h3>
             <div className="space-y-3">
               <div className="flex items-center">
                 <svg className="w-5 h-5 mr-3 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                <span className="text-gray-700">Doświadczenie prawne i techniczne</span>
+                <span className="text-gray-700">Specjalistyczna znajomość procedur ALEO.com</span>
               </div>
               <div className="flex items-center">
                 <svg className="w-5 h-5 mr-3 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                <span className="text-gray-700">Doświadczenie w ponad 2000 przypadkach</span>
+                <span className="text-gray-700">Doświadczenie w ponad 500 sprawach z ALEO</span>
               </div>
               <div className="flex items-center">
                 <svg className="w-5 h-5 mr-3 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                <span className="text-gray-700">Pełna poufność działań</span>
+                <span className="text-gray-700">Skuteczność ponad 85% w sprawach ALEO</span>
               </div>
               <div className="flex items-center">
                 <svg className="w-5 h-5 mr-3 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
                 </svg>
-                <span className="text-gray-700">Zgodność z obowiązującymi regulacjami</span>
+                <span className="text-gray-700">Pełna poufność i profesjonalizm</span>
               </div>
             </div>
           </div>
 
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Wybierz platformę, z którą potrzebujesz pomocy
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-4 mb-8">
-            <Link href="/formularz-opinie-google">
-              <button 
-                className="w-full text-white px-6 py-4 rounded-lg font-semibold hover:opacity-90 transition flex items-center justify-center"
-                style={{backgroundColor: '#081D44'}}
-              >
-                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-                Google Maps / Google Moja Firma
-              </button>
-            </Link>
-            <Link href="/formularz-opinie">
-              <button 
-                className="w-full text-white px-6 py-4 rounded-lg font-semibold hover:opacity-90 transition flex items-center justify-center"
-                style={{backgroundColor: '#081D44'}}
-              >
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/>
-                </svg>
-                GoWork, ALEO, Panorama Firm
-              </button>
-            </Link>
-          </div>
-
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Często zadawane pytania
+            Często zadawane pytania o ALEO.com
           </h2>
 
           <div className="space-y-4 mb-8">
             <div className="border border-gray-200 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Czy można zgłosić każdą negatywną opinię?</h3>
-              <p className="text-gray-700">Nie każdą opinię można skutecznie zakwestionować. Analizujemy treści, które mogą naruszać regulaminy platform lub przepisy prawa. Uczciwa krytyka jest częścią normalnego funkcjonowania rynku.</p>
+              <h3 className="font-semibold text-gray-900 mb-2">Czy można usunąć profil firmy z ALEO.com?</h3>
+              <p className="text-gray-700">Tak, można ubiegać się o usunięcie profilu z ALEO.com, szczególnie jeśli został utworzony bez zgody właściciela firmy lub zawiera nieprawdziwe informacje.</p>
             </div>
             
             <div className="border border-gray-200 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Ile czasu zajmuje cały proces?</h3>
-              <p className="text-gray-700">Czas zależy od platformy i typu sprawy. Proste przypadki mogą być rozwiązane w kilka dni, bardziej skomplikowane wymagają kilku tygodni. Zawsze informujemy o postępach.</p>
+              <h3 className="font-semibold text-gray-900 mb-2">Ile czasu zajmuje rozwiązanie sprawy z ALEO?</h3>
+              <p className="text-gray-700">Czas zależy od typu sprawy. Proste korekty danych mogą być rozwiązane w kilka dni, kompleksowe usuwanie profili może wymagać 2-4 tygodni.</p>
             </div>
             
             <div className="border border-gray-200 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Czy działania są zgodne z prawem?</h3>
-              <p className="text-gray-700">Tak, wszystkie nasze działania są w pełni zgodne z polskim prawem, przepisami RODO oraz regulaminami platform. Działamy transparentnie i etycznie.</p>
+              <h3 className="font-semibold text-gray-900 mb-2">Czy działania wobec ALEO.com są zgodne z prawem?</h3>
+              <p className="text-gray-700">Tak, wszystkie nasze działania są zgodne z polskim prawem, przepisami RODO oraz regulaminem serwisu ALEO.com. Działamy transparentnie i etycznie.</p>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">Jakie opinie można skutecznie zakwestionować w ALEO?</h3>
+              <p className="text-gray-700">Można zakwestionować opinie nieprawdziwe, obraźliwe, naruszające regulamin lub napisane przez konkurencję. Każdy przypadek wymaga indywidualnej analizy prawnej.</p>
             </div>
           </div>
 
-          {/* Sekcja z przykładami branżowymi */}
+          {/* Sekcja z przykładami sukcesów */}
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Przykłady naszych sukcesów
+            Przykłady naszych sukcesów w ALEO.com
           </h2>
 
           <div className="space-y-8 mb-8">
-            {/* Przypadek Dentysty */}
+            {/* Przypadek Kancelarii Prawnej */}
             <div className="bg-white rounded-lg border border-gray-200 p-8">
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center">
@@ -517,12 +352,12 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">Gabinet Dentystyczny</h3>
-                    <p className="text-gray-600 font-medium">Przychodnia w Warszawie</p>
+                    <h3 className="text-xl font-bold text-gray-900">Kancelaria Prawna</h3>
+                    <p className="text-gray-600 font-medium">Warszawa</p>
                   </div>
                 </div>
                 <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium">
-                  Ochrona zdrowia
+                  Usługi prawne
                 </div>
               </div>
               
@@ -530,16 +365,16 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                 <div className="border-l-2 border-gray-300 pl-4">
                   <h4 className="font-bold text-gray-900 mb-2">Wyzwanie</h4>
                   <p className="text-gray-600 leading-relaxed">
-                    Nieusatysfakcjonowany pacjent pozostawił opinię z nieprawdziwymi zarzutami 
-                    o nieprofesjonalnym zachowaniu i nieudanym leczeniu wykonanym w innej placówce.
+                    Nieusatysfakcjonowany klient pozostawił w ALEO.com opinię z nieprawdziwymi zarzutami 
+                    o nieudanej sprawie sądowej, która w rzeczywistości zakończyła się sukcesem.
                   </p>
                 </div>
                 
                 <div className="border-l-2 border-gray-300 pl-4">
                   <h4 className="font-bold text-gray-900 mb-2">Akcja</h4>
                   <p className="text-gray-600 leading-relaxed">
-                    Wykazaliśmy fałszywość zarzutów poprzez dokumentację medyczną i udowodniliśmy 
-                    naruszenie regulaminu platformy dotyczące nieprawdziwych informacji.
+                    Przedstawiliśmy ALEO.com dokumentację sądową potwierdzającą sukces w sprawie 
+                    i wykazaliśmy fałszywość zarzutów zawartych w opinii.
                   </p>
                 </div>
                 
@@ -548,37 +383,37 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                   <div className="space-y-1">
                     <div className="flex items-center">
                       <span className="text-lg mr-2">⭐</span>
-                      <span className="font-semibold text-gray-900">3.2 → 4.6 gwiazdek</span>
+                      <span className="font-semibold text-gray-900">Usunięcie opinii w 7 dni</span>
                     </div>
                     <div className="flex items-center">
                       <span className="text-lg mr-2">📈</span>
-                      <span className="font-semibold text-gray-900">+40% nowych pacjentów</span>
+                      <span className="font-semibold text-gray-900">+30% zapytań o usługi</span>
                     </div>
                     <div className="flex items-center">
-                      <span className="text-lg mr-2">�️</span>
-                      <span className="font-semibold text-gray-900">Pełna odbudowa zaufania</span>
+                      <span className="text-lg mr-2">🛡️</span>
+                      <span className="font-semibold text-gray-900">Odbudowana reputacja</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Przypadek Restauracji */}
+            {/* Przypadek Agencji Nieruchomości */}
             <div className="bg-white rounded-lg border border-gray-200 p-8">
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center mr-4" style={{backgroundColor: '#6C9F5D'}}>
                     <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
+                      <path d="M19 9.3V4h-3v2.6L12 3L2 12h3v8h6v-6h2v6h6v-8h3L19 9.3zm-7 7.7c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2z"/>
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">Restauracja Włoska</h3>
-                    <p className="text-gray-600 font-medium">Lokalna gastronomia w Krakowie</p>
+                    <h3 className="text-xl font-bold text-gray-900">Agencja Nieruchomości</h3>
+                    <p className="text-gray-600 font-medium">Kraków</p>
                   </div>
                 </div>
                 <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium">
-                  Gastronomia
+                  Nieruchomości
                 </div>
               </div>
               
@@ -586,16 +421,16 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                 <div className="border-l-2 border-gray-300 pl-4">
                   <h4 className="font-bold text-gray-900 mb-2">Wyzwanie</h4>
                   <p className="text-gray-600 leading-relaxed">
-                    Konkurencyjna restauracja systematycznie publikowała fałszywe opinie 
-                    o problemach sanitarnych, używając wulgaryzmów i obraźliwych komentarzy.
+                    Konkurencyjna agencja publikowała w ALEO fałszywe opinie o wysokich prowizjach 
+                    i nieprofesjonalnej obsłudze, używając fikcyjnych kont.
                   </p>
                 </div>
                 
                 <div className="border-l-2 border-gray-300 pl-4">
                   <h4 className="font-bold text-gray-900 mb-2">Akcja</h4>
                   <p className="text-gray-600 leading-relaxed">
-                    Przeprowadziliśmy analizę cyfrową wzorców publikacji, wykryliśmy fałszywe konta 
-                    i udowodniliśmy manipulację systemami ocen przez konkurencję.
+                    Przeprowadziliśmy analizę cyfrową, wykryliśmy wzorce publikacji i udowodniliśmy 
+                    manipulację systemem ocen przez konkurencję.
                   </p>
                 </div>
                 
@@ -604,11 +439,11 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                   <div className="space-y-1">
                     <div className="flex items-center">
                       <span className="text-lg mr-2">⭐</span>
-                      <span className="font-semibold text-gray-900">Przywrócenie oceny 4.3</span>
+                      <span className="font-semibold text-gray-900">Usunięcie 5 fałszywych opinii</span>
                     </div>
                     <div className="flex items-center">
                       <span className="text-lg mr-2">📈</span>
-                      <span className="font-semibold text-gray-900">+60% rezerwacji online</span>
+                      <span className="font-semibold text-gray-900">+50% nowych klientów</span>
                     </div>
                     <div className="flex items-center">
                       <span className="text-lg mr-2">🛡️</span>
@@ -621,44 +456,44 @@ export default function UsuniecieNegatywnychOpiniiPage() {
           </div>
 
           <div className="bg-gray-50 rounded-lg p-6 mb-8 border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Specjalizujemy się w branżach:</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Specjalizujemy się w sprawach ALEO.com dla branż:</h3>
             <div className="grid md:grid-cols-3 gap-4 text-sm">
               <div className="space-y-2">
                 <div className="flex items-center">
                   <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
-                  <span className="text-gray-700">Ochrona zdrowia (dentyści, lekarze)</span>
+                  <span className="text-gray-700">Usługi prawne i księgowe</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
-                  <span className="text-gray-700">Gastronomia (restauracje, kawiarnie)</span>
+                  <span className="text-gray-700">Nieruchomości i deweloperzy</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
-                  <span className="text-gray-700">Usługi kosmetyczne</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
-                  <span className="text-gray-700">Hotele i noclegi</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
-                  <span className="text-gray-700">Warsztaty samochodowe</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
-                  <span className="text-gray-700">Sklepy i handel</span>
+                  <span className="text-gray-700">Usługi finansowe</span>
                 </div>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center">
                   <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
-                  <span className="text-gray-700">Usługi budowlane</span>
+                  <span className="text-gray-700">IT i technologie</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
-                  <span className="text-gray-700">Usługi prawne</span>
+                  <span className="text-gray-700">Usługi dla biznesu</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
+                  <span className="text-gray-700">Edukacja i szkolenia</span>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
+                  <span className="text-gray-700">Marketing i reklama</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
+                  <span className="text-gray-700">Usługi remontowe</span>
                 </div>
                 <div className="flex items-center">
                   <span className="w-2 h-2 bg-gray-600 rounded-full mr-2"></span>
@@ -668,30 +503,59 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             </div>
           </div>
 
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Rozpocznij współpracę z ALEO.com
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
+            <Link href="/formularz-opinie">
+              <button 
+                className="w-full text-white px-6 py-4 rounded-lg font-semibold hover:opacity-90 transition flex items-center justify-center"
+                style={{backgroundColor: '#081D44'}}
+              >
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/>
+                </svg>
+                Pomoc z opiniami w ALEO
+              </button>
+            </Link>
+            <Link href="/kontakt">
+              <button 
+                className="w-full border-2 border-gray-300 text-gray-700 px-6 py-4 rounded-lg font-semibold hover:bg-gray-50 transition flex items-center justify-center"
+              >
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                </svg>
+                Bezpłatna konsultacja
+              </button>
+            </Link>
+          </div>
+
           {/* Sekcja z linkami do powiązanych usług */}
           <div className="w-full max-w-4xl mx-auto mt-12 p-6 bg-gray-50 rounded-lg border border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Sprawdź nasze inne usługi prawne
+              Sprawdź nasze inne usługi związane z ALEO.com
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/jak-usunac-firme-z-google-maps" className="text-gray-700 hover:text-gray-900 underline font-medium">
-                  Wsparcie w rozwiązaniu problemów z profilem firmowym w Google Maps
-                </Link>
-              </li>
-              <li>
                 <Link href="/jak-usunac-opinie-z-aleo" className="text-gray-700 hover:text-gray-900 underline font-medium">
-                  Pomoc prawna w sprawach opinii w serwisie Aleo
+                  Jak usunąć opinie z ALEO - kompletny przewodnik prawny
                 </Link>
               </li>
               <li>
-                <Link href="/jak-usunac-opinie-z-gowork" className="text-gray-700 hover:text-gray-900 underline font-medium">
-                  Doradztwo w zakresie treści na platformie GoWork
+                <Link href="/jak-usunac-firme-z-aleo" className="text-gray-700 hover:text-gray-900 underline font-medium">
+                  Usuwanie profilu firmy z ALEO.com - procedury prawne
                 </Link>
               </li>
               <li>
-                <Link href="/jak-usunac-opinie-z-panoramy-firm" className="text-gray-700 hover:text-gray-900 underline font-medium">
-                  Reprezentacja w sprawach z katalogiem Panorama Firm
+                <Link href="/jak-usunac-dane-z-aleo" className="text-gray-700 hover:text-gray-900 underline font-medium">
+                  Korekta danych firmowych w serwisie ALEO
+                </Link>
+              </li>
+              <li>
+                <Link href="/falszywe-opinie-aleo-usuwanie" className="text-gray-700 hover:text-gray-900 underline font-medium">
+                  Walka z fałszywymi opiniami w ALEO - skuteczne metody
                 </Link>
               </li>
             </ul>
@@ -705,7 +569,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
               Nie stanowią gwarancji określonych rezultatów.
             </p>
             <p className="text-xs text-gray-600 leading-relaxed mb-2">
-              Wszystkie nasze działania są prowadzone zgodnie z obowiązującym prawem polskim, regulaminami platform internetowych oraz zasadami etyki zawodowej. 
+              Wszystkie nasze działania są prowadzone zgodnie z obowiązującym prawem polskim, regulaminem serwisu ALEO.com oraz zasadami etyki zawodowej. 
               Nie gwarantujemy skuteczności działań w każdym przypadku, gdyż zależy to od indywidualnych okoliczności sprawy.
             </p>
             <p className="text-xs text-gray-600 leading-relaxed">
@@ -720,8 +584,6 @@ export default function UsuniecieNegatywnychOpiniiPage() {
       <div className="w-full max-w-4xl px-4 py-8 mb-6">
         <BusinessTypeSelectorCTA />
       </div>
-
-    
 
     </div>
   );
