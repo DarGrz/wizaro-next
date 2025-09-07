@@ -4,7 +4,7 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
-import BusinessTypeSelectorMobileGoWorkFirma from "./BusinessTypeSelectorMobileGoWorkFirma";
+import BusinessTypeSelectorMobileAleo from "./BusinessTypeSelectorMobileAleo";
 import Link from "next/link";
 
 export default function GoworkFirmaRemovalPage() {
@@ -17,11 +17,11 @@ export default function GoworkFirmaRemovalPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Jak usunąć firmę z GoWork?
+            Usuwanie firmy z GoWork
           </h1>
           <p className="text-gray-600 text-center mb-8">
-            Skutecznie usuwamy niechciane profile firm i wizytówki biznesowe z serwisu GoWork. 
-            Profesjonalna obsługa i gwarancja rezultatu. Płatność dopiero po wykonaniu usługi.
+            Profesjonalne usuwanie profilu firmy z GoWork.pl. 
+            Skuteczne usunięcie konta z GoWork, gwarancja rezultatu, płatność po wykonaniu usługi.
           </p>
         </div>
 
@@ -30,7 +30,7 @@ export default function GoworkFirmaRemovalPage() {
 
       {/* Mobilna wersja selektora */}
       <div className="md:gap-8 pt-5 w-full md:hidden block">
-        <BusinessTypeSelectorMobileGoWorkFirma />
+        <BusinessTypeSelectorMobileAleo />
       </div>
 
       {/* Separator */}
@@ -39,7 +39,7 @@ export default function GoworkFirmaRemovalPage() {
       </div>
 
       {/* CTA telefoniczne */}
-      <div className="flex flex-col items-center gap-2 mt-6 mb-10 shadow-lg rounded-lg p-6">
+      {/* <div className="flex flex-col items-center gap-2 mt-6 mb-10 shadow-lg rounded-lg p-6">
         
         <p className="text-center text-gray-700 font-bold">
           Zadzwoń jeśli masz pytania lub potrzebujesz pomocy
@@ -49,7 +49,7 @@ export default function GoworkFirmaRemovalPage() {
             +48 792 861 513
           </button>
         </Link>
-      </div>
+      </div> */}
 
       {/* Główny artykuł SEO */}
       <article className="w-full max-w-4xl px-4 py-8">

@@ -2,12 +2,12 @@ import { Metadata } from 'next';
 import GoworkFirmaRemovalPage from '../../components/GoworkFirmaRemovalPage';
 
 export const metadata: Metadata = {
-  title: 'Jak usunąć firmę z GoWork? | Skuteczne usuwanie profili biznesowych',
-  description: 'Profesjonalne usuwanie firm i profili biznesowych z serwisu GoWork. Gwarancja rezultatu, płatność po wykonaniu. Usuwamy niechciane wizytówki i profile firm z GoWork skutecznie i bezpiecznie.',
-  keywords: 'usuwanie firmy z gowork, usuwanie profilu z gowork, jak usunąć firmę z gowork, usuwanie wizytówki gowork, profil firmy gowork, gowork usuwanie, wizytówka gowork',
+  title: 'Usuwanie firmy z GoWork | Jak usunąć konto z GoWork | Profil firmy GoWork',
+  description: 'Profesjonalne usuwanie firmy z GoWork. Jak usunąć konto z GoWork, jak usunąć profil firmy z GoWork. Skuteczne usuwanie profilu firmy z GoWork. Gwarancja rezultatu, płatność po wykonaniu.',
+  keywords: 'usuwanie firmy z gowork, jak usunąć konto z gowork, jak usunąć profil firmy z gowork, usuwanie profilu firmy z gowork, usuwanie konta gowork, gowork usuwanie firmy, profil firmy gowork usuwanie, jak usunąć firmę z gowork, usuwanie wizytówki gowork, gowork removal',
   openGraph: {
-    title: 'Jak usunąć firmę z GoWork? | Skuteczne usuwanie profili',
-    description: 'Profesjonalne usuwanie firm i profili biznesowych z GoWork. Gwarancja rezultatu.',
+    title: 'Usuwanie firmy z GoWork | Jak usunąć konto z GoWork',
+    description: 'Profesjonalne usuwanie firmy z GoWork. Skuteczne usuwanie profilu firmy z GoWork. Gwarancja rezultatu.',
     type: 'website',
   },
 };

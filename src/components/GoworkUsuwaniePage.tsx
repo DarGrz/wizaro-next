@@ -39,7 +39,7 @@ export default function GoworkUsuwaniePage() {
       </div>
 
       {/* CTA telefoniczne */}
-      <div className="flex flex-col items-center gap-2 mt-6 mb-10 shadow-lg rounded-lg p-6">
+      {/* <div className="flex flex-col items-center gap-2 mt-6 mb-10 shadow-lg rounded-lg p-6">
         
         <p className="text-center text-gray-700 font-bold">
           Zadzwoń jeśli masz pytania lub potrzebujesz pomocy
@@ -49,7 +49,7 @@ export default function GoworkUsuwaniePage() {
             +48 792 861 513
           </button>
         </Link>
-      </div>
+      </div> */}
 
       {/* Główny artykuł SEO */}
       <article className="w-full max-w-4xl px-4 py-8">
