@@ -28,14 +28,20 @@ export default function ReviewSchema({
     "reviewRating": {
       "@type": "Rating",
       "ratingValue": ratingValue,
-      "bestRating": 5
+      "bestRating": 5,
+      "worstRating": 1
     },
     "reviewBody": reviewBody,
     "datePublished": datePublished,
     "itemReviewed": {
       "@type": "Organization",
       "name": itemName,
-      "url": itemUrl
+      "url": itemUrl,
+      "@id": itemUrl,
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PL"
+      }
     }
   };
 

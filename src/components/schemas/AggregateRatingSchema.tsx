@@ -33,7 +33,21 @@ export default function AggregateRatingSchema({
       "@type": itemType,
       "name": itemName,
       "url": itemUrl,
-      ...(itemImage && itemType !== 'Organization' && { "image": itemImage })
+      "@id": itemUrl,
+      ...(itemImage && { "image": itemImage }),
+      ...(itemType === 'Organization' && {
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "PL"
+        }
+      }),
+      ...(itemType === 'Service' && {
+        "serviceType": "Professional Service",
+        "provider": {
+          "@type": "Organization",
+          "name": "Wizaro"
+        }
+      })
     }
   };
 

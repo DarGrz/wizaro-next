@@ -68,14 +68,20 @@ export default function ServiceSchema({
           "itemOffered": {
             "@type": "Service",
             "name": "Usuwanie negatywnych opinii"
-          }
+          },
+          "price": "500",
+          "priceCurrency": "PLN",
+          "priceValidUntil": "2025-12-31"
         },
         {
           "@type": "Offer", 
           "itemOffered": {
             "@type": "Service",
             "name": "Zarządzanie profilem biznesowym"
-          }
+          },
+          "price": "800",
+          "priceCurrency": "PLN",
+          "priceValidUntil": "2025-12-31"
         }
       ]
     }

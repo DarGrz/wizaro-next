@@ -41,7 +41,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             Pomoc w Sprawach Opinii Online
           </h1>
           <p className="text-gray-600 text-center mb-8">
-            Analizujemy podstawy prawne i sporządzamy pisma zgodnie z regulaminami platform i obowiązującym prawem.
+            Zadbaj o wizerunek swojej firmy w sieci i przyciągaj nowych klientów.
           </p>
         </div>
 

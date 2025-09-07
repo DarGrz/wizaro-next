@@ -63,7 +63,10 @@ export default function LocalBusinessSchema({
         "itemOffered": {
           "@type": "Service",
           "name": service
-        }
+        },
+        "price": "500",
+        "priceCurrency": "PLN",
+        "priceValidUntil": "2025-12-31"
       }))
     },
     "areaServed": {

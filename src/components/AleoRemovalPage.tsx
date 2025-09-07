@@ -2,36 +2,16 @@
 
 "use client";
 
-import BusinessTypeSelector from "./BusinessTypeSelector";
+import BusinessTypeSelector from      
+      <BreadcrumbSchema items={breadcrumbs} />
+
+    <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-10">{/* Przycisk mobilny */}sinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
 import BusinessTypeSelectorMobileAleo from "./BusinessTypeSelectorMobileAleo";
 import Link from "next/link";
-import { ArticleSchema, FAQSchema, AggregateRatingSchema, ProductWithRatingSchema, BreadcrumbSchema } from "./schemas";
+import { ArticleSchema, AggregateRatingSchema, ProductWithRatingSchema, BreadcrumbSchema } from "./schemas";
 
 export default function AleoRemovalPage() {
-  const faqs = [
-    {
-      question: "Jak długo trwa usuwanie fałszywych opinii z Aleo?",
-      answer: "Proces usuwania opinii z Aleo może trwać od kilku dni do kilku tygodni, w zależności od złożoności sprawy i typu problematycznej opinii."
-    },
-    {
-      question: "Czy usuwanie opinii z Aleo jest legalne?",
-      answer: "Tak, usuwanie fałszywych, krzywdzących lub naruszających regulamin opinii jest całkowicie legalne i zgodne z przepisami RODO."
-    },
-    {
-      question: "Ile kosztuje usuwanie opinii z Aleo?",
-      answer: "Koszt zależy od liczby opinii i złożoności sprawy. Oferujemy bezpłatną konsultację i gwarancję rezultatu - płacisz tylko za skuteczne usunięcie."
-    },
-    {
-      question: "Które opinie można usunąć z Aleo?",
-      answer: "Można usuwać opinie fałszywe, napisane przez konkurencję, naruszające regulamin, zawierające wulgaryzmy lub nieprawdziwe informacje."
-    },
-    {
-      question: "Czy mogę usunąć każdą negatywną opinię z Aleo?",
-      answer: "Nie każdą. Można usuwać tylko opinie naruszające regulamin lub zawierające fałszywe informacje. Uczciwa krytyka jest chroniona prawem."
-    }
-  ];
-
   const breadcrumbs = [
     { name: "Strona główna", url: "https://wizaro.pl" },
     { name: "Usuwanie opinii", url: "https://wizaro.pl/usuwanie-opinii" },
@@ -39,6 +19,37 @@ export default function AleoRemovalPage() {
   ];
 
   return (
+    <>
+      {/* JSON-LD Structured Data */}
+      <ArticleSchema
+        headline="Usuwanie fałszywych opinii z Aleo - Skuteczne metody 2025"
+        description="Profesjonalne usuwanie negatywnych i fałszywych opinii z serwisu Aleo. Gwarancja rezultatu, zgodność z RODO. Doświadczenie w usuwaniu krzywdzących recenzji."
+        url="https://wizaro.pl/falsze-opinie-aleo-usuwanie"
+        keywords={["usuwanie opinii aleo", "fałszywe opinie aleo", "negatywne recenzje aleo", "usuwanie recenzji", "reputacja online"]}
+        category="Business Services"
+      />
+      
+      <ProductWithRatingSchema
+        name="Usuwanie opinii z Aleo"
+        description="Profesjonalne usuwanie problematycznych opinii z platformy Aleo. Skuteczne metody, gwarancja rezultatu."
+        url="https://wizaro.pl/falsze-opinie-aleo-usuwanie"
+        ratingValue={4.9}
+        reviewCount={156}
+      />
+      
+      <AggregateRatingSchema
+        ratingValue={4.9}
+        reviewCount={156}
+        itemType="Service"
+        itemName="Usuwanie opinii z Aleo"
+        itemUrl="https://wizaro.pl/falsze-opinie-aleo-usuwanie"
+      />
+      
+      <BreadcrumbSchema items={breadcrumbs} />
+
+    <div className="min-h-screen mx-auto flex items-center justify-center px-4 flex-col max-w-4xl pt-10">
+      {/* Przycisk mobilny */}
+      <MobileActionButton />
     <>
       {/* JSON-LD Structured Data */}
       <ArticleSchema
