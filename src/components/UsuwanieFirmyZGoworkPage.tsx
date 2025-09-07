@@ -5,6 +5,7 @@
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
 import BusinessTypeSelectorMobileAleo from "./BusinessTypeSelectorMobileAleo";
+import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
 import Link from "next/link";
 
 export default function UsuwanieFirmyZGoworkPage() {
@@ -36,6 +37,84 @@ export default function UsuwanieFirmyZGoworkPage() {
       {/* Separator */}
       <div className="w-full max-w-4xl px-4">
         <hr className="border-t border-gray-300 my-8" />
+      </div>
+
+      {/* Dodatkowe usługi */}
+      <div className="w-full max-w-4xl px-4 mb-8">
+        <div className="grid md:grid-cols-1 gap-6">
+          
+          {/* Usuwanie opinii z GoWork */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              {/* Ikona GoWork */}
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4285F4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14,2 14,8 20,8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10,9 9,9 8,9"></polyline>
+                </svg>
+              </div>
+
+              {/* Treść */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Usuwanie opinii z GoWork
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Pomożemy Ci usunąć negatywne i szkodliwe opinie z platformy GoWork. 
+                  Profesjonalna obsługa zgodnie z regulaminem GoWork i prawem polskim.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie opinii</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Ochrona reputacji</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Argumenty prawne</span>
+                </div>
+                <Link href="/jak-usunac-opinie-z-gowork" className="inline-block">
+                  <button className="px-6 py-3 bg-[#002a5c] text-white rounded-lg font-semibold hover:bg-[#001e47] transition duration-200 shadow-sm">
+                    Usuń opinie z GoWork
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Usuwanie z innych platform */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              {/* Ikona Platform */}
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5BA155" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
+                </svg>
+              </div>
+
+              {/* Treść */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Usuwanie z innych platform
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Kompleksowe usuwanie firm i opinii z Aleo, Panoramy Firm, PKT.pl 
+                  i innych katalogów firmowych. Pełna ochrona Twojej reputacji online.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Aleo.com</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Panorama Firm</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">PKT.pl</span>
+                </div>
+                <Link href="/aleo-jak-usunac-opinie" className="inline-block">
+                  <button className="px-6 py-3 bg-[#5BA155] text-white rounded-lg font-semibold hover:bg-[#4a8c47] transition duration-200 shadow-sm">
+                    Sprawdź inne platformy
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       {/* CTA telefoniczne */}
@@ -223,6 +302,15 @@ export default function UsuwanieFirmyZGoworkPage() {
             specjalistów, którzy znają wszystkie aspekty prawne i techniczne tego procesu.
           </p>
 
+        </div>
+      </article>
+
+   
+
+      {/* Kontynuacja artykułu */}
+      <article className="w-full max-w-4xl px-4 py-8">
+        <div className="prose prose-lg max-w-none">
+
           <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-10">
             Inne platformy - kompleksowa ochrona danych
           </h2>
@@ -340,6 +428,11 @@ export default function UsuwanieFirmyZGoworkPage() {
       </div>
 
       {/* Końcowy Business Type Selector */}
+      <div className="w-full max-w-4xl px-4 py-8 mb-6">
+        <BusinessTypeSelectorCTA />
+      </div>
+
+      {/* Dodatkowy Business Type Selector */}
       <div className="md:flex py-10 md:gap-8 w-full">
         <BusinessTypeSelector />
       </div>
