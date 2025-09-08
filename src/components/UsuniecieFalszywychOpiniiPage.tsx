@@ -38,7 +38,7 @@ export default function UsuniecieFalszywychOpiniiPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Pomoc w Sprawach Opinii Online
+            Ochrona Wizerunku Twojej Firmy Online
           </h1>
           <p className="text-gray-600 text-center mb-8">
             Zadbaj o wizerunek swojej firmy w sieci i przyciągaj nowych klientów.
