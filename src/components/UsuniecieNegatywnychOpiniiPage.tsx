@@ -5,12 +5,12 @@
 import { useState } from "react";
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
-import BusinessTypeSelectorReviews from "./BusinessTypeSelectorReviews";
+import BusinessTypeSelectorNegativeReviews from "./BusinessTypeSelectorNegativeReviews";
 import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
 import Link from "next/link";
 import GuaranteeSection from "./GuaranteeSection";
 
-export default function UsuniecieNegatywnychOpiniiPage() {
+export default function UsuniecieFalszywychOpiniiPage() {
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -38,7 +38,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Pomoc w Sprawach Opinii Online
+            Usuwanie Negatywnych Opinii z Google, GoWork, Aleo i innych
           </h1>
           <p className="text-gray-600 text-center mb-8">
             Zadbaj o wizerunek swojej firmy w sieci i przyciągaj nowych klientów.
@@ -50,7 +50,7 @@ export default function UsuniecieNegatywnychOpiniiPage() {
 
       {/* Mobilna wersja selektora */}
       <div className="md:gap-8 pt-5 w-full md:hidden block">
-        <BusinessTypeSelectorReviews />
+        <BusinessTypeSelectorNegativeReviews />
       </div>
 
       {/* Separator */}
@@ -153,223 +153,602 @@ export default function UsuniecieNegatywnychOpiniiPage() {
               <GuaranteeSection />
             </div>
 
-      {/* Główny artykuł */}
+      {/* Główny artykuł edukacyjny */}
       <article className="w-full max-w-4xl px-4 py-8">
         <div className="prose prose-lg max-w-none">
           
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            Jak działamy?
+            Dlaczego opinie w Google i na innych portalach mają tak duży wpływ na biznes?
           </h2>
           
-          <div className="space-y-6 mb-12">
-            <div className="flex items-start gap-4 border-l-2 border-gray-300 pl-6">
-              <div className="text-white rounded w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0 text-sm" style={{backgroundColor: '#6C9F5D'}}>
-                1
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Analizujemy treści i identyfikujemy naruszenia</h3>
-                <p className="text-gray-600 leading-relaxed">Sprawdzamy, które treści naruszają regulaminy platform lub przepisy prawa, oceniając podstawy do działania.</p>
-              </div>
+          <div className="space-y-8 mb-12">
+            <div>
+              
+              <p className="text-gray-700 leading-relaxed mb-4">
+                W dzisiejszym cyfrowym świecie opinie online stały się jednym z najważniejszych czynników wpływających na decyzje zakupowe konsumentów. 
+                Badania pokazują, że aż 87% klientów sprawdza opinie przed podjęciem decyzji o współpracy z firmą.
+              </p>
+              <p className="text-gray-700 leading-relaxed">
+                Opinie wpływają nie tylko na percepcję marki, ale także na jej widoczność w wynikach wyszukiwania. Google traktuje recenzje jako ważny sygnał 
+                rankingowy, co oznacza, że firmy z lepszymi ocenami częściej pojawiają się w górnych pozycjach wyników wyszukiwania.
+              </p>
             </div>
-            
-            <div className="flex items-start gap-4 border-l-2 border-gray-300 pl-6">
-              <div className="text-white rounded w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0 text-sm" style={{backgroundColor: '#6C9F5D'}}>
-                2
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Przygotowujemy formalne zgłoszenia i dokumenty</h3>
-                <p className="text-gray-600 leading-relaxed">Sporządzamy profesjonalne wnioski wymagane przez platformy, uwzględniając wszystkie proceduralne wymagania.</p>
-              </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jak działa system ocen (algorytmy, widoczność wizytówek)?</h3>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Algorytmy Google uwzględniają kilka kluczowych czynników przy określaniu pozycji wizytówki firmy:
+              </p>
+              <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
+                <li><strong>Średnia ocena:</strong> Firmy z oceną powyżej 4.0 gwiazdek mają znacznie lepszą widoczność</li>
+                <li><strong>Liczba opinii:</strong> Większa liczba recenzji zwiększa wiarygodność i pozycję</li>
+                <li><strong>Świeżość opinii:</strong> Regularne otrzymywanie nowych opinii sygnalizuje aktywność firmy</li>
+                <li><strong>Odpowiedzi na opinie:</strong> Aktywne zarządzanie opiniami przez firmę wpływa pozytywnie na ranking</li>
+              </ul>
+              <p className="text-gray-700 leading-relaxed">
+                System uwzględnia również jakość opinii - szczegółowe recenzje z konkretnymi informacjami są bardziej wartościowe niż krótkie, ogólne komentarze.
+              </p>
             </div>
-            
-            <div className="flex items-start gap-4 border-l-2 border-gray-300 pl-6">
-              <div className="text-white rounded w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0 text-sm" style={{backgroundColor: '#6C9F5D'}}>
-                3
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Monitorujemy przebieg postępowania</h3>
-                <p className="text-gray-600 leading-relaxed">Prowadzimy korespondencję w imieniu klienta i informujemy o rezultatach na każdym etapie procesu.</p>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Statystyki i badania dotyczące zachowań klientów</h3>
+              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Kluczowe statystyki:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li>• 87% sprawdza opinie przed wizytą</li>
+                      <li>• 73% ufa opiniom jak rekomendacjom znajomych</li>
+                      <li>• 68% spadek przychodów przy ocenie poniżej 4.0</li>
+                      <li>• 12x większa szansa wyboru z oceną 4.5+ vs 3.5</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Zachowania konsumentów:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li>• 60% czyta minimum 5 ostatnich opinii</li>
+                      <li>• 45% sprawdza odpowiedzi firmy na recenzje</li>
+                      <li>• 40% omija firmy z oceną poniżej 3.5</li>
+                      <li>• 25% akceptuje firmę bez opinii</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Wpływ niskich ocen na Twój biznes
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            Jak rozpoznać fałszywą opinię?
           </h2>
 
-          <div className="bg-white  mb-8">
-            
-            {/* Główne statystyki w kartach */}
-            <div className="grid md:grid-cols-4 gap-6 mb-8">
-              <div className="bg-gray-50 rounded-lg p-6 text-center border border-gray-200">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style={{backgroundColor: '#081D44'}}>
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-                  </svg>
+          <div className="space-y-8 mb-12">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Typowe cechy fałszywych recenzji</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-red-800 mb-3">⚠️ Sygnały ostrzegawcze:</h4>
+                  <ul className="space-y-2 text-red-700">
+                    <li>• Brak konkretnych szczegółów</li>
+                    <li>• Powtarzające się frazy i schematy</li>
+                    <li>• Nowe konta bez historii</li>
+                    <li>• Skrajnie pozytywne lub negatywne</li>
+                    <li>• Publikowane w krótkim czasie</li>
+                    <li>• Podobny styl pisania</li>
+                  </ul>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">87%</div>
-                <div className="text-gray-600 text-sm font-medium">sprawdza opinie przed wizytą w firmie</div>
-              </div>
-              
-              <div className="bg-gray-50 rounded-lg p-6 text-center border border-gray-200">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style={{backgroundColor: '#081D44'}}>
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clipRule="evenodd"></path>
-                  </svg>
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-green-800 mb-3">✅ Cechy prawdziwych opinii:</h4>
+                  <ul className="space-y-2 text-green-700">
+                    <li>• Konkretne szczegóły usługi</li>
+                    <li>• Zróżnicowany język i styl</li>
+                    <li>• Konta z historią aktywności</li>
+                    <li>• Zbalansowane oceny</li>
+                    <li>• Logiczna chronologia</li>
+                    <li>• Indywidualny charakter</li>
+                  </ul>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">68%</div>
-                <div className="text-gray-600 text-sm font-medium">spadek przychodów przy ocenie 3+ gwiazdki</div>
-              </div>
-              
-              <div className="bg-gray-50 rounded-lg p-6 text-center border border-gray-200">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style={{backgroundColor: '#081D44'}}>
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">10 000 zł</div>
-                <div className="text-gray-600 text-sm font-medium">średnie straty miesięczne z oceną &lt; 4.0</div>
-              </div>
-              
-              <div className="bg-gray-50 rounded-lg p-6 text-center border border-gray-200">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style={{backgroundColor: '#081D44'}}>
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">Do 12x</div>
-                <div className="text-gray-600 text-sm font-medium">większe szanse wyboru z oceną 4.5+ vs 3.5</div>
               </div>
             </div>
 
-            {/* Wykres poziomy z paskami */}
-            <div className="bg-gray-50 rounded-lg p-8 border border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Szacunkowy poziom zaufania klientów według oceny</h3>
-              
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Różnica między uczciwą krytyką a opinią naruszającą regulaminy</h3>
               <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-20 text-sm font-medium text-gray-700 flex items-center gap-1 flex-shrink-0">
-                    4.5+ ⭐
-                  </div>
-                  <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '100%'}}>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm">100%</span>
-                    </div>
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Doskonała</span>
-                  </div>
+                <div className="border-l-4 border-green-500 pl-6">
+                  <h4 className="font-semibold text-green-800 mb-2">Uczciwa krytyka:</h4>
+                  <p className="text-gray-700">
+                    Oparta na faktach, konstruktywna, odnosząca się do konkretnego doświadczenia klienta. 
+                    Może być negatywna, ale zawiera uzasadnione uwagi dotyczące jakości usługi.
+                  </p>
                 </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-20 text-sm font-medium text-gray-700 flex items-center gap-1 flex-shrink-0">
-                    4.1-4.4 ⭐
-                  </div>
-                  <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '75%'}}>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm">75%</span>
-                    </div>
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Dobra</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-20 text-sm font-medium text-gray-700 flex items-center gap-1 flex-shrink-0">
-                    3.5-4.0 ⭐
-                  </div>
-                  <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '50%'}}>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm">50%</span>
-                    </div>
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Średnia</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-20 text-sm font-medium text-gray-700 flex items-center gap-1 flex-shrink-0">
-                    3.0-3.4 ⭐
-                  </div>
-                  <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '30%'}}>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-sm hidden sm:block">30%</span>
-                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white font-semibold text-xs sm:hidden">30%</span>
-                    </div>
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Słaba</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-20 text-sm font-medium text-gray-700 flex items-center gap-1 flex-shrink-0">
-                    &lt;3.0 ⭐
-                  </div>
-                  <div className="flex-1 bg-gray-200 rounded-lg h-8 relative">
-                    <div className="h-full rounded-lg relative" style={{backgroundColor: '#081D44', width: '15%'}}>
-                      <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white font-semibold text-xs">15%</span>
-                    </div>
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-700 bg-white px-2 py-1 rounded shadow-sm font-medium">Krytyczna</span>
-                  </div>
+                <div className="border-l-4 border-red-500 pl-6">
+                  <h4 className="font-semibold text-red-800 mb-2">Opinia naruszająca regulaminy:</h4>
+                  <p className="text-gray-700">
+                    Zawiera nieprawdziwe informacje, wulgaryzmy, groźby, dyskryminację lub została napisana 
+                    przez osobę, która nie korzystała z usług firmy.
+                  </p>
                 </div>
               </div>
+            </div>
 
-              {/* Kluczowa informacja */}
-              <div className="mt-8 ">
-                <div className="flex items-start gap-3">
-                  <div className="text-gray-600 text-lg">💡</div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Kluczowa informacja:</p>
-                    <p className="text-gray-600 text-sm">Firmy z oceną poniżej 4.1 gwiazdek mogą tracić znaczną część potencjalnych klientów jeszcze przed pierwszym kontaktem.</p>
-                  </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Przykłady z różnych branż</h3>
+              <div className="space-y-6">
+                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-2">🏥 Ochrona zdrowia:</h4>
+                  <p className="text-gray-700 mb-2"><strong>Fałszywa opinia:</strong> &ldquo;Lekarz jest niekompetentny, zepsuli mi zęby, unikajcie!&rdquo;</p>
+                  <p className="text-gray-700"><strong>Problem:</strong> Brak konkretów, osoba mogła nie być pacjentem, generalizacja</p>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-2">🍽️ Gastronomia:</h4>
+                  <p className="text-gray-700 mb-2"><strong>Fałszywa opinia:</strong> &ldquo;Jedzenie zimne, obsługa chamska, najgorsze miejsce w mieście&rdquo;</p>
+                  <p className="text-gray-700"><strong>Problem:</strong> Brak szczegółów, emocjonalne stwierdzenia, ogólniki</p>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-2">🏨 Hotelarstwo:</h4>
+                  <p className="text-gray-700 mb-2"><strong>Fałszywa opinia:</strong> &ldquo;Hotel brudny, pełno much, nie polecam nikomu&rdquo;</p>
+                  <p className="text-gray-700"><strong>Problem:</strong> Przesadne stwierdzenia, brak konkretnej daty pobytu</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white  mb-8 pt-6 ">
-            <div className="text-center mb-8 ">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Szybka reakcja to klucz do sukcesu</h3>
-              <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Szybka reakcja na szkodliwe opinie może znacząco wpłynąć na reputację firmy. 
-                Każdy dzień opóźnienia może skutkować utratą potencjalnych klientów.
-              </p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            Jak samodzielnie reagować na negatywne opinie?
+          </h2>
+
+          <div className="space-y-8 mb-12">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jak napisać odpowiedź do klienta, żeby zminimalizować szkody</h3>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                <h4 className="font-semibold text-blue-800 mb-3">🎯 Zasady skutecznej odpowiedzi:</h4>
+                <ul className="space-y-2 text-blue-700">
+                  <li>• <strong>Szybka reakcja:</strong> Odpowiedz w ciągu 24-48 godzin</li>
+                  <li>• <strong>Profesjonalny ton:</strong> Zachowaj spokój i uprzejmość</li>
+                  <li>• <strong>Personalizacja:</strong> Odnieś się do konkretnych zarzutów</li>
+                  <li>• <strong>Prywatność:</strong> Zaproś do kontaktu bezpośredniego</li>
+                  <li>• <strong>Konstruktywność:</strong> Pokaż chęć rozwiązania problemu</li>
+                </ul>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="border border-red-200 rounded-lg p-6 bg-red-50">
+                  <h4 className="font-semibold text-red-800 mb-3">❌ Błędne podejście:</h4>
+                  <p className="text-red-700 text-sm italic mb-3">
+                    &ldquo;Pan się myli, u nas zawsze jest czysto i profesjonalnie. 
+                    Inne opinie tego dowodzą. Może Pan pomylił nas z innym miejscem.&rdquo;
+                  </p>
+                  <p className="text-red-700 text-sm">
+                    <strong>Problem:</strong> Defensywne, kwestionuje doświadczenie klienta
+                  </p>
+                </div>
+                <div className="border border-green-200 rounded-lg p-6 bg-green-50">
+                  <h4 className="font-semibold text-green-800 mb-3">✅ Prawidłowe podejście:</h4>
+                  <p className="text-green-700 text-sm italic mb-3">
+                    &ldquo;Dziękujemy za opinię. Przykro nam, że nie spełniliśmy Państwa oczekiwań. 
+                    Prosimy o kontakt - chcielibyśmy wyjaśnić sytuację i poprawić nasze usługi.&rdquo;
+                  </p>
+                  <p className="text-green-700 text-sm">
+                    <strong>Zaleta:</strong> Szanuje klienta, pokazuje zaangażowanie
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-8 ">
-              <div className="text-center p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 bg-[#081D44] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jak zgłosić opinię do Google (instrukcja krok po kroku)</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 border-l-2 border-blue-400 pl-6">
+                  <div className="text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0 text-sm" style={{backgroundColor: '#081D44'}}>
+                    1
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Znajdź opinię na Google Maps</h4>
+                    <p className="text-gray-700">Wejdź na Google Maps, znajdź swoją firmę i przejdź do sekcji z opiniami</p>
+                  </div>
                 </div>
-                <div className="text-2xl font-bold text-gray-900 mb-2">24h</div>
-                <div className="text-gray-600 font-medium">Średni czas reakcji na negatywną opinię</div>
-              </div>
-
-              <div className="text-center p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#081D44'}}>
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
-                  </svg>
+                
+                <div className="flex items-start gap-4 border-l-2 border-blue-400 pl-6">
+                  <div className="text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0 text-sm" style={{backgroundColor: '#081D44'}}>
+                    2
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Kliknij trzy kropki przy opinii</h4>
+                    <p className="text-gray-700">Przy każdej opinii znajdziesz menu z trzema kropkami (⋮) - kliknij w nie</p>
+                  </div>
                 </div>
-                <div className="text-2xl font-bold text-gray-900 mb-2">Śr. -22</div>
-                <div className="text-gray-600 font-medium">Utraconych klientów miesięcznie przez jedną opinię</div>
-              </div>
-
-              <div className="text-center p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#081D44'}}>
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                
+                <div className="flex items-start gap-4 border-l-2 border-blue-400 pl-6">
+                  <div className="text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0 text-sm" style={{backgroundColor: '#081D44'}}>
+                    3
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Wybierz &ldquo;Zgłoś recenzję&rdquo;</h4>
+                    <p className="text-gray-700">Z rozwijanego menu wybierz opcję zgłoszenia opinii</p>
+                  </div>
                 </div>
-                <div className="text-2xl font-bold text-gray-900 mb-2">Do +40%</div>
-                <div className="text-gray-600 font-medium">Wzrost konwersji po poprawie reputacji*</div>
+                
+                <div className="flex items-start gap-4 border-l-2 border-blue-400 pl-6">
+                  <div className="text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0 text-sm" style={{backgroundColor: '#081D44'}}>
+                    4
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Wybierz powód zgłoszenia</h4>
+                    <p className="text-gray-700">Dostępne opcje: spam, nieprawdziwe informacje, konflikt interesów, treści obraźliwe, nie na temat</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4 border-l-2 border-blue-400 pl-6">
+                  <div className="text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold flex-shrink-0 text-sm" style={{backgroundColor: '#081D44'}}>
+                    5
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Wyślij zgłoszenie</h4>
+                    <p className="text-gray-700">Google rozpatrzy zgłoszenie w ciągu 1-7 dni roboczych</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="rounded-lg p-6 text-white text-center  mb-6" style={{backgroundColor: '#081D44'}}>
-              <h4 className="font-bold text-lg mb-2">💡 Ważna informacja</h4>
-              <p className="text-gray-200">
-                Dane wskazują, że firmy reagujące szybko na negatywne opinie mają znacznie większe szanse na zachowanie dobrej reputacji 
-                niż te, które opóźniają reakcję.*
-              </p>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jak dokumentować naruszenia (screenshoty, dane konta)</h3>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                <h4 className="font-semibold text-yellow-800 mb-4">📋 Lista niezbędnej dokumentacji:</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h5 className="font-semibold text-yellow-800 mb-2">Screenshoty:</h5>
+                    <ul className="space-y-1 text-yellow-700 text-sm">
+                      <li>• Pełna opinia z datą publikacji</li>
+                      <li>• Profil autora opinii</li>
+                      <li>• Historia opinii użytkownika</li>
+                      <li>• Ekran z opcjami zgłoszenia</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-yellow-800 mb-2">Dane do zebrania:</h5>
+                    <ul className="space-y-1 text-yellow-700 text-sm">
+                      <li>• Nazwa użytkownika</li>
+                      <li>• Data utworzenia konta</li>
+                      <li>• Liczba i rodzaj opinii</li>
+                      <li>• Link do profilu</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-4 p-3 bg-yellow-100 rounded">
+                  <p className="text-yellow-800 text-sm">
+                    <strong>Wskazówka:</strong> Rób screenshoty całych stron, nie tylko fragmentów. 
+                    Używaj narzędzi systemowych (Windows + Shift + S) lub rozszerzeń przeglądarki.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            Wpływ ocen na SEO i sprzedaż
+          </h2>
+
+          <div className="space-y-8 mb-12">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jak ocena &lt;4.0 wpływa na konwersje i ruch na stronie</h3>
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-red-800 mb-3">📉 Negatywne skutki oceny &lt;4.0:</h4>
+                  <ul className="space-y-2 text-red-700">
+                    <li>• 68% spadek kliknięć w wizytówkę</li>
+                    <li>• 45% mniej zapytań telefonicznych</li>
+                    <li>• 52% spadek ruchu na stronę internetową</li>
+                    <li>• 71% niższa konwersja z wizyt na stronie</li>
+                    <li>• Utrata pozycji w &ldquo;map pack&rdquo; Google</li>
+                  </ul>
+                </div>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">🎯 Mechanizm działania:</h4>
+                  <ul className="space-y-2 text-blue-700">
+                    <li>• Google obniża pozycję w wynikach</li>
+                    <li>• Klienci omijają firmę już na etapie przeglądu</li>
+                    <li>• Spadek wskaźnika CTR (Click Through Rate)</li>
+                    <li>• Niższa jakość ruchu na stronie</li>
+                    <li>• Utrata zaufania potencjalnych klientów</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                <h4 className="font-semibold text-gray-900 mb-4">📊 Przykład biznesowy - restauracja:</h4>
+                <div className="grid md:grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-900">Przed (3.8⭐)</div>
+                    <div className="text-gray-600">120 kliknięć/dzień</div>
+                    <div className="text-gray-600">8 rezerwacji/dzień</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-900">→</div>
+                    <div className="text-gray-600">Spadek</div>
+                    <div className="text-gray-600">o 68%</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-900">Po (4.4⭐)</div>
+                    <div className="text-gray-600">38 kliknięć/dzień</div>
+                    <div className="text-gray-600">2-3 rezerwacji/dzień</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jak poprawa o 0.5 gwiazdki przekłada się na liczbę klientów</h3>
+              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                <h4 className="font-semibold text-green-800 mb-4">📈 Korzyści z poprawy oceny o 0.5 gwiazdki:</h4>
+                <div className="grid md:grid-cols-4 gap-4 text-center">
+                  <div className="bg-white rounded-lg p-4 border border-green-300">
+                    <div className="text-xl font-bold text-green-800">+18%</div>
+                    <div className="text-green-700 text-sm">więcej kliknięć</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-green-300">
+                    <div className="text-xl font-bold text-green-800">+13%</div>
+                    <div className="text-green-700 text-sm">więcej telefonów</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-green-300">
+                    <div className="text-xl font-bold text-green-800">+25%</div>
+                    <div className="text-green-700 text-sm">lepsza konwersja</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-green-300">
+                    <div className="text-xl font-bold text-green-800">+31%</div>
+                    <div className="text-green-700 text-sm">przychody</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
+                <h4 className="font-semibold text-gray-900 mb-4">Przykład kalkulacji dla gabinetu dentystycznego:</h4>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full text-sm">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-2">Ocena</th>
+                        <th className="text-left py-2">Miesięczne wizyty</th>
+                        <th className="text-left py-2">Średnia wartość</th>
+                        <th className="text-left py-2">Miesięczny przychód</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-gray-700">
+                      <tr className="border-b">
+                        <td className="py-2">3.5⭐</td>
+                        <td className="py-2">80 pacjentów</td>
+                        <td className="py-2">350 zł</td>
+                        <td className="py-2">28 000 zł</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="py-2">4.0⭐</td>
+                        <td className="py-2">95 pacjentów</td>
+                        <td className="py-2">350 zł</td>
+                        <td className="py-2">33 250 zł</td>
+                      </tr>
+                      <tr className="border-b bg-green-50">
+                        <td className="py-2 font-semibold">4.5⭐</td>
+                        <td className="py-2 font-semibold">120 pacjentów</td>
+                        <td className="py-2 font-semibold">350 zł</td>
+                        <td className="py-2 font-semibold">42 000 zł</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="mt-4 p-3 bg-blue-50 rounded border border-blue-200">
+                  <p className="text-blue-800 text-sm">
+                    <strong>Wniosek:</strong> Poprawa z 3.5 do 4.5 gwiazdek = +50% pacjentów = +14 000 zł miesięcznie
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Rola opinii w pozycjonowaniu w Google Maps</h3>
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-3">🗺️ Czynniki rankingowe w Google Maps:</h4>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                      <h5 className="font-semibold text-gray-900 mb-2">Relevance (Trafność)</h5>
+                      <ul className="text-gray-700 text-sm space-y-1">
+                        <li>• Słowa kluczowe w opiniach</li>
+                        <li>• Kategorie biznesowe</li>
+                        <li>• Kompletność profilu</li>
+                      </ul>
+                    </div>
+                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                      <h5 className="font-semibold text-gray-900 mb-2">Distance (Odległość)</h5>
+                      <ul className="text-gray-700 text-sm space-y-1">
+                        <li>• Lokalizacja wyszukującego</li>
+                        <li>• Adres firmy</li>
+                        <li>• Obszar obsługi</li>
+                      </ul>
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h5 className="font-semibold text-blue-900 mb-2">Prominence (Popularność)</h5>
+                      <ul className="text-blue-700 text-sm space-y-1">
+                        <li>• <strong>Liczba opinii</strong></li>
+                        <li>• <strong>Średnia ocena</strong></li>
+                        <li>• <strong>Częstotliwość opinii</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-yellow-800 mb-3">💡 Wskazówki SEO dla Google Maps:</h4>
+                  <ul className="space-y-2 text-yellow-700">
+                    <li>• <strong>Regularne opinie:</strong> Minimum 1-2 nowe opinie miesięcznie</li>
+                    <li>• <strong>Różnorodność:</strong> Opinie od różnych typów klientów</li>
+                    <li>• <strong>Słowa kluczowe:</strong> Zachęcaj do używania nazw usług w opiniach</li>
+                    <li>• <strong>Odpowiedzi:</strong> Odpowiadaj na wszystkie opinie (pozytywne i negatywne)</li>
+                    <li>• <strong>Zdjęcia:</strong> Zachęcaj klientów do dodawania zdjęć</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            Długofalowa strategia budowania reputacji
+          </h2>
+
+          <div className="space-y-8 mb-12">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jak zachęcać klientów do wystawiania prawdziwych, pozytywnych opinii</h3>
+              <div className="space-y-6">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-green-800 mb-4">✅ Skuteczne metody pozyskiwania opinii:</h4>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h5 className="font-semibold text-green-800 mb-2">W trakcie obsługi:</h5>
+                      <ul className="space-y-1 text-green-700 text-sm">
+                        <li>• Informuj o znaczeniu opinii dla firmy</li>
+                        <li>• Pokazuj, jak znaleźć firmę w Google</li>
+                        <li>• Wyjaśnij, że opinia pomaga innym</li>
+                        <li>• Proś o konkretne szczegóły w opinii</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-green-800 mb-2">Po zakończeniu usługi:</h5>
+                      <ul className="space-y-1 text-green-700 text-sm">
+                        <li>• Email z linkiem do opinii (24-48h później)</li>
+                        <li>• SMS z prośbą o opinię</li>
+                        <li>• QR kod na fakturze/paragonie</li>
+                        <li>• Follow-up po tygodniu</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">📝 Przykłady skutecznych próśb o opinię:</h4>
+                  <div className="space-y-4">
+                    <div className="border-l-4 border-blue-400 pl-4">
+                      <h5 className="font-semibold text-blue-800 mb-1">Gabinet lekarski:</h5>
+                      <p className="text-gray-700 text-sm italic">
+                        &ldquo;Jeśli wizyta przebiegła pomyślnie, będziemy wdzięczni za opinię w Google. 
+                        Pomaga nam to w dalszym rozwoju i ułatwia innym pacjentom znalezienie naszego gabinetu.&rdquo;
+                      </p>
+                    </div>
+                    <div className="border-l-4 border-green-400 pl-4">
+                      <h5 className="font-semibold text-green-800 mb-1">Restauracja:</h5>
+                      <p className="text-gray-700 text-sm italic">
+                        &ldquo;Czy smakowało Państwu jedzenie? Jeśli tak, podzielcie się wrażeniami z innymi - 
+                        znajdziecie nas w Google Maps. Wasze opinie pomagają nam się rozwijać!&rdquo;
+                      </p>
+                    </div>
+                    <div className="border-l-4 border-purple-400 pl-4">
+                      <h5 className="font-semibold text-purple-800 mb-1">Warsztat samochodowy:</h5>
+                      <p className="text-gray-700 text-sm italic">
+                        &ldquo;Zadowolony z naprawy? Podziel się opinią z innymi kierowcami - 
+                        znajdziesz nas w Google. Twoja opinia pomoże nam lepiej służyć następnym klientom.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Czego unikać (kupowanie opinii, sztuczne oceny)</h3>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                <h4 className="font-semibold text-red-800 mb-4">🚫 Niedozwolone praktyki:</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-semibold text-red-800 mb-2">Bezwzględnie unikaj:</h5>
+                    <ul className="space-y-1 text-red-700 text-sm">
+                      <li>• Kupowania opinii od firm zewnętrznych</li>
+                      <li>• Tworzenia fałszywych kont</li>
+                      <li>• Płacenia za pozytywne recenzje</li>
+                      <li>• Wymuszania opinii (rabaty za 5⭐)</li>
+                      <li>• Pisania opinii dla siebie</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-red-800 mb-2">Konsekwencje:</h5>
+                    <ul className="space-y-1 text-red-700 text-sm">
+                      <li>• Usunięcie profilu przez Google</li>
+                      <li>• Kary w pozycjonowaniu</li>
+                      <li>• Utrata zaufania klientów</li>
+                      <li>• Możliwe kary prawne</li>
+                      <li>• Długotrwała szkoda dla marki</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                <h4 className="font-semibold text-yellow-800 mb-3">⚠️ Rozpoznawanie sztucznych opinii przez Google:</h4>
+                <ul className="space-y-2 text-yellow-700">
+                  <li>• <strong>Analiza IP:</strong> Opinie z tych samych adresów IP</li>
+                  <li>• <strong>Wzorce czasowe:</strong> Masowe publikowanie w krótkim czasie</li>
+                  <li>• <strong>Analiza tekstu:</strong> Podobne frazy i struktury</li>
+                  <li>• <strong>Historia kont:</strong> Nowe konta bez aktywności</li>
+                  <li>• <strong>Geolokalizacja:</strong> Opinie spoza obszaru działania firmy</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Rekomendowane praktyki komunikacji z klientami</h3>
+              <div className="space-y-6">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-blue-800 mb-4">🎯 System zarządzania opiniami:</h4>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-white rounded-lg p-4 border border-blue-300">
+                      <h5 className="font-semibold text-blue-800 mb-2">Monitoring</h5>
+                      <ul className="text-blue-700 text-sm space-y-1">
+                        <li>• Codzienne sprawdzanie</li>
+                        <li>• Powiadomienia o nowych opiniach</li>
+                        <li>• Śledzenie trendów</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white rounded-lg p-4 border border-blue-300">
+                      <h5 className="font-semibold text-blue-800 mb-2">Odpowiedzi</h5>
+                      <ul className="text-blue-700 text-sm space-y-1">
+                        <li>• Maksymalnie 24h na odpowiedź</li>
+                        <li>• Profesjonalny ton</li>
+                        <li>• Personalizowane wiadomości</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white rounded-lg p-4 border border-blue-300">
+                      <h5 className="font-semibold text-blue-800 mb-2">Analiza</h5>
+                      <ul className="text-blue-700 text-sm space-y-1">
+                        <li>• Miesięczne raporty</li>
+                        <li>• Identyfikacja problemów</li>
+                        <li>• Planowanie ulepszeń</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">📋 Szablon odpowiedzi na różne typy opinii:</h4>
+                  <div className="space-y-4">
+                    <div className="border-l-4 border-green-400 pl-4">
+                      <h5 className="font-semibold text-green-800 mb-1">Pozytywna opinia:</h5>
+                      <p className="text-gray-700 text-sm">
+                        &ldquo;Dziękujemy za miłe słowa! Cieszymy się, że [konkretny element usługi] spełnił Państwa oczekiwania. 
+                        Do zobaczenia ponownie!&rdquo;
+                      </p>
+                    </div>
+                    <div className="border-l-4 border-yellow-400 pl-4">
+                      <h5 className="font-semibold text-yellow-800 mb-1">Neutralna/krytyczna:</h5>
+                      <p className="text-gray-700 text-sm">
+                        &ldquo;Dziękujemy za szczerą opinię. Uwagi dotyczące [konkretny problem] są dla nas cenne. 
+                        Prosimy o kontakt - chcielibyśmy przedyskutować jak możemy się poprawić.&rdquo;
+                      </p>
+                    </div>
+                    <div className="border-l-4 border-red-400 pl-4">
+                      <h5 className="font-semibold text-red-800 mb-1">Bardzo negatywna:</h5>
+                      <p className="text-gray-700 text-sm">
+                        &ldquo;Przykro nam z powodu [konkretny problem]. Każdy przypadek traktujemy indywidualnie. 
+                        Prosimy o bezpośredni kontakt, abyśmy mogli omówić sytuację i znaleźć rozwiązanie.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -554,24 +933,363 @@ export default function UsuniecieNegatywnychOpiniiPage() {
             </div>
           </div>
 
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Często zadawane pytania
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            Kiedy warto skorzystać z pomocy specjalistów
           </h2>
 
-          <div className="space-y-4 mb-8">
-            <div className="border border-gray-200 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Czy można zgłosić każdą negatywną opinię?</h3>
-              <p className="text-gray-700">Nie każdą opinię można skutecznie zakwestionować. Analizujemy treści, które mogą naruszać regulaminy platform lub przepisy prawa. Uczciwa krytyka jest częścią normalnego funkcjonowania rynku.</p>
+          <div className="space-y-8 mb-12">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jakie sytuacje wymagają wiedzy prawnej</h3>
+              <div className="space-y-6">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">🚨 Sytuacje wymagające natychmiastowej pomocy prawnej:</h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="font-semibold text-gray-900 mb-2">Pomówienia i zniesławienia:</h5>
+                      <ul className="space-y-1 text-gray-700 text-sm">
+                        <li>• Zarzuty o działalność przestępczą</li>
+                        <li>• Fałszywe oskarżenia o oszustwa</li>
+                        <li>• Nieprawdziwe informacje o jakości usług</li>
+                        <li>• Ataki na osobę właściciela firmy</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-gray-900 mb-2">Naruszenie dóbr osobistych:</h5>
+                      <ul className="space-y-1 text-gray-700 text-sm">
+                        <li>• Ujawnienie danych osobowych</li>
+                        <li>• Obraźliwe komentarze o wyglądzie</li>
+                        <li>• Ataki na życie prywatne</li>
+                        <li>• Dyskryminujące wypowiedzi</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-100 border border-gray-300 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">⚖️ Przypadki wymagające analizy prawnej:</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start">
+                      <span className="text-gray-700 mr-3">•</span>
+                      <div>
+                        <strong className="text-gray-900">Systematyczne ataki konkurencji:</strong>
+                        <span className="text-gray-700"> Regularne publikowanie negatywnych opinii przez te same osoby lub wzorce wskazujące na koordynowane działania.</span>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-gray-700 mr-3">•</span>
+                      <div>
+                        <strong className="text-gray-900">Roszczenia odszkodowawcze:</strong>
+                        <span className="text-gray-700"> Gdy fałszywe opinie spowodowały mierzalne straty finansowe (spadek sprzedaży, utrata klientów).</span>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-gray-700 mr-3">•</span>
+                      <div>
+                        <strong className="text-gray-900">Złożone sprawy branżowe:</strong>
+                        <span className="text-gray-700"> Medycyna, prawo, finanse - gdzie opinie mogą wpływać na bezpieczeństwo pacjentów/klientów.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div className="border border-gray-200 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Ile czasu zajmuje cały proces?</h3>
-              <p className="text-gray-700">Czas zależy od platformy i typu sprawy. Proste przypadki mogą być rozwiązane w kilka dni, bardziej skomplikowane wymagają kilku tygodni. Zawsze informujemy o postępach.</p>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Jakie są ograniczenia samodzielnego działania</h3>
+              <div className="space-y-6">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">📋 Co możesz zrobić samodzielnie:</h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <ul className="space-y-2 text-gray-700">
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" style={{color: '#6C9F5D'}}>
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                          </svg>
+                          Zgłosić opinię przez formularz Google
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" style={{color: '#6C9F5D'}}>
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                          </svg>
+                          Odpowiedzieć profesjonalnie na opinie
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" style={{color: '#6C9F5D'}}>
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                          </svg>
+                          Dokumentować naruszenia (screenshoty)
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" style={{color: '#6C9F5D'}}>
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                          </svg>
+                          Zgłaszać oczywiste naruszenia regulaminów
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <ul className="space-y-2 text-gray-700">
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" style={{color: '#6C9F5D'}}>
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                          </svg>
+                          Budować strategię pozyskiwania opinii
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" style={{color: '#6C9F5D'}}>
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                          </svg>
+                          Poprawiać jakość obsługi klientów
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" style={{color: '#6C9F5D'}}>
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                          </svg>
+                          Monitorować reputację online
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-100 border border-gray-300 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">🚫 Czego NIE powinieneś robić samodzielnie:</h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <ul className="space-y-2 text-gray-700">
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm4.707-10.293a1 1 0 00-1.414-1.414L11 8.586 9.707 7.293a1 1 0 00-1.414 1.414L10.586 11l-2.293 2.293a1 1 0 101.414 1.414L11 13.414l2.293 2.293a1 1 0 001.414-1.414L12.414 11l2.293-2.293z" clipRule="evenodd"></path>
+                          </svg>
+                          Pisać agresywnych odpowiedzi
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm4.707-10.293a1 1 0 00-1.414-1.414L11 8.586 9.707 7.293a1 1 0 00-1.414 1.414L10.586 11l-2.293 2.293a1 1 0 101.414 1.414L11 13.414l2.293 2.293a1 1 0 001.414-1.414L12.414 11l2.293-2.293z" clipRule="evenodd"></path>
+                          </svg>
+                          Ujawniać dane osobowe klientów
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm4.707-10.293a1 1 0 00-1.414-1.414L11 8.586 9.707 7.293a1 1 0 00-1.414 1.414L10.586 11l-2.293 2.293a1 1 0 101.414 1.414L11 13.414l2.293 2.293a1 1 0 001.414-1.414L12.414 11l2.293-2.293z" clipRule="evenodd"></path>
+                          </svg>
+                          Kupować fałszywe pozytywne opinie
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <ul className="space-y-2 text-gray-700">
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm4.707-10.293a1 1 0 00-1.414-1.414L11 8.586 9.707 7.293a1 1 0 00-1.414 1.414L10.586 11l-2.293 2.293a1 1 0 101.414 1.414L11 13.414l2.293 2.293a1 1 0 001.414-1.414L12.414 11l2.293-2.293z" clipRule="evenodd"></path>
+                          </svg>
+                          Prowadzić wojny na opinie
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm4.707-10.293a1 1 0 00-1.414-1.414L11 8.586 9.707 7.293a1 1 0 00-1.414 1.414L10.586 11l-2.293 2.293a1 1 0 101.414 1.414L11 13.414l2.293 2.293a1 1 0 001.414-1.414L12.414 11l2.293-2.293z" clipRule="evenodd"></path>
+                          </svg>
+                          Ignorować prawdziwe problemy
+                        </li>
+                        <li className="flex items-center">
+                          <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm4.707-10.293a1 1 0 00-1.414-1.414L11 8.586 9.707 7.293a1 1 0 00-1.414 1.414L10.586 11l-2.293 2.293a1 1 0 101.414 1.414L11 13.414l2.293 2.293a1 1 0 001.414-1.414L12.414 11l2.293-2.293z" clipRule="evenodd"></path>
+                          </svg>
+                          Próbować oszukać algorytmy
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Case study: przykłady spraw rozwiązanych prawnie</h3>
+              <div className="space-y-6">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">📖 Przykład 1: Klinika medycyny estetycznej</h4>
+                  <div className="space-y-3 text-gray-700">
+                    <p><strong>Problem:</strong> Były pracownik opublikował serie opinii z fałszywymi zarzutami o powikłaniach po zabiegach, które nigdy nie miały miejsca.</p>
+                    <p><strong>Działanie prawne:</strong> Złożyliśmy pozew o zniesławienie z żądaniem odszkodowania. Przedstawiliśmy dokumentację medyczną i zeznania pacjentów.</p>
+                    <p><strong>Rezultat:</strong> Sąd przyznał 25 000 zł odszkodowania, wszystkie fałszywe opinie zostały usunięte, a sprawca zobowiązał się do zaprzestania działań.</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-100 border border-gray-300 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">📖 Przykład 2: Warsztat samochodowy</h4>
+                  <div className="space-y-3 text-gray-700">
+                    <p><strong>Problem:</strong> Konkurencyjna firma systematycznie publikowała opinie o rzekomych uszkodzeniach samochodów i oszustwach finansowych.</p>
+                    <p><strong>Działanie prawne:</strong> Analiza cyfrowa wykazała koordynację działań. Złożyliśmy zawiadomienie o czynie niedozwolonej konkurencji.</p>
+                    <p><strong>Rezultat:</strong> Prokuratura wszczęła postępowanie, opinie zostały usunięte, a konkurencja zapłaciła 40 000 zł odszkodowania.</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <h4 className="font-semibold text-gray-900 mb-4">📖 Przykład 3: Gabinet dentystyczny</h4>
+                  <div className="space-y-3 text-gray-700">
+                    <p><strong>Problem:</strong> Pacjent opublikował opinię z danymi osobowymi innych pacjentów i fałszywymi informacjami o brudnych narzędziach.</p>
+                    <p><strong>Działanie prawne:</strong> Sprawa została rozpatrywana w trybie naglącym ze względu na naruszenie danych medycznych (RODO).</p>
+                    <p><strong>Rezultat:</strong> Opinia usunięta w 48 godzin, 15 000 zł zadośćuczynienia za naruszenie dóbr osobistych i danych osobowych.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            FAQ edukacyjne
+          </h2>
+
+          <div className="space-y-6 mb-12">
             <div className="border border-gray-200 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Czy działania są zgodne z prawem?</h3>
-              <p className="text-gray-700">Tak, wszystkie nasze działania są w pełni zgodne z polskim prawem, przepisami RODO oraz regulaminami platform. Działamy transparentnie i etycznie.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Czy Google usuwa każdą negatywną opinię?</h3>
+              <div className="space-y-4 text-gray-700">
+                <p><strong>Odpowiedź:</strong> Nie. Google usuwa tylko opinie, które naruszają ich wytyczne. Uczciwa krytyka jest dozwolona i ważna dla konsumentów.</p>
+                
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">🔍 Google usuwa opinie, które:</h4>
+                  <ul className="space-y-1 text-sm">
+                    <li>• Zawierają wulgarne lub obraźliwe słownictwo</li>
+                    <li>• Są napisane przez boty lub fałszywe konta</li>
+                    <li>• Zawierają dane osobowe (telefony, adresy)</li>
+                    <li>• Nie dotyczą faktycznych doświadczeń z firmą</li>
+                    <li>• Są publikowane przez konkurencję</li>
+                    <li>• Zawierają groźby lub treści nielegalne</li>
+                  </ul>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-900 mb-2">✅ Google NIE usuwa opinii, które:</h4>
+                  <ul className="space-y-1 text-sm text-blue-800">
+                    <li>• Opisują rzeczywiste doświadczenia (nawet negatywne)</li>
+                    <li>• Krytykują usługi w sposób konstruktywny</li>
+                    <li>• Są napisane przez prawdziwych klientów</li>
+                    <li>• Zawierają uzasadnione skargi</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Ile trwa proces zgłoszenia opinii?</h3>
+              <div className="space-y-4 text-gray-700">
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-green-800">2-7 dni</div>
+                    <div className="text-green-700 text-sm">Oczywiste naruszenia regulaminu</div>
+                  </div>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-yellow-800">1-4 tygodnie</div>
+                    <div className="text-yellow-700 text-sm">Złożone przypadki wymagające analizy</div>
+                  </div>
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+                    <div className="text-2xl font-bold text-red-800">2-6 miesięcy</div>
+                    <div className="text-red-700 text-sm">Sprawy sądowe i postępowania prawne</div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">⏱️ Czynniki wpływające na czas:</h4>
+                  <ul className="space-y-1 text-sm">
+                    <li>• <strong>Typ platformy:</strong> Google zwykle szybszy niż inne serwisy</li>
+                    <li>• <strong>Jakość dokumentacji:</strong> Kompletne zgłoszenia są szybciej rozpatrywane</li>
+                    <li>• <strong>Jednoznaczność naruszenia:</strong> Oczywiste przypadki vs. sporne sytuacje</li>
+                    <li>• <strong>Obciążenie zespołów moderacji:</strong> Szczególnie w okresach świątecznych</li>
+                    <li>• <strong>Język treści:</strong> Opinie w języku polskim mogą czekać dłużej na moderację</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Co zrobić, gdy konkurencja wystawia fałszywe recenzje?</h3>
+              <div className="space-y-4 text-gray-700">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-red-800 mb-2">🕵️ Jak rozpoznać atak konkurencji:</h4>
+                  <ul className="space-y-2 text-red-700 text-sm">
+                    <li>• <strong>Czasowe skupiska:</strong> Wiele negatywnych opinii w krótkim czasie</li>
+                    <li>• <strong>Podobny język:</strong> Powtarzające się zwroty, błędy ortograficzne</li>
+                    <li>• <strong>Nowe konta:</strong> Autorzy mają mało opinii w historii</li>
+                    <li>• <strong>Brak szczegółów:</strong> Ogólnikowe zarzuty bez konkretów</li>
+                    <li>• <strong>Lokalizacja:</strong> Opinie z lokalizacji konkurencji</li>
+                  </ul>
+                </div>
+
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">🛡️ Plan działania krok po kroku:</h4>
+                  <ol className="space-y-2 text-blue-700 text-sm">
+                    <li><strong>1. Dokumentacja:</strong> Rób screenshoty wszystkich podejrzanych opinii</li>
+                    <li><strong>2. Analiza wzorców:</strong> Szukaj podobieństw między kontami</li>
+                    <li><strong>3. Zgłoszenie grupowe:</strong> Zgłoś wszystkie podejrzane opinie jednocześnie</li>
+                    <li><strong>4. Monitoring konkurencji:</strong> Sprawdź, czy mają wzrost pozytywnych opinii</li>
+                    <li><strong>5. Zbieranie dowodów:</strong> IP, czasy publikacji, wzorce językowe</li>
+                    <li><strong>6. Pomoc prawna:</strong> W poważnych przypadkach skontaktuj się z prawnikiem</li>
+                  </ol>
+                </div>
+
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-green-800 mb-2">💡 Długofalowa ochrona:</h4>
+                  <ul className="space-y-1 text-green-700 text-sm">
+                    <li>• Regularne monitorowanie wszystkich platform</li>
+                    <li>• Budowanie silnej bazy prawdziwych pozytywnych opinii</li>
+                    <li>• Szybkie profesjonalne odpowiedzi na wszystkie recenzje</li>
+                    <li>• Dokumentowanie działań konkurencji</li>
+                    <li>• Współpraca z platformami w ramach programów dla biznesu</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Czy opinie znikają same po jakimś czasie?</h3>
+              <div className="space-y-4 text-gray-700">
+                <p><strong>Odpowiedź:</strong> Nie, opinie w Google nie znikają automatycznie po określonym czasie. Mogą być usunięte tylko przez platformę, autora lub właściciela konta.</p>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-red-800 mb-2">❌ Opinie NIE znikają gdy:</h4>
+                    <ul className="space-y-1 text-red-700 text-sm">
+                      <li>• Mija rok, dwa lata czy więcej</li>
+                      <li>• Firma zmienia nazwę</li>
+                      <li>• Zmienia się właściciel biznesu</li>
+                      <li>• Firma przenosi się w inne miejsce</li>
+                      <li>• Konto autora staje się nieaktywne</li>
+                    </ul>
+                  </div>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-green-800 mb-2">✅ Opinie znikają gdy:</h4>
+                    <ul className="space-y-1 text-green-700 text-sm">
+                      <li>• Autor sam je usuwa</li>
+                      <li>• Google wykryje naruszenie zasad</li>
+                      <li>• Konto autora zostanie zablokowane</li>
+                      <li>• Firma całkowicie zamknie wizytówkę</li>
+                      <li>• W wyniku postępowania prawnego</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-yellow-800 mb-2">⚠️ Ważne informacje:</h4>
+                  <ul className="space-y-2 text-yellow-700 text-sm">
+                    <li>• <strong>Długa pamięć internetu:</strong> Opinie mogą być archiwizowane w innych serwisach</li>
+                    <li>• <strong>Wpływ na SEO:</strong> Stare negatywne opinie wciąż wpływają na pozycjonowanie</li>
+                    <li>• <strong>Percepcja klientów:</strong> Ludzie czytają wszystkie opinie, nie tylko najnowsze</li>
+                    <li>• <strong>Backup i kopie:</strong> Niektóre narzędzia robią kopie opinii do analizy konkurencji</li>
+                  </ul>
+                </div>
+
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">💭 Strategia zarządzania starymi opiniami:</h4>
+                  <ul className="space-y-1 text-blue-700 text-sm">
+                    <li>• <strong>&quot;Rozcieńczaj&quot; złe opinie:</strong> Regularnie zdobywaj nowe pozytywne</li>
+                    <li>• <strong>Odpowiadaj na stare opinie:</strong> Pokaż, że się zmieniliście</li>
+                    <li>• <strong>Aktualizuj informacje:</strong> Nowe zdjęcia, godziny, kontakt</li>
+                    <li>• <strong>Buduj silną reputację:</strong> Im więcej dobr ych opinii, tym mniejszy wpływ złych</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
