@@ -10,7 +10,7 @@ import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
 import Link from "next/link";
 import GuaranteeSection from "./GuaranteeSection";
 
-export default function UsuniecieNegatywnychOpiniiPage() {
+export default function UsuniecieFalszywychOpiniiPage() {
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -81,13 +81,12 @@ export default function UsuniecieNegatywnychOpiniiPage() {
                   Usuwanie firmy z Google Maps
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Pomożemy Ci usunąć profil Twojej firmy z Google Maps i Google Moja Firma. 
+                  Pomożemy Ci usunąć profil Twojej firmy z Map Google i Google Moja Firma. 
                   Kompleksowe usunięcie zgodnie z procedurami Google.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie firmy z Map Google</span>
                   <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie profilu GMB</span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie z Maps</span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie opinii</span>
                 </div>
                 <Link href="/formularz-profil-google" className="inline-block">
                   <button className="px-6 py-3 bg-[#002a5c] text-white rounded-lg font-semibold hover:bg-[#001e47] transition duration-200 shadow-sm">

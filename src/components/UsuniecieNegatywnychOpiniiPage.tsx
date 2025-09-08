@@ -81,13 +81,12 @@ export default function UsuniecieFalszywychOpiniiPage() {
                   Usuwanie firmy z Google Maps
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Pomożemy Ci usunąć profil Twojej firmy z Google Maps i Google Moja Firma. 
+                  Pomożemy Ci usunąć profil Twojej firmy z Map Google i Google Moja Firma. 
                   Kompleksowe usunięcie zgodnie z procedurami Google.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
                   <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie profilu GMB</span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie z Maps</span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie opinii</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie Firmy z Map Google</span>
                 </div>
                 <Link href="/formularz-profil-google" className="inline-block">
                   <button className="px-6 py-3 bg-[#002a5c] text-white rounded-lg font-semibold hover:bg-[#001e47] transition duration-200 shadow-sm">
@@ -114,7 +113,7 @@ export default function UsuniecieFalszywychOpiniiPage() {
               {/* Treść */}
               <div className="flex-1 text-center md:text-left">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Resetowanie wizytówki Google
+                  Resetowanie Wizytówki Google
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Wizytówka z negatywnymi opiniami? Zresetujemy ją całkowicie, 
