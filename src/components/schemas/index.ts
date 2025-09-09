@@ -6,4 +6,5 @@ export { default as FAQSchema } from './FAQSchema';
 export { default as BreadcrumbSchema } from './BreadcrumbSchema';
 export { default as AggregateRatingSchema } from './AggregateRatingSchema';
 export { default as ProductWithRatingSchema } from './ProductWithRatingSchema';
+export { default as ProductWithReviewsSchema } from './ProductWithReviewsSchema';
 export { default as ReviewSchema } from './ReviewSchema';
