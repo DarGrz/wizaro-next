@@ -104,6 +104,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     
+    // Strony usuwania - Google opinie
+    {
+      url: `${baseUrl}/usuwanie-opinii-google-cena`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/usuwanie-opinii-google-firma`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/usuwanie-negatywnych-opinii-google`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    
     // Strony usuwania - Panorama Firm
     {
       url: `${baseUrl}/jak-usunac-opinie-z-panoramy-firm`,
