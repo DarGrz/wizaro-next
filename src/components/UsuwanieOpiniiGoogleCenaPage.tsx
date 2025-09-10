@@ -4,7 +4,7 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
-import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobileAleo";
+import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
 import Link from "next/link";
 import { ProductWithReviewsSchema } from './schemas';
 
