@@ -316,7 +316,7 @@ export default function CompanySearchUnozg() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-4 py-4 sm:py-16">
         <motion.div variants={fadeInUp} className="text-center mb-8 sm:mb-16">
-          <h1 className="text-3xl sm:text-3xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4">
+          <h1 className="text-3xl sm:text-3xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4 mt-15">
             Potrzebujesz pomocy?<br />
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
