@@ -28,7 +28,12 @@ export default function Footer() {
             <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c] transition">
               Kontakt
             </Link>
-            
+            <Link href="/formularz-opinie" className="text-gray-700 hover:text-[#002a5c] transition">
+              Usuwanie opinii
+            </Link>
+            <Link href="/formularz-profil" className="text-gray-700 hover:text-[#002a5c] transition">
+              Usuwanie profili
+            </Link>
           </div>
         </div>
         
