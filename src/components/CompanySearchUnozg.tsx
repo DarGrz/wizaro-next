@@ -316,10 +316,10 @@ export default function CompanySearchUnozg() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-4 py-4 sm:py-16">
         <motion.div variants={fadeInUp} className="text-center mb-8 sm:mb-16">
-          <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4">
+          <h1 className="ttext-2xl sm:text-3xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4">
             Potrzebujesz pomocy?<br />
           </h1>
-          <p className="text-base sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-base text-sm sm:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
             Znajdź profil swojej firmy i skorzystaj z naszych profesjonalnych usług.
           </p>
         </motion.div>
