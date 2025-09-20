@@ -164,14 +164,12 @@ export default function CompanySearchUnozg() {
             body: JSON.stringify({
               name: data.details.name,
               address: data.details.address,
-              place_id: placeId,
-              google_maps_url: data.details.googleMapsUrl,
-              phone: data.details.phoneNumber,
+              placeId: placeId, // Fixed: changed from place_id to placeId
+              googleMapsUrl: data.details.googleMapsUrl,
+              phoneNumber: data.details.phoneNumber,
               website: data.details.website,
               rating: data.details.rating,
-              reviews_count: data.details.user_ratings_total,
-              photos: data.details.photos || [],
-              business_status: data.details.businessStatus,
+              businessStatus: data.details.businessStatus,
               types: data.details.types || []
             }),
           });
@@ -230,7 +228,7 @@ export default function CompanySearchUnozg() {
       // Zapisanie w localStorage z kluczem używanym przez formularz opinii
       localStorage.setItem('selectedBusinessCard', JSON.stringify(businessCardData));
       localStorage.setItem('preSelectedBusiness', 'true'); // flaga że wizytówka jest już wybrana
-      localStorage.setItem('skipToStep2', 'true'); // flaga żeby przejść od razu do kroku 2
+      // Usunięto flagę skipToStep2 - użytkownik zacznie od kroku 1 ale z pre-wypełnionymi danymi
 
       // Przekierowanie na formularz opinii Google
       window.location.href = '/formularz-opinie-google';
@@ -257,49 +255,51 @@ export default function CompanySearchUnozg() {
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-[#002a5c] mb-6 leading-tight">
             Potrzebujesz pomocy?<br />
-            Wyszukaj swoją firmę
           </h1>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Znajdź profil swojej firmy w Google Maps i skorzystaj z naszych profesjonalnych usług wsparcia biznesowego
+            Znajdź profil swojej firmy i skorzystaj z naszych profesjonalnych usług.
           </p>
         </motion.div>
 
         <motion.div variants={fadeInUp} className="max-w-4xl mx-auto relative">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20 relative overflow-visible">
-            {/* Subtle gradient background overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/30 rounded-3xl"></div>
-            
-            <div className="relative z-10" ref={searchRef}>
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  placeholder="Wpisz nazwę firmy lub adres..."
-                  value={searchQuery}
-                  onChange={handleSearchInputChange}
-                  onFocus={handleSearchFocus}
-                  className="relative w-full p-5 pr-14 text-lg border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm focus:bg-white focus:shadow-xl focus:scale-[1.02] placeholder:text-slate-400"
-                  disabled={isSearching || isLoadingDetails}
-                />
-                <div className="absolute right-5 top-1/2 -translate-y-1/2">
-                  {(isSearching || isLoadingDetails) ? (
-                    <div className="relative">
-                      <div className="animate-spin rounded-full h-7 w-7 border-2 border-blue-200"></div>
-                      <div className="animate-spin rounded-full h-7 w-7 border-t-2 border-blue-600 absolute top-0 left-0"></div>
-                    </div>
-                  ) : (
-                    <div className="p-1 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                    </div>
-                  )}
+          {/* Search Section - hidden when business is selected */}
+          {!selectedPlaceDetails && (
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20 relative overflow-visible">
+              {/* Subtle gradient background overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/30 rounded-3xl"></div>
+              
+              <div className="relative z-10" ref={searchRef}>
+                {/* Search field */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    placeholder="Wpisz nazwę firmy lub adres..."
+                    value={searchQuery}
+                    onChange={handleSearchInputChange}
+                    onFocus={handleSearchFocus}
+                    className="relative w-full p-5 pr-14 text-lg border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm focus:bg-white focus:shadow-xl focus:scale-[1.02] placeholder:text-slate-400"
+                    disabled={isSearching || isLoadingDetails}
+                  />
+                  <div className="absolute right-5 top-1/2 -translate-y-1/2">
+                    {(isSearching || isLoadingDetails) ? (
+                      <div className="relative">
+                        <div className="animate-spin rounded-full h-7 w-7 border-2 border-blue-200"></div>
+                        <div className="animate-spin rounded-full h-7 w-7 border-t-2 border-blue-600 absolute top-0 left-0"></div>
+                      </div>
+                    ) : (
+                      <div className="p-1 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* Search Results Dropdown */}
-              {showResults && locations.length > 0 && (
+                {/* Search Results Dropdown */}
+                {showResults && locations.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: -10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -334,7 +334,7 @@ export default function CompanySearchUnozg() {
               </motion.div>
             )}
           </div>
-        </motion.div>
+          )}</motion.div>
 
         {/* Selected Business Card Details */}
         {selectedPlaceDetails && (
