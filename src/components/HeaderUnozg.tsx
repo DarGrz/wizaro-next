@@ -1,42 +1,42 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
 
-
-export default function Header() {
+export default function HeaderUnozg() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="w-full bg-gray-50 border-b border-gray-200 shadow-sm ">
+    <header className="w-full bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold text-[#002a5c]">
-        <Image src="/images/wizaro-logo.png" alt="Logo" width={120} height={36}  placeholder="empty" />
-        </Link>        {/* Desktop menu */}
+          <Image src="/images/wizaro-logo.png" alt="Logo" width={120} height={36} placeholder="empty" />
+        </Link>
+        
+        {/* Desktop menu - bez przycisku START i bez Usług */}
         <nav className="hidden md:flex space-x-6 text-sm items-center">
           <Link href="/o-nas" className="text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
             O nas
           </Link>
-          <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c]">
+          <Link href="/kontakt" className="text-gray-700 hover:text-[#002a5c] transition-colors duration-200">
             Kontakt
           </Link>
           <div className="flex flex-col items-end">
             <a href="tel:+48792861513" className="flex items-center text-gray-900 hover:underline font-medium">
               <Phone size={16} className="mr-1" /> +48 792 861 513
             </a>
-           
           </div>
           <a
             href="mailto:kontakt@wizaro.pl"
-            className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
+            className="flex items-center gap-1 text-gray-100 bg-[#002a5c] py-2 px-4 rounded hover:bg-[#00234d] transition-colors"
           >
-            <Mail size={16} />
-          
+            <Mail size={16} className="mr-1" />
+            Email
           </a>
           <span>
             <svg width="30" height="20" viewBox="0 0 6 4" xmlns="http://www.w3.org/2000/svg">
@@ -57,15 +57,17 @@ export default function Header() {
         <button onClick={toggleMenu} className="md:hidden text-gray-700">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-      </div>      {/* Mobile menu dropdown */}
+      </div>
+
+      {/* Mobile menu dropdown */}
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 px-4 pb-4">
           <nav className="flex flex-col space-y-2 text-sm">
             {/* Main Navigation */}
-             <Link href="/o-nas" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
+            <Link href="/o-nas" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
               O nas
             </Link>
-            <Link href="/kontakt" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2">
+            <Link href="/kontakt" onClick={toggleMenu} className="text-gray-700 hover:text-[#002a5c] py-2 transition-colors duration-200">
               Kontakt
             </Link>
             <div className="py-2 flex flex-col">
@@ -76,9 +78,10 @@ export default function Header() {
             <div className='flex gap-2 py-2'>
               <a
                 href="mailto:kontakt@wizaro.pl"
-                className="flex items-center gap-1 text-gray-100 bg-[#002a5c] p-1 px-4 rounded"
+                className="flex items-center gap-1 text-gray-100 bg-[#002a5c] py-2 px-4 rounded hover:bg-[#00234d] transition-colors"
               >
-                <Mail size={20} />
+                <Mail size={16} className="mr-1" />
+                Email
               </a>
             </div>
           </nav>

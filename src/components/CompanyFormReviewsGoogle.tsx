@@ -118,17 +118,67 @@ export default function CompanyFormReviews() {
 
   // Pobierz status opinii przy ładowaniu komponentu
   useEffect(() => {
-    const fetchReviewsStatus = async () => {
-      try {
-        const response = await fetch('/api/reviews-settings');
-        const data = await response.json();
-        setReviewsEnabled(data.reviews_enabled);
-      } catch (error) {
-        console.error('Error fetching reviews status:', error);
-      }
-    };
     fetchReviewsStatus();
   }, []);
+
+  // Nowy useEffect do sprawdzania czy wizytówka była pre-wybrana
+  useEffect(() => {
+    const checkPreSelectedBusiness = () => {
+      const preSelected = localStorage.getItem('preSelectedBusiness');
+      const skipToStep2 = localStorage.getItem('skipToStep2');
+      const savedBusinessCard = localStorage.getItem('selectedBusinessCard');
+      
+      if (preSelected === 'true' && skipToStep2 === 'true' && savedBusinessCard) {
+        try {
+          const businessCardData = JSON.parse(savedBusinessCard);
+          
+          // Ustawienie wybranej wizytówki
+          setSelectedBusinessCard({
+            name: businessCardData.name,
+            googleMapsUrl: businessCardData.googleMapsUrl
+          });
+          
+          // Auto-wypełnienie pierwszej opinii z nazwą firmy
+          const updated = [...reviews];
+          if (updated.length > 0 && !updated[0].url) {
+            updated[0].url = businessCardData.name;
+            setReviews(updated);
+          }
+          
+          // Auto-wypełnienie URL firmy
+          setCompany(prevCompany => ({
+            ...prevCompany,
+            url: businessCardData.googleMapsUrl
+          }));
+          
+          // Przejście bezpośrednio do kroku 2 (reviews)
+          setStep('reviews');
+          
+          // Czyszczenie flag
+          localStorage.removeItem('preSelectedBusiness');
+          localStorage.removeItem('skipToStep2');
+          
+        } catch (error) {
+          console.error('Error parsing pre-selected business card:', error);
+          localStorage.removeItem('selectedBusinessCard');
+          localStorage.removeItem('preSelectedBusiness');
+          localStorage.removeItem('skipToStep2');
+        }
+      }
+    };
+    
+    checkPreSelectedBusiness();
+  }, [reviews]); // Dodanie reviews do dependencies
+
+  const fetchReviewsStatus = async () => {
+    try {
+      const response = await fetch('/api/reviews-settings');
+      const data = await response.json();
+      setReviewsEnabled(data.reviews_enabled);
+    } catch (error) {
+      console.error('Error fetching reviews status:', error);
+    }
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem("companyFormData");

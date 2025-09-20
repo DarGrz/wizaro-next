@@ -51,7 +51,7 @@ export default function ReviewFormGoogle({
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <h2 className="text-xl font-semibold text-center text-gray-800 mb-2">
-        Opinie do usunięcia z Google Maps
+        Wpisz opinie do usunięcia z Google Maps
       </h2>
       
       {/* Display selected business card info */}
