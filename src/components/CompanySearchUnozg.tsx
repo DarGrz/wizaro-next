@@ -319,7 +319,7 @@ export default function CompanySearchUnozg() {
           <h1 className="text-3xl sm:text-3xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4">
             Potrzebujesz pomocy?<br />
           </h1>
-          <p className="text-sm sm:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
             Znajdź profil swojej firmy i skorzystaj z naszych profesjonalnych usług.
           </p>
         </motion.div>
