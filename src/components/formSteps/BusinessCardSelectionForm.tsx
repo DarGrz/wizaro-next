@@ -53,6 +53,49 @@ export default function BusinessCardSelectionForm({
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
+  // Load pre-selected business card from localStorage
+  useEffect(() => {
+    const preSelectedBusiness = localStorage.getItem('preSelectedBusiness');
+    const selectedBusinessCardData = localStorage.getItem('selectedBusinessCard');
+    
+    if (preSelectedBusiness === 'true' && selectedBusinessCardData) {
+      try {
+        const businessCard = JSON.parse(selectedBusinessCardData);
+        
+        // Convert the data to PlaceDetails format
+        const placeDetails: PlaceDetails = {
+          id: businessCard.placeId || '',
+          name: businessCard.name,
+          address: businessCard.address,
+          phoneNumber: businessCard.phoneNumber,
+          website: businessCard.website,
+          googleMapsUrl: businessCard.googleMapsUrl,
+          photos: businessCard.photos || [],
+          businessStatus: 'OPERATIONAL',
+          types: [],
+          rating: businessCard.rating,
+          user_ratings_total: businessCard.user_ratings_total
+        };
+        
+        setSelectedPlaceDetails(placeDetails);
+        setSearchQuery(businessCard.name); // Set search query to business name
+        
+        // Notify parent component about the selected business card
+        onBusinessCardSelected({
+          name: businessCard.name,
+          googleMapsUrl: businessCard.googleMapsUrl
+        });
+        
+        // Clear the localStorage flags
+        localStorage.removeItem('preSelectedBusiness');
+        localStorage.removeItem('selectedBusinessCard');
+        
+      } catch (error) {
+        console.error('Error loading pre-selected business card:', error);
+      }
+    }
+  }, [onBusinessCardSelected]);
+
   // Handle clicking outside search results
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -215,8 +258,10 @@ export default function BusinessCardSelectionForm({
   return (
     <form onSubmit={onSubmit} className="space-y-2 mt-5 md:mt-0">
       <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">
-Wybierz profil Google, z którego chcesz usunąć opinie.
-
+        {selectedPlaceDetails 
+          ? "Wybrany profil firmy w Google" 
+          : "Wybierz profil Google, z którego chcesz usunąć opinie."
+        }
       </h2>
 
       <div className="bg-white mb-2 md:mb-4">        {/* Show selected business card if available */}
@@ -289,7 +334,7 @@ Wybierz profil Google, z którego chcesz usunąć opinie.
                 </div>
               </div>
             )}
-            {selectedPlaceDetails.rating !== undefined && selectedPlaceDetails.rating >= 3.2 && selectedPlaceDetails.rating < 3.9 && (
+            {selectedPlaceDetails.rating !== undefined && selectedPlaceDetails.rating >= 3.2 && selectedPlaceDetails.rating < 4.3 && (
               <div className="mt-3 p-3 bg-yellow-50 text-sm">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
