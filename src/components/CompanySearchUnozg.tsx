@@ -640,6 +640,51 @@ export default function CompanySearchUnozg() {
           </div>
         </motion.div>
         
+        {/* Social Proof Section */}
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-16 max-w-4xl sm:max-w-6xl mx-auto"
+        >
+          <div className="bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/30 rounded-2xl sm:rounded-3xl shadow-xl border border-blue-100/50 overflow-hidden">
+            <div className="px-4 sm:px-8 py-8 sm:py-12 text-center">
+              {/* Quote Icon */}
+              <div className="inline-block p-3 sm:p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6 sm:mb-8">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                </svg>
+              </div>
+              
+              {/* Testimonial */}
+              <blockquote className="text-lg sm:text-xl md:text-2xl font-medium text-slate-800 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
+                &ldquo;Dzięki Wizaro.pl w końcu mam spokój z konkurencją&rdquo;
+              </blockquote>
+              
+              {/* Author */}
+              <div className="flex items-center justify-center">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold text-lg sm:text-xl">M</span>
+                </div>
+                <div className="text-left">
+                  <div className="font-semibold text-slate-800 text-base sm:text-lg">Michał K.</div>
+                  <div className="text-slate-600 text-sm sm:text-base">Właściciel restauracji</div>
+                </div>
+              </div>
+              
+              {/* Stars */}
+              <div className="flex justify-center mt-4 sm:mt-6">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                  </svg>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+        
         {/* Guarantee Section */}
         <motion.div
           variants={fadeInUp}

@@ -1,7 +1,7 @@
 // components/formSteps/RemovalForm.tsx
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useGUS } from "@/hooks/useGUS";
 
 const PORTAL_OPTIONS = [
@@ -60,6 +60,64 @@ export default function RemovalForm({
   const [validatedNIP, setValidatedNIP] = useState<boolean>(false);
   const [isCompanyType, setIsCompanyType] = useState<boolean>(false);
 
+  const handleNIPSearch = useCallback(async (nip: string) => {
+    if (nip.length >= 10 && !gusLoading) {
+      console.log('Starting NIP search for NIP:', nip);
+      resetGUS(); // Reset previous data
+      await searchByNIP(nip);
+    }
+  }, [gusLoading, resetGUS, searchByNIP]);
+
+  // Initialize NIP from localStorage on component mount
+  useEffect(() => {
+    const preSelectedFlag = localStorage.getItem("preSelectedGUSCompany");
+    const selectedGUSCompany = localStorage.getItem("selectedGUSCompany");
+    
+    if (preSelectedFlag === 'true' && selectedGUSCompany) {
+      try {
+        const gusData: GUSCompanyData = JSON.parse(selectedGUSCompany);
+        console.log('Loading pre-selected NIP in RemovalFormBazy:', gusData.nip);
+        
+        if (gusData.nip) {
+          setNipInput(gusData.nip);
+          
+          // If we have full company data, trigger search
+          if (gusData.name) {
+            console.log('Pre-selected company has full data, applying it');
+            setValidatedNIP(true);
+            const hasKrs = gusData.krs && gusData.krs.trim().length > 0;
+            const hasSpółkaInName = gusData.name && gusData.name.toLowerCase().includes('spółka');
+            setIsCompanyType(!!(hasKrs || hasSpółkaInName));
+            
+            // Fill the first removal entry
+            if (removals.length > 0) {
+              onChange(0, "nip", gusData.nip);
+              onChange(0, "companyName", gusData.name);
+            }
+            
+            // Pass data to parent
+            if (onGUSDataReceived) {
+              onGUSDataReceived(gusData);
+            }
+          } else {
+            // If we only have NIP, trigger search
+            console.log('Pre-selected company has only NIP, triggering search');
+            handleNIPSearch(gusData.nip);
+          }
+        }
+
+        // Clear the flags
+        localStorage.removeItem("preSelectedGUSCompany");
+        localStorage.removeItem("selectedGUSCompany");
+        
+      } catch (error) {
+        console.error('Error loading pre-selected GUS company data in RemovalFormBazy:', error);
+        localStorage.removeItem("preSelectedGUSCompany");
+        localStorage.removeItem("selectedGUSCompany");
+      }
+    }
+  }, [removals, onChange, onGUSDataReceived, gusLoading, resetGUS, searchByNIP, handleNIPSearch]);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -74,13 +132,7 @@ export default function RemovalForm({
       scrollToTop();
     }, 100);
   };
-  const handleNIPSearch = async (nip: string) => {
-    if (nip.length >= 10 && !gusLoading) {
-      console.log('Starting NIP search for NIP:', nip);
-      resetGUS(); // Reset previous data
-      await searchByNIP(nip);
-    }
-  };
+  
   // Update gusDataForIndex when gusData changes
   useEffect(() => {
     if (gusData && !validatedNIP) {

@@ -97,6 +97,49 @@ export default function CompanyFormRemoval() {
   useEffect(() => {
     const saved = localStorage.getItem("companyFormRemovalData");
     if (saved) setCompany(JSON.parse(saved));
+    
+    // Check for pre-selected GUS company data
+    const preSelectedFlag = localStorage.getItem("preSelectedGUSCompany");
+    const selectedGUSCompany = localStorage.getItem("selectedGUSCompany");
+    
+    if (preSelectedFlag === 'true' && selectedGUSCompany) {
+      try {
+        const gusData: GUSCompanyData = JSON.parse(selectedGUSCompany);
+        console.log('Loading pre-selected GUS company data:', gusData);
+        
+        // Auto-fill company data with GUS data
+        setCompany(prev => ({
+          ...prev,
+          name: gusData.name || prev.name,
+          nip: gusData.nip || prev.nip,
+          street: gusData.street || prev.street,
+          city: gusData.city || prev.city,
+          zip: gusData.zip || prev.zip,
+        }));
+
+        // Auto-fill first removal with GUS company name and NIP
+        setRemovals(prev => {
+          const updated = [...prev];
+          updated[0] = {
+            ...updated[0],
+            companyName: gusData.name || updated[0].companyName,
+            nip: gusData.nip || updated[0].nip
+          };
+          return updated;
+        });
+
+        // Clear the flags so they don't persist
+        localStorage.removeItem("preSelectedGUSCompany");
+        localStorage.removeItem("selectedGUSCompany");
+        
+        console.log('Successfully loaded and applied GUS data');
+      } catch (error) {
+        console.error('Error loading pre-selected GUS company data:', error);
+        // Clear invalid data
+        localStorage.removeItem("preSelectedGUSCompany");
+        localStorage.removeItem("selectedGUSCompany");
+      }
+    }
   }, []);
 
   useEffect(() => {
