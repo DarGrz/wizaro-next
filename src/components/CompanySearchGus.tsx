@@ -507,7 +507,7 @@ export default function CompanySearchGus() {
             </div>
 
             {/* CTA Section */}
-            <div className="text-center mt-8 sm:mt-12 md:mt-16">
+            <div className="px-4 sm:px-8 md:px-16 text-center mt-8 sm:mt-12 md:mt-16 pb-8 sm:pb-12 md:pb-16">
                 <div className="inline-flex flex-col gap-3 sm:gap-4 w-full max-w-sm sm:max-w-none sm:flex-row sm:w-auto">
                   <a href="tel:+48792861513" className="group relative inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 text-white rounded-xl font-bold text-base sm:text-lg transition-all duration-300 hover:from-blue-500 hover:to-cyan-400 hover:shadow-2xl hover:-translate-y-1 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -526,7 +526,7 @@ export default function CompanySearchGus() {
                     Dowiedz się więcej
                   </Link>
                 </div>
-                <p className="text-slate-400 text-xs sm:text-sm mt-4 sm:mt-6 max-w-2xl mx-auto px-4 mb-14">
+                <p className="text-slate-400 text-xs sm:text-sm mt-4 sm:mt-6 max-w-2xl mx-auto">
                   Bezpłatna konsultacja • Pełna dyskrecja • Gwarancja rezultatów
                 </p>
               </div>
