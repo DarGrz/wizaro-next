@@ -78,31 +78,46 @@ export default async function DashboardPage() {
 
   return (
     <main className="max-w-8xl mx-auto p-4 m-2">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 gap-4">
         <h1 className="text-2xl font-bold">📊 Dashboard – Wizaro (Admin)</h1>
-        <div className="flex space-x-5">
+        <div className="flex flex-wrap gap-2 md:gap-3 items-center">
           <Link 
             href="/dashboard/searched-nip" 
-            className="bg-[rgb(212,114,27)] text-white px-4 py-2 rounded hover:bg-[#4b8446] transition-colors text-sm"
+            className="bg-[rgb(212,114,27)] text-white px-3 py-2 rounded hover:bg-[#d4721b] transition-colors text-xs md:text-sm whitespace-nowrap"
           >
             Wyszukiwane NIP
           </Link>
           <Link 
             href="/dashboard/searched-gmb" 
-            className="bg-[#5BA155] text-white px-4 py-2 rounded hover:bg-[#4b8446] transition-colors text-sm"
+            className="bg-[#5BA155] text-white px-3 py-2 rounded hover:bg-[#4b8446] transition-colors text-xs md:text-sm whitespace-nowrap"
           >
-            Wyszukiwane Profile GMB
+            Profile GMB
           </Link>
           <Link 
             href="/dashboard/orders" 
-            className="bg-[#002a5c] text-white px-4 py-2 rounded hover:bg-[#001e47] transition-colors text-sm"
+            className="bg-[#002a5c] text-white px-3 py-2 rounded hover:bg-[#001e47] transition-colors text-xs md:text-sm whitespace-nowrap"
           >
-            Zobacz zamówienia
+            Zamówienia
           </Link>
+          
+          {/* Debug API pod ikoną koła zębatego */}
+          <div className="relative group">
+            <Link 
+              href="/debug" 
+              className="bg-gray-500 text-white p-2 rounded hover:bg-gray-600 transition-colors text-sm"
+              title="Debug API"
+            >
+              ⚙️
+            </Link>
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              Debug API
+            </div>
+          </div>
+          
           <form action={handleLogout} className="inline">
             <button 
               type="submit"
-              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors text-sm"
+              className="bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 transition-colors text-xs md:text-sm whitespace-nowrap"
             >
               Wyloguj
             </button>

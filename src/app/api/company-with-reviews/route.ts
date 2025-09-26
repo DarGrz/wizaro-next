@@ -30,6 +30,8 @@ interface Review {
 }
 
 export async function POST(req: NextRequest) {
+  console.log('🚀 [REVIEWS] API /company-with-reviews - START');
+  
   try {
     const {
       company,
@@ -43,10 +45,11 @@ export async function POST(req: NextRequest) {
       numberOfReviews: number;
     } = await req.json();
 
-    console.log('🟢 Firma:', company);
-    console.log('🟢 Opinie:', reviews);
-    console.log('💰 Cena całkowita:', totalPrice);
-    console.log('📊 Liczba opinii:', numberOfReviews);
+    console.log('� [REVIEWS] Firma:', company);
+    console.log('� [REVIEWS] Opinie:', reviews);
+    console.log('💰 [REVIEWS] Cena całkowita:', totalPrice);
+    console.log('📊 [REVIEWS] Liczba opinii:', numberOfReviews);
+    console.log('🔍 [REVIEWS] Walidacja: company exists:', !!company, 'reviews exists:', !!reviews, 'reviews length:', reviews?.length);
 
     if (!reviews || reviews.length === 0) {
       return NextResponse.json(
@@ -132,17 +135,36 @@ export async function POST(req: NextRequest) {
       document_id: documentId, // ✅ przypisujemy ten sam ID
     }));
 
-    const { error: reviewError } = await supabase
+    console.log('📝 [REVIEWS] Próba zapisu opinii do tabeli reviews...');
+    console.log('📊 [REVIEWS] Liczba opinii do zapisu:', reviewsWithDocumentId.length);
+    console.log('🔍 [REVIEWS] Opinie do zapisu:', JSON.stringify(reviewsWithDocumentId, null, 2));
+
+    const { data: insertedReviews, error: reviewError } = await supabase
       .from('reviews')
-      .insert(reviewsWithDocumentId);
+      .insert(reviewsWithDocumentId)
+      .select();
 
     if (reviewError) {
-      console.error('❌ Błąd zapisu opinii:', reviewError);
+      console.error('❌ [REVIEWS] Błąd zapisu opinii:', reviewError);
+      console.error('🔍 [REVIEWS] Szczegóły błędu opinii:');
+      console.error('  - Code:', reviewError?.code);
+      console.error('  - Message:', reviewError?.message);
+      console.error('  - Details:', reviewError?.details);
+      console.error('  - Hint:', reviewError?.hint);
+      
       return NextResponse.json(
-        { error: 'Błąd zapisu opinii', details: reviewError },
+        { 
+          error: 'Błąd zapisu opinii', 
+          details: reviewError,
+          reviewsData: reviewsWithDocumentId
+        },
         { status: 500 }
       );
     }
+
+    console.log('✅ [REVIEWS] Opinie zapisane pomyślnie!');
+    console.log('📊 [REVIEWS] Zapisane opinie:', insertedReviews?.length);
+    console.log('🆔 [REVIEWS] IDs zapisanych opinii:', insertedReviews?.map(r => r.id));
 
     // Wyślij powiadomienie o nowym zamówieniu
     await sendAdminNotification({

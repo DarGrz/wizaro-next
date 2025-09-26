@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import DeletedMessageAlert from './components/DeletedMessageAlert';
+import ReviewsTable from './components/ReviewsTable';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -41,6 +42,20 @@ export default async function OrdersPage({
       )
     `)
     .order('created_at', { ascending: false });
+
+  // Pobierz wszystkie opinie jeśli filtr to "reviews"
+  const { data: reviews } = filter === 'reviews' ? await supabase
+    .from('reviews')
+    .select(`
+      *,
+      companies (
+        name,
+        email,
+        gmb_url,
+        phone
+      )
+    `)
+    .order('date_added', { ascending: false }) : { data: null };
 
   // Filtrowanie zamówień
   const params = await searchParams;
@@ -100,94 +115,108 @@ export default async function OrdersPage({
           >
             Usuwanie profilu ({orders?.filter(o => o.type !== 'żądanie usunięcia opinii').length || 0})
           </Link>
+          <Link
+            href="/dashboard/orders?filter=reviews"
+            className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+              filter === 'reviews' 
+                ? 'bg-blue-600 text-white' 
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            📝 Wszystkie opinie ({reviews?.length || '...'})
+          </Link>
         </div>
       </div>
 
-      <div className="bg-white shadow rounded-xl w-full overflow-x-auto">
-        <table className="min-w-[1200px] w-full text-sm">
-          <thead className="bg-gray-100 text-left">
-            <tr>
-              <th className="p-3">ID</th>
-              <th className="p-3">Typ</th>
-              <th className="p-3">Firma</th>
-              <th className="p-3">Osoba kontaktowa</th>
-              <th className="p-3">Email</th>
-              <th className="p-3">Telefon</th>
-              <th className="p-3">NIP</th>
-              <th className="p-3">Adres</th>
-              <th className="p-3">Cena</th>
-              <th className="p-3">Data</th>
-              <th className="p-3">Status płatności</th>
-              <th className="p-3">Status realizacji</th>
-              <th className="p-3">Akcje</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredOrders?.map((order) => (
-              <tr key={order.id} className="border-t hover:bg-gray-50">
-                <td className="p-3 font-mono">{order.id}</td>
-                <td className="p-3">{order.type}</td>
-                <td className="p-3">{order.companies?.name}</td>
-                <td className="p-3">
-                  {order.companies?.first_name} {order.companies?.last_name}
-                </td>
-                <td className="p-3">{order.companies?.email}</td>
-                <td className="p-3">{order.companies?.phone || '—'}</td>
-                <td className="p-3">{order.companies?.nip}</td>
-                <td className="p-3">
-                  {order.companies?.street}, {order.companies?.zip} {order.companies?.city}
-                </td>
-                <td className="p-3">
-                  {order.companies?.price != null ? (
-                    <span>{Number(order.companies.price).toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}</span>
-                  ) : (
-                    <span className="text-gray-400">—</span>
-                  )}
-                </td>
-                <td className="p-3">
-                  {new Date(order.created_at).toLocaleString('pl-PL', {
-                    timeZone: 'Europe/Warsaw',
-                  })}
-                </td>
-                <td className="p-3">
-                   <span className={`px-2 py-1 rounded-full text-xs ${
-  order.payments?.[0]?.status === 'true' ? 'bg-[#5BA155] bg-opacity-10 text-white' :
-  order.payments?.[0]?.status === 'false' ? 'bg-yellow-100 text-yellow-800' :
-  'bg-gray-100 text-gray-800'
-}`}>
-  {order.payments?.[0]?.status === 'true' ? 'Zapłacono' :
-   order.payments?.[0]?.status === 'false' ? 'Oczekuje' :
-   'Brak płatności'}
-</span>
-                </td>
-                <td className="p-3">
-                  <span className={`px-2 py-1 rounded-full text-xs ${
-                    order.processing_status === 'zakończone' ? 'bg-[#5BA155] bg-opacity-10 text-white' :
-                    order.processing_status === 'w trakcie' ? 'bg-blue-100 text-blue-800' :
-                    'bg-gray-100 text-gray-800'
-                  }`}>
-                    {order.processing_status || 'nowe'}
-                  </span>
-                </td>
-                <td className="p-3 flex flex-col gap-2 min-w-[120px]">
-                  <Link 
-                    href={`/dashboard/orders/${order.id}`}
-                    className="text-[#002a5c] hover:text-[#001e47] underline"
-                  >
-                    Szczegóły
-                  </Link>
-                  <Link
-                    href={`/dashboard/orders/${order.id}/edit`}
-                    className="text-blue-700 hover:text-blue-900 underline"
-                  >
-                    Edytuj
-                  </Link>
-                </td>
+      {filter === 'reviews' ? (
+        <ReviewsTable reviews={reviews || []} />
+      ) : (
+        <div className="bg-white shadow rounded-xl w-full overflow-x-auto">
+          <table className="min-w-[1200px] w-full text-sm">
+            <thead className="bg-gray-100 text-left">
+              <tr>
+                <th className="p-3">ID</th>
+                <th className="p-3">Typ</th>
+                <th className="p-3">Firma</th>
+                <th className="p-3">Osoba kontaktowa</th>
+                <th className="p-3">Email</th>
+                <th className="p-3">Telefon</th>
+                <th className="p-3">NIP</th>
+                <th className="p-3">Adres</th>
+                <th className="p-3">Cena</th>
+                <th className="p-3">Data</th>
+                <th className="p-3">Status płatności</th>
+                <th className="p-3">Status realizacji</th>
+                <th className="p-3">Akcje</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {filteredOrders?.map((order) => (
+                <tr key={order.id} className="border-t hover:bg-gray-50">
+                  <td className="p-3 font-mono">{order.id}</td>
+                  <td className="p-3">{order.type}</td>
+                  <td className="p-3">{order.companies?.name}</td>
+                  <td className="p-3">
+                    {order.companies?.first_name} {order.companies?.last_name}
+                  </td>
+                  <td className="p-3">{order.companies?.email}</td>
+                  <td className="p-3">{order.companies?.phone || '—'}</td>
+                  <td className="p-3">{order.companies?.nip}</td>
+                  <td className="p-3">
+                    {order.companies?.street}, {order.companies?.zip} {order.companies?.city}
+                  </td>
+                  <td className="p-3">
+                    {order.companies?.price != null ? (
+                      <span>{Number(order.companies.price).toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}</span>
+                    ) : (
+                      <span className="text-gray-400">—</span>
+                    )}
+                  </td>
+                  <td className="p-3">
+                    {new Date(order.created_at).toLocaleString('pl-PL', {
+                      timeZone: 'Europe/Warsaw',
+                    })}
+                  </td>
+                  <td className="p-3">
+                     <span className={`px-2 py-1 rounded-full text-xs ${
+    order.payments?.[0]?.status === 'true' ? 'bg-[#5BA155] bg-opacity-10 text-white' :
+    order.payments?.[0]?.status === 'false' ? 'bg-yellow-100 text-yellow-800' :
+    'bg-gray-100 text-gray-800'
+  }`}>
+    {order.payments?.[0]?.status === 'true' ? 'Zapłacono' :
+     order.payments?.[0]?.status === 'false' ? 'Oczekuje' :
+     'Brak płatności'}
+  </span>
+                  </td>
+                  <td className="p-3">
+                    <span className={`px-2 py-1 rounded-full text-xs ${
+                      order.processing_status === 'zakończone' ? 'bg-[#5BA155] bg-opacity-10 text-white' :
+                      order.processing_status === 'w trakcie' ? 'bg-blue-100 text-blue-800' :
+                      'bg-gray-100 text-gray-800'
+                    }`}>
+                      {order.processing_status || 'nowe'}
+                    </span>
+                  </td>
+                  <td className="p-3 flex flex-col gap-2 min-w-[120px]">
+                    <Link 
+                      href={`/dashboard/orders/${order.id}`}
+                      className="text-[#002a5c] hover:text-[#001e47] underline"
+                    >
+                      Szczegóły
+                    </Link>
+                    <Link
+                      href={`/dashboard/orders/${order.id}/edit`}
+                      className="text-blue-700 hover:text-blue-900 underline"
+                    >
+                      Edytuj
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </main>
   );
 }
