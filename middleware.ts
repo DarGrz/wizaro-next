@@ -1,42 +1,51 @@
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const supabase = createMiddlewareClient({ req, res });
 
-  // Sprawdź sesję użytkownika
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  // Sprawdź ciasteczka uwierzytelniania admin dashboard
+  const adminAuth = req.cookies.get('admin-auth')?.value === 'true';
+  const userRole = req.cookies.get('user-role')?.value;
 
-  // Trasy chronione dla użytkowników
-  const protectedRoutes = ['/monitor'];
-  const authRoutes = ['/auth/login', '/auth/register'];
-  
-  const isProtectedRoute = protectedRoutes.some(route => 
-    req.nextUrl.pathname.startsWith(route)
-  );
-  
-  const isAuthRoute = authRoutes.some(route => 
-    req.nextUrl.pathname === route
-  );
+  // Trasy chronione dashboard
+  const isDashboardRoute = req.nextUrl.pathname.startsWith('/dashboard');
+  const isLoginRoute = req.nextUrl.pathname === '/login';
 
-  // Jeśli użytkownik próbuje dostać się do chronionej trasy bez sesji
-  if (isProtectedRoute && !session) {
-    const redirectUrl = new URL('/auth/login', req.url);
-    redirectUrl.searchParams.set('redirect', req.nextUrl.pathname);
-    return NextResponse.redirect(redirectUrl);
+  // Jeśli próba dostępu do dashboard bez logowania
+  if (isDashboardRoute && !adminAuth) {
+    return NextResponse.redirect(new URL('/login', req.url));
   }
 
-  // Jeśli zalogowany użytkownik próbuje dostać się do stron auth
-  if (isAuthRoute && session) {
-    return NextResponse.redirect(new URL('/monitor', req.url));
+  // Jeśli zalogowany użytkownik próbuje dostać się do logowania
+  if (isLoginRoute && adminAuth) {
+    // Przekieruj zgodnie z rolą
+    if (userRole === 'admin') {
+      return NextResponse.redirect(new URL('/dashboard', req.url));
+    } else if (userRole === 'viewer') {
+      return NextResponse.redirect(new URL('/dashboard/reviews-only', req.url));
+    }
+    return NextResponse.redirect(new URL('/dashboard', req.url));
+  }
+
+  // Sprawdź czy viewer próbuje dostać się do stron tylko dla admin
+  if (isDashboardRoute && adminAuth && userRole === 'viewer') {
+    const viewerAllowedRoutes = [
+      '/dashboard/reviews-only',
+      '/dashboard/orders' // viewer może oglądać zamówienia, ale nie może ich edytować
+    ];
+    
+    const isViewerAllowed = viewerAllowedRoutes.some(route => 
+      req.nextUrl.pathname.startsWith(route)
+    ) || req.nextUrl.pathname.startsWith('/dashboard/orders/') && req.nextUrl.pathname.includes('/'); // pojedyncze zamówienia
+
+    if (!isViewerAllowed) {
+      return NextResponse.redirect(new URL('/dashboard/reviews-only', req.url));
+    }
   }
 
   return res;
 }
 
 export const config = {
-  matcher: ['/monitor/:path*', '/auth/login', '/auth/register'],
+  matcher: ['/dashboard/:path*', '/login'],
 };

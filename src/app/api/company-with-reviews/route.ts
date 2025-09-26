@@ -55,43 +55,63 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 🔍 DEBUGOWANIE RLS - company-with-reviews endpoint
+    console.log('🔐 [REVIEWS] Supabase connection check...');
+    
+    // 🔍 Przygotuj dane do zapisu
+    const companyDataToInsert = {
+      ...company,
+      price: totalPrice,
+      review_count: numberOfReviews,
+      // Dodaj akceptację regulaminu bezpośrednio przy tworzeniu
+      regulation_accepted: true,
+      regulation_version: REGULAMIN_VERSION,
+      regulation_accepted_at: new Date().toISOString(),
+    };
+    
+    console.log('📝 [REVIEWS] Dane do zapisu w companies:', JSON.stringify(companyDataToInsert, null, 2));
+
     // 1. Zapisz firmę
     const { data: companyData, error: companyError } = await supabase
       .from('companies')
-      .insert({
-        ...company,
-        price: totalPrice,
-        review_count: numberOfReviews,
-        // Dodaj akceptację regulaminu bezpośrednio przy tworzeniu
-        regulation_accepted: true,
-        regulation_version: REGULAMIN_VERSION,
-        regulation_accepted_at: new Date().toISOString(),
-      })
+      .insert(companyDataToInsert)
       .select()
       .single();
 
     if (companyError || !companyData) {
-      console.error('❌ Błąd zapisu firmy:', companyError);
+      console.error('❌ [REVIEWS] Błąd zapisu firmy:', companyError);
+      console.error('🔍 [REVIEWS] Szczegóły błędu RLS:');
+      console.error('  - Code:', companyError?.code);
+      console.error('  - Message:', companyError?.message);
+      console.error('  - Details:', companyError?.details);
+      console.error('  - Hint:', companyError?.hint);
+      
       return NextResponse.json(
-        { error: 'Błąd zapisu firmy', details: companyError },
+        { 
+          error: 'Błąd zapisu firmy', 
+          details: companyError,
+          debug: {
+            endpoint: 'company-with-reviews',
+            supabaseUrl: process.env.SUPABASE_URL,
+            hasAnonKey: !!process.env.SUPABASE_ANON_KEY,
+            insertData: companyDataToInsert
+          }
+        },
         { status: 500 }
       );
     }
 
     // 2. Wygeneruj UUID dokumentu z góry
     const documentId = uuidv4();
-    // 2a. Wygeneruj token śledzący (kolejny uuid)
-    const trackingToken = uuidv4();
 
-    // 3. Utwórz dokument z podanym ID i tokenem śledzącym
+    // 3. Utwórz dokument z podanym ID
     const { error: documentError } = await supabase
       .from('documents')
       .insert({
         id: documentId, // 🔥 ręcznie ustawiony ID
         company_id: companyData.id,
         type: 'żądanie usunięcia opinii',
-        status: 'draft',
-        tracking_token: trackingToken,
+        status: 'draft'
       });
 
     if (documentError) {
@@ -135,9 +155,7 @@ export async function POST(req: NextRequest) {
       {
         success: true,
         company_id: companyData.id,
-        document_id: documentId,
-        tracking_token: trackingToken,
-        tracking_url: `${process.env.NEXT_PUBLIC_SITE_URL || ''}/podglad-zlecenia/${trackingToken}`,
+        document_id: documentId
       },
       { status: 201 }
     );

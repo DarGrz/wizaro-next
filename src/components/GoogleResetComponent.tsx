@@ -180,14 +180,9 @@ export default function GoogleResetComponent() {
       });
       
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
-      const docData = await docRes.json();      localStorage.removeItem("googleResetFormData");
       
       // Przekierowanie na stronę success-google-reset z tokenem śledzenia
-      if (docData.tracking_token) {
-        window.location.href = `/success-google-reset?tracking_token=${docData.tracking_token}`;
-      } else {
-        window.location.href = "/success-google-reset";
-      }
+      window.location.href = "/success-google-reset";
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");

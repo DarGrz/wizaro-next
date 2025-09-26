@@ -54,26 +54,60 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // 🔍 DEBUGOWANIE RLS - sprawdź połączenie z bazą
+    console.log('🔐 Supabase URL:', process.env.SUPABASE_URL);
+    console.log('🔑 Supabase Key type:', process.env.SUPABASE_ANON_KEY ? 'ANON_KEY present' : 'ANON_KEY missing');
+    
+    // 🔍 Test połączenia z bazą
+    try {
+      const { data: testData, error: testError } = await supabase
+        .from('companies')
+        .select('count', { count: 'exact', head: true });
+      
+      console.log('📊 Test połączenia z companies:', { testData, testError });
+    } catch (testErr) {
+      console.error('❌ Błąd testu połączenia:', testErr);
+    }
+
+    // 🔍 Przygotuj dane do zapisu
+    const companyDataToInsert = {
+      ...company,
+      price: totalPrice / 100, // Dzielimy cenę przez 100 przed zapisem
+      profile_removal_count: removals.length,
+      payer_id,
+      // Dodaj akceptację regulaminu bezpośrednio przy tworzeniu
+      regulation_accepted: true,
+      regulation_version: REGULAMIN_VERSION,
+      regulation_accepted_at: new Date().toISOString(),
+    };
+    
+    console.log('📝 Dane do zapisu w companies:', JSON.stringify(companyDataToInsert, null, 2));
     
     const { data: companyData, error: companyError } = await supabase
       .from('companies')
-      .insert({
-        ...company,
-        price: totalPrice / 100, // Dzielimy cenę przez 100 przed zapisem
-        profile_removal_count: removals.length,
-        payer_id,
-        // Dodaj akceptację regulaminu bezpośrednio przy tworzeniu
-        regulation_accepted: true,
-        regulation_version: REGULAMIN_VERSION,
-        regulation_accepted_at: new Date().toISOString(),
-      })
+      .insert(companyDataToInsert)
       .select()
       .single();
 
     if (companyError || !companyData) {
       console.error('❌ Błąd zapisu firmy:', companyError);
+      console.error('🔍 Szczegóły błędu RLS:');
+      console.error('  - Code:', companyError?.code);
+      console.error('  - Message:', companyError?.message);
+      console.error('  - Details:', companyError?.details);
+      console.error('  - Hint:', companyError?.hint);
+      
       return NextResponse.json(
-        { error: 'Błąd zapisu firmy', details: companyError },
+        { 
+          error: 'Błąd zapisu firmy', 
+          details: companyError,
+          debug: {
+            supabaseUrl: process.env.SUPABASE_URL,
+            hasAnonKey: !!process.env.SUPABASE_ANON_KEY,
+            insertData: companyDataToInsert
+          }
+        },
         { status: 500 }
       );
     }
@@ -97,14 +131,6 @@ export async function POST(req: NextRequest) {
     }
 
     // Pobierz token śledzenia dla dokumentu powiązanego z tą firmą
-    const { data: documentData } = await supabase
-      .from('documents')
-      .select('tracking_token')
-      .eq('company_id', companyData.id)
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .single();
-
     // Wyślij powiadomienie o nowym zamówieniu
     await sendAdminNotification({
       orderType: 'profile-removal',
@@ -114,11 +140,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ 
       success: true, 
-      company_id: companyData.id,
-      tracking_token: documentData?.tracking_token,
-      tracking_url: documentData?.tracking_token 
-        ? `${process.env.NEXT_PUBLIC_SITE_URL || ''}/podglad-zlecenia/${documentData.tracking_token}`
-        : undefined
+      company_id: companyData.id
     }, { status: 201 });
   } catch (err) {
     const error = err as Error;

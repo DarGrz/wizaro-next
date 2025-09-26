@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     .from('documents')
     .update({ 
       processing_status: 'zakończone',
-      // Zapewniamy, że tracking_token pozostaje niezmieniony - nie aktualizujemy tego pola
+
     })
     .eq('id', id);
 

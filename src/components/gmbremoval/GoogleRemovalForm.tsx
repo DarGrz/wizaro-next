@@ -393,7 +393,6 @@ export default function GoogleRemovalForm() {
         }),
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
-      const docData = await docRes.json();
 
       // Only remove from localStorage if we're in a browser environment
       if (typeof window !== 'undefined') {
@@ -401,11 +400,7 @@ export default function GoogleRemovalForm() {
       }
       
       // Przekierowanie na stronę thankyou z tokenem śledzenia
-      if (docData.tracking_token) {
-        window.location.href = `/thankyou?tracking_token=${docData.tracking_token}`;
-      } else {
-        window.location.href = "/thankyou";
-      }
+      window.location.href = "/thankyou";
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");

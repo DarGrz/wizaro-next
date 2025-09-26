@@ -3,7 +3,6 @@ Allow: /
 Disallow: /dashboard/
 Disallow: /api/
 Disallow: /login
-Disallow: /podglad-zlecenia/
 
 # Sitemap
 Sitemap: https://wizaro.pl/sitemap.xml

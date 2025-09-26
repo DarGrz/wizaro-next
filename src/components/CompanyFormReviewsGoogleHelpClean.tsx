@@ -286,11 +286,7 @@ export default function CompanyFormReviewsClean() {
       localStorage.removeItem("companyFormData");
       
       // Przekierowanie na stronę sukces z tokenem śledzenia
-      if (data.tracking_token) {
-        window.location.href = `/sukces?tracking_token=${data.tracking_token}`;
-      } else {
-        window.location.href = "/sukces";
-      }
+      window.location.href = "/sukces";
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd podczas przetwarzania. Spróbuj ponownie.");

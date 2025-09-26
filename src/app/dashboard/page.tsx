@@ -1,9 +1,8 @@
-import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 import VisitorsChart from '@/components/VisitorsChart';
 import Link from 'next/link';
 import ReviewsToggleButton from '@/components/ReviewsToggleButton';
+import { checkAuth } from '@/lib/auth';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -11,9 +10,8 @@ const supabase = createClient(
 );
 
 export default async function DashboardPage() {
-  // 🔐 Sprawdzenie logowania
-  const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
-  if (!isLoggedIn) redirect('/login');
+  // 🔐 Sprawdzenie logowania z nowym systemem
+  await checkAuth();
 
   // 📥 Get total visitor count directly instead of fetching all records
   const { count: totalVisitors } = await supabase
@@ -64,10 +62,24 @@ export default async function DashboardPage() {
     });
   }
 
+  // Server action do wylogowania
+  const handleLogout = async () => {
+    'use server';
+    const { cookies } = await import('next/headers');
+    const { redirect } = await import('next/navigation');
+    const cookieStore = await cookies();
+    
+    cookieStore.set('admin-auth', '', { expires: new Date(0) });
+    cookieStore.set('user-role', '', { expires: new Date(0) });
+    cookieStore.set('user-id', '', { expires: new Date(0) });
+    
+    redirect('/login');
+  };
+
   return (
     <main className="max-w-8xl mx-auto p-4 m-2">
       <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">📊 Dashboard – Wizaro</h1>
+        <h1 className="text-2xl font-bold">📊 Dashboard – Wizaro (Admin)</h1>
         <div className="flex space-x-5">
           <Link 
             href="/dashboard/searched-nip" 
@@ -87,6 +99,14 @@ export default async function DashboardPage() {
           >
             Zobacz zamówienia
           </Link>
+          <form action={handleLogout} className="inline">
+            <button 
+              type="submit"
+              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors text-sm"
+            >
+              Wyloguj
+            </button>
+          </form>
         </div>
       </div>
 

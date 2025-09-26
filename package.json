@@ -11,10 +11,12 @@
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/supabase-js": "^2.49.3",
+    "@types/bcryptjs": "^3.0.0",
     "@types/xml2js": "^0.4.14",
     "@vercel/analytics": "^1.5.0",
     "apisauce": "^3.1.1",
     "axios": "^1.8.4",
+    "bcryptjs": "^3.0.2",
     "better-sqlite3": "^11.9.1",
     "cheerio": "^1.1.0",
     "date-fns": "^4.1.0",

@@ -191,16 +191,11 @@ export default function CompanyFormRemoval() {
         }),
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
-      const docData = await docRes.json();
 
       localStorage.removeItem("companyFormRemovalData");
       
       // Przekierowanie na stronę thankyou z tokenem śledzenia
-      if (docData.tracking_token) {
-        window.location.href = `/thankyou?tracking_token=${docData.tracking_token}`;
-      } else {
-        window.location.href = "/thankyou";
-      }
+      window.location.href = "/thankyou";
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");
