@@ -20,6 +20,10 @@ export default async function OrdersPage({
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
   if (!isLoggedIn) redirect('/login');
 
+  // Filtrowanie zamówień
+  const params = await searchParams;
+  const filter = params.filter || 'all';
+
   // 📦 Pobierz zamówienia z danymi firm i statusem płatności
   const { data: orders } = await supabase
     .from('documents')
@@ -43,8 +47,8 @@ export default async function OrdersPage({
     `)
     .order('created_at', { ascending: false });
 
-  // Pobierz wszystkie opinie jeśli filtr to "reviews"
-  const { data: reviews } = filter === 'reviews' ? await supabase
+  // Pobierz wszystkie opinie - zawsze ładujemy dla licznika i tabeli
+  const { data: reviews } = await supabase
     .from('reviews')
     .select(`
       *,
@@ -55,11 +59,7 @@ export default async function OrdersPage({
         phone
       )
     `)
-    .order('date_added', { ascending: false }) : { data: null };
-
-  // Filtrowanie zamówień
-  const params = await searchParams;
-  const filter = params.filter || 'all';
+    .order('date_added', { ascending: false });
   const filteredOrders = orders?.filter(order => {
     if (filter === 'removal') return order.type === 'żądanie usunięcia opinii';
     if (filter === 'profile') return order.type !== 'żądanie usunięcia opinii';
