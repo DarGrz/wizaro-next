@@ -15,6 +15,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Email i hasło są wymagane' }, { status: 400 });
     }
 
+    console.log('🔐 Próba logowania:', { email: email.toLowerCase() });
+
+    // Najpierw sprawdź czy w ogóle są jakiś użytkownicy
+    const { data: allUsers, error: allUsersError } = await supabase
+      .from('admin_users')
+      .select('email, is_active, role');
+    
+    console.log('👥 Wszyscy użytkownicy w bazie:', allUsers);
+    console.log('❓ Błąd pobierania wszystkich użytkowników:', allUsersError);
+
     // Pobierz użytkownika z bazy danych
     const { data: user, error } = await supabase
       .from('admin_users')
@@ -24,8 +34,36 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (error || !user) {
-      return NextResponse.json({ error: 'Nieprawidłowe dane logowania' }, { status: 401 });
+      console.error('❌ Błąd pobierania użytkownika:', error);
+      console.log('🔍 Sprawdzenie użytkownika:', { email: email.toLowerCase(), userFound: !!user });
+      
+      // Sprawdź bez filtru is_active
+      const { data: inactiveUser } = await supabase
+        .from('admin_users')
+        .select('*')
+        .eq('email', email.toLowerCase())
+        .single();
+      
+      console.log('🔍 Użytkownik bez filtru is_active:', inactiveUser);
+      
+      return NextResponse.json({ 
+        error: 'Nieprawidłowe dane logowania',
+        debug: {
+          allUsers: allUsers,
+          searchedEmail: email.toLowerCase(),
+          userFound: !!user,
+          inactiveUserFound: !!inactiveUser
+        }
+      }, { status: 401 });
     }
+
+    console.log('✅ Użytkownik znaleziony:', { 
+      id: user.id, 
+      email: user.email, 
+      role: user.role,
+      passwordType: user.password_hash.startsWith('$2b$') ? 'HASHED' : 'PLAIN_TEXT',
+      passwordLength: user.password_hash.length
+    });
 
     // Sprawdź hasło - obsługa zarówno plain text jak i hash
     let isValidPassword = false;
