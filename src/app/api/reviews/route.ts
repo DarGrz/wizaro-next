@@ -122,6 +122,14 @@ export async function GET(req: NextRequest) {
 
     console.log('✅ Pobrano opinie:', { count, reviewsLength: reviews?.length });
     
+    // DEBUG: Sprawdź pierwsze 3 opinie żeby zobaczyć sortowanie
+    if (reviews && reviews.length > 0) {
+      console.log('🔍 DEBUG - Pierwsze 3 opinie (sortowanie):');
+      reviews.slice(0, 3).forEach((review, index) => {
+        console.log(`  ${index + 1}. ID: ${review.id}, created_at: ${review.created_at}, author: ${review.author}`);
+      });
+    }
+    
     return NextResponse.json({ 
       reviews: reviews || [],
       count: count || 0,
