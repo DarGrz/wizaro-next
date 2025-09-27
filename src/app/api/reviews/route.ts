@@ -76,22 +76,41 @@ export async function POST(req: NextRequest) {
 }
 
 // GET endpoint do sprawdzania reviews
-export async function GET() {
+export async function GET(req: NextRequest) {
   console.log('🔄 API /reviews - GET request');
   
   try {
-    const { data: reviews, error, count } = await supabase
+    const { searchParams } = new URL(req.url);
+    const dateFrom = searchParams.get('dateFrom');
+    const dateTo = searchParams.get('dateTo');
+    
+    console.log('🔍 DEBUG API - Parameters:', { dateFrom, dateTo });
+    
+    let query = supabase
       .from('reviews')
       .select(`
         *,
         companies (
           name,
           email,
-          gmb_url
+          gmb_url,
+          phone
         )
-      `, { count: 'exact' })
-      .order('date_added', { ascending: false })
-      .limit(50);
+      `, { count: 'exact' });
+
+    console.log('🔍 DEBUG API - Initial query created');
+
+    // Filtrowanie po dacie jeśli parametry są podane (używamy created_at)
+    if (dateFrom) {
+      query = query.gte('created_at', dateFrom);
+    }
+    if (dateTo) {
+      query = query.lte('created_at', dateTo);
+    }
+
+    const { data: reviews, error, count } = await query
+      .order('created_at', { ascending: false })
+      .limit(1000); // Zwiększamy limit dla dashboardu
 
     if (error) {
       console.error('❌ Błąd pobierania opinii:', error);

@@ -9,6 +9,7 @@ interface Review {
   content: string;
   url: string;
   date_added: string;
+  created_at?: string;
   company_id: string;
   companies?: {
     name: string;
@@ -25,6 +26,10 @@ interface ReviewsTableProps {
 export default function ReviewsTable({ reviews }: ReviewsTableProps) {
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  console.log('🔍 DEBUG ReviewsTable - Received reviews:', reviews);
+  console.log('🔍 DEBUG ReviewsTable - Reviews length:', reviews?.length);
+  console.log('🔍 DEBUG ReviewsTable - First review:', reviews?.[0]);
 
   const handleViewReview = (review: Review) => {
     setSelectedReview(review);
@@ -83,9 +88,11 @@ export default function ReviewsTable({ reviews }: ReviewsTableProps) {
                   )}
                 </td>
                 <td className="p-3">
-                  {review.date_added ? 
-                    new Date(review.date_added).toLocaleDateString('pl-PL') : 
-                    'Brak daty'
+                  {review.created_at ? 
+                    new Date(review.created_at).toLocaleDateString('pl-PL') : 
+                    review.date_added ? 
+                      new Date(review.date_added).toLocaleDateString('pl-PL') : 
+                      'Brak daty'
                   }
                 </td>
                 <td className="p-3">

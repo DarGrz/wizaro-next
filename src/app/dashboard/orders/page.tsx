@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import DeletedMessageAlert from './components/DeletedMessageAlert';
-import ReviewsTable from './components/ReviewsTable';
+import ReviewsSection from './components/ReviewsSection';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -47,19 +47,10 @@ export default async function OrdersPage({
     `)
     .order('created_at', { ascending: false });
 
-  // Pobierz wszystkie opinie - zawsze ładujemy dla licznika i tabeli
-  const { data: reviews } = await supabase
+  // Pobierz tylko liczbę opinii dla licznika (bez pełnych danych)
+  const { count: reviewsCount } = await supabase
     .from('reviews')
-    .select(`
-      *,
-      companies (
-        name,
-        email,
-        gmb_url,
-        phone
-      )
-    `)
-    .order('date_added', { ascending: false });
+    .select('*', { count: 'exact', head: true });
   const filteredOrders = orders?.filter(order => {
     if (filter === 'removal') return order.type === 'żądanie usunięcia opinii';
     if (filter === 'profile') return order.type !== 'żądanie usunięcia opinii';
@@ -123,13 +114,13 @@ export default async function OrdersPage({
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
-            📝 Wszystkie opinie ({reviews?.length || '...'})
+            📝 Wszystkie opinie ({reviewsCount || '...'})
           </Link>
         </div>
       </div>
 
       {filter === 'reviews' ? (
-        <ReviewsTable reviews={reviews || []} />
+        <ReviewsSection initialCount={reviewsCount || 0} />
       ) : (
         <div className="bg-white shadow rounded-xl w-full overflow-x-auto">
           <table className="min-w-[1200px] w-full text-sm">
