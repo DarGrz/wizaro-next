@@ -31,6 +31,11 @@ export default async function OrdersPage({
   const params = await searchParams;
   const filter = params.filter || 'all';
 
+  // Sub_admin może tylko oglądać opinie - przekieruj jeśli próbuje dostać się do innych zakładek
+  if (userRole === 'sub_admin' && filter !== 'reviews') {
+    redirect('/dashboard/orders?filter=reviews');
+  }
+
   // 📦 Pobierz zamówienia z danymi firm i statusem płatności
   const { data: orders } = await supabase
     .from('documents')
@@ -97,36 +102,41 @@ export default async function OrdersPage({
       {/* Filtrowanie */}
       <div className="mb-4">
         <div className="flex gap-2">
-          <Link
-            href="/dashboard/orders"
-            className={`px-4 py-2 rounded-lg text-sm transition-colors ${
-              filter === 'all' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            Wszystkie ({orders?.length || 0})
-          </Link>
-          <Link
-            href="/dashboard/orders?filter=removal"
-            className={`px-4 py-2 rounded-lg text-sm transition-colors ${
-              filter === 'removal' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            Żądanie usunięcia opinii ({orders?.filter(o => o.type === 'żądanie usunięcia opinii').length || 0})
-          </Link>
-          <Link
-            href="/dashboard/orders?filter=profile"
-            className={`px-4 py-2 rounded-lg text-sm transition-colors ${
-              filter === 'profile' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            Usuwanie profilu ({orders?.filter(o => o.type !== 'żądanie usunięcia opinii').length || 0})
-          </Link>
+          {/* Sub_admin widzi tylko zakładkę opinii */}
+          {userRole === 'admin' && (
+            <>
+              <Link
+                href="/dashboard/orders"
+                className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+                  filter === 'all' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Wszystkie ({orders?.length || 0})
+              </Link>
+              <Link
+                href="/dashboard/orders?filter=removal"
+                className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+                  filter === 'removal' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Żądanie usunięcia opinii ({orders?.filter(o => o.type === 'żądanie usunięcia opinii').length || 0})
+              </Link>
+              <Link
+                href="/dashboard/orders?filter=profile"
+                className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+                  filter === 'profile' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Usuwanie profilu ({orders?.filter(o => o.type !== 'żądanie usunięcia opinii').length || 0})
+              </Link>
+            </>
+          )}
           <Link
             href="/dashboard/orders?filter=reviews"
             className={`px-4 py-2 rounded-lg text-sm transition-colors ${

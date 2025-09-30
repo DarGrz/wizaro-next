@@ -11,11 +11,19 @@ interface Review {
   date_added: string;
   created_at?: string;
   company_id: string;
+  status?: 'nowa' | 'usunięta' | 'przywrócona' | 'w_trakcie' | 'brak_możliwości';
+  last_modified_by?: number;
+  last_modified_at?: string;
+  notes?: string;
+  gmb_link?: string;
   companies?: {
     name: string;
     email: string;
     gmb_url?: string;
     phone?: string;
+  };
+  admin_users?: {
+    email: string;
   };
 }
 

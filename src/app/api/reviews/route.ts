@@ -97,6 +97,9 @@ export async function GET(req: NextRequest) {
           email,
           gmb_url,
           phone
+        ),
+        admin_users (
+          email
         )
       `, { count: 'exact' });
 
