@@ -16,9 +16,16 @@ export default async function OrdersPage({
 }: {
   searchParams: Promise<{ filter?: string }>;
 }) {
-  // 🔐 Sprawdzenie logowania
+  // 🔐 Sprawdzenie logowania i roli
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
+  const userRole = (await cookies()).get('user-role')?.value;
+  
   if (!isLoggedIn) redirect('/login');
+  
+  // Dozwolone role: admin i sub_admin
+  if (userRole !== 'admin' && userRole !== 'sub_admin') {
+    redirect('/login');
+  }
 
   // Filtrowanie zamówień
   const params = await searchParams;
@@ -60,13 +67,27 @@ export default async function OrdersPage({
   return (
     <main className=" mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">📋 Zamówienia</h1>
-        <Link 
-          href="/dashboard" 
-          className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
-        >
-          Powrót do dashboardu
-        </Link>
+        <div>
+          <h1 className="text-2xl font-bold">📋 Zamówienia</h1>
+          {userRole === 'sub_admin' && (
+            <p className="text-sm text-gray-600 mt-1">Panel Sub-Admina - Dostęp do zamówień</p>
+          )}
+        </div>
+        {userRole === 'admin' ? (
+          <Link 
+            href="/dashboard" 
+            className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+          >
+            Powrót do dashboardu
+          </Link>
+        ) : (
+          <Link 
+            href="/api/logout" 
+            className="bg-red-100 text-red-700 px-4 py-2 rounded-lg hover:bg-red-200 transition-colors"
+          >
+            Wyloguj się
+          </Link>
+        )}
       </div>
 
       <Suspense fallback={null}>

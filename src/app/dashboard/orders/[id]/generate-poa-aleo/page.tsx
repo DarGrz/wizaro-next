@@ -15,9 +15,16 @@ interface Props {
 }
 
 export default async function GenerateAleoPowerOfAttorneyPage({ params }: Props) {
-  // 🔐 Sprawdzenie logowania
+  // 🔐 Sprawdzenie logowania i roli
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
+  const userRole = (await cookies()).get('user-role')?.value;
+  
   if (!isLoggedIn) redirect('/login');
+  
+  // Dozwolone role: admin i sub_admin
+  if (userRole !== 'admin' && userRole !== 'sub_admin') {
+    redirect('/dashboard/orders');
+  }
 
   // Rozpakuj parametry dynamiczne
   const { id } = await params;

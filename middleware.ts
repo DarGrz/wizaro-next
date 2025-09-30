@@ -21,25 +21,45 @@ export async function middleware(req: NextRequest) {
     // Przekieruj zgodnie z rolą
     if (userRole === 'admin') {
       return NextResponse.redirect(new URL('/dashboard', req.url));
+    } else if (userRole === 'sub_admin') {
+      return NextResponse.redirect(new URL('/dashboard/orders', req.url));
     } else if (userRole === 'viewer') {
       return NextResponse.redirect(new URL('/dashboard/reviews-only', req.url));
     }
     return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
-  // Sprawdź czy viewer próbuje dostać się do stron tylko dla admin
-  if (isDashboardRoute && adminAuth && userRole === 'viewer') {
-    const viewerAllowedRoutes = [
-      '/dashboard/reviews-only',
-      '/dashboard/orders' // viewer może oglądać zamówienia, ale nie może ich edytować
-    ];
-    
-    const isViewerAllowed = viewerAllowedRoutes.some(route => 
-      req.nextUrl.pathname.startsWith(route)
-    ) || req.nextUrl.pathname.startsWith('/dashboard/orders/') && req.nextUrl.pathname.includes('/'); // pojedyncze zamówienia
+  // Sprawdź dostęp dla różnych ról
+  if (isDashboardRoute && adminAuth) {
+    // Sub-admin: tylko dostęp do zamówień
+    if (userRole === 'sub_admin') {
+      const subAdminAllowedRoutes = [
+        '/dashboard/orders' // sub_admin ma pełny dostęp do zamówień
+      ];
+      
+      const isSubAdminAllowed = subAdminAllowedRoutes.some(route => 
+        req.nextUrl.pathname.startsWith(route)
+      );
 
-    if (!isViewerAllowed) {
-      return NextResponse.redirect(new URL('/dashboard/reviews-only', req.url));
+      if (!isSubAdminAllowed) {
+        return NextResponse.redirect(new URL('/dashboard/orders', req.url));
+      }
+    }
+    
+    // Viewer: ograniczony dostęp
+    if (userRole === 'viewer') {
+      const viewerAllowedRoutes = [
+        '/dashboard/reviews-only',
+        '/dashboard/orders' // viewer może oglądać zamówienia, ale nie może ich edytować
+      ];
+      
+      const isViewerAllowed = viewerAllowedRoutes.some(route => 
+        req.nextUrl.pathname.startsWith(route)
+      ) || req.nextUrl.pathname.startsWith('/dashboard/orders/') && req.nextUrl.pathname.includes('/'); // pojedyncze zamówienia
+
+      if (!isViewerAllowed) {
+        return NextResponse.redirect(new URL('/dashboard/reviews-only', req.url));
+      }
     }
   }
 

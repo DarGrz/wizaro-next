@@ -18,9 +18,16 @@ interface SearchedNIP {
 }
 
 export default async function SearchedNIPPage() {
-  // 🔐 Sprawdzenie logowania
+  // 🔐 Sprawdzenie logowania i roli
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
+  const userRole = (await cookies()).get('user-role')?.value;
+  
   if (!isLoggedIn) redirect('/login');
+  
+  // Tylko admin ma dostęp - sub_admin przekieruj do zamówień
+  if (userRole !== 'admin') {
+    redirect('/dashboard/orders');
+  }
 
   // Create Supabase client
   const supabase = createServerSupabaseClient();

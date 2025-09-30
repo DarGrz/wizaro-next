@@ -2,7 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 import VisitorsChart from '@/components/VisitorsChart';
 import Link from 'next/link';
 import ReviewsToggleButton from '@/components/ReviewsToggleButton';
-import { checkAuth } from '@/lib/auth';
+import { checkAuth, getUserRole } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -12,6 +13,12 @@ const supabase = createClient(
 export default async function DashboardPage() {
   // 🔐 Sprawdzenie logowania z nowym systemem
   await checkAuth();
+  
+  // 🚫 Blokada dostępu dla sub-adminów - przekieruj do zamówień
+  const userRole = await getUserRole();
+  if (userRole === 'sub_admin') {
+    redirect('/dashboard/orders');
+  }
 
   // 📥 Get total visitor count directly instead of fetching all records
   const { count: totalVisitors } = await supabase

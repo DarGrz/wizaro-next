@@ -83,8 +83,10 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const dateFrom = searchParams.get('dateFrom');
     const dateTo = searchParams.get('dateTo');
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = parseInt(searchParams.get('limit') || '50');
     
-    console.log('🔍 DEBUG API - Parameters:', { dateFrom, dateTo });
+    console.log('🔍 DEBUG API - Parameters:', { dateFrom, dateTo, page, limit });
     
     let query = supabase
       .from('reviews')
@@ -108,9 +110,12 @@ export async function GET(req: NextRequest) {
       query = query.lte('created_at', dateTo);
     }
 
+    // Oblicz offset dla paginacji
+    const offset = (page - 1) * limit;
+    
     const { data: reviews, error, count } = await query
       .order('created_at', { ascending: false })
-      .limit(1000); // Zwiększamy limit dla dashboardu
+      .range(offset, offset + limit - 1); // Supabase używa range() dla paginacji
 
     if (error) {
       console.error('❌ Błąd pobierania opinii:', error);
@@ -130,9 +135,22 @@ export async function GET(req: NextRequest) {
       });
     }
     
+    // Oblicz informacje o paginacji
+    const totalPages = Math.ceil((count || 0) / limit);
+    const hasNextPage = page < totalPages;
+    const hasPrevPage = page > 1;
+    
     return NextResponse.json({ 
       reviews: reviews || [],
       count: count || 0,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        hasNextPage,
+        hasPrevPage,
+        limit,
+        total: count || 0
+      },
       message: 'Opinie pobrane pomyślnie'
     }, { status: 200 });
   } catch (err) {

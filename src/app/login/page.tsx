@@ -18,7 +18,13 @@ export default function LoginPage() {
     });
 
     if (res.ok) {
-      router.push('/dashboard');
+      const data = await res.json();
+      // Przekieruj według roli użytkownika
+      if (data.user?.role === 'sub_admin') {
+        router.push('/dashboard/orders');
+      } else {
+        router.push('/dashboard');
+      }
     } else {
       const data = await res.json();
       setError(data.error || 'Błąd logowania');

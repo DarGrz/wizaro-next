@@ -14,9 +14,16 @@ type EditOrderPageProps = { params: Promise<{ id: string }> };
 
 export default async function EditOrderPage({ params }: EditOrderPageProps) {
   const { id } = await params;
-  // Auth check
+  // Auth check z rolą
   const isLoggedIn = (await cookies()).get('admin-auth')?.value === 'true';
+  const userRole = (await cookies()).get('user-role')?.value;
+  
   if (!isLoggedIn) redirect('/login');
+  
+  // Dozwolone role: admin i sub_admin
+  if (userRole !== 'admin' && userRole !== 'sub_admin') {
+    redirect('/dashboard/orders');
+  }
 
   // Fetch order
   const { data: order } = await supabase

@@ -44,7 +44,7 @@ SELECT
 FROM reviews r
 LEFT JOIN companies c ON r.company_id = c.id
 ORDER BY r.created_at DESC
-LIMIT 15;
+LIMIT 50;
 
 -- 6. Pokaż statystyki końcowe
 SELECT 
