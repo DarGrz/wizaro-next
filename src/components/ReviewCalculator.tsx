@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Calculator, Star, TrendingUp, Target, AlertCircle, CheckCircle, Info } from 'lucide-react';
+import Link from 'next/link';
 
 interface ScenarioResult {
   rating: number;
@@ -533,12 +534,12 @@ export default function ReviewCalculator() {
             <p className="text-gray-100 mb-2 md:mb-4 text-xs md:text-sm">
               Nasi specjaliści pomogą Ci zoptymalizować Twój profil Google i usunąć negatywne opinie zgodnie z zasadami Google.
             </p>
-            <a 
-              href="/uslugi/usuwanie-opinii-google" 
+            <Link 
+              href="/" 
               className="block text-center bg-white text-[#002a5c] font-medium py-1.5 md:py-2 px-3 md:px-4 rounded text-xs md:text-sm hover:bg-blue-50 transition duration-200"
             >
               Sprawdź nasze usługi
-            </a>
+            </Link>
           </div>
         </div>
       </div>
