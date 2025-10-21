@@ -7,6 +7,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(request: NextRequest) {
   try {
+    // Sprawdzenie czy klucz Stripe jest dostępny
+    if (!process.env.STRIPE_SECRET_KEY) {
+      console.error('❌ STRIPE_SECRET_KEY not found');
+      return NextResponse.json(
+        { error: 'Błąd konfiguracji płatności' },
+        { status: 500 }
+      );
+    }
+
     const {
       document_id,
       email,
@@ -14,9 +23,18 @@ export async function POST(request: NextRequest) {
       nip,
     } = await request.json();
 
+    // Walidacja wymaganych pól
+    if (!document_id || !email || !company_name) {
+      console.error('❌ Missing required fields:', { document_id, email, company_name });
+      return NextResponse.json(
+        { error: 'Brak wymaganych danych' },
+        { status: 400 }
+      );
+    }
+
     // Tworzenie sesji płatności Stripe
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'blik', 'p24'],
+    
       line_items: [
         {
           price_data: {
@@ -40,7 +58,7 @@ export async function POST(request: NextRequest) {
         company_name,
         nip,
       },
-      billing_address_collection: 'required',
+      
       customer_creation: 'always',
       invoice_creation: {
         enabled: true,
@@ -66,8 +84,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.error('❌ Stripe payment error:', error);
+    
+    // Dodatkowe logowanie dla debugowania
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
+    
     return NextResponse.json(
-      { error: 'Błąd podczas tworzenia płatności' },
+      { 
+        error: 'Błąd podczas tworzenia płatności',
+        details: process.env.NODE_ENV === 'development' ? error : undefined
+      },
       { status: 500 }
     );
   }
