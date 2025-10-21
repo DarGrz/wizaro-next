@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
             currency: 'pln',
             product_data: {
               name: 'Wniosek RODO - Usunięcie danych osobowych',
-              description: 'Przygotowanie i wysłanie wniosku o usunięcie danych osobowych zgodnie z RODO',
+              description: 'Przygotowanie wniosku o usunięcie danych osobowych zgodnie z RODO',
             },
             unit_amount: 29900, // 299 zł brutto
           },
