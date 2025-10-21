@@ -30,6 +30,7 @@
     "next": "15.2.4",
     "node-fetch": "^3.3.2",
     "nodemailer": "^7.0.3",
+    "puppeteer": "^24.26.0",
     "react": "^19.0.0",
     "react-canvas-confetti": "^2.0.7",
     "react-confetti": "^6.4.0",

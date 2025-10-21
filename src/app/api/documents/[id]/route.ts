@@ -19,7 +19,22 @@ export async function GET(
 
     const { data, error } = await supabase
       .from('documents')
-      .select('*')
+      .select(`
+        *,
+        company: companies (
+          id,
+          name,
+          first_name,
+          last_name,
+          email,
+          nip,
+          phone,
+          street,
+          city,
+          zip,
+          url
+        )
+      `)
       .eq('id', id)
       .maybeSingle();
 

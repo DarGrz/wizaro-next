@@ -1,7 +1,7 @@
 'use client';
 
-import CompanyForm from '@/components/CompanyForm';
+import CompanyRODOForm from '@/components/CompanyRODOForm';
 
-export default function FormularzPage() {
-  return <CompanyForm />;
+export default function WniosekRODOPage() {
+  return <CompanyRODOForm />;
 }

@@ -30,6 +30,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Brak danych' }, { status: 400 });
     }
 
+    // Pobierz URL firmy do synchronizacji gmb_link
+    console.log('🔍 Pobieranie URL firmy...');
+    const { data: companyData, error: companyError } = await supabase
+      .from('companies')
+      .select('url')
+      .eq('id', company_id)
+      .single();
+
+    if (companyError) {
+      console.error('❌ Błąd pobierania firmy:', companyError);
+      return NextResponse.json({ 
+        error: 'Błąd pobierania danych firmy',
+        details: companyError.message 
+      }, { status: 500 });
+    }
+
+    const companyUrl = companyData?.url || '';
+    console.log('🔗 URL firmy:', companyUrl);
+
     const formattedReviews = reviews.map((review, index) => {
       const formatted = {
         company_id,
@@ -37,6 +56,7 @@ export async function POST(req: NextRequest) {
         url: review.url,
         content: review.content,
         date_added: review.date_added,
+        gmb_link: companyUrl, // ✅ synchronizacja gmb_link z company URL
       };
       console.log(`📝 Sformatowana opinia ${index + 1}:`, formatted);
       return formatted;

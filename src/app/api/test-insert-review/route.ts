@@ -10,12 +10,24 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
+    // Pobierz URL firmy do synchronizacji gmb_link
+    let companyUrl = '';
+    if (body.company_id) {
+      const { data: companyData } = await supabase
+        .from('companies')
+        .select('url')
+        .eq('id', body.company_id)
+        .single();
+      companyUrl = companyData?.url || '';
+    }
+
     const review = {
       author: body.author?.trim() || 'Brak autora',
       content: body.content?.trim() || 'Brak treści',
       url: body.url?.trim() || '',
       date_added: body.date_added?.slice(0, 10) || null,
       company_id: body.company_id,
+      gmb_link: companyUrl, // ✅ synchronizacja gmb_link z company URL
     };
 
     console.log('📦 Dane do zapisu:', review);

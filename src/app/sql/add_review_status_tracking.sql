@@ -86,16 +86,16 @@ ADD COLUMN IF NOT EXISTS gmb_link TEXT;
 
 -- 9. Skopiuj URL z tabeli companies do wszystkich opinii
 UPDATE reviews 
-SET gmb_link = companies.gmb_url,
+SET gmb_link = companies.url,
     last_modified_at = NOW()
 FROM companies 
 WHERE reviews.company_id = companies.id 
-AND companies.gmb_url IS NOT NULL 
-AND companies.gmb_url != '';
+AND companies.url IS NOT NULL 
+AND companies.url != '';
 
 -- 10. Sprawdź ile rekordów zostało zaktualizowanych
 SELECT 
-    'SKOPIOWANO GMB_URL DO REVIEWS:' as info,
+    'SKOPIOWANO URL Z COMPANIES DO REVIEWS:' as info,
     COUNT(*) as updated_records
 FROM reviews 
 WHERE gmb_link IS NOT NULL AND gmb_link != '';
@@ -104,18 +104,18 @@ WHERE gmb_link IS NOT NULL AND gmb_link != '';
 CREATE INDEX IF NOT EXISTS idx_reviews_gmb_link ON reviews(gmb_link);
 
 -- 12. Utwórz funkcję i trigger do automatycznego kopiowania przy nowych opiniach
-CREATE OR REPLACE FUNCTION copy_gmb_url_to_review()
+CREATE OR REPLACE FUNCTION copy_company_url_to_review()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- Jeśli dodajemy nową opinię, skopiuj gmb_url z companies
+    -- Jeśli dodajemy nową opinię, skopiuj url z companies
     IF TG_OP = 'INSERT' THEN
         UPDATE reviews 
         SET gmb_link = (
-            SELECT gmb_url 
+            SELECT url 
             FROM companies 
             WHERE companies.id = NEW.company_id 
-            AND gmb_url IS NOT NULL 
-            AND gmb_url != ''
+            AND url IS NOT NULL 
+            AND url != ''
         )
         WHERE reviews.id = NEW.id;
     END IF;
@@ -125,20 +125,20 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- 13. Utwórz trigger
-DROP TRIGGER IF EXISTS trigger_copy_gmb_url ON reviews;
-CREATE TRIGGER trigger_copy_gmb_url
+DROP TRIGGER IF EXISTS trigger_copy_company_url ON reviews;
+CREATE TRIGGER trigger_copy_company_url
     AFTER INSERT ON reviews
     FOR EACH ROW
-    EXECUTE FUNCTION copy_gmb_url_to_review();
+    EXECUTE FUNCTION copy_company_url_to_review();
 
 -- 14. Utwórz funkcję do aktualizacji przy zmianie URL w companies
-CREATE OR REPLACE FUNCTION update_reviews_gmb_link()
+CREATE OR REPLACE FUNCTION update_reviews_company_url()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- Jeśli zmieniono gmb_url w companies, zaktualizuj wszystkie powiązane opinie
-    IF OLD.gmb_url IS DISTINCT FROM NEW.gmb_url THEN
+    -- Jeśli zmieniono url w companies, zaktualizuj wszystkie powiązane opinie
+    IF OLD.url IS DISTINCT FROM NEW.url THEN
         UPDATE reviews 
-        SET gmb_link = NEW.gmb_url,
+        SET gmb_link = NEW.url,
             last_modified_at = NOW()
         WHERE company_id = NEW.id;
     END IF;
@@ -148,11 +148,11 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- 15. Utwórz trigger dla aktualizacji companies
-DROP TRIGGER IF EXISTS trigger_update_reviews_gmb_link ON companies;
-CREATE TRIGGER trigger_update_reviews_gmb_link
+DROP TRIGGER IF EXISTS trigger_update_reviews_company_url ON companies;
+CREATE TRIGGER trigger_update_reviews_company_url
     AFTER UPDATE ON companies
     FOR EACH ROW
-    EXECUTE FUNCTION update_reviews_gmb_link();
+    EXECUTE FUNCTION update_reviews_company_url();
 
 -- 16. Sprawdź przykładowe dane z nową kolumną
 SELECT 
@@ -162,7 +162,7 @@ SELECT
     r.url as review_url,
     r.gmb_link,
     c.name as company_name,
-    c.gmb_url as company_gmb_url
+    c.url as company_url
 FROM reviews r
 LEFT JOIN companies c ON r.company_id = c.id
 ORDER BY r.id DESC

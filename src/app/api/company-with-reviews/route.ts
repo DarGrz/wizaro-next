@@ -125,7 +125,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 4. Zapisz opinie z przypisanym document_id
+    // 4. Zapisz opinie z przypisanym document_id i gmb_link z company URL
     const reviewsWithDocumentId = reviews.map((r, i) => ({
       author: r.author?.trim() || `Autor ${i + 1}`,
       content: r.content?.trim() || 'Brak treści',
@@ -133,6 +133,7 @@ export async function POST(req: NextRequest) {
       date_added: r.date_added?.slice(0, 10) || null,
       company_id: companyData.id,
       document_id: documentId, // ✅ przypisujemy ten sam ID
+      gmb_link: companyData.url || '', // ✅ synchronizacja gmb_link z company URL
     }));
 
     console.log('📝 [REVIEWS] Próba zapisu opinii do tabeli reviews...');
