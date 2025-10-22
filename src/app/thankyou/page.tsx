@@ -8,7 +8,7 @@ function ThankYouContent() {
     <div className="bg-green-50 border border-green-100 rounded-lg p-5 mb-8 max-w-xl w-full">
       <h2 className="text-lg font-semibold mb-3 text-green-800">Zlecenie zostało przyjęte</h2>
       <p className="text-gray-700 mb-4">
-        Twoje zlecenie zostało pomyślnie złożone. Nasi specjaliści skontaktują się z Tobą wkrótce w celu omówienia szczegółów realizacji.
+        Twoje zlecenie zostało pomyślnie złożone i trafiło do realizacji.
       </p>
     </div>
   );
@@ -19,7 +19,7 @@ export default function ThankYouPage() {
     <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4">
       <h1 className="text-3xl font-bold mb-4 text-center">Dziękujemy za zaufanie!</h1>
       <p className="text-lg text-gray-700 mb-6 text-center max-w-xl">
-        Twoje zlecenie zostało złożone pomyślnie. Skontaktujemy się z Tobą w celu jego dalszej realizacji.
+          W razie dodatkowych pytań, jesteśmy do dyspozycji.
       </p>
       
       <ThankYouContent />
