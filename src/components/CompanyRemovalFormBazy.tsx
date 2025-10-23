@@ -158,6 +158,7 @@ export default function CompanyFormRemoval() {
     "Biznes Finder": 69900,
     "PKT.pl": 69900,
     "Podobne Firmy": 69900,
+    "Puls Biznesu": 69900,
     "Inne": 69900
   };  const calculatePriceForPortals = (portal: string): number => {
     return PORTAL_PRICES[portal as keyof typeof PORTAL_PRICES] || 699;

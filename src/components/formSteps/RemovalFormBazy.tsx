@@ -5,8 +5,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useGUS } from "@/hooks/useGUS";
 
 const PORTAL_OPTIONS = [
-  { name: "ALEO", price: 699 },
   { name: "GoWork", price: 699 },
+  { name: "Puls Biznesu", price: 699 },
+  { name: "ALEO", price: 699 },
   { name: "Panorama Firm", price: 699 },
   { name: "Biznes Finder", price: 699 },
   { name: "PKT.pl", price: 699 },
