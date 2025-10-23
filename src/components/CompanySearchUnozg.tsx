@@ -44,7 +44,7 @@ const containerVariants = {
   },
 };
 
-export default function CompanySearchUnozg() {
+export default function CompanySearchUnozg2() {
   const [searchQuery, setSearchQuery] = useState("");
   const [locations, setLocations] = useState<GmbLocation[]>([]);
   const [isSearching, setIsSearching] = useState(false);
