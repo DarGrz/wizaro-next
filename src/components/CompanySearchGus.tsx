@@ -254,6 +254,33 @@ export default function CompanySearchGus() {
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
             Wyszukaj swoją firmę po numerze NIP i skorzystaj z naszych profesjonalnych usług ochrony reputacji.
           </p>
+          
+          {/* Supported Portals Badge */}
+          <motion.div 
+            variants={fadeInUp}
+            className="mt-6 sm:mt-8 flex flex-col items-center"
+          >
+            <div className="inline-flex items-center mb-3">
+              <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-sm font-semibold text-gray-700">Obsługiwane portale:</span>
+            </div>
+            <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto px-4">
+              {['ALEO', 'GoWork', 'Panorama Firm', 'Biznes Finder', 'PKT.pl', 'Podobne Firmy', 'Puls Biznesu'].map((portal, index) => (
+                <motion.span
+                  key={portal}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1 * index, duration: 0.3 }}
+                  className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-700 text-xs font-medium rounded-full border border-blue-200 hover:from-blue-100 hover:to-cyan-100 hover:border-blue-300 transition-all duration-300 hover:scale-105"
+                >
+                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                  {portal}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
 
         <motion.div variants={fadeInUp} className="max-w-4xl mx-auto relative">
