@@ -153,10 +153,10 @@ export default function PaymentSection({
           <div className="text-sm text-green-800">
             <strong>✅ Korzyści natychmiastowej płatności:</strong>
             <ul className="text-left text-xs mt-2 space-y-1">
-              <li>• Priorytetowe wykonanie usługi</li>
-              <li>• Szybszy kontakt w sprawie realizacji</li>
-              <li>• Automatyczne otrzymanie faktury VAT</li>
-              <li>• Brak konieczności oczekiwania na fakturę proforma</li>
+              <li>• Priorytetowe wykonanie zlecenia</li>
+              <li>• Bezpieczna szybka płatność</li>
+              <li>• Szybsze informacje o postępach prac</li>
+              <li>• Czas realizacji skrócony o ponad 50%</li>
             </ul>
           </div>
         </div>
