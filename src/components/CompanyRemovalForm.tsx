@@ -205,8 +205,14 @@ export default function CompanyFormRemoval() {
 
       localStorage.removeItem("companyFormRemovalData");
       
-      // Przekierowanie na stronę thankyou z tokenem śledzenia
-      window.location.href = "/thankyou";
+      // Przekierowanie na stronę thankyou z parametrami płatności
+      const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote
+      const searchParams = new URLSearchParams({
+        amount: priceInZloty.toString(),
+        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania opinii`
+      });
+      
+      window.location.href = `/thankyou?${searchParams.toString()}`;
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");

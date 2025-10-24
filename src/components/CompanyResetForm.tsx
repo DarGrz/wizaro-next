@@ -174,6 +174,9 @@ export default function CompanyResetForm() {
 
       setPayerId(currentPayerId);
 
+      // Oblicz cenę
+      const totalPrice = 999;
+
       const res = await fetch("/api/company-profile-removal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -194,8 +197,13 @@ export default function CompanyResetForm() {
 
       localStorage.removeItem("companyFormRemovalData");
       
-      // Przekierowanie na stronę thankyou z tokenem śledzenia
-      window.location.href = "/thankyou";
+      // Przekierowanie na stronę thankyou z parametrami płatności
+      const params = new URLSearchParams({
+        amount: (totalPrice / 100).toString(),
+        description: 'Resetowanie wizytówki firmowej'
+      }).toString();
+      
+      window.location.href = `/thankyou?${params}`;
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");

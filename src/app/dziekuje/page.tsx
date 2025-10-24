@@ -1,6 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import PaymentSection from "@/components/PaymentSection";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 // Komponent prostego podziękowania
 function ThankYouContent() {
@@ -12,6 +15,16 @@ function ThankYouContent() {
       </p>
     </div>
   );
+}
+
+// Komponent który obsługuje parametry URL
+function PaymentSectionWrapper() {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get('orderId');
+  const amount = searchParams.get('amount') ? parseInt(searchParams.get('amount')!) : 299;
+  const description = searchParams.get('description') || "Zapłać za swoją usługę i miej spokój";
+
+  return <PaymentSection orderId={orderId || undefined} amount={amount} description={description} />;
 }
 
 
@@ -26,9 +39,16 @@ export default function ThankYouPage() {
       
       <ThankYouContent />
       
-      <Link href="/" className="px-6 py-3 rounded bg-gray-200 text-gray-800 hover:bg-gray-300 transition text-sm">
-        Powrót na stronę główną
-      </Link>
+      {/* Sekcja płatności */}
+      <Suspense fallback={<div>Ładowanie...</div>}>
+        <PaymentSectionWrapper />
+      </Suspense>
+      
+      <div className="mt-8">
+        <Link href="/" className="px-6 py-3 rounded bg-gray-200 text-gray-800 hover:bg-gray-300 transition text-sm">
+          Powrót na stronę główną
+        </Link>
+      </div>
     </div>
   );
 }
