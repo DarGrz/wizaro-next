@@ -146,11 +146,12 @@ export default function CompanyFormRemoval() {
     localStorage.setItem("companyFormRemovalData", JSON.stringify(company));
   }, [company]);
 
-  useEffect(() => {
-    const cleanup = () => localStorage.removeItem("companyFormRemovalData");
-    window.addEventListener("beforeunload", cleanup);
-    return () => window.removeEventListener("beforeunload", cleanup);
-  }, []);
+  // USUNIĘTO: beforeunload listener, który usuwał dane przy opuszczaniu strony
+  // useEffect(() => {
+  //   const cleanup = () => localStorage.removeItem("companyFormRemovalData");
+  //   window.addEventListener("beforeunload", cleanup);
+  //   return () => window.removeEventListener("beforeunload", cleanup);
+  // }, []);
   const PORTAL_PRICES = {
     "ALEO": 69900,
     "GoWork": 69900,
@@ -350,7 +351,8 @@ export default function CompanyFormRemoval() {
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
 
-      localStorage.removeItem("companyFormRemovalData");
+      // NIE usuwamy danych z localStorage tutaj - będą potrzebne do faktury
+      // localStorage.removeItem("companyFormRemovalData");
       
       // Przekierowanie na stronę dziekuje z parametrami płatności
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote

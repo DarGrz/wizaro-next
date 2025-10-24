@@ -203,7 +203,8 @@ export default function CompanyFormRemoval() {
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
 
-      localStorage.removeItem("companyFormRemovalData");
+      // NIE usuwamy danych z localStorage tutaj - będą potrzebne do faktury
+      // localStorage.removeItem("companyFormRemovalData");
       
       // Przekierowanie na stronę thankyou z parametrami płatności
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote

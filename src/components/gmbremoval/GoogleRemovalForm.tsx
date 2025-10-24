@@ -226,14 +226,15 @@ export default function GoogleRemovalForm() {
     }
   }, [company]);
 
-  useEffect(() => {
-    // Check if window is defined (client-side only)
-    if (typeof window !== 'undefined') {
-      const cleanup = () => localStorage.removeItem("companyFormRemovalData");
-      window.addEventListener("beforeunload", cleanup);
-      return () => window.removeEventListener("beforeunload", cleanup);
-    }
-  }, []);
+  // USUNIĘTO: beforeunload listener, który usuwał dane przy opuszczaniu strony
+  // useEffect(() => {
+  //   // Check if window is defined (client-side only)
+  //   if (typeof window !== 'undefined') {
+  //     const cleanup = () => localStorage.removeItem("companyFormRemovalData");
+  //     window.addEventListener("beforeunload", cleanup);
+  //     return () => window.removeEventListener("beforeunload", cleanup);
+  //   }
+  // }, []);
 
   // Monitor localStorage for reset mode changes
   useEffect(() => {
@@ -394,10 +395,11 @@ export default function GoogleRemovalForm() {
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
 
+      // NIE usuwamy danych z localStorage tutaj - będą potrzebne do faktury
       // Only remove from localStorage if we're in a browser environment
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem("companyFormRemovalData");
-      }
+      // if (typeof window !== 'undefined') {
+      //   localStorage.removeItem("companyFormRemovalData");
+      // }
       
       // Przekierowanie na stronę thankyou z parametrami płatności
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote

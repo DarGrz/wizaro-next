@@ -120,11 +120,12 @@ export default function CompanyFormReviews() {
     localStorage.setItem("companyFormData", JSON.stringify(company));
   }, [company]);
 
-  useEffect(() => {
-    const cleanup = () => localStorage.removeItem("companyFormData");
-    window.addEventListener("beforeunload", cleanup);
-    return () => window.removeEventListener("beforeunload", cleanup);
-  }, []);
+  // USUNIĘTO: beforeunload listener, który usuwał dane przy opuszczaniu strony
+  // useEffect(() => {
+  //   const cleanup = () => localStorage.removeItem("companyFormData");
+  //   window.addEventListener("beforeunload", cleanup);
+  //   return () => window.removeEventListener("beforeunload", cleanup);
+  // }, []);
 
   const handleCompanyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
