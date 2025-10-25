@@ -345,7 +345,7 @@ export default function PaymentSection({
                     Przetwarzanie...
                   </div>
                 ) : (
-                  "🚀 Zapłać bezpiecznie - Stripe"
+                  "Przejdź do płatności"
                 )}
               </button>
             </div>
