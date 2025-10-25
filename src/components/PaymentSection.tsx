@@ -193,7 +193,7 @@ export default function PaymentSection({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-xl p-6 max-w-xl w-full shadow-sm"
+      className="md:bg-gradient-to-r md:from-blue-50 md:to-green-50 md:border md:border-blue-200 md:rounded-xl md:shadow-sm p-2 md:p-6 max-w-xl w-full"
     >
       <div className="text-center">
         <div className="mb-4">
