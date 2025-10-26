@@ -6,9 +6,8 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import TopFooter from "@/components/TopFooter";
-import VisitorTracker from "@/components/VisitorTracker";
 import GTMPageViewTracker from "@/components/GTMPageViewTracker";
-import PixelTracker from "@/components/PixelTracker";
+import ClientTrackers from "@/components/ClientTrackers";
 
 
 const geistSans = Geist({
@@ -205,10 +204,9 @@ export default function RootLayout({
           ></iframe>
         </noscript>
 
-        <VisitorTracker />
+        <ClientTrackers />
         {/* GTM pageview tracker for SPA navigation */}
         <GTMPageViewTracker />
-        <PixelTracker />
         <Header />
         {children}
         <TopFooter />

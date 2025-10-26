@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 
 export function useTrackVisitor() {
   useEffect(() => {
+    // Check if we're running in the browser
+    if (typeof window === 'undefined') return;
+
     function getUrlParams() {
       const params = new URLSearchParams(window.location.search);
       let keyword = params.get('keyword') || 'No Keyword';
