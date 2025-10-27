@@ -30,7 +30,7 @@ export default function FaqSection() {
     {
       question: "Co, jeśli usunięcie informacji się nie powiedzie?",
       answer:
-        "W takim przypadku oferujemy 100% zwrot pieniędzy. Działamy według zasady: skuteczność albo zwrot.",
+        "W takim przypadku nie ponosisz żadnych kosztów. Rozliczamy się tylko za skutecznie wykonane usługi.",
     },
     {
       question: "Jakie treści można usunąć?",
