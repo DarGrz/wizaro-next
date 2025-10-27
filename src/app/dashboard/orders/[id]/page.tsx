@@ -292,7 +292,7 @@ export default async function OrderDetailsPage({ params }: Props) {
                     <td className="p-3">{review.content}</td>
                     <td className="p-3">
                       <a 
-                        href={review.url} 
+                        href={review.gmb_link} 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="text-blue-600 hover:underline"
