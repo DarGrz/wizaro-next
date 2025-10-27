@@ -25,7 +25,7 @@ export default function FaqSection() {
     {
       question: "Jak długo trwa usunięcie informacji?",
       answer:
-        "Większość zgłoszeń realizujemy w ciągu 7–14 dni roboczych. Jeśli nie uda się w ciągu 21 dni – zwracamy pieniądze.",
+        "Większość zgłoszeń realizujemy w ciągu 7–14 dni roboczych chociaż w niektórych przypadkach może to potrwać dłużej.",
     },
     {
       question: "Co, jeśli usunięcie informacji się nie powiedzie?",
