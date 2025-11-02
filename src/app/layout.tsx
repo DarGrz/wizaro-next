@@ -100,10 +100,16 @@ export default function RootLayout({
             "url": "https://wizaro.pl",
             "telephone": "792 861 513",
             "email": "kontakt@wizaro.pl",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "2183"
+            },
             "address": {
               "@type": "PostalAddress",
               "addressCountry": "PL",
-              "addressLocality": "Kraków"
+              "addressLocality": "Kraków",
+              "postalCode": "31-636"
             },
             "geo": {
               "@type": "GeoCoordinates",
