@@ -223,10 +223,9 @@ export default async function ProduktyPage() {
       <section className="mb-10">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Produkty i usługi</h1>
         <p className="mt-3 text-base text-gray-600">
-          Katalog usług Wizaro związanych z Google Maps, GoWork, ochroną marki i RODO. Ta strona jest
-          przystosowana do automatycznych integracji (np. agentów) poprzez JSON-LD i API katalogu.
+          Katalog usług Wizaro związanych z Google Maps, GoWork, ochroną wizerunku.
         </p>
-        <div className="mt-4 text-sm">
+        <div className="mt-4 text-sm hiddden">
           <Link href="/api/products" className="text-blue-600 hover:text-blue-700 underline">
             Zobacz API katalogu produktów (JSON)
           </Link>
