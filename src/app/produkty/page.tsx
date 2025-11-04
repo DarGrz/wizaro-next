@@ -225,7 +225,7 @@ export default async function ProduktyPage() {
         <p className="mt-3 text-base text-gray-600">
           Katalog usług Wizaro związanych z Google Maps, GoWork, ochroną wizerunku.
         </p>
-        <div className="mt-4 text-sm hiddden">
+        <div className="mt-4 text-sm hidden">
           <Link href="/api/products" className="text-blue-600 hover:text-blue-700 underline">
             Zobacz API katalogu produktów (JSON)
           </Link>
