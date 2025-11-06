@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
         ...(zipCode && { zip_code: zipCode }),
       },
       invoice_creation: {
-        enabled: true,
+        enabled: false,
         invoice_data: {
           metadata: {
             ...(orderId && { order_id: orderId }),
