@@ -160,7 +160,7 @@ export default function CompanyFormRemoval() {
     "PKT.pl": 69900,
     "Podobne Firmy": 69900,
     "Puls Biznesu": 69900,
-    "Inne": 69900
+    "Inne": 2
   };  const calculatePriceForPortals = (portal: string): number => {
     return PORTAL_PRICES[portal as keyof typeof PORTAL_PRICES] || 699;
   };
@@ -388,7 +388,7 @@ export default function CompanyFormRemoval() {
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote
       const searchParams = new URLSearchParams({
         amount: priceInZloty.toString(),
-        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania opinii`
+        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania profili`
       });
       
       window.location.href = `/dziekuje?${searchParams.toString()}`;

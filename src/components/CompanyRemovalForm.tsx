@@ -240,7 +240,7 @@ export default function CompanyFormRemoval() {
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote
       const searchParams = new URLSearchParams({
         amount: priceInZloty.toString(),
-        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania opinii`
+        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania profili`
       });
       
       window.location.href = `/thankyou?${searchParams.toString()}`;
