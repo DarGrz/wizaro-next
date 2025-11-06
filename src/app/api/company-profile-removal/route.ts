@@ -33,6 +33,9 @@ interface Removal {
 
 export async function POST(req: NextRequest) {
   try {
+    const body = await req.json();
+    console.log('📦 Pełne body z requesta:', JSON.stringify(body, null, 2));
+    
     const {
       company,
       removals,
@@ -43,14 +46,36 @@ export async function POST(req: NextRequest) {
       removals: Removal[];
       totalPrice: number;
       payer_id: string | null;
-    } = await req.json();
+    } = body;
 
     console.log('🟢 Firma:', company);
     console.log('🟢 Profile do usunięcia:', removals);
     console.log('💰 Cena całkowita (przed podziałem przez 100):', totalPrice);
     console.log('🆔 Payer ID:', payer_id);
 
+    // Walidacja company
+    if (!company) {
+      console.error('❌ Brak danych firmy!');
+      return NextResponse.json(
+        { error: 'Brak danych firmy' },
+        { status: 400 }
+      );
+    }
+    
+    // Sprawdź czy wszystkie wymagane pola są wypełnione
+    const requiredFields = ['name', 'first_name', 'last_name', 'email', 'nip', 'phone', 'street', 'city', 'zip'];
+    const missingFields = requiredFields.filter(field => !company[field as keyof Company]);
+    if (missingFields.length > 0) {
+      console.error('❌ Brak wymaganych pól firmy:', missingFields);
+      console.error('📋 Otrzymane dane company:', company);
+      return NextResponse.json(
+        { error: `Brak wymaganych pól: ${missingFields.join(', ')}`, missingFields },
+        { status: 400 }
+      );
+    }
+
     if (!removals || removals.length === 0) {
+      console.error('❌ Brak profili do usunięcia!');
       return NextResponse.json(
         { error: 'Brak profili do usunięcia' },
         { status: 400 }

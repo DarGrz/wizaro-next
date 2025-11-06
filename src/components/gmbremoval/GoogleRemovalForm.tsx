@@ -368,6 +368,13 @@ export default function GoogleRemovalForm() {
 
       setPayerId(currentPayerId);
 
+      console.log('📤 Wysyłam dane do API:', {
+        company: company,
+        removals: removals,
+        totalPrice: totalPrice,
+        payer_id: currentPayerId
+      });
+
       const res = await fetch("/api/company-profile-removal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
