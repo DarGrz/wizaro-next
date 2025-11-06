@@ -36,17 +36,33 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     console.log('📦 Pełne body z requesta:', JSON.stringify(body, null, 2));
     
-    const {
+    // Rozpakuj dane - czasem company jest zagnieżdżone w company.company
+    let {
       company,
       removals,
       totalPrice,
       payer_id,
-    }: {
-      company: Company;
+    } = body as {
+      company: any;
       removals: Removal[];
       totalPrice: number;
       payer_id: string | null;
-    } = body;
+    };
+    
+    // Fix: Jeśli company zawiera zagnieżdżony company, wypakuj go
+    if (company && company.company && typeof company.company === 'object') {
+      console.log('⚠️ Wykryto zagnieżdżoną strukturę company.company, rozpakowuję...');
+      const nestedData = company;
+      company = nestedData.company;
+      // Użyj removals z zagnieżdżonej struktury jeśli nie ma w głównym body
+      if (!removals || removals.length === 0) {
+        removals = nestedData.removals || [];
+      }
+      // Użyj totalPrice z zagnieżdżonej struktury jeśli nie ma w głównym body
+      if (!totalPrice) {
+        totalPrice = nestedData.totalPrice || 0;
+      }
+    }
 
     console.log('🟢 Firma:', company);
     console.log('🟢 Profile do usunięcia:', removals);
