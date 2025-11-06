@@ -205,7 +205,15 @@ export default function GoogleRemovalForm() {
     // Check if window is defined (client-side only)
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem("companyFormRemovalData");
-      if (saved) setCompany(JSON.parse(saved));
+      if (saved) {
+        const parsedData = JSON.parse(saved);
+        // Fix: jeśli to zagnieżdżona struktura z company.company, wypakuj ją
+        if (parsedData.company && typeof parsedData.company === 'object') {
+          setCompany(parsedData.company);
+        } else {
+          setCompany(parsedData);
+        }
+      }
       
       // Check if there's a stored mode (reset or removal)
       const storedMode = localStorage.getItem("profileOperationMode");
