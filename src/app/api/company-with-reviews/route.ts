@@ -168,14 +168,20 @@ export async function POST(req: NextRequest) {
     console.log('🆔 [REVIEWS] IDs zapisanych opinii:', insertedReviews?.map(r => r.id));
 
     // Wyślij powiadomienie o nowym zamówieniu z pełnymi szczegółami
-    await sendAdminNotification({
-      orderType: 'review-removal',
-      companyName: company.name,
-      orderId: documentId,
-      company: company,
-      reviews: reviews,
-      totalPrice: totalPrice
-    });
+    try {
+      await sendAdminNotification({
+        orderType: 'review-removal',
+        companyName: company.name,
+        orderId: documentId,
+        company: company,
+        reviews: reviews,
+        totalPrice: totalPrice
+      });
+      console.log('✅ [REVIEWS] Powiadomienie administratora wysłane pomyślnie');
+    } catch (emailError) {
+      console.error('⚠️ [REVIEWS] Błąd wysyłki powiadomienia administratora (kontynuujemy):', emailError);
+      // Nie przerywamy procesu - email to dodatkowa funkcja
+    }
 
     return NextResponse.json(
       {

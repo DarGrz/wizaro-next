@@ -69,7 +69,8 @@ export async function sendAdminNotification({
   
   // Generuj listę opinii/profili w HTML jeśli są dostępne
   const reviewsListHTML = reviews && reviews.length > 0 ? reviews.map((review, index) => {
-    const portalName = review.portal === "Inne" ? (review.customPortal || "Inne") : review.portal;
+    if (!review) return ''; // Safety check
+    const portalName = review.portal === "Inne" ? (review.customPortal || "Inne") : (review.portal || '');
     
     return `
     <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
@@ -101,7 +102,7 @@ export async function sendAdminNotification({
         
         <div style="background-color: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
           <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; margin-bottom: 24px; border-radius: 4px;">
-            <p style="margin: 0; color: #26920eff; font-weight: 600;">Nowe zlecenie wymaga uwagi!</p>
+            <p style="margin: 0; color: #92400e; font-weight: 600;">Nowe zlecenie wymaga uwagi!</p>
             <p style="margin: 8px 0 0 0; color: #92400e;">Typ: <strong>${orderTypeText}</strong></p>
           </div>
 

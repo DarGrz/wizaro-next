@@ -159,21 +159,27 @@ export async function POST(req: NextRequest) {
 
     // Pobierz token śledzenia dla dokumentu powiązanego z tą firmą
     // Wyślij powiadomienie o nowym zamówieniu z pełnymi szczegółami
-    await sendAdminNotification({
-      orderType: 'profile-removal',
-      companyName: company.name,
-      orderId: companyData.id,
-      company: company,
-      reviews: removals.map(r => ({
-        author: r.companyName || 'Brak nazwy',
-        content: `URL: ${Array.isArray(r.url) ? r.url.join(', ') : r.url}`,
-        url: Array.isArray(r.url) ? r.url[0] : r.url,
-        date_added: '',
-        portal: r.portal,
-        customPortal: r.customPortal
-      })),
-      totalPrice: totalPrice
-    });
+    try {
+      await sendAdminNotification({
+        orderType: 'profile-removal',
+        companyName: company.name,
+        orderId: companyData.id,
+        company: company,
+        reviews: removals.map(r => ({
+          author: r.companyName || 'Brak nazwy',
+          content: `URL: ${Array.isArray(r.url) ? r.url.join(', ') : r.url}`,
+          url: Array.isArray(r.url) ? r.url[0] : r.url,
+          date_added: '',
+          portal: r.portal,
+          customPortal: r.customPortal
+        })),
+        totalPrice: totalPrice
+      });
+      console.log('✅ Powiadomienie administratora wysłane pomyślnie');
+    } catch (emailError) {
+      console.error('⚠️ Błąd wysyłki powiadomienia administratora (kontynuujemy):', emailError);
+      // Nie przerywamy procesu - email to dodatkowa funkcja
+    }
 
     return NextResponse.json({ 
       success: true, 
