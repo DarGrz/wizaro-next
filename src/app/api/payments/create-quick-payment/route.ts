@@ -125,11 +125,14 @@ export async function POST(request: NextRequest) {
         ...(zipCode && { zip_code: zipCode }),
       },
       invoice_creation: {
-        enabled: true,
+        enabled: false,
         invoice_data: {
           metadata: {
             ...(orderId && { order_id: orderId }),
-            
+            type: 'quick_payment',
+            company_name: companyName,
+            ...(nip && { nip }),
+            ...(nip && { vat_number: `PL${nip}` }),
           },
           // Dane odbiorcy faktury będą pobrane z customer
           description: `Płatność za usługę Wizaro.pl - ${description}`,
