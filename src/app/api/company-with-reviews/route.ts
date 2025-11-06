@@ -167,11 +167,14 @@ export async function POST(req: NextRequest) {
     console.log('📊 [REVIEWS] Zapisane opinie:', insertedReviews?.length);
     console.log('🆔 [REVIEWS] IDs zapisanych opinii:', insertedReviews?.map(r => r.id));
 
-    // Wyślij powiadomienie o nowym zamówieniu
+    // Wyślij powiadomienie o nowym zamówieniu z pełnymi szczegółami
     await sendAdminNotification({
       orderType: 'review-removal',
       companyName: company.name,
-      orderId: documentId
+      orderId: documentId,
+      company: company,
+      reviews: reviews,
+      totalPrice: totalPrice
     });
 
     return NextResponse.json(

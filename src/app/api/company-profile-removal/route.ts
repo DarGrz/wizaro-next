@@ -27,6 +27,8 @@ interface Removal {
   nip: string;
   url: string | string[];
   mapsLink?: string;
+  portal?: string;
+  customPortal?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -131,11 +133,21 @@ export async function POST(req: NextRequest) {
     }
 
     // Pobierz token śledzenia dla dokumentu powiązanego z tą firmą
-    // Wyślij powiadomienie o nowym zamówieniu
+    // Wyślij powiadomienie o nowym zamówieniu z pełnymi szczegółami
     await sendAdminNotification({
       orderType: 'profile-removal',
       companyName: company.name,
-      orderId: companyData.id
+      orderId: companyData.id,
+      company: company,
+      reviews: removals.map(r => ({
+        author: r.companyName || 'Brak nazwy',
+        content: `URL: ${Array.isArray(r.url) ? r.url.join(', ') : r.url}`,
+        url: Array.isArray(r.url) ? r.url[0] : r.url,
+        date_added: '',
+        portal: r.portal,
+        customPortal: r.customPortal
+      })),
+      totalPrice: totalPrice
     });
 
     return NextResponse.json({ 

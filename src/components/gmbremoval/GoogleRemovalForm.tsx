@@ -395,11 +395,38 @@ export default function GoogleRemovalForm() {
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
 
-      // NIE usuwamy danych z localStorage tutaj - będą potrzebne do faktury
-      // Only remove from localStorage if we're in a browser environment
-      // if (typeof window !== 'undefined') {
-      //   localStorage.removeItem("companyFormRemovalData");
-      // }
+      // Wysłanie emaila z potwierdzeniem zamówienia
+      try {
+        const emailRes = await fetch("/api/send-profile-confirmation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            company: company,
+            profiles: removals,
+            totalPrice: totalPrice / 100, // w złotych
+            orderId: company_id,
+          }),
+        });
+        
+        if (emailRes.ok) {
+          console.log("✅ Email z potwierdzeniem wysłany pomyślnie");
+        } else {
+          console.error("⚠️ Nie udało się wysłać emaila z potwierdzeniem");
+        }
+      } catch (emailError) {
+        console.error("❌ Błąd wysyłki emaila z potwierdzeniem:", emailError);
+        // Nie przerywamy procesu - email to dodatkowa funkcja
+      }
+
+      // Zapisz pełne dane do localStorage przed przekierowaniem (potrzebne dla payment form)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("companyFormRemovalData", JSON.stringify({
+          company: company,
+          removals: removals,
+          totalPrice: totalPrice / 100, // w złotych
+          company_id: company_id
+        }));
+      }
       
       // Przekierowanie na stronę thankyou z parametrami płatności
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote

@@ -283,6 +283,29 @@ export default function CompanyFormReviews() {
       const data = await res.json();
       console.log("Odpowiedź z API:", data);
       
+      // Wysłanie emaila z potwierdzeniem zamówienia
+      try {
+        const emailRes = await fetch("/api/send-order-confirmation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            company,
+            reviews,
+            totalPrice,
+            orderId: data.document_id || data.company_id,
+          }),
+        });
+        
+        if (emailRes.ok) {
+          console.log("✅ Email z potwierdzeniem wysłany pomyślnie");
+        } else {
+          console.error("⚠️ Nie udało się wysłać emaila z potwierdzeniem");
+        }
+      } catch (emailError) {
+        console.error("❌ Błąd wysyłki emaila z potwierdzeniem:", emailError);
+        // Nie przerywamy procesu - email to dodatkowa funkcja
+      }
+      
       // Akceptacja regulaminu jest już zapisana w trakcie tworzenia firmy
       localStorage.removeItem("companyFormData");
       

@@ -11,7 +11,7 @@ function ThankYouContent() {
     <div className="bg-green-50 border border-green-100 rounded-lg p-5 mb-8 max-w-xl w-full">
       <h2 className="text-lg font-semibold mb-3 text-green-800">Zlecenie zostało przyjęte</h2>
       <p className="text-gray-700 mb-4">
-        Twoje zlecenie zostało pomyślnie złożone i trafiło do realizacji.
+        Twoje zlecenie zostało pomyślnie złożone i od razu trafiło do realizacji. Nasi specjaliści już się nim zajmują.
       </p>
     </div>
   );
@@ -36,6 +36,9 @@ function PaymentSectionWrapper() {
 
 export default function ThankYouPage() {
   const [showPaymentForm, setShowPaymentForm] = useState(false);
+
+  // Email z potwierdzeniem jest wysyłany bezpośrednio z formularza przed przekierowaniem
+  // (tak samo jak w formularzach opinii)
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4">

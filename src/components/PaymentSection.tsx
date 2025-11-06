@@ -46,15 +46,31 @@ export default function PaymentSection({
     // Użyj tej samej logiki co w summary step
     if (companyFormRemovalData) {
       try {
-        company = JSON.parse(companyFormRemovalData);
-        console.log('✅ Wczytano dane firmy z companyFormRemovalData:', company);
+        const parsedData = JSON.parse(companyFormRemovalData);
+        // Sprawdź czy to nowa struktura z zagnieżdżonym obiektem company
+        if (parsedData.company) {
+          company = parsedData.company;
+          console.log('✅ Wczytano dane firmy z companyFormRemovalData (nowa struktura z company):', company);
+        } else {
+          // Stara struktura - bezpośrednio obiekt company
+          company = parsedData;
+          console.log('✅ Wczytano dane firmy z companyFormRemovalData (stara struktura):', company);
+        }
       } catch (error) {
         console.error('❌ Błąd parsowania companyFormRemovalData:', error);
       }
     } else if (companyFormData) {
       try {
-        company = JSON.parse(companyFormData);
-        console.log('✅ Wczytano dane firmy z companyFormData:', company);
+        const parsedData = JSON.parse(companyFormData);
+        // Sprawdź czy to nowa struktura z zagnieżdżonym obiektem company
+        if (parsedData.company) {
+          company = parsedData.company;
+          console.log('✅ Wczytano dane firmy z companyFormData (nowa struktura z company):', company);
+        } else {
+          // Stara struktura - bezpośrednio obiekt company
+          company = parsedData;
+          console.log('✅ Wczytano dane firmy z companyFormData (stara struktura):', company);
+        }
       } catch (error) {
         console.error('❌ Błąd parsowania companyFormData:', error);
       }
