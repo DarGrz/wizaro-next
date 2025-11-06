@@ -252,7 +252,7 @@ export default function CompanySearchGus() {
             Potrzebujesz pomocy?<br />
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
-            Wyszukaj swoją firmę po numerze NIP i skorzystaj z naszych profesjonalnych usług ochrony reputacji.
+            Wyszukaj swoją firmę po numerze NIP i skorzystaj z naszych profesjonalnych usług.
           </p>
           
           {/* Supported Portals Badge */}

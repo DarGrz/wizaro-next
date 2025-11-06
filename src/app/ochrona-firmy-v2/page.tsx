@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import CompanySearchGus from '@/components/CompanySearchGus';
 
 export const metadata: Metadata = {
-  title: 'Ochrona Firmy Online - Skorzystaj z naszych profesjonalnych usług | Wizaro.pl',
-  description: 'Profesjonalna ochrona reputacji firm online. Wyszukaj swoją firmę po numerze NIP i skorzystaj z naszych usług ochrony wizerunku.',
-  keywords: 'ochrona firmy, ochrona reputacji, NIP, GUS, wizerunek firmy, ochrona online, zarządzanie opinią',
-  robots: 'index, follow',
+   title: 'Pomoc Biznesowa Online - Wyszukaj swoją firmę | Wizaro.pl',
+  description: 'Profesjonalne wsparcie biznesowe online. Wyszukaj swoją firmę i skorzystaj z naszych usług konsultingowych. Bezpłatna pomoc w rozwoju działalności.',
+  keywords: 'pomoc biznesowa, wsparcie firm, konsulting biznesowy, rozwój firmy, pomoc przedsiębiorcom, doradztwo biznesowe',
+  robots: 'nindex, nofollow',
   openGraph: {
-    title: 'Ochrona Firmy Online - Skorzystaj z naszych profesjonalnych usług',
-    description: 'Profesjonalna ochrona reputacji firm online. Wyszukaj swoją firmę po numerze NIP.',
+    title: 'Pomoc Biznesowa Online - Wyszukaj swoją firmę',
+    description: 'Profesjonalne wsparcie biznesowe online. Wyszukaj swoją firmę i skorzystaj z naszych usług konsultingowych.',
     type: 'website',
     locale: 'pl_PL',
   },
