@@ -37,31 +37,31 @@ export async function POST(req: NextRequest) {
     console.log('📦 Pełne body z requesta:', JSON.stringify(body, null, 2));
     
     // Rozpakuj dane - czasem company jest zagnieżdżone w company.company
-    let {
-      company,
-      removals,
-      totalPrice,
-      payer_id,
-    } = body as {
-      company: any;
-      removals: Removal[];
-      totalPrice: number;
-      payer_id: string | null;
+    let company: Company;
+    let removals: Removal[];
+    let totalPrice: number;
+    
+    const bodyData = body as {
+      company: Company | { company: Company; removals?: Removal[]; totalPrice?: number };
+      removals?: Removal[];
+      totalPrice?: number;
     };
     
+    const { payer_id } = body as { payer_id: string | null };
+    
     // Fix: Jeśli company zawiera zagnieżdżony company, wypakuj go
-    if (company && company.company && typeof company.company === 'object') {
+    if (bodyData.company && 'company' in bodyData.company && typeof bodyData.company.company === 'object') {
       console.log('⚠️ Wykryto zagnieżdżoną strukturę company.company, rozpakowuję...');
-      const nestedData = company;
+      const nestedData = bodyData.company as { company: Company; removals?: Removal[]; totalPrice?: number };
       company = nestedData.company;
       // Użyj removals z zagnieżdżonej struktury jeśli nie ma w głównym body
-      if (!removals || removals.length === 0) {
-        removals = nestedData.removals || [];
-      }
+      removals = (bodyData.removals && bodyData.removals.length > 0) ? bodyData.removals : (nestedData.removals || []);
       // Użyj totalPrice z zagnieżdżonej struktury jeśli nie ma w głównym body
-      if (!totalPrice) {
-        totalPrice = nestedData.totalPrice || 0;
-      }
+      totalPrice = bodyData.totalPrice || nestedData.totalPrice || 0;
+    } else {
+      company = bodyData.company as Company;
+      removals = bodyData.removals || [];
+      totalPrice = bodyData.totalPrice || 0;
     }
 
     console.log('🟢 Firma:', company);
