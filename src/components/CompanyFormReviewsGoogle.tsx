@@ -108,6 +108,7 @@ export default function CompanyFormReviews() {
   const [expandedIndex, setExpandedIndex] = useState(0);
   const [step, setStep] = useState<"business-card" | "reviews" | "company" | "payer" | "summary">("business-card");
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingStatus, setLoadingStatus] = useState<'processing' | 'sending'>('processing');
   const [reviewsEnabled, setReviewsEnabled] = useState(true);
   
   // New state for business card selection
@@ -282,6 +283,7 @@ export default function CompanyFormReviews() {
   // Only save to Supabase, no payment logic
   const confirmAndSave = async () => {
     setIsLoading(true);
+    setLoadingStatus('processing');
     try {
       let currentPayerId: string | undefined;
 
@@ -315,6 +317,9 @@ export default function CompanyFormReviews() {
       }
 
       setPayerId(currentPayerId);
+
+      // Zmiana statusu na "wysyłanie" przed zapisem danych do bazy
+      setLoadingStatus('sending');
 
       const res = await fetch("/api/company-with-reviews", {
         method: "POST",
@@ -433,6 +438,7 @@ export default function CompanyFormReviews() {
                 reviews={reviews}
                 totalPrice={totalPrice}
                 isLoading={isLoading}
+                loadingStatus={loadingStatus}
                 onBack={() =>
                   company.different_payer ? setStep("payer") : setStep("company")
                 }
