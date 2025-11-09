@@ -119,7 +119,7 @@ export async function sendAdminNotification({
               <p style="margin: 4px 0;"><strong>Adres:</strong> ${company.street}, ${company.zip} ${company.city}</p>
             ` : `<p style="margin: 4px 0;"><strong>Firma:</strong> ${companyName}</p>`}
             ${reviews ? `<p style="margin: 4px 0;"><strong>${itemCountLabel}</strong> ${reviews.length}</p>` : ''}
-            ${totalPrice ? `<p style="margin: 4px 0;"><strong>Wartość:</strong> ${totalPrice/100} zł brutto</p>` : ''}
+            ${totalPrice ? `<p style="margin: 4px 0;"><strong>Wartość:</strong> ${orderType === 'profile-removal' ? totalPrice/100 : totalPrice} zł brutto</p>` : ''}
           </div>
 
           ${reviewsListHTML ? `
