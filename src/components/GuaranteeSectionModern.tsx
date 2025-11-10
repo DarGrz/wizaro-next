@@ -14,7 +14,7 @@ const guaranteeFeatures = [
   {
     icon: Shield,
     title: "100% Legalnie",
-    description: "Działamy zgodnie z przepisami RODO",
+    description: "Działamy zgodnie z przepisami",
     color: "text-blue-500"
   },
   {

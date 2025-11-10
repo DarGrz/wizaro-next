@@ -16,12 +16,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const requestBody = await request.json();
+    
     const {
       document_id,
       email,
       company_name,
       nip,
-    } = await request.json();
+      address,
+      city,
+      zipCode,
+    } = requestBody;
 
     // Walidacja wymaganych pól
     if (!document_id || !email || !company_name) {
@@ -32,51 +37,91 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Tworzenie klienta z danymi firmy
+    let customer;
+    if (company_name) {
+      customer = await stripe.customers.create({
+        email: email,
+        name: company_name,
+        ...(address && city && {
+          address: {
+            line1: address,
+            ...(zipCode && { postal_code: zipCode }),
+            city: city,
+            country: 'PL',
+          }
+        }),
+        metadata: {
+          company_name: company_name,
+          ...(nip && { nip }),
+          ...(nip && { vat_number: `PL${nip}` }),
+          type: 'wizaro_client',
+        },
+      });
+      
+      // Dodaj tax_id automatycznie do klienta (bez pytania użytkownika)
+      if (nip && customer) {
+        try {
+          await stripe.customers.createTaxId(customer.id, {
+            type: 'eu_vat',
+            value: `PL${nip}`,
+          });
+        } catch (taxError) {
+          console.error('⚠️ Nie udało się dodać VAT ID:', taxError);
+        }
+      }
+    }
+
     // Tworzenie sesji płatności Stripe
     const session = await stripe.checkout.sessions.create({
-    
       line_items: [
         {
           price_data: {
             currency: 'pln',
             product_data: {
-              name: 'Wniosek RODO - Usunięcie danych osobowych',
-              description: 'Przygotowanie wniosku o usunięcie danych osobowych zgodnie z RODO',
+              name: 'Wniosek RODO - Żądanie usunięcia danych osobowych',
+              description: 'Gotowy wniosek RODO o usunięcie danych osobowych, zgodny z art. 17 RODO. Otrzymasz w pełni przygotowany dokument z Twoimi danymi gotowy do wysłania do dowolnej firmy lub portalu.',
             },
             unit_amount: 29900, // 299 zł brutto
           },
           quantity: 1,
+          // Dodanie tax rate dla polskiego VAT 23% (inclusive)
+          ...(nip && {
+            tax_rates: ['txr_1R7D3ILEJlt9ALSCyamMiFnX']
+          }),
         },
       ],
       mode: 'payment',
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success-rodo?session_id={CHECKOUT_SESSION_ID}&document_id=${document_id}`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/wniosek-rodo`,
-      customer_email: email,
+      
+      // Przypisanie klienta do sesji lub email
+      ...(customer ? { customer: customer.id } : { customer_email: email }),
+      
       metadata: {
         document_id: document_id.toString(),
         type: 'rodo_request',
-        company_name,
-        nip,
+        company_name: company_name,
+        ...(nip && { nip }),
+        ...(nip && { vat_number: `PL${nip}` }),
+        ...(address && { address }),
+        ...(city && { city }),
+        ...(zipCode && { zip_code: zipCode }),
       },
-      
-      customer_creation: 'always',
       invoice_creation: {
-        enabled: true,
+        enabled: false,
         invoice_data: {
           metadata: {
             document_id: document_id.toString(),
             type: 'rodo_request',
+            company_name: company_name,
+            ...(nip && { nip }),
+            ...(nip && { vat_number: `PL${nip}` }),
           },
-          custom_fields: [
-            {
-              name: 'NIP',
-              value: nip,
-            },
-            {
-              name: 'Nazwa firmy',
-              value: company_name,
-            },
-          ],
+          // Dane odbiorcy faktury będą pobrane z customer
+          description: `Wniosek RODO - Usunięcie danych osobowych`,
+          
+          
         },
       },
     });
