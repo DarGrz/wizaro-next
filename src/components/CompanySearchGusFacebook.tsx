@@ -553,7 +553,7 @@ export default function CompanySearchGusFacebook() {
                   ))}
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  "Profesjonalna obsługa i szybka realizacja. Profil z Panoramy Firm został usunięty w kilka dni. Polecam każdemu, kto ma problem opiniami."
+                  &ldquo;Profesjonalna obsługa i szybka realizacja. Profil z Panoramy Firm został usunięty w kilka dni. Polecam każdemu, kto ma problem opiniami.&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -576,7 +576,7 @@ export default function CompanySearchGusFacebook() {
                   ))}
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  "Wreszcie ktoś, kto naprawdę pomógł. Fałszywe opinie konkurencji znikły, a my odzyskaliśmy wiarygodność. Polecam!"
+                  &ldquo;Wreszcie ktoś, kto naprawdę pomógł. Fałszywe opinie konkurencji znikły, a my odzyskaliśmy wiarygodność. Polecam!&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -599,7 +599,7 @@ export default function CompanySearchGusFacebook() {
                   ))}
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  "Świetna komunikacja i efekt powyżej oczekiwań. Profile z Gowork i Aleo zostały usunięte. Bardzo dziękuję!"
+                  &ldquo;Świetna komunikacja i efekt powyżej oczekiwań. Profile z Gowork i Aleo zostały usunięte. Bardzo dziękuję!&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -630,96 +630,76 @@ export default function CompanySearchGusFacebook() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 px-4">
               {/* Krok 1 */}
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
-                  <div className="absolute -top-6 left-8 bg-gradient-to-r from-blue-600 to-cyan-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
+                  <div className="absolute -top-3 md:-top-4 left-4 md:left-6 bg-gradient-to-r from-blue-600 to-cyan-500 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-base md:text-lg font-bold shadow-lg">
                     1
                   </div>
-                  <div className="mt-4 mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl flex items-center justify-center mx-auto">
-                      <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                    </div>
+                  <div className="mt-3 md:mt-4">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Wyszukaj
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Znajdź swoją firmę używając numeru NIP
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                    Wyszukaj
-                  </h3>
-                  <p className="text-gray-600 text-center leading-relaxed">
-                    Znajdź swoją firmę w naszej wyszukiwarce używając numeru NIP
-                  </p>
                 </div>
               </div>
 
               {/* Krok 2 */}
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-emerald-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
-                  <div className="absolute -top-6 left-8 bg-gradient-to-r from-green-600 to-emerald-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
+                  <div className="absolute -top-3 md:-top-4 left-4 md:left-6 bg-gradient-to-r from-green-600 to-emerald-500 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-base md:text-lg font-bold shadow-lg">
                     2
                   </div>
-                  <div className="mt-4 mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl flex items-center justify-center mx-auto">
-                      <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                      </svg>
-                    </div>
+                  <div className="mt-3 md:mt-4">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Wybierz
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Wybierz usługę dopasowaną do Twoich potrzeb
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                    Wybierz
-                  </h3>
-                  <p className="text-gray-600 text-center leading-relaxed">
-                    Wybierz usługę dopasowaną do Twoich potrzeb
-                  </p>
                 </div>
               </div>
 
               {/* Krok 3 - PŁATNOŚĆ */}
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-600 to-amber-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
-                  <div className="absolute -top-6 left-8 bg-gradient-to-r from-orange-600 to-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
+                  <div className="absolute -top-3 md:-top-4 left-4 md:left-6 bg-gradient-to-r from-orange-600 to-amber-500 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-base md:text-lg font-bold shadow-lg">
                     3
                   </div>
-                  <div className="mt-4 mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl flex items-center justify-center mx-auto">
-                      <svg className="w-10 h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                    </div>
+                  <div className="mt-3 md:mt-4">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Płatność
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Zapłać od razu lub wybierz płatność po realizacji
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                    Płatność
-                  </h3>
-                  <p className="text-gray-600 text-center leading-relaxed text-sm">
-                    Zapłać od razu lub wybierz płatność po realizacji
-                  </p>
                 </div>
               </div>
 
               {/* Krok 4 */}
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
-                  <div className="absolute -top-6 left-8 bg-gradient-to-r from-purple-600 to-pink-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
+                  <div className="absolute -top-3 md:-top-4 left-4 md:left-6 bg-gradient-to-r from-purple-600 to-pink-500 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-base md:text-lg font-bold shadow-lg">
                     4
                   </div>
-                  <div className="mt-4 mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl flex items-center justify-center mx-auto">
-                      <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
+                  <div className="mt-3 md:mt-4">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Rezultaty
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Gwarantowane usunięcie z wybranych portali
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                    Rezultaty
-                  </h3>
-                  <p className="text-gray-600 text-center leading-relaxed">
-                    Gwarantowane usunięcie z  wybranych portali 
-                  </p>
                 </div>
               </div>
             </div>
