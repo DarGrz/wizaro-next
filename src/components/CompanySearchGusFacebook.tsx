@@ -300,8 +300,8 @@ export default function CompanySearchGusFacebook() {
             Usuwanie Profili<br className="hidden sm:block" /> i Opinii z Portali
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 mb-8">
-            Usuń szkodliwe opinie i nieautoryzowane profile biznesowe.<br className="hidden sm:block" />
-            <span className="font-semibold text-gray-700">Chroń swoją reputację online z gwarancją rezultatów.</span>
+           
+            <span className=" text-gray-700">Chroń swoją reputację online z gwarancją rezultatów.</span>
           </p>
           
           {/* Supported Portals Badge */}
