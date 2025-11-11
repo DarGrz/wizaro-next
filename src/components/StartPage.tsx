@@ -17,6 +17,7 @@ import WhyRemoveProfilesAndReviews from "./WhyRemoveProfilesAndReviews";
 import Link from "next/link";
 import MobileActionButton from "./MobileActionButton";
 import NegativeReviewRemoval from "./NegativeReviewRemoval";
+import OtherPlatformsRemoval from "./OtherPlatformsRemoval";
 import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
 
 
@@ -64,6 +65,11 @@ export default function StartPage() {
 
          <div className="md:flex py-5 mb-15 md:gap-8 ">
         <NegativeReviewRemoval />
+      </div>
+
+      {/* Sekcja usuwania opinii z innych platform */}
+      <div className="md:flex py-5 mb-15 md:gap-8 ">
+        <OtherPlatformsRemoval />
       </div>
 
       {/* Separator */}

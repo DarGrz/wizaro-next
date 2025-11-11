@@ -107,7 +107,7 @@ export default function UsuwanieOpiniiGoogleCenaPage() {
       <div className="gap-6 mb-4 lg:flex hidden md:block">
         <div className="md:p-10 p-4 w-full max-w-lg mt-4 flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Usuwanie opinii Google cena
+            Usuwanie Opinii Google Cena
           </h1>
           <p className="text-gray-600 text-center mb-8">
             Najlepsze ceny na rynku! Usuwanie opinii Google od 299 zł. 
@@ -147,6 +147,39 @@ export default function UsuwanieOpiniiGoogleCenaPage() {
       <div className="w-full max-w-4xl px-4 mb-8">
         <div className="grid md:grid-cols-1 gap-6">
           
+          {/* Usuwanie opinii Google */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              {/* Ikona Gwiazdki */}
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#FFA500">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+
+              {/* Treść */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Usuwanie opinii Google
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Profesjonalne usuwanie negatywnych opinii z Map Google. 
+                  Najlepsza cena na rynku. 299 zł za skuteczne usunięcie opinii.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Najlepsza cena</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Płatność za efekt</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">299 zł</span>
+                </div>
+                <Link href="/formularz-opinie-google" className="inline-block">
+                  <button className="px-6 py-3 bg-[#FFA500] text-white rounded-lg font-semibold hover:bg-[#FF8C00] transition duration-200 shadow-sm">
+                    Usuń opinię Google
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
           {/* Usuwanie firmy z Google */}
           <div className="bg-white rounded-lg border border-gray-200 p-6">
             <div className="flex flex-col md:flex-row items-center gap-6">
