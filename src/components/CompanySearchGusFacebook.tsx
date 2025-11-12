@@ -297,7 +297,7 @@ export default function CompanySearchGusFacebook() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4">
-            Usuwanie Profili<br className="hidden sm:block" /> i Opinii z Portali
+            Usuwanie Firmy z GoWork<br className="hidden sm:block" /> i innych portali
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 mb-8">
            
