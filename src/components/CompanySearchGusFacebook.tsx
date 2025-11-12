@@ -297,11 +297,11 @@ export default function CompanySearchGusFacebook() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4">
-            Usuwanie Firmy z GoWork<br className="hidden sm:block" /> i innych portali
+            Usuwanie Firmy z GoWork<br /> i innych portali
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 mb-8">
            
-            <span className=" text-gray-700">Chroń swoją reputację online z gwarancją rezultatów.</span>
+            <span className=" text-gray-700">Chroń swoją reputację online. Nie pozwól, aby negatywne opinie zaszkodziły Twojej firmie.</span>
           </p>
           
           {/* Supported Portals Badge */}
@@ -619,7 +619,7 @@ export default function CompanySearchGusFacebook() {
         {!selectedCompany && (
           <motion.div
             variants={fadeInUp}
-            className="mt-16 sm:mt-24 max-w-6xl mx-auto"
+            className="mt-16 sm:mt-24 max-w-6xl mx-auto px-4"
           >
             <div className="text-center mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#002a5c] mb-4">
@@ -630,7 +630,7 @@ export default function CompanySearchGusFacebook() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
               {/* Krok 1 */}
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
@@ -712,7 +712,7 @@ export default function CompanySearchGusFacebook() {
         {!selectedCompany && (
           <motion.div
             variants={fadeInUp}
-            className="mt-16 sm:mt-24 max-w-6xl mx-auto"
+            className="mt-16 sm:mt-24 max-w-6xl mx-auto px-4"
           >
             <div className="text-center mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#002a5c] mb-4">
@@ -723,7 +723,7 @@ export default function CompanySearchGusFacebook() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Feature 1 */}
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
                 <div className="flex items-start gap-4">
@@ -857,7 +857,7 @@ export default function CompanySearchGusFacebook() {
         {!selectedCompany && (
           <motion.div
             variants={fadeInUp}
-            className="mt-16 sm:mt-24 max-w-6xl mx-auto"
+            className="mt-16 sm:mt-24 max-w-6xl mx-auto px-4"
           >
             <div className="text-center mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#002a5c] mb-4">
@@ -868,7 +868,7 @@ export default function CompanySearchGusFacebook() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               {/* Package 1 - Remove Profile */}
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
