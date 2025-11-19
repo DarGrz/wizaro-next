@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import GuaranteeSectionModern from "./GuaranteeSectionModern";
 
 interface GmbLocation {
@@ -520,10 +521,12 @@ export default function CompanySearchGoogleRemoval() {
                         <h3 className="text-sm font-semibold text-gray-700 mb-3">Zdjęcia z wizytówki:</h3>
                         <div className="grid grid-cols-3 gap-2">
                           {selectedPlace.photos.slice(0, 3).map((photo, index) => (
-                            <img
+                            <Image
                               key={index}
                               src={photo}
                               alt={`${selectedPlace.name} - zdjęcie ${index + 1}`}
+                              width={200}
+                              height={96}
                               className="w-full h-24 object-cover rounded-lg"
                             />
                           ))}

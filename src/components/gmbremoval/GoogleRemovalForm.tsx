@@ -143,7 +143,6 @@ export default function GoogleRemovalForm() {
       const phone = params.get('phone');
       const website = params.get('website');
       const rating = params.get('rating');
-      const userRatingsTotal = params.get('userRatingsTotal');
       
       if (businessName && googleMapsUrl) {
         // Update the removals array with data from URL
