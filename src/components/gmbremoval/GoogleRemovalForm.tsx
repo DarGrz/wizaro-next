@@ -141,10 +141,9 @@ export default function GoogleRemovalForm() {
       const googleMapsUrl = params.get('googleMapsUrl');
       const address = params.get('address');
       const phone = params.get('phone');
-      // Pobranie dodatkowych parametrów (nie są używane bezpośrednio tutaj, ale są przekazywane przez URL)
-      // const website = params.get('website');
-      // const rating = params.get('rating');
-      // const userRatingsTotal = params.get('userRatingsTotal');
+      const website = params.get('website');
+      const rating = params.get('rating');
+      const userRatingsTotal = params.get('userRatingsTotal');
       
       if (businessName && googleMapsUrl) {
         // Update the removals array with data from URL
@@ -155,10 +154,10 @@ export default function GoogleRemovalForm() {
             url: googleMapsUrl,
             address: address || undefined,
             phoneNumber: phone || undefined,
-            website: undefined,
+            website: website || undefined,
             photos: undefined,
-            rating: undefined,
-            businessStatus: undefined,
+            rating: rating ? parseFloat(rating) : undefined,
+            businessStatus: 'OPERATIONAL',
             types: undefined
           }
         ]);
