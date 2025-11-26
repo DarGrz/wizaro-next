@@ -327,10 +327,10 @@ export default function CompanySearchOchronaWizerunku() {
             <span className="text-sm font-semibold text-blue-700">Zweryfikowana firma</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#002a5c] mb-3 sm:mb-5 leading-tight px-4">
             Potrzebujesz pomocy?
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 mb-6">
             <span className="text-gray-700">Znajdź profil swojej firmy i skorzystaj z naszych profesjonalnych usług.</span>
           </p>
         </motion.div>
@@ -342,8 +342,8 @@ export default function CompanySearchOchronaWizerunku() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/30 rounded-none sm:rounded-3xl hidden sm:block"></div>
               
               <div className="relative z-10 px-0 sm:px-0" ref={searchRef}>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#002a5c] mb-4 text-center px-4">
-                  Wyszukaj swoją firmę w Google
+                <h3 className="text-lg sm:text-xl font-bold text-[#002a5c] mb-4 text-center px-4">
+                  Wyszukaj swoją firmę
                 </h3>
                 
                 {/* Search field and button container */}
@@ -573,13 +573,13 @@ export default function CompanySearchOchronaWizerunku() {
             {/* Testimonials Section */}
             <motion.div
               variants={fadeInUp}
-              className="mt-16 sm:mt-24 max-w-6xl mx-auto px-4"
+              className="mt-16 sm:mt-24 max-w-4xl sm:max-w-6xl mx-auto"
             >
-              <div className="text-center mb-12">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#002a5c] mb-4">
+              <div className="text-center mb-8 sm:mb-12 px-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#002a5c] mb-3">
                   Co Mówią Nasi Klienci
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
                   Poznaj opinie przedsiębiorców, którzy odzyskali kontrolę nad swoją reputacją
                 </p>
               </div>
@@ -594,16 +594,16 @@ export default function CompanySearchOchronaWizerunku() {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-6 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 mb-5 leading-relaxed">
                     &ldquo;Profil mojej firmy w końcu zniknął ! Profesjonalna obsługa i pełna dyskrecja. Polecam każdemu przedsiębiorcy.&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg">
                       JN
                     </div>
                     <div>
-                      <div className="font-semibold text-gray-900">Jan Nowak</div>
-                      <div className="text-sm text-gray-500">Właściciel firmy IT</div>
+                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Jan Nowak</div>
+                      <div className="text-xs sm:text-sm text-gray-500">Właściciel firmy IT</div>
                     </div>
                   </div>
                 </div>
@@ -617,16 +617,16 @@ export default function CompanySearchOchronaWizerunku() {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-6 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 mb-5 leading-relaxed">
                     &ldquo;Szybko i skutecznie. Firma w końcu zniknęła z map. Bardzo polecam!&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg">
                       AK
                     </div>
                     <div>
-                      <div className="font-semibold text-gray-900">Anna Kowalska</div>
-                      <div className="text-sm text-gray-500">Salon kosmetyczny</div>
+                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Anna Kowalska</div>
+                      <div className="text-xs sm:text-sm text-gray-500">Salon kosmetyczny</div>
                     </div>
                   </div>
                 </div>
@@ -640,16 +640,16 @@ export default function CompanySearchOchronaWizerunku() {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-6 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 mb-5 leading-relaxed">
                     &ldquo;W końcu profil firmy został usunięty! Doskonałe wsparcie i efekt jak obiecano.&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-emerald-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg">
                       PW
                     </div>
                     <div>
-                      <div className="font-semibold text-gray-900">Piotr Wiśniewski</div>
-                      <div className="text-sm text-gray-500">Restauracja</div>
+                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Piotr Wiśniewski</div>
+                      <div className="text-xs sm:text-sm text-gray-500">Restauracja</div>
                     </div>
                   </div>
                 </div>
@@ -659,13 +659,13 @@ export default function CompanySearchOchronaWizerunku() {
             {/* How We Work Section */}
             <motion.div
               variants={fadeInUp}
-              className="mt-16 sm:mt-24 max-w-6xl mx-auto px-4"
+              className="mt-16 sm:mt-24 max-w-4xl sm:max-w-6xl mx-auto"
             >
-              <div className="text-center mb-12">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#002a5c] mb-4">
+              <div className="text-center mb-8 sm:mb-12 px-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#002a5c] mb-3">
                   Jak Działamy
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
                   Prosty i przejrzysty proces w czterech krokach
                 </p>
               </div>
@@ -679,10 +679,10 @@ export default function CompanySearchOchronaWizerunku() {
                       1
                     </div>
                     <div className="mt-3 md:mt-4">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
                         Wyszukaj
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         Znajdź swoją firmę w Google Maps
                       </p>
                     </div>
@@ -697,10 +697,10 @@ export default function CompanySearchOchronaWizerunku() {
                       2
                     </div>
                     <div className="mt-3 md:mt-4">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
                         Wybierz
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         Potwierdź dane i przejdź do formularza
                       </p>
                     </div>
@@ -715,10 +715,10 @@ export default function CompanySearchOchronaWizerunku() {
                       3
                     </div>
                     <div className="mt-3 md:mt-4">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
                         Zleć
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         Wypełnij formularz i złóż zlecenie
                       </p>
                     </div>
@@ -733,10 +733,10 @@ export default function CompanySearchOchronaWizerunku() {
                       4
                     </div>
                     <div className="mt-3 md:mt-4">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
                         Rezultaty
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         Całkowite zadowolenie z efektów naszych działań
                       </p>
                     </div>
@@ -748,33 +748,33 @@ export default function CompanySearchOchronaWizerunku() {
             {/* Why Choose Us Section */}
             <motion.div
               variants={fadeInUp}
-              className="mt-16 sm:mt-24 max-w-6xl mx-auto px-4"
+              className="mt-16 sm:mt-24 max-w-4xl sm:max-w-6xl mx-auto"
             >
-              <div className="text-center mb-12">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#002a5c] mb-4">
+              <div className="text-center mb-8 sm:mb-12 px-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#002a5c] mb-3">
                   Dlaczego My
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
                   Profesjonalne usługi z gwarancją rezultatów
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Feature 1 */}
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
-                  <div className="flex items-start gap-4">
+                <div className="bg-white rounded-2xl p-5 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
+                  <div className="flex items-start gap-3 sm:gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl flex items-center justify-center">
-                        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
                         Gwarancja Sukcesu
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         100% skuteczności 
                       </p>
                     </div>
@@ -782,20 +782,20 @@ export default function CompanySearchOchronaWizerunku() {
                 </div>
 
                 {/* Feature 2 */}
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
-                  <div className="flex items-start gap-4">
+                <div className="bg-white rounded-2xl p-5 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
+                  <div className="flex items-start gap-3 sm:gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl flex items-center justify-center">
-                        <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
                         Szybka Realizacja
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         Średni czas realizacji to 7-14 dni roboczych
                       </p>
                     </div>
@@ -803,20 +803,20 @@ export default function CompanySearchOchronaWizerunku() {
                 </div>
 
                 {/* Feature 3 */}
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
-                  <div className="flex items-start gap-4">
+                <div className="bg-white rounded-2xl p-5 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
+                  <div className="flex items-start gap-3 sm:gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl flex items-center justify-center">
-                        <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
                         Pełna Dyskrecja
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         Bezpieczne procedury i pełna poufność danych
                       </p>
                     </div>
@@ -824,20 +824,20 @@ export default function CompanySearchOchronaWizerunku() {
                 </div>
 
                 {/* Feature 4 */}
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
-                  <div className="flex items-start gap-4">
+                <div className="bg-white rounded-2xl p-5 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200">
+                  <div className="flex items-start gap-3 sm:gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl flex items-center justify-center">
-                        <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl flex items-center justify-center">
+                        <svg className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
                         Wsparcie 24/7
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         Zawsze dostępni do kontaktu i aktualizacji statusu zlecenia
                       </p>
                     </div>
@@ -861,10 +861,10 @@ export default function CompanySearchOchronaWizerunku() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight px-4">
+              <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-3 sm:mb-5 leading-tight px-4">
                 Chroń Swoją Reputację Online
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
+              <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
                 Odzyskaj kontrolę nad tym, jak Twoja firma jest widziana w internecie. Profesjonalne wsparcie w ochronie wizerunku.
               </p>
             </div>
