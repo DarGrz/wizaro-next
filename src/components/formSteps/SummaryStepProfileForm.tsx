@@ -73,7 +73,7 @@ export default function SummaryStep({
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold text-center mb-6">
-        Sprawdź i wyślij
+        Sprawdź podsumowanie zamówienia
       </h2>
 
       <ul className="text-sm md:text-md text-gray-700 space-y-2 leading-relaxed">

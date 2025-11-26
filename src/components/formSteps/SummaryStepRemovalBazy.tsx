@@ -71,7 +71,7 @@ export default function SummaryStepRemovalBazy({
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-semibold text-center text-gray-800">
-        Sprawdź i wyślij
+        Sprawdź podsumowanie zamówienia
       </h2>
       
       {/* Company Information */}

@@ -126,7 +126,7 @@ export default function SummaryStepGoogleProfile({
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-semibold text-center mb-4">
-        Sprawdź i wyślij
+        Sprawdź podsumowanie zamówienia
       </h2>
       
       <div className="bg-[#F9FAFB] p-3 rounded-lg">
