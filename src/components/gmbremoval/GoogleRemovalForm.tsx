@@ -15,7 +15,7 @@ import GoogleRemovalFormStepExplenation from "../Explenations/GoogleRemovalFormS
 import GoogleResetFormExplanation from "../Explenations/GoogleResetFormExplanation";
 import PaymentExplanation from "../Explenations/PaymentExplanation";
 import ExplenationProfileRemoval from "../ExplenationProfileRemoval";
-import GuaranteeSection from "../GuaranteeSection";
+import GuaranteeSectionPayment from "../GuaranteeSectionPayment";
 import UseCaseSection from "../UseCaseSection";
 
 interface Removal {
@@ -272,7 +272,7 @@ export default function GoogleRemovalForm() {
     
     // For reset mode, return 2199 zł (219900 in cents)
     if (isResetMode) {
-      return 219900;
+      return 21900;
     }
     
     // Regular removal price calculation
@@ -408,29 +408,6 @@ export default function GoogleRemovalForm() {
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
 
-      // Wysłanie emaila z potwierdzeniem zamówienia
-      try {
-        const emailRes = await fetch("/api/send-profile-confirmation", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            company: company,
-            profiles: removals,
-            totalPrice: totalPrice / 100, // w złotych
-            orderId: company_id,
-          }),
-        });
-        
-        if (emailRes.ok) {
-          console.log("✅ Email z potwierdzeniem wysłany pomyślnie");
-        } else {
-          console.error("⚠️ Nie udało się wysłać emaila z potwierdzeniem");
-        }
-      } catch (emailError) {
-        console.error("❌ Błąd wysyłki emaila z potwierdzeniem:", emailError);
-        // Nie przerywamy procesu - email to dodatkowa funkcja
-      }
-
       // Zapisz pełne dane do localStorage przed przekierowaniem (potrzebne dla payment form)
       if (typeof window !== 'undefined') {
         localStorage.setItem("companyFormRemovalData", JSON.stringify({
@@ -441,14 +418,15 @@ export default function GoogleRemovalForm() {
         }));
       }
       
-      // Przekierowanie na stronę thankyou z parametrami płatności
+      // Przekierowanie na stronę płatności
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote
       const searchParams = new URLSearchParams({
         amount: priceInZloty.toString(),
-        description: 'Płatność za usuwanie profilu Google'
+        description: 'Płatność za usuwanie profilu Google',
+        orderId: company_id
       });
       
-      window.location.href = `/thankyou?${searchParams.toString()}`;
+      window.location.href = `/zaplac?${searchParams.toString()}`;
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");
@@ -575,7 +553,7 @@ export default function GoogleRemovalForm() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <GuaranteeSection />
+        <GuaranteeSectionPayment />
       </motion.div>
 
        <motion.div

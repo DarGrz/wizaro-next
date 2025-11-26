@@ -192,7 +192,7 @@ export default function SummaryStepRemovalBazy({
               Przetwarzanie...
             </div>
           ) : (
-            "Wyślij zlecenie"
+            "Przejdź do płatności →"
           )}
         </button>
       </div>

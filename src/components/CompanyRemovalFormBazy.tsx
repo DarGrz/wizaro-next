@@ -12,7 +12,7 @@ import RemovalFormExplenation from "./Explenations/RemovalFormExplenation";
 import CompanyProfileFormExplenation from "./Explenations/CompanyProfileFormStepExplenation";
 import PaymentExplanation from "./Explenations/PaymentExplanation";
 import ExplenationProfileRemoval from "./ExplenationProfileRemoval";
-import GuaranteeSection from "./GuaranteeSection";
+import GuaranteeSectionPayment from "./GuaranteeSectionPayment";
 
 interface Removal {
   companyName: string;
@@ -351,29 +351,6 @@ export default function CompanyFormRemoval() {
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
 
-      // Wysłanie emaila z potwierdzeniem zamówienia
-      try {
-        const emailRes = await fetch("/api/send-profile-confirmation", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            company: company,
-            profiles: removals,
-            totalPrice: totalPrice / 100, // w złotych
-            orderId: data.company_id,
-          }),
-        });
-        
-        if (emailRes.ok) {
-          console.log("✅ Email z potwierdzeniem wysłany pomyślnie");
-        } else {
-          console.error("⚠️ Nie udało się wysłać emaila z potwierdzeniem");
-        }
-      } catch (emailError) {
-        console.error("❌ Błąd wysyłki emaila z potwierdzeniem:", emailError);
-        // Nie przerywamy procesu - email to dodatkowa funkcja
-      }
-
       // Zapisz pełne dane do localStorage przed przekierowaniem (potrzebne dla payment form)
       if (typeof window !== 'undefined') {
         localStorage.setItem("companyFormRemovalData", JSON.stringify({
@@ -384,14 +361,15 @@ export default function CompanyFormRemoval() {
         }));
       }
       
-      // Przekierowanie na stronę dziekuje z parametrami płatności
+      // Przekierowanie na stronę płatności
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote
       const searchParams = new URLSearchParams({
         amount: priceInZloty.toString(),
-        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania profili`
+        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania profili`,
+        orderId: data.company_id
       });
       
-      window.location.href = `/dziekuje?${searchParams.toString()}`;
+      window.location.href = `/zaplac?${searchParams.toString()}`;
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");
@@ -488,7 +466,7 @@ export default function CompanyFormRemoval() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <GuaranteeSection />
+        <GuaranteeSectionPayment />
       </motion.div>
 
       

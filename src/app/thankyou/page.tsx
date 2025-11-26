@@ -1,101 +1,126 @@
 "use client";
 
 import Link from "next/link";
-import PaymentSection from "@/components/PaymentSection";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
+import { motion } from "framer-motion";
 
-// Komponent prostego podziękowania
 function ThankYouContent() {
   return (
-    <div className="bg-green-50 border border-green-100 rounded-lg p-5 mb-8 max-w-xl w-full">
-      <h2 className="text-lg font-semibold mb-3 text-green-800">Zlecenie zostało przyjęte</h2>
-      <p className="text-gray-700 mb-4">
-        Twoje zlecenie zostało pomyślnie złożone i od razu trafiło do realizacji. Nasi specjaliści już się nim zajmują.
-      </p>
+    <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="text-center max-w-2xl"
+      >
+        {/* Animowana ikona sukcesu */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+          className="text-8xl mb-6"
+        >
+          ✅
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="text-3xl font-bold text-[#002a5c] mb-4"
+        >
+          Dziękujemy za zaufanie!
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="text-lg text-gray-700 mb-6"
+        >
+          W razie dodatkowych pytań, jesteśmy do dyspozycji.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="bg-green-50 border border-green-200 rounded-xl p-6 mb-8"
+        >
+          <h2 className="text-lg font-semibold text-green-800 mb-3">
+            Zlecenie zostało przyjęte
+          </h2>
+          <div className="text-left text-sm text-green-700 space-y-2">
+            <p>✅ Twoje zlecenie zostało pomyślnie złożone</p>
+            <p>✅ Płatność została zaksięgowana</p>
+            <p>✅ Od razu trafiło do realizacji</p>
+            <p>✅ Nasi specjaliści już się nim zajmują</p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8"
+        >
+          <h3 className="text-lg font-semibold text-blue-800 mb-3">
+            Co dzieje się dalej?
+          </h3>
+          <div className="text-left text-sm text-blue-700 space-y-2">
+            <p><strong>Natychmiast:</strong> Twoje zlecenie trafia do priorytetowej kolejki</p>
+            <p><strong>W ciągu 24h:</strong> Otrzymasz potwierdzenie rozpoczęcia prac</p>
+            <p><strong>Podczas realizacji:</strong> Będziemy informować o postępach</p>
+            <p><strong>Po zakończeniu:</strong> Otrzymasz szczegółowy raport z wykonanych działań</p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="space-y-4"
+        >
+          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+            <p className="text-sm text-gray-700 mb-2">
+              <strong>Masz pytania lub potrzebujesz dodatkowych informacji?</strong>
+            </p>
+            <p className="text-sm text-gray-600">
+              Zadzwoń: <a href="tel:+48792861513" className="text-[#002a5c] font-semibold hover:underline">+48 792 861 513</a>
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Dostępny od poniedziałku do piątku, 9:00–17:00
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link 
+              href="/" 
+              className="flex-1 bg-[#002a5c] text-white py-3 px-6 rounded-lg hover:bg-[#001e47] transition text-center"
+            >
+              Powrót na stronę główną
+            </Link>
+            <Link 
+              href="/kontakt" 
+              className="flex-1 bg-gray-200 text-gray-800 py-3 px-6 rounded-lg hover:bg-gray-300 transition text-center"
+            >
+              Skontaktuj się z nami
+            </Link>
+          </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
 
-// Komponent który obsługuje parametry URL
-function PaymentSectionWrapper() {
-  const searchParams = useSearchParams();
-  const orderId = searchParams.get('orderId');
-  const amount = searchParams.get('amount') ? parseInt(searchParams.get('amount')!) : 299;
-  const description = searchParams.get('description') || "Zapłać za swoją usługę i miej spokój";
-
-  console.log('PaymentSectionWrapper - URL params:', {
-    orderId,
-    amountFromURL: searchParams.get('amount'),
-    amountParsed: amount,
-    description
-  });
-
-  return <PaymentSection orderId={orderId || undefined} amount={amount} description={description} />;
-}
-
 export default function ThankYouPage() {
-  const [showPaymentForm, setShowPaymentForm] = useState(false);
-
-  // Email z potwierdzeniem jest wysyłany bezpośrednio z formularza przed przekierowaniem
-  // (tak samo jak w formularzach opinii)
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4">
-      <h1 className="text-3xl font-bold mb-4 text-center">Dziękujemy za zaufanie!</h1>
-      <p className="text-lg text-gray-700 mb-6 text-center max-w-xl">
-          W razie dodatkowych pytań, jesteśmy do dyspozycji.
-      </p>
-      
-      <ThankYouContent />
-      
-      {/* Przycisk płatności */}
-      {!showPaymentForm && (
-        <div className="mb-8 text-center">
-          <button
-            onClick={() => setShowPaymentForm(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-200 shadow-lg hover:shadow-xl"
-          >
-            💳 Zapłać od razu i miej to z głowy!
-          </button>
-          
-          {/* Korzyści z wcześniejszej płatności */}
-          <div className="mt-4 text-sm text-gray-600 max-w-md mx-auto">
-            <p className="mb-2 font-medium">Dlaczego warto zapłacić teraz?</p>
-            <ul className="text-left space-y-1">
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Natychmiastowe rozpoczęcie realizacji
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Priorytetowe traktowanie zlecenia
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Szybsze efekty i rezultaty
-              </li>
-              <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
-                Bezpieczna płatność przez Stripe
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
-      
-      {/* Sekcja płatności - pokazuje się po kliknięciu */}
-      {showPaymentForm && (
-        <Suspense fallback={<div>Ładowanie...</div>}>
-          <PaymentSectionWrapper />
-        </Suspense>
-      )}
-      
-      <div className="mt-8">
-        <Link href="/" className="px-6 py-3 rounded bg-gray-200 text-gray-800 hover:bg-gray-300 transition text-sm">
-          Powrót na stronę główną
-        </Link>
+    <Suspense fallback={
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#002a5c]"></div>
       </div>
-    </div>
+    }>
+      <ThankYouContent />
+    </Suspense>
   );
 }

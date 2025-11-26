@@ -308,7 +308,7 @@ export default function SummaryStepGoogleProfile({
                 : "bg-[#0D2959] hover:bg-[#001e47] text-white"}
             `}
           >
-            {isLoading ? "Przetwarzanie..." : "Wyślij zlecenie"}
+            {isLoading ? "Przetwarzanie..." : "Przejdź do płatności →"}
           </button>
         </div>
       </div>

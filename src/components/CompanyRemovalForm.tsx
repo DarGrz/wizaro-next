@@ -203,29 +203,6 @@ export default function CompanyFormRemoval() {
       });
       if (!docRes.ok) throw new Error("Błąd tworzenia dokumentu");
 
-      // Wysłanie emaila z potwierdzeniem zamówienia
-      try {
-        const emailRes = await fetch("/api/send-profile-confirmation", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            company: company,
-            profiles: removals,
-            totalPrice: totalPrice / 100, // w złotych
-            orderId: company_id,
-          }),
-        });
-        
-        if (emailRes.ok) {
-          console.log("✅ Email z potwierdzeniem wysłany pomyślnie");
-        } else {
-          console.error("⚠️ Nie udało się wysłać emaila z potwierdzeniem");
-        }
-      } catch (emailError) {
-        console.error("❌ Błąd wysyłki emaila z potwierdzeniem:", emailError);
-        // Nie przerywamy procesu - email to dodatkowa funkcja
-      }
-
       // Zapisz pełne dane do localStorage przed przekierowaniem (potrzebne dla payment form)
       if (typeof window !== 'undefined') {
         localStorage.setItem("companyFormRemovalData", JSON.stringify({
@@ -236,14 +213,15 @@ export default function CompanyFormRemoval() {
         }));
       }
       
-      // Przekierowanie na stronę thankyou z parametrami płatności
+      // Przekierowanie na stronę płatności
       const priceInZloty = Math.round(totalPrice / 100); // konwersja z groszy na złote
       const searchParams = new URLSearchParams({
         amount: priceInZloty.toString(),
-        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania profili`
+        description: `Płatność za ${removals.length > 1 ? `${removals.length} usług` : 'usługę'} usuwania profili`,
+        orderId: company_id
       });
       
-      window.location.href = `/thankyou?${searchParams.toString()}`;
+      window.location.href = `/zaplac?${searchParams.toString()}`;
     } catch (error) {
       console.error("❌ confirmAndSave error:", error);
       alert("Wystąpił błąd. Spróbuj ponownie.");

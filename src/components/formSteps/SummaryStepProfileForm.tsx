@@ -158,7 +158,7 @@ export default function SummaryStep({
               ${isLoading || !regulaminAccepted ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-[#002a5c] hover:bg-[#001e47] text-white"}
             `}
           >
-            {isLoading ? "Przetwarzanie..." : "Wyślij zlecenie"}
+            {isLoading ? "Przetwarzanie..." : "Przejdź do płatności →"}
           </button>
         </div>
       </div>

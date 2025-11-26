@@ -21,26 +21,24 @@ const ExplenationProfileRemoval = () => {
 
       <div className="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm">
         <h3 className="text-md font-semibold mb-2 text-[#0D2959]">
-          2. Rozpoczynamy realizację
+          2. Bezpieczna płatność online
         </h3>
         <p className="text-sm text-[#0D2959]">
-          Po wypełnieniu formularza Twoje zlecenie trafia do realizacji. Nie
-          wymagamy żadnej przedpłaty — działamy od razu, a płatność następuje
-          dopiero po zakończeniu usługi. Masz pewność, że płacisz tylko za
-          skuteczny efekt.
+          Po wypełnieniu formularza przechodzisz do bezpiecznej płatności przez Stripe. 
+          Dzięki szybkim i bezpiecznym płatnościom możemy natychmiast rozpocząć 
+          realizację Twojego zlecenia. Twoje dane są w pełni chronione.
         </p>
       </div>
 
       <div className="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm">
         <h3 className="text-md font-semibold mb-2 text-[#0D2959]">
-          3. Płatność po realizacji
+          3. Szybka realizacja
         </h3>
         <p className="text-sm text-[#0D2959]">
           Standardowy czas usunięcia profilu to maksymalnie{" "}
           <strong className="text-[#5FA054]">7 dni roboczych</strong>. Na
-          bieżąco informujemy Cię o postępach. Po skutecznym zakończeniu
-          zlecenia, otrzymasz link do płatności. Możesz wybrać dogodną
-          metodę płatności, a my wystawimy fakturę VAT na Twoje dane.
+          bieżąco informujemy Cię o postępach. Po zakończeniu zlecenia 
+          otrzymasz potwierdzenie oraz fakturę VAT na podane dane.
         </p>
       </div>
     </div>

@@ -1,37 +1,37 @@
 'use client';
 
-import { Shield, CheckCircle, Star, TrendingUp, Award } from "lucide-react";
+import { Shield, CheckCircle, CreditCard, TrendingUp, Award, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
 const guaranteeFeatures = [
   {
-    icon: CheckCircle,
-    title: "Bez zaliczek",
-    description: "Płatność tylko za skuteczne usunięcie",
+    icon: Lock,
+    title: "Bezpieczna płatność",
+    description: "Płatność przez Stripe - pełne szyfrowanie",
     color: "text-emerald-500"
   },
   {
     icon: Shield,
     title: "100% Legalnie",
-    description: "Działamy zgodnie z przepisami",
+    description: "Działamy zgodnie z przepisami RODO",
     color: "text-blue-500"
   },
   {
-    icon: Star,
-    title: "Gwarancja jakości",
-    description: "Kompleksowe rozwiązanie problemu",
+    icon: CheckCircle,
+    title: "Faktura VAT",
+    description: "Automatyczna faktura po płatności",
     color: "text-amber-500"
   },
   {
     icon: TrendingUp,
-    title: "Szybkie rezultaty",
-    description: "Zaczynamy działania w ciągu 24h",
+    title: "Szybka realizacja",
+    description: "Dzięki płatności online - natychmiastowy start",
     color: "text-purple-500"
   }
 ];
 
-export default function GuaranteeSectionModern() {
+export default function GuaranteeSectionModernPayment() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
@@ -52,16 +52,15 @@ export default function GuaranteeSectionModern() {
           className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full mb-4 sm:mb-6 shadow-xl">
-            <Award className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+            <CreditCard className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
           </div>
           
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-4 sm:mb-6 px-2">
-            Płatność za rezultat
+            Bezpieczna płatność online
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
-            Działamy na zasadzie: <span className="font-semibold text-emerald-600">płacisz tylko za skutecznie usunięte opinie</span>
-            
+            Dzięki <span className="font-semibold text-emerald-600">szybkim i bezpiecznym płatnościom</span> możemy natychmiast rozpocząć realizację Twojego zlecenia
           </p>
         </motion.div>
 
@@ -125,17 +124,17 @@ export default function GuaranteeSectionModern() {
             
             <div className="relative z-10">
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">
-                Bezpieczeństwo i transparentność
+                Płatność przez Stripe
               </h3>
               
               <p className="text-emerald-100 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 max-w-2xl mx-auto px-2">
-                Bez ukrytych kosztów, bez zaliczek. Rozpoczynamy działania natychmiast, 
-                a Ty płacisz dopiero po osiągnięciu sukcesu.
+                Stripe to światowy lider płatności online. Twoje dane są w pełni chronione 
+                dzięki certyfikatowi PCI DSS Level 1 i szyfrowaniu SSL.
               </p>
               
               <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base">
-                <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="font-semibold">Gwarancja satysfakcji</span>
+                <Lock className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="font-semibold">Bezpieczeństwo najwyższej klasy</span>
               </div>
             </div>
           </div>

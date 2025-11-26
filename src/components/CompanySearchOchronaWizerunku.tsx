@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import GuaranteeSectionModern from "./GuaranteeSectionModern";
+import GuaranteeSectionModernPayment from "./GuaranteeSectionModernPayment";
 
 interface GmbLocation {
   id: string;
@@ -936,7 +936,7 @@ export default function CompanySearchOchronaWizerunku() {
       </div>
 
       {/* Guarantee Section */}
-      <GuaranteeSectionModern />
+      <GuaranteeSectionModernPayment />
     </motion.div>
   );
 }
