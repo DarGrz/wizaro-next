@@ -272,7 +272,7 @@ export default function GoogleRemovalForm() {
     
     // For reset mode, return 2199 zł (219900 in cents)
     if (isResetMode) {
-      return 21900;
+      return 219900;
     }
     
     // Regular removal price calculation
