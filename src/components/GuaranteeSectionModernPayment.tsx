@@ -1,6 +1,6 @@
 'use client';
 
-import { Shield, CheckCircle, CreditCard, TrendingUp, Award, Lock } from "lucide-react";
+import { Shield, CheckCircle, CreditCard, TrendingUp, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 

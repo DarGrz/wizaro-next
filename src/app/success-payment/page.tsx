@@ -32,7 +32,6 @@ function SuccessPaymentContent() {
   const [loading, setLoading] = useState(true);
   const [paymentStatus, setPaymentStatus] = useState<'success' | 'error'>('success');
   const [paymentDetails, setPaymentDetails] = useState<PaymentDetails | null>(null);
-  const [emailSent, setEmailSent] = useState(false);
   const searchParams = useSearchParams();
   
   const sessionId = searchParams.get('session_id');
@@ -75,7 +74,6 @@ function SuccessPaymentContent() {
       const emailSentKey = `email_sent_${sessionId}`;
       if (typeof window !== 'undefined' && localStorage.getItem(emailSentKey)) {
         console.log('📧 Email już został wysłany dla tej sesji');
-        setEmailSent(true);
         return;
       }
 
@@ -104,7 +102,6 @@ function SuccessPaymentContent() {
 
           if (emailRes.ok) {
             console.log("✅ Email z potwierdzeniem wysłany pomyślnie po płatności");
-            setEmailSent(true);
             // Oznacz że email został wysłany
             if (typeof window !== 'undefined') {
               localStorage.setItem(emailSentKey, 'true');
