@@ -595,7 +595,7 @@ export default function CompanySearchOchronaWizerunku() {
                     ))}
                   </div>
                   <p className="text-gray-700 mb-6 leading-relaxed">
-                    &ldquo;Profil mojej firmy w końcu zniknął z map! Profesjonalna obsługa i pełna dyskrecja. Polecam każdemu przedsiębiorcy.&rdquo;
+                    &ldquo;Profil mojej firmy w końcu zniknął ! Profesjonalna obsługa i pełna dyskrecja. Polecam każdemu przedsiębiorcy.&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
