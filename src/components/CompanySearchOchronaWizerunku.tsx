@@ -571,90 +571,50 @@ export default function CompanySearchOchronaWizerunku() {
         {!selectedPlace && !isLoadingDetails && (
           <>
             {/* Testimonials Section */}
-            <motion.div
-              variants={fadeInUp}
-              className="mt-16 sm:mt-24 max-w-4xl sm:max-w-6xl mx-auto"
-            >
-              <div className="text-center mb-8 sm:mb-12 px-4">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#002a5c] mb-3">
-                  Co Mówią Nasi Klienci
-                </h2>
-                <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
-                  Poznaj opinie przedsiębiorców, którzy odzyskali kontrolę nad swoją reputacją
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                {/* Testimonial 1 */}
-                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-700 mb-5 leading-relaxed">
-                    &ldquo;Profil mojej firmy w końcu zniknął ! Profesjonalna obsługa i pełna dyskrecja. Polecam każdemu przedsiębiorcy.&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg">
-                      JN
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Jan Nowak</div>
-                      <div className="text-xs sm:text-sm text-gray-500">Właściciel firmy IT</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Testimonial 2 */}
-                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-700 mb-5 leading-relaxed">
-                    &ldquo;Szybko i skutecznie. Firma w końcu zniknęła z map. Bardzo polecam!&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg">
-                      AK
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Anna Kowalska</div>
-                      <div className="text-xs sm:text-sm text-gray-500">Salon kosmetyczny</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Testimonial 3 */}
-                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-700 mb-5 leading-relaxed">
-                    &ldquo;W końcu profil firmy został usunięty! Doskonałe wsparcie i efekt jak obiecano.&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-emerald-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg">
-                      PW
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Piotr Wiśniewski</div>
-                      <div className="text-xs sm:text-sm text-gray-500">Restauracja</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            {/* Social Proof Section */}
+                    <motion.div
+                      variants={fadeInUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.3 }}
+                      className="mt-16 max-w-4xl sm:max-w-6xl mx-auto"
+                    >
+                      <div className="bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/30 rounded-2xl sm:rounded-3xl shadow-xl border border-blue-100/50 overflow-hidden">
+                        <div className="px-4 sm:px-8 py-8 sm:py-12 text-center">
+                          {/* Quote Icon */}
+                          <div className="inline-block p-3 sm:p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6 sm:mb-8">
+                            <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                          </div>
+                          
+                          {/* Testimonial */}
+                          <blockquote className="text-lg sm:text-xl md:text-2xl font-medium text-slate-800 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
+                            &ldquo;Dzięki Wizaro.pl pozbyliśmy się problemu raz na zawsze&rdquo;
+                          </blockquote>
+                          
+                          {/* Author */}
+                          <div className="flex items-center justify-center">
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mr-4">
+                              <span className="text-white font-bold text-lg sm:text-xl">M</span>
+                            </div>
+                            <div className="text-left">
+                              <div className="font-semibold text-slate-800 text-base sm:text-lg">Michał K.</div>
+                              <div className="text-slate-600 text-sm sm:text-base">Właściciel firmy</div>
+                            </div>
+                          </div>
+                          
+                          {/* Stars */}
+                          <div className="flex justify-center mt-4 sm:mt-6">
+                            {[...Array(5)].map((_, i) => (
+                              <svg key={i} className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                              </svg>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
 
             {/* How We Work Section */}
             <motion.div
