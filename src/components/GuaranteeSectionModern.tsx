@@ -60,7 +60,7 @@ export default function GuaranteeSectionModern() {
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
-            Działamy na zasadzie: <span className="font-semibold text-emerald-600">płacisz tylko za skutecznie usunięte opinie</span>
+            Działamy na zasadzie: <span className="font-semibold text-emerald-600">płacisz tylko jeśli wykonamy powierzone zadanie</span>
             
           </p>
         </motion.div>
