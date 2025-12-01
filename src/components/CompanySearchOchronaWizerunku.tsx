@@ -590,12 +590,14 @@ export default function CompanySearchOchronaWizerunku() {
                           
                           {/* Testimonial */}
                           <blockquote className="text-lg sm:text-xl md:text-2xl font-medium text-slate-800 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
-                            &ldquo;Dzięki Wizaro.pl pozbyliśmy się problemu raz na zawsze&rdquo;
+                            <span className="inline-block text-blue-500 mr-1">❝</span>
+                            Dzięki Wizaro.pl pozbyliśmy się problemu raz na zawsze
+                            <span className="inline-block text-blue-500 ml-1">❞</span>
                           </blockquote>
                           
                           {/* Author */}
                           <div className="flex items-center justify-center">
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mr-4">
+                            <div className="w-8 h-8 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mr-4">
                               <span className="text-white font-bold text-lg sm:text-xl">M</span>
                             </div>
                             <div className="text-left">
@@ -616,94 +618,6 @@ export default function CompanySearchOchronaWizerunku() {
                       </div>
                     </motion.div>
 
-            {/* How We Work Section */}
-            <motion.div
-              variants={fadeInUp}
-              className="mt-16 sm:mt-24 max-w-4xl sm:max-w-6xl mx-auto"
-            >
-              <div className="text-center mb-8 sm:mb-12 px-4">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#002a5c] mb-3">
-                  Jak Działamy
-                </h2>
-                <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
-                  Prosty i przejrzysty proces w czterech krokach
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
-                {/* Step 1 */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-                  <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <div className="absolute -top-3 md:-top-4 left-4 md:left-6 bg-gradient-to-r from-blue-600 to-cyan-500 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-base md:text-lg font-bold shadow-lg">
-                      1
-                    </div>
-                    <div className="mt-3 md:mt-4">
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
-                        Wyszukaj
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                        Znajdź swoją firmę w Google Maps
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Step 2 */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-emerald-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-                  <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <div className="absolute -top-3 md:-top-4 left-4 md:left-6 bg-gradient-to-r from-green-600 to-emerald-500 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-base md:text-lg font-bold shadow-lg">
-                      2
-                    </div>
-                    <div className="mt-3 md:mt-4">
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
-                        Wybierz
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                        Potwierdź dane i przejdź do formularza
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Step 3 */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-600 to-amber-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-                  <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <div className="absolute -top-3 md:-top-4 left-4 md:left-6 bg-gradient-to-r from-orange-600 to-amber-500 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-base md:text-lg font-bold shadow-lg">
-                      3
-                    </div>
-                    <div className="mt-3 md:mt-4">
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
-                        Zleć
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                        Wypełnij formularz i złóż zlecenie
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Step 4 */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-                  <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <div className="absolute -top-3 md:-top-4 left-4 md:left-6 bg-gradient-to-r from-purple-600 to-pink-500 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-base md:text-lg font-bold shadow-lg">
-                      4
-                    </div>
-                    <div className="mt-3 md:mt-4">
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
-                        Rezultaty
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                        Całkowite zadowolenie z efektów naszych działań
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
 
             {/* Why Choose Us Section */}
             <motion.div
@@ -756,7 +670,7 @@ export default function CompanySearchOchronaWizerunku() {
                         Szybka Realizacja
                       </h3>
                       <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                        Średni czas realizacji to 7-14 dni roboczych
+                        Średni czas realizacji to 1-7 dni roboczych
                       </p>
                     </div>
                   </div>
