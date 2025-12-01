@@ -26,7 +26,7 @@ const guaranteeFeatures = [
   {
     icon: TrendingUp,
     title: "Szybka realizacja",
-    description: "Dzięki płatności online - natychmiastowy start",
+    description: "Natychmiastowy start dzięki płatności online",
     color: "text-purple-500"
   }
 ];

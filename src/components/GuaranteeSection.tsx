@@ -144,16 +144,14 @@ export default function GuaranteeSection() {
         <div className=" backdrop-blur-sm p-6 rounded-lg  w-full">
           <p className="text-gray-800 text-lg mb-3">
             <span className="font-semibold text-gray-900 inline-block border-b-2 border-[#5BA155] pb-1">
-              Płacisz tylko za skutecznie usunięte opinie
+              Bez zaliczek i ukrytych kosztów.
             </span>
           </p>
           
           <p className="text-gray-600">
-            100% Legalnie • Bez zaliczek • Bez ukrytych kosztów
+            100% Legalnie
           </p>
-          
-         
-        </div>
+          </div>
       </div>
     </section>
   );
