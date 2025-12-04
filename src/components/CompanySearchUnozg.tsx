@@ -550,7 +550,7 @@ export default function CompanySearchUnozg2() {
               </h2>
               <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto mb-4 sm:mb-6 rounded-full"></div>
               <p className="text-lg sm:text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light px-4">
-                Dbaj o Swoją Obecność w Google
+                Dbaj o Swoją Obecność w Sieci
               </p>
               <p className="text-sm sm:text-lg text-slate-400 mt-3 sm:mt-4 max-w-3xl mx-auto px-4">
                 Odzyskaj pełną kontrolę nad wizerunkiem online
@@ -572,7 +572,7 @@ export default function CompanySearchUnozg2() {
                       Kontrola Danych
                     </h3>
                     <p className="text-slate-300 leading-relaxed text-center text-xs sm:text-sm">
-                      Przejmij kontrolę nad swoimi danymi firmowymi w Google.
+                      Przejmij kontrolę nad swoimi danymi firmowymi.
                     </p>
                   </div>
                 </div>
