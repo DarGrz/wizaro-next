@@ -17,8 +17,8 @@ interface LocalBusinessSchemaProps {
 }
 
 export default function LocalBusinessSchema({
-  name = "Wizaro - Usuwanie Opinii",
-  description = "Profesjonalne usługi usuwania negatywnych opinii z Google Maps, Aleo, GoWork i innych platform. Skuteczne metody zgodne z RODO.",
+  name = "Wizaro - Ochrona Wizerunku Online",
+  description = "Profesjonalne usługi ochrony wizerunku online. Skuteczne metody zgodne.",
   url = "https://wizaro.pl",
   telephone = "+48792861513",
   address = {
@@ -29,10 +29,7 @@ export default function LocalBusinessSchema({
     addressCountry: "PL"
   },
   services = [
-    "Usuwanie opinii z Google Maps",
-    "Usuwanie opinii z Aleo", 
-    "Usuwanie opinii z GoWork",
-    "Usuwanie profili biznesowych",
+    
     "Zarządzanie reputacją online"
   ]
 }: LocalBusinessSchemaProps) {
@@ -57,7 +54,7 @@ export default function LocalBusinessSchema({
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Usługi usuwania opinii",
+      "name": "Usługi ochrony wizerunku online",
       "itemListElement": services.map((service) => ({
         "@type": "Offer",
         "itemOffered": {

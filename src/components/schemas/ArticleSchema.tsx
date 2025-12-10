@@ -58,8 +58,8 @@ export default function ArticleSchema({
     "inLanguage": "pl-PL",
     "about": {
       "@type": "Thing",
-      "name": "Usuwanie opinii online",
-      "description": "Profesjonalne usługi usuwania negatywnych opinii z platform internetowych"
+      "name": "Ochrona wizerunku online",
+      "description": "Profesjonalne uslugi ochrony wizerunku w sieci"
     }
   };
 

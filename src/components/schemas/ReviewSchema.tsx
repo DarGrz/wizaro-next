@@ -15,7 +15,7 @@ export default function ReviewSchema({
   ratingValue,
   reviewBody,
   datePublished = new Date().toISOString(),
-  itemName = 'Wizaro - Usuwanie Opinii',
+  itemName = 'Wizaro - Ochrona Wizerunku Online',
   itemUrl = 'https://wizaro.pl'
 }: ReviewSchemaProps) {
   const schema = {

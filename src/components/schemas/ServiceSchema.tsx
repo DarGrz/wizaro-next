@@ -67,7 +67,7 @@ export default function ServiceSchema({
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Usuwanie negatywnych opinii"
+            "name": "Ochrona wizerunku online"
           },
           "price": "500",
           "priceCurrency": "PLN",
