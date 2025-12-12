@@ -374,7 +374,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h4 className="font-bold text-lg mb-2">Jak długo trwa usunięcie wizytówki Google?</h4>
               <p className="text-gray-700">
-                Proces zwykle trwa od 2 do 6 tygodni, w zależności od statusu wizytówki 
+                Proces zwykle trwa maksymalnie do 7 dni choć w rzadkich przypadkach może się wydłużyć, w zależności od statusu wizytówki 
                 i dostępu do niej. Informujemy Cię na bieżąco o postępach.
               </p>
             </div>

@@ -381,7 +381,7 @@ export default function UsuwanieFirmyZGoogleCenaPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h4 className="font-bold text-lg mb-2">Jak długo trwa usunięcie firmy z Google?</h4>
               <p className="text-gray-700">
-                Proces zwykle trwa od 2 do 8 tygodni, w zależności od statusu profilu, 
+                Proces maksymalnie trwa do 7 dni, w zależności od statusu profilu, 
                 dostępu do niego i responsywności Google. Informujemy Cię na bieżąco 
                 o wszystkich postępach.
               </p>
