@@ -60,20 +60,20 @@ export default function UsuwanieFirmyZGoworkPage() {
               {/* Treść */}
               <div className="flex-1 text-center md:text-left">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Usuwanie opinii z GoWork
+                  Usuwanie firmy z GoWork
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Pomożemy Ci usunąć negatywne i szkodliwe opinie z platformy GoWork. 
+                  Pomożemy Ci usunąć profil firmy i dane z platformy GoWork. 
                   Profesjonalna obsługa zgodnie z regulaminem GoWork i prawem polskim.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie opinii</span>
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Usunięcie profilu</span>
                   <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Ochrona reputacji</span>
                   <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Argumenty prawne</span>
                 </div>
-                <Link href="/jak-usunac-opinie-z-gowork" className="inline-block">
+                <Link href="/formularz-profil-bazy" className="inline-block">
                   <button className="px-6 py-3 bg-[#002a5c] text-white rounded-lg font-semibold hover:bg-[#001e47] transition duration-200 shadow-sm">
-                    Usuń opinie z GoWork
+                    Usuń firmę z GoWork
                   </button>
                 </Link>
               </div>
@@ -105,7 +105,7 @@ export default function UsuwanieFirmyZGoworkPage() {
                   <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Panorama Firm</span>
                   <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">PKT.pl</span>
                 </div>
-                <Link href="/aleo-jak-usunac-opinie" className="inline-block">
+                <Link href="/formularz-profil-bazy" className="inline-block">
                   <button className="px-6 py-3 bg-[#5BA155] text-white rounded-lg font-semibold hover:bg-[#4a8c47] transition duration-200 shadow-sm">
                     Sprawdź inne platformy
                   </button>
