@@ -4,7 +4,7 @@
 
 import BusinessTypeSelector from "./BusinessTypeSelector";
 import MobileActionButton from "./MobileActionButton";
-import BusinessTypeSelectorMobile from "./BusinessTypeSelectorMobile";
+import BusinessTypeSelectorMobileReviewRemovalPrice from "./BusinessTypeSelectorMobileReviewRemovalPrice";
 import Link from "next/link";
 import { ProductWithReviewsSchema } from './schemas';
 
@@ -120,7 +120,7 @@ export default function UsuwanieOpiniiGoogleCenaPage() {
 
       {/* Mobilna wersja selektora */}
       <div className="md:gap-8 pt-5 w-full md:hidden block">
-        <BusinessTypeSelectorMobile />
+        <BusinessTypeSelectorMobileReviewRemovalPrice />
       </div>
 
       
