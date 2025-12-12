@@ -114,6 +114,24 @@ export default function GoworkRemovalPage() {
       <article className="w-full max-w-4xl px-4 py-8">
         <div className="prose prose-lg max-w-none">
           
+          {/* CTA - Usunięcie całego profilu */}
+          <div className="bg-[#002a5c] text-white p-8 rounded mb-10 shadow-lg">
+            <div className="text-center">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                Wolisz usunąć cały profil wraz ze wszystkimi opiniami?
+              </h3>
+              <p className="text-lg mb-6 text-blue-50">
+                Skutecznie usuniemy kompletny profil Twojej firmy z GoWork, 
+                włącznie ze wszystkimi opiniami, zdjęciami i danymi firmowymi.
+              </p>
+              <Link href="/formularz-profil-bazy" className="inline-block">
+                <button className="bg-white text-[#002a5c] px-8 py-4 rounded font-bold text-lg hover:bg-gray-100 transition duration-200 shadow-md">
+                  Usuń cały profil z GoWork →
+                </button>
+              </Link>
+            </div>
+          </div>
+
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
             Dlaczego warto usunąć szkodliwe opinie z GoWork?
           </h2>
