@@ -7,6 +7,7 @@ import MobileActionButton from "./MobileActionButton";
 import BusinessTypeSelectorMobileAleo from "./BusinessTypeSelectorMobileAleo";
 import BusinessTypeSelectorCTA from "./BusinessTypeSelectorCTA";
 import Link from "next/link";
+import BusinessTypeSelectorMobileGoWork from "./BusinessTypeSelectorMobileGoWork";
 
 export default function UsuwanieFirmyZGoworkPage() {
   return (
@@ -31,7 +32,7 @@ export default function UsuwanieFirmyZGoworkPage() {
 
       {/* Mobilna wersja selektora */}
       <div className="md:gap-8 pt-5 w-full md:hidden block">
-        <BusinessTypeSelectorMobileAleo />
+        <BusinessTypeSelectorMobileGoWork />
       </div>
 
       {/* Separator */}
