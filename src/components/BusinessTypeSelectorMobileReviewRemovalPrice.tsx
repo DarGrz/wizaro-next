@@ -54,7 +54,8 @@ export default function BusinessTypeSelectorMobile() {
                   Usuwanie Opinii z Google Cena
                 </h1>
                 <p className="text-gray-600 text-center text-sm sm:text-sm mb-6">
-                Szybko pozbędziesz się negatywnych opinii i profili. Bez zbędnych komplikacji, w pełni legalnie i dyskretnie. Kliknij <strong>START</strong> żeby rozpocząć, resztą zajmiemy się my.
+Najlepsze ceny na rynku! Usuwanie opinii Google od 299 zł. Profesjonalne usługi, gwarancja rezultatu, pełna dyskrecja. Kliknij <strong>START</strong> aby rozpocząć.
+
                 </p>
                 <button
                   onClick={() => setStep('platform')}
