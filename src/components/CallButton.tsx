@@ -31,7 +31,7 @@ export default function CallButton() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="group relative inline-flex items-center justify-center px-9 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 overflow-hidden"
+        className="group relative inline-flex items-center justify-center px-9 py-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:from-blue-500 hover:to-blue-600 hover:shadow-xl hover:scale-105 overflow-hidden"
       >
         {/* Animacja błysku od lewej do prawej - cały czas */}
         <div className="shimmer-animation absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
@@ -40,7 +40,7 @@ export default function CallButton() {
         <div className="relative z-10 flex items-center">
           <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
             <svg 
-              className="w-5 h-5 text-blue-600 group-hover:rotate-12 transition-transform duration-300" 
+              className="w-5 h-5 text-blue-500 group-hover:rotate-12 transition-transform duration-300" 
               fill="currentColor" 
               viewBox="0 0 24 24"
             >
