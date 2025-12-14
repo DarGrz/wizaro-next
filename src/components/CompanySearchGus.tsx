@@ -3,8 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import GuaranteeSectionModernPayment from "./GuaranteeSectionModernPayment";
-
+import GuaranteeSectionModernPayment from "./GuaranteeSectionModernPayment";import CallButton from "./CallButton";
 interface GUSCompanyData {
   name: string;
   street: string;
@@ -254,6 +253,13 @@ export default function CompanySearchGus() {
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
             Wyszukaj swoją firmę po numerze NIP i skorzystaj z naszych profesjonalnych usług.
           </p>
+          
+          {/* Przycisk Zadzwoń */}
+          {!selectedCompany && (
+            <div className="mt-6 sm:mt-8 flex justify-center">
+              <CallButton />
+            </div>
+          )}
           
           {/* Supported Portals Badge */}
           <motion.div 

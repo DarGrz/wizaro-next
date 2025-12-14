@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import GuaranteeSectionModern from "./GuaranteeSectionModern";
+import CallButton from "./CallButton";
 
 interface GmbLocation {
   id: string;
@@ -316,12 +317,25 @@ export default function CompanySearchUnozg2() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-4 py-4 sm:py-16">
         <motion.div variants={fadeInUp} className="text-center mb-8 sm:mb-16">
+          <div className="inline-flex items-center justify-center mb-4 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
+            <svg className="w-4 h-4 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm font-medium text-blue-800">Zweryfikowana firma</span>
+          </div>
           <h1 className="text-3xl sm:text-3xl md:text-6xl font-bold text-[#002a5c] mb-4 sm:mb-6 leading-tight px-4 mt-15">
             Potrzebujesz pomocy?<br />
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
             Znajdź profil swojej firmy i skorzystaj z naszych profesjonalnych usług.
           </p>
+          
+          {/* Przycisk Zadzwoń */}
+          {!selectedPlaceDetails && (
+            <div className="mt-6 sm:mt-8 flex justify-center">
+              <CallButton />
+            </div>
+          )}
         </motion.div>
 
         <motion.div variants={fadeInUp} className="max-w-4xl mx-auto relative">
@@ -332,6 +346,10 @@ export default function CompanySearchUnozg2() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/30 rounded-none sm:rounded-3xl hidden sm:block"></div>
               
               <div className="relative z-10 px-0 sm:px-0" ref={searchRef}>
+                <h3 className="text-lg sm:text-xl font-bold text-[#002a5c] mb-4 text-center px-4">
+                  Wyszukaj swoją firmę
+                </h3>
+                
                 {/* Search field and button container */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <div className="relative group flex-1">

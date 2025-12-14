@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import GuaranteeSectionModernPayment from "./GuaranteeSectionModernPayment";
+import CallButton from "./CallButton";
 
 interface GmbLocation {
   id: string;
@@ -333,6 +334,13 @@ export default function CompanySearchOchronaWizerunku() {
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 mb-6">
             <span className="text-gray-700">Znajdź profil swojej firmy i skorzystaj z naszych profesjonalnych usług.</span>
           </p>
+          
+          {/* Przycisk Zadzwoń */}
+          {!selectedPlace && (
+            <div className="mt-6 sm:mt-8 flex justify-center">
+              <CallButton />
+            </div>
+          )}
         </motion.div>
 
         <motion.div variants={fadeInUp} className="max-w-4xl mx-auto relative">

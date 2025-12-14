@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import GuaranteeSectionModernPayment from "./GuaranteeSectionModernPayment";
+import CallButton from "./CallButton";
 
 interface GUSCompanyData {
   name: string;
@@ -303,6 +304,13 @@ export default function CompanySearchGusFacebook() {
            
             <span className=" text-gray-700">Chroń swoją reputację online. Nie pozwól, aby negatywne opinie zaszkodziły Twojej firmie.</span>
           </p>
+          
+          {/* Przycisk Zadzwoń */}
+          {!selectedCompany && (
+            <div className="mt-6 sm:mt-8 flex justify-center">
+              <CallButton />
+            </div>
+          )}
           
           {/* Supported Portals Badge */}
           <motion.div 

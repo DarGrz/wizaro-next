@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import GuaranteeSectionModernPayment from "./GuaranteeSectionModernPayment";
+import CallButton from "./CallButton";
 
 interface GmbLocation {
   id: string;
@@ -333,6 +334,13 @@ export default function CompanySearchGoogleRemoval() {
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 mb-8">
             <span className="text-gray-700">Profesjonalne usuwanie wizytówek Google My Business. Skutecznie i dyskretnie usuniemy Twoją firmę z Google Maps.</span>
           </p>
+          
+          {/* Przycisk Zadzwoń */}
+          {!selectedPlace && (
+            <div className="mt-6 sm:mt-8 flex justify-center">
+              <CallButton />
+            </div>
+          )}
         </motion.div>
 
         <motion.div variants={fadeInUp} className="max-w-4xl mx-auto relative">
