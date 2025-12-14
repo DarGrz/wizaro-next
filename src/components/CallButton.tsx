@@ -1,13 +1,40 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function CallButton() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const checkTime = () => {
+      const now = new Date();
+      const hour = now.getHours();
+      const minutes = now.getMinutes();
+      // Widoczny tylko między 7:00 a 21:30
+      const isWithinHours = (hour > 7 || (hour === 7 && minutes >= 0)) && 
+                           (hour < 21 || (hour === 21 && minutes <= 30));
+      setIsVisible(isWithinHours);
+    };
+
+    // Sprawdź od razu
+    checkTime();
+
+    // Sprawdzaj co minutę
+    const interval = setInterval(checkTime, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const handleCall = () => {
     // Tutaj można dodać numer telefonu lub akcję
-    window.location.href = "tel:+48123456789"; // Zmień na właściwy numer
+    window.location.href = "tel:+48 792 861 513"; // Zmień na właściwy numer
   };
+
+  // Nie pokazuj przycisku poza godzinami 7:00-21:30
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <>
