@@ -57,67 +57,16 @@ function SuccessPaymentContent() {
         
         if (data.payment_status !== 'paid') {
           setPaymentStatus('error');
-        } else {
-          // Płatność pomyślna - wyślij email z potwierdzeniem
-          await sendConfirmationEmail(data, orderId);
         }
+        
+        // Email z potwierdzeniem zostanie wysłany przez webhook po otrzymaniu potwierdzenia płatności od Stripe
+        console.log('💡 Email z potwierdzeniem zostanie wysłany automatycznie przez webhook');
+        
       } catch (error) {
         console.error('Błąd:', error);
         setPaymentStatus('error');
       } finally {
         setLoading(false);
-      }
-    };
-
-    const sendConfirmationEmail = async (paymentData: PaymentDetails, orderId: string | null) => {
-      // Sprawdź czy email nie został już wysłany (zapobiega wielokrotnym wysyłkom przy odświeżaniu)
-      const emailSentKey = `email_sent_${sessionId}`;
-      if (typeof window !== 'undefined' && localStorage.getItem(emailSentKey)) {
-        console.log('📧 Email już został wysłany dla tej sesji');
-        return;
-      }
-
-      // Pobierz dane z localStorage (zapisane przed przekierowaniem na płatność)
-      const companyFormRemovalData = localStorage.getItem("companyFormRemovalData");
-      
-      if (companyFormRemovalData && paymentData.company) {
-        try {
-          const formData = JSON.parse(companyFormRemovalData);
-          const company = formData.company || paymentData.company;
-          const removals = formData.removals || [];
-          const totalPrice = formData.totalPrice || (paymentData.amount_total ? paymentData.amount_total / 100 : 0);
-          const companyId = orderId || formData.company_id || paymentData.order_id;
-
-          // Wyślij email z potwierdzeniem
-          const emailRes = await fetch("/api/send-profile-confirmation", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              company: company,
-              profiles: removals,
-              totalPrice: totalPrice,
-              orderId: companyId,
-            }),
-          });
-
-          if (emailRes.ok) {
-            console.log("✅ Email z potwierdzeniem wysłany pomyślnie po płatności");
-            // Oznacz że email został wysłany
-            if (typeof window !== 'undefined') {
-              localStorage.setItem(emailSentKey, 'true');
-            }
-          } else {
-            console.error("⚠️ Nie udało się wysłać emaila z potwierdzeniem");
-          }
-
-          // Wyczyść dane formularza z localStorage
-          localStorage.removeItem("companyFormRemovalData");
-          localStorage.removeItem("companyFormData");
-        } catch (emailError) {
-          console.error("❌ Błąd wysyłki emaila z potwierdzeniem:", emailError);
-        }
-      } else {
-        console.log('⚠️ Brak danych do wysłania emaila - dane firmy:', !!paymentData.company, ', dane formularza:', !!companyFormRemovalData);
       }
     };
 
