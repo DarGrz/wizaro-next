@@ -76,11 +76,11 @@ export default function ReviewFormGoogle({
             </div>
             <div className="ml-3">
               <h3 className="text-sm font-medium text-orange-800">
-                Zbyt duża ilość zgłoszeń na usuwanie opinii
+                Usługa chwilowo wstrzymana
               </h3>
               <div className="mt-2 text-sm text-orange-700">
-                <p>Z powodu dużej ilości zgłoszeń obecnie nie przyjmujemy nowych zleceń na usuwanie pojedynczych opinii.</p>
-                <p className="mt-2 font-medium">Proponujemy usunięcie całej Wizytówki Google lub zresetowanie wszystkich opinii.</p>
+                <p>Z powodu zmian w algorytmie Google obecnie nie przyjmujemy nowych zleceń na usuwanie pojedynczych opinii.</p>
+                <p className="mt-2 font-medium">Proponujemy usunięcie całej Wizytówki Google lub zresetowanie czyli usunięcie wszystkich opinii.</p>
                 
               </div>
               {onProfileRemoval && (
